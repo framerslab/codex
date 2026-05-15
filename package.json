@@ -29,7 +29,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@framers/sql-storage-adapter": "^0.6.5",
+    "@framers/sql-storage-adapter": "workspace:^",
     "@huggingface/transformers": "^3.8.0",
     "better-sqlite3": "^12.9.0",
     "compromise": "^14.10.0",
@@ -53,7 +53,7 @@
     "blocks:tag": "Generate tag suggestions for all blocks using NLP",
     "blocks:ai": "AI-enhance block tags using LLM (requires API key)",
     "blocks:migrate": "One-time migration to process all existing strands",
-    "blocks:all": "Run full block processing pipeline (process \u2192 tag \u2192 index)",
+    "blocks:all": "Run full block processing pipeline (process → tag → index)",
     "test": "Run unit and integration tests",
     "test:coverage": "Run tests with coverage report",
     "prepare": "Install git hooks for pre-commit validation"
