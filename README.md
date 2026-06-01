@@ -9,17 +9,17 @@
 
 *The OS for humans, the codex of humanity.*
 
-[![GitHub](https://img.shields.io/badge/GitHub-framersai%2Fcodex-black?logo=github)](https://github.com/framerslab/codex)
+[![GitHub](https://img.shields.io/badge/GitHub-framerslab%2Fcodex-black?logo=github)](https://github.com/framerslab/codex)
 [![License](https://img.shields.io/badge/License-CC--BY--4.0-green.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](docs/contributing/how-to-submit.md)
 [![OpenStrand](https://img.shields.io/badge/Schema-OpenStrand-purple)](https://openstrand.ai)
-[![Build](https://img.shields.io/github/actions/workflow/status/framersai/codex/auto-index.yml?label=Index)](https://github.com/framerslab/codex/actions)
-[![Tests](https://img.shields.io/github/actions/workflow/status/framersai/codex/test.yml?label=Tests)](https://github.com/framerslab/codex/actions/workflows/test.yml)
+[![Build](https://img.shields.io/github/actions/workflow/status/framerslab/codex/auto-index.yml?label=Index)](https://github.com/framerslab/codex/actions)
+[![Tests](https://img.shields.io/github/actions/workflow/status/framerslab/codex/test.yml?label=Tests)](https://github.com/framerslab/codex/actions/workflows/test.yml)
 
-![Coverage](https://raw.githubusercontent.com/framersai/codex/master/docs/badges/coverage.svg)
-![Lines](https://raw.githubusercontent.com/framersai/codex/master/docs/badges/coverage-lines.svg)
-![Tests](https://raw.githubusercontent.com/framersai/codex/master/docs/badges/tests.svg)
-![LOC](https://raw.githubusercontent.com/framersai/codex/master/docs/badges/loc.svg)
+![Coverage](https://raw.githubusercontent.com/framerslab/codex/master/docs/badges/coverage.svg)
+![Lines](https://raw.githubusercontent.com/framerslab/codex/master/docs/badges/coverage-lines.svg)
+![Tests](https://raw.githubusercontent.com/framerslab/codex/master/docs/badges/tests.svg)
+![LOC](https://raw.githubusercontent.com/framerslab/codex/master/docs/badges/loc.svg)
 
 [Browse](https://frame.dev/codex) • [Documentation](docs/DEVELOPMENT.md) • [Contributing](docs/contributing/how-to-submit.md) • [Changelog](docs/CHANGELOG_SYSTEM.md) • [Security](SECURITY.md) • [Discord](https://wilds.ai/discord)
 
@@ -276,7 +276,7 @@ Frame.dev and OpenStrand consume this content via:
 ```javascript
 // Example: Fetch a strand (file at any depth inside a weave)
 const response = await fetch(
-  'https://raw.githubusercontent.com/framersai/codex/main/weaves/frame/overview.md'
+  'https://raw.githubusercontent.com/framerslab/codex/main/weaves/frame/overview.md'
 );
 const content = await response.text();
 ```
@@ -297,7 +297,7 @@ The primary UI for browsing Frame Codex is [Quarry](https://frame.dev/quarry) at
 
 You can reuse Quarry to render *any* GitHub-hosted Codex-style repository:
 
-1. **Fork `framersai/frame.dev`**
+1. **Fork `framerslab/frame.dev`**
 2. In the `apps/frame.dev` app, configure the Codex repo via environment variables:
 
    ```bash
@@ -307,7 +307,7 @@ You can reuse Quarry to render *any* GitHub-hosted Codex-style repository:
    NEXT_PUBLIC_CODEX_REPO_BRANCH=main
    ```
 
-3. The viewer reads these in `components/codex/constants.ts` (`REPO_CONFIG`) and will render your repository instead of `framersai/codex`.
+3. The viewer reads these in `components/codex/constants.ts` (`REPO_CONFIG`) and will render your repository instead of `framerslab/codex`.
 4. Deploy your fork (e.g., Vercel, Netlify, GitHub Pages) and you now have a hosted Codex UI for your own knowledge fabric.
 
 ### Building the Index

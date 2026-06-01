@@ -17,7 +17,7 @@ npm run index -- --validate
 ### Option A: GitHub Actions (Simplest)
 
 ```bash
-gh workflow run build-index.yml --repo framersai/codex
+gh workflow run build-index.yml --repo framerslab/codex
 ```
 
 Or click "Run workflow" at:  

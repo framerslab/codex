@@ -88,7 +88,7 @@ function getGitLog(since) {
         author,
         email,
         date,
-        url: `https://github.com/framersai/codex/commit/${sha}`,
+        url: `https://github.com/framerslab/codex/commit/${sha}`,
         ...parsed
       }
     })

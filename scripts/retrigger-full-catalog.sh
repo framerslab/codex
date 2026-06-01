@@ -191,7 +191,7 @@ PR_RESPONSE=$(curl -s -X POST \
   -H "Authorization: Bearer $GH_PAT" \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
-  https://api.github.com/repos/framersai/codex/pulls \
+  https://api.github.com/repos/framerslab/codex/pulls \
   -d "{
     \"title\": \"chore: full catalog re-index ($(date +%Y-%m-%d))\",
     \"head\": \"$BRANCH_NAME\",
@@ -223,7 +223,7 @@ if [ "$AUTO_MERGE" = "true" ]; then
     -H "Authorization: Bearer $GH_PAT" \
     -H "Accept: application/vnd.github+json" \
     -H "X-GitHub-Api-Version: 2022-11-28" \
-    https://api.github.com/repos/framersai/codex/pulls/${PR_NUMBER}/merge \
+    https://api.github.com/repos/framerslab/codex/pulls/${PR_NUMBER}/merge \
     -d '{
       "commit_title": "chore: full catalog re-index",
       "commit_message": "Automated merge of catalog update",

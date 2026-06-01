@@ -50,7 +50,7 @@ The easiest way to contribute is **inside the Codex UI** at [`frame.dev/codex`](
   - IndexedDB / SQL cache
   - Any Frame.dev backend
 - The token is sent **only** to GitHub’s API endpoints for:
-  - Forking `framersai/codex`
+  - Forking `framerslab/codex`
   - Creating a branch + file
   - Opening a pull request
 
@@ -65,7 +65,7 @@ If you prefer the CLI, follow the traditional flow:
 1. **Fork & Clone**
 
    ```bash
-   gh repo fork framersai/codex --clone
+   gh repo fork framerslab/codex --clone
    cd codex
    ```
 
@@ -120,7 +120,7 @@ If you prefer the CLI, follow the traditional flow:
 
 You can reuse the Frame.dev Codex UI to render **any** Codex-style repository:
 
-1. **Fork `framersai/frame.dev`**.
+1. **Fork `framerslab/frame.dev`**.
 2. In your fork, create `.env.local` under `apps/frame.dev`:
 
    ```bash

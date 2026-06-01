@@ -127,7 +127,7 @@ Since block tags are stored in the Codex repository (not the browser), contribut
 
 ### Option 2: Direct PR
 
-1. Fork the [framersai/codex](https://github.com/framerslab/codex) repository
+1. Fork the [framerslab/codex](https://github.com/framerslab/codex) repository
 2. Edit the strand's frontmatter:
 
 ```yaml

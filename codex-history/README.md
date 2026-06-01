@@ -96,7 +96,7 @@ Each line in a `.jsonl` file is one of two types:
 {
   "type": "github_activity",
   "date": "2025-01-15",
-  "repository": "framersai/codex",
+  "repository": "framerslab/codex",
   "summary": {
     "issuesCreated": 2,
     "issuesClosed": 1,
@@ -135,7 +135,7 @@ Generate history for a specific date range:
 
 ```bash
 # Via GitHub Actions
-gh workflow run changelog.yml --repo framersai/codex -f since=2025-01-01
+gh workflow run changelog.yml --repo framerslab/codex -f since=2025-01-01
 
 # Or locally
 cd apps/codex
@@ -245,7 +245,7 @@ The AI can stream-read `2025-01.jsonl` line-by-line and generate a comprehensive
 
 ### GitHub Secrets
 
-Add to `framersai/codex` repository settings:
+Add to `framerslab/codex` repository settings:
 
 **Required:**
 - `GH_PAT`: GitHub Personal Access Token with `repo` scope

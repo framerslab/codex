@@ -50,7 +50,7 @@ This will:
 
 ### Required GitHub Secrets
 
-Add to `framersai/codex` repository settings:
+Add to `framerslab/codex` repository settings:
 
 ```bash
 # Required for auto-merge workflow
@@ -134,7 +134,7 @@ chmod +x scripts/retrigger-full-catalog.sh
 
 ```bash
 # Via GitHub CLI
-gh workflow run build-index.yml --repo framersai/codex
+gh workflow run build-index.yml --repo framerslab/codex
 
 # Or via web UI
 # Go to: https://github.com/framerslab/codex/actions/workflows/build-index.yml

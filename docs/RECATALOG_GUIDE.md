@@ -48,7 +48,7 @@ Run a full re-catalog when:
 ### Via GitHub CLI
 
 ```bash
-gh workflow run build-index.yml --repo framersai/codex
+gh workflow run build-index.yml --repo framerslab/codex
 ```
 
 **What It Does:**

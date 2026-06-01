@@ -22,7 +22,7 @@ const __dirname = path.dirname(__filename)
 
 // Configuration
 const GITHUB_TOKEN = process.env.GH_PAT
-const REPO_OWNER = 'framersai'
+const REPO_OWNER = 'framerslab'
 const REPO_NAME = 'codex'
 
 if (!GITHUB_TOKEN) {

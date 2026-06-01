@@ -117,7 +117,7 @@ The enhanced contribution modal provides:
 
 1. **Fork the Repository**
    ```bash
-   gh repo fork framersai/codex --clone
+   gh repo fork framerslab/codex --clone
    cd codex
    ```
 
