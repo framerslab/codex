@@ -137,7 +137,7 @@ chmod +x scripts/retrigger-full-catalog.sh
 gh workflow run build-index.yml --repo framersai/codex
 
 # Or via web UI
-# Go to: https://github.com/framersai/codex/actions/workflows/build-index.yml
+# Go to: https://github.com/framerslab/codex/actions/workflows/build-index.yml
 # Click "Run workflow" → "Run workflow"
 ```
 
@@ -189,7 +189,7 @@ This command uses `@xenova/transformers` entirely in Node.js (no Python, no API 
 
 ## SQL Cache Architecture
 
-Frame Codex uses [@framers/sql-storage-adapter](https://github.com/framersai/sql-storage-adapter) for intelligent incremental indexing.
+Frame Codex uses [@framers/sql-storage-adapter](https://github.com/framerslab/sql-storage-adapter) for intelligent incremental indexing.
 
 ### How It Works
 
@@ -390,7 +390,7 @@ function findBestLoom(uploadedContent) {
 
 When user clicks "Submit via GitHub":
 ```
-https://github.com/framersai/codex/compare/main...user:branch?
+https://github.com/framerslab/codex/compare/main...user:branch?
   quick_pull=1&
   title=Add: [Auto-Generated Title]&
   body=[Pre-filled PR template with metadata]

@@ -14,7 +14,7 @@ This step-by-step tutorial walks you through the complete block-level tagging wo
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/framersai/codex.git
+git clone https://github.com/framerslab/codex.git
 cd codex
 pnpm install
 ```

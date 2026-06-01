@@ -9,12 +9,12 @@
 
 *The OS for humans, the codex of humanity.*
 
-[![GitHub](https://img.shields.io/badge/GitHub-framersai%2Fcodex-black?logo=github)](https://github.com/framersai/codex)
+[![GitHub](https://img.shields.io/badge/GitHub-framersai%2Fcodex-black?logo=github)](https://github.com/framerslab/codex)
 [![License](https://img.shields.io/badge/License-CC--BY--4.0-green.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](docs/contributing/how-to-submit.md)
 [![OpenStrand](https://img.shields.io/badge/Schema-OpenStrand-purple)](https://openstrand.ai)
-[![Build](https://img.shields.io/github/actions/workflow/status/framersai/codex/auto-index.yml?label=Index)](https://github.com/framersai/codex/actions)
-[![Tests](https://img.shields.io/github/actions/workflow/status/framersai/codex/test.yml?label=Tests)](https://github.com/framersai/codex/actions/workflows/test.yml)
+[![Build](https://img.shields.io/github/actions/workflow/status/framersai/codex/auto-index.yml?label=Index)](https://github.com/framerslab/codex/actions)
+[![Tests](https://img.shields.io/github/actions/workflow/status/framersai/codex/test.yml?label=Tests)](https://github.com/framerslab/codex/actions/workflows/test.yml)
 
 ![Coverage](https://raw.githubusercontent.com/framersai/codex/master/docs/badges/coverage.svg)
 ![Lines](https://raw.githubusercontent.com/framersai/codex/master/docs/badges/coverage-lines.svg)
@@ -195,7 +195,7 @@ The Codex uses the OpenStrand four-tier knowledge hierarchy:
 
 ### SQL Cache Layer
 
-Frame Codex uses [@framers/sql-storage-adapter](https://github.com/framersai/sql-storage-adapter) for intelligent caching:
+Frame Codex uses [@framers/sql-storage-adapter](https://github.com/framerslab/sql-storage-adapter) for intelligent caching:
 
 **CI/GitHub Actions (better-sqlite3):**
 - Stores file metadata, SHA hashes, and analysis results in `.cache/codex.db`
@@ -433,7 +433,7 @@ To improve your rate limits, you can optionally set `GH_PAT` or `NEXT_PUBLIC_GH_
 
 **Fallback**: If GraphQL fails or no PAT is provided, the viewer automatically falls back to the REST API.
 
-See [lib/githubGraphql.ts](https://github.com/framersai/frame.dev/blob/master/apps/frame.dev/lib/githubGraphql.ts) for implementation details.
+See [lib/githubGraphql.ts](https://github.com/framerslab/frame.dev/blob/master/apps/frame.dev/lib/githubGraphql.ts) for implementation details.
 
 ### 🔒 Privacy & Data Storage
 
@@ -474,7 +474,7 @@ With attribution requirement.
   
   ### Connect
   
-  [Website](https://frame.dev) • [Quarry](https://frame.dev/quarry) • [Frame Codex](https://frame.dev/codex) • [OpenStrand](https://openstrand.ai) • [Discord](https://wilds.ai/discord) • [GitHub](https://github.com/framersai)
+  [Website](https://frame.dev) • [Quarry](https://frame.dev/quarry) • [Frame Codex](https://frame.dev/codex) • [OpenStrand](https://openstrand.ai) • [Discord](https://wilds.ai/discord) • [GitHub](https://github.com/framerslab)
   
   <br/>
   

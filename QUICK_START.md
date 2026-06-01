@@ -21,7 +21,7 @@ gh workflow run build-index.yml --repo framersai/codex
 ```
 
 Or click "Run workflow" at:  
-https://github.com/framersai/codex/actions/workflows/build-index.yml
+https://github.com/framerslab/codex/actions/workflows/build-index.yml
 
 ### Option B: Local Script with PR
 

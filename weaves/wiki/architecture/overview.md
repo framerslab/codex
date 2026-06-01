@@ -1686,7 +1686,7 @@ Fabric-level queries always preserve original weave/loom/strand provenance.
 
 ## SQL Cache Layer
 
-Frame Codex uses [@framers/sql-storage-adapter](https://github.com/framersai/sql-storage-adapter) for intelligent caching.
+Frame Codex uses [@framers/sql-storage-adapter](https://github.com/framerslab/sql-storage-adapter) for intelligent caching.
 
 ### Performance
 

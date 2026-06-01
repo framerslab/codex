@@ -17,7 +17,7 @@ Frame Codex is a **data-only, markdown-first knowledge fabric** designed for AI 
 There is **no UI** in this repo. The primary viewer lives at:
 
 - **Frame.dev Codex UI**: <https://frame.dev/codex>  
-- **Repo**: <https://github.com/framersai/frame.dev> (app that renders this Codex)
+- **Repo**: <https://github.com/framerslab/frame.dev> (app that renders this Codex)
 
 ---
 

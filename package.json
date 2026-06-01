@@ -1,5 +1,5 @@
 {
-  "name": "@framersai/codex",
+  "name": "@framers/codex",
   "private": true,
   "version": "0.1.0",
   "description": "Frame Codex - a structured public knowledge corpus for LLM/RAG.",

@@ -165,7 +165,7 @@ The enhanced contribution modal provides:
 
 **Best for:** Single file submissions, quick edits
 
-1. Navigate to [github.com/framersai/codex](https://github.com/framersai/codex)
+1. Navigate to [github.com/framerslab/codex](https://github.com/framerslab/codex)
 2. Click "Add file" → "Create new file"
 3. Enter the file path: `weaves/[weave]/[optional-folders]/your-file.md`
 4. Add your content with frontmatter (see schema below)
@@ -382,7 +382,7 @@ To become a Weaver, maintain high quality and request nomination from maintainer
 
 - 💬 **Discord**: [wilds.ai/discord](https://wilds.ai/discord)
 - 📧 **Email**: team@frame.dev
-- 🐛 **Issues**: [github.com/framersai/codex/issues](https://github.com/framersai/codex/issues)
+- 🐛 **Issues**: [github.com/framerslab/codex/issues](https://github.com/framerslab/codex/issues)
 - 📚 **Docs**: [frame.dev/codex/docs](https://frame.dev/codex/docs)
 
 ---

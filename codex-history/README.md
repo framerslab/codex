@@ -80,7 +80,7 @@ Each line in a `.jsonl` file is one of two types:
       "author": "John Doe",
       "email": "john@example.com",
       "date": "2025-01-15T10:30:00Z",
-      "url": "https://github.com/framersai/codex/commit/abc1234",
+      "url": "https://github.com/framerslab/codex/commit/abc1234",
       "type": "feat",
       "scope": "indexer",
       "description": "add SQL caching",
@@ -107,7 +107,7 @@ Each line in a `.jsonl` file is one of two types:
     {
       "number": 42,
       "title": "Add new feature",
-      "url": "https://github.com/framersai/codex/issues/42",
+      "url": "https://github.com/framerslab/codex/issues/42",
       "createdAt": "2025-01-15T14:20:00Z",
       "author": "johndoe",
       "labels": ["enhancement", "good-first-issue"]

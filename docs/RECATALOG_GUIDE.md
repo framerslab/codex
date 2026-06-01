@@ -39,7 +39,7 @@ Run a full re-catalog when:
 
 ### Via GitHub Web UI
 
-1. Go to https://github.com/framersai/codex/actions/workflows/build-index.yml
+1. Go to https://github.com/framerslab/codex/actions/workflows/build-index.yml
 2. Click **"Run workflow"** dropdown (top right)
 3. Select branch: `main`
 4. Click **"Run workflow"** button

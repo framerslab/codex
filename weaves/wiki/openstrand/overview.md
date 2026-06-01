@@ -2382,7 +2382,7 @@ Every Strand is automatically embedded into a vector space. This enables:
 
 ### Quick Start (5 minutes)
 
-1. **Fork the template:** `github.com/framersai/codex-template`
+1. **Fork the template:** `github.com/framerslab/codex-template`
 2. **Create a Weave:** `mkdir weaves/my-topic`
 3. **Add a Loom:** `mkdir weaves/my-topic/basics && touch weaves/my-topic/basics/loom.yaml`
 4. **Write a Strand:** Create `introduction.md` with frontmatter
