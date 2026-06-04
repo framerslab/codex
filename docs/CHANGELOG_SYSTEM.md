@@ -98,7 +98,7 @@ GH_PAT=ghp_xxx node scripts/fetch-issue-activity.js --since 2025-01-01
         "sha": "abc1234",
         "author": "John Doe",
         "date": "2025-01-15T10:30:00Z",
-        "url": "https://github.com/framersai/codex/commit/abc1234",
+        "url": "https://github.com/framerslab/codex/commit/abc1234",
         "type": "feat",
         "scope": "indexer",
         "description": "add SQL caching"
@@ -118,7 +118,7 @@ GH_PAT=ghp_xxx node scripts/fetch-issue-activity.js --since 2025-01-01
 ```json
 {
   "date": "2025-01-15",
-  "repository": "framersai/codex",
+  "repository": "framerslab/codex",
   "summary": {
     "issuesCreated": 2,
     "issuesClosed": 1,
@@ -129,7 +129,7 @@ GH_PAT=ghp_xxx node scripts/fetch-issue-activity.js --since 2025-01-01
     {
       "number": 42,
       "title": "Add new feature",
-      "url": "https://github.com/framersai/codex/issues/42",
+      "url": "https://github.com/framerslab/codex/issues/42",
       "createdAt": "2025-01-15T14:20:00Z",
       "author": "johndoe",
       "labels": ["enhancement"]
@@ -226,7 +226,7 @@ The AI can read the relevant JSON files and generate a comprehensive summary.
 
 ### GitHub Secrets
 
-Add to `framersai/codex` repository settings:
+Add to `framerslab/codex` repository settings:
 
 **Required:**
 - `GH_PAT`: GitHub Personal Access Token with `repo` scope
@@ -289,7 +289,7 @@ Planned features:
 3. Scheduled workflows are not disabled
 
 **Fix:**
-- Trigger manually: `gh workflow run changelog.yml --repo framersai/codex`
+- Trigger manually: `gh workflow run changelog.yml --repo framerslab/codex`
 
 ### No Issue Activity
 
