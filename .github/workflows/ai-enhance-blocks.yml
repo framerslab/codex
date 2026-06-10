@@ -39,17 +39,17 @@ jobs:
       (github.event_name == 'pull_request' && github.event.label.name == 'ai-enhance')
     
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
           # For PRs, checkout the PR branch
           ref: ${{ github.event.pull_request.head.ref || github.ref }}
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v6
         with:
           version: 9
       
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 20
           cache: 'pnpm'
