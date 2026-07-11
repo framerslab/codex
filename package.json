@@ -29,7 +29,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@framers/sql-storage-adapter": "workspace:^",
+    "@framers/sql-storage-adapter": "^0.6.8",
     "@huggingface/transformers": "^3.8.0",
     "better-sqlite3": "^12.9.0",
     "compromise": "^14.10.0",
