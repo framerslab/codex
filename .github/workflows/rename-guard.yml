@@ -3,6 +3,12 @@ on:
   push:
     branches: [master]
   pull_request:
+  workflow_dispatch:
+    inputs:
+      rename_done:
+        description: 'Run with RENAME_DONE=1 to list every public occurrence of the old names'
+        type: boolean
+        default: false
 jobs:
   guard:
     runs-on: ubuntu-24.04
@@ -22,4 +28,4 @@ jobs:
         if: ${{ !cancelled() }}
         run: node scripts/check-names.mjs .
         env:
-          RENAME_DONE: ${{ vars.RENAME_DONE_CODEX || '' }}
+          RENAME_DONE: ${{ (inputs.rename_done && '1') || vars.RENAME_DONE_CODEX || '' }}
