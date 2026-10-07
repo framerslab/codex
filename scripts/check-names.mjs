@@ -160,9 +160,9 @@ if (renameDone) {
 }
 
 for (const m of moved) console.log(`moved use site: ${m}`);
+// process.exitCode, never process.exit: stderr on a pipe (CI) drains asynchronously, and exiting early cuts it at the pipe buffer
 if (problems.length) {
   for (const p of problems) console.error(p);
   console.error(`check-names: ${problems.length} problem(s) in ${relative(process.cwd(), scope) || '.'}${renameDone ? ' (RENAME_DONE=1)' : ''}${strict ? ' (RENAME_STRICT=1)' : ''}`);
-  process.exit(1);
-}
-console.log(`check-names: ok (${files.length} tracked files, ${protectedIds.length} protected identifiers, ${useSites.length} use sites, ${moved.length} moved${renameDone ? ', RENAME_DONE=1' : ''}${strict ? ', RENAME_STRICT=1' : ''})`);
+  process.exitCode = 1;
+} else console.log(`check-names: ok (${files.length} tracked files, ${protectedIds.length} protected identifiers, ${useSites.length} use sites, ${moved.length} moved${renameDone ? ', RENAME_DONE=1' : ''}${strict ? ', RENAME_STRICT=1' : ''})`);
