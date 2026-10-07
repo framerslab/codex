@@ -66,9 +66,19 @@ properties:
           properties:
             targetSlug: { type: string }
             target: { type: string }
-            type: { enum: [follows, parallels, contrasts, extends, applies, synthesizes, references] }
+            type:
+              description: "The link types the app writes (its LinkType); the corpus uses follows, extends and references."
+              enum: [extends, contrasts, supports, example-of, implements, questions, refines, applies, summarizes, prerequisite, related, follows, references, contradicts, updates, parallels, synthesizes, custom]
             strength: { type: number, minimum: 0, maximum: 1 }
             bidirectional: { type: boolean, default: false }
+  teaches:
+    type: array
+    items: { type: string }
+    description: "Ids of the skills this note teaches, for example qs/library/skill/slope; kept apart from the skills field."
+  requires:
+    type: array
+    items: { type: string }
+    description: "Ids of the skills this note assumes a reader already has."
   publishing:
     type: object
     properties:
