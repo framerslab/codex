@@ -7041,7 +7041,7 @@
       {
         "file": "docs/BLOCK_TAGGING_API.md",
         "category": "security",
-        "score": 0.06111111111111111
+        "score": 0.05555555555555555
       },
       {
         "file": "docs/BLOCK_TAGGING_API.md",
@@ -7321,12 +7321,12 @@
       {
         "file": "docs/BLOCK_TAGGING_GUIDE.md",
         "category": "science",
-        "score": 0.034482758620689655
+        "score": 0.038314176245210725
       },
       {
         "file": "docs/BLOCK_TAGGING_GUIDE.md",
         "category": "security",
-        "score": 0.06666666666666667
+        "score": 0.06111111111111111
       },
       {
         "file": "docs/BLOCK_TAGGING_GUIDE.md",
@@ -7856,12 +7856,12 @@
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "science",
-        "score": 0.03065134099616858
+        "score": 0.034482758620689655
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "security",
-        "score": 0.05555555555555555
+        "score": 0.05
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
@@ -8156,7 +8156,7 @@
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "security",
-        "score": 0.05555555555555555
+        "score": 0.05
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
@@ -8486,12 +8486,12 @@
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "science",
-        "score": 0.10344827586206896
+        "score": 0.10727969348659004
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "security",
-        "score": 0.1111111111111111
+        "score": 0.10555555555555556
       },
       {
         "file": "docs/DEVELOPMENT.md",
@@ -9421,12 +9421,12 @@
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "science",
-        "score": 0.07279693486590039
+        "score": 0.07662835249042145
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "security",
-        "score": 0.10555555555555556
+        "score": 0.1
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
@@ -9746,7 +9746,7 @@
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "security",
-        "score": 0.08888888888888889
+        "score": 0.08333333333333333
       },
       {
         "file": "docs/contributing/how-to-submit.md",
@@ -10111,7 +10111,7 @@
       {
         "file": "docs/contributing/submission-schema.md",
         "category": "security",
-        "score": 0.08888888888888889
+        "score": 0.08333333333333333
       },
       {
         "file": "docs/contributing/submission-schema.md",
@@ -11625,7 +11625,7 @@
     ]
   },
   "performance": {
-    "timeElapsed": "89.62s",
+    "timeElapsed": "90.91s",
     "cacheHitRate": "0%",
     "filesProcessed": 38,
     "filesCached": 0,
