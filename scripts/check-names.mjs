@@ -15,7 +15,7 @@
  * RENAME_DONE=1: a line fails when it carries a pattern and the classification would call it public (scripts/rename/classify.py,
  * Task 2: prose files, and in code the URL, package and product names, quoted strings and JSX text). Code lines (identifiers,
  * comments), private lines (stored names), test, generated and history files stay out, as do the allowlisted paths, protected
- * identifiers, and a line that carries `rename-guard: keep` (a public line that keeps an old name on purpose, such as a migration
+ * identifiers, CamelCase identifiers on code lines (code, which the sweep does not rename), and a line that carries `rename-guard: keep` (a public line that keeps an old name on purpose, such as a migration
  * note). A path fails when it carries openstrand; the word strand in a path is the stored layout (looms/, strands/) or a route kept
  * as an alias, so paths are not held to it.
  *
@@ -134,6 +134,7 @@ if (renameDone) {
     if (named) problems.push(`${rel}: file or directory name carries the old word (${named[0]})`);
     if (BINARY.test(rel)) continue;
     let text; try { text = readFileSync(join(scope, rel), 'utf8'); } catch { continue; }
+    const prose = I18N_FILES.test(rel) || PROSE_EXT.has(extname(rel).toLowerCase()) || ['docs/', 'weaves/', 'README'].some((p) => rel.startsWith(p));
     if (text.includes('\u0000')) continue;
     text.split('\n').forEach((lineText, i) => {
       if (lineText.includes(KEEP) || !isPublicLine(rel, lineText)) return;
@@ -141,6 +142,8 @@ if (renameDone) {
         re.lastIndex = 0;
         for (const hit of lineText.matchAll(re)) {
           if (name === 'strand_ident' && /openstrand/i.test(hit[0])) continue;
+          // a CamelCase identifier on a code line is code, even on a line the classification calls public
+          if (name === 'strand_ident' && !prose) continue;
           // an occurrence inside a protected identifier is exempt by exact token: expand to the full token around the hit
           const start = hit.index, end = start + hit[0].length;
           let a = start, b = end;
