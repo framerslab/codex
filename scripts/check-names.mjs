@@ -50,6 +50,8 @@ const PRIVATE_HINTS = [
   /\bstorageKey\w*|\bSTORAGE_KEY\w*|\bDB_NAME\b|\bdbName\b|STORE_NAME|objectStore/i,
   /\bstrandPaths\b|\bstrandIds?\b\s*[:=]|\bstrandId\b|\bstrand_id\b|\bstrand_ids\b/,
   /["'](strand|openstrand)["']\s*[,:}\]]|level\s*[:=]\s*["']strand["']|type\s*[:=]\s*["']strand["']/,
+  // a SQL statement names stored tables and columns (uppercase keywords only, so prose is not caught)
+  /\bSELECT\b.*\bFROM\b|\bINSERT\s+INTO\b|\bUPDATE\s+\w+\s+SET\b|\bDELETE\s+FROM\b|\bCREATE\s+(?:UNIQUE\s+)?INDEX\b/,
 ];
 const PUBLIC_HINTS = [
   /@framers\/openstrand|framers(ai|lab)\/openstrand|openstrand\.ai|openstrand-(sdk|app|admin|teams-backend|monorepo|plugins)/i,
