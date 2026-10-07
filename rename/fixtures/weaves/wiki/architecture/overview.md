@@ -23,7 +23,7 @@ tags:
   - strand
   - sql-cache
   - nlp
-links:
+relationships:
   references:
     - sql-cache-architecture
     - nlp-pipeline
