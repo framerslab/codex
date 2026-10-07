@@ -95,4 +95,27 @@ describe('the format schema files', () => {
     expect(valid({ ...base, notes: 'Read the hooks note next.' }), JSON.stringify(valid.errors)).toBe(true);
     expect(valid({ ...base, contentType: 'poem' })).toBe(false);
   });
+
+  it("accepts every link type the app writes, and the skill ids a note teaches and requires", () => {
+    const valid = compile('thread.schema.yaml');
+    const base = {
+      id: '3fce914f-0801-45fd-b886-f0521aeeb4a1',
+      slug: 'link-types',
+      title: 'Link types',
+      version: '1.0.0',
+      contentType: 'lesson',
+    };
+    // the link types of the app's LinkType (apps/frame.dev lib/content/types.ts), written by its frontmatter writer
+    const appLinkTypes = [
+      'extends', 'contrasts', 'supports', 'example-of', 'implements', 'questions', 'refines', 'applies', 'summarizes',
+      'prerequisite', 'related', 'follows', 'references', 'contradicts', 'updates', 'parallels', 'synthesizes', 'custom',
+    ];
+    for (const type of appLinkTypes) {
+      expect(valid({ ...base, relationships: [{ type, target: 'another-note' }] }), type).toBe(true);
+    }
+    expect(valid({ ...base, relationships: [{ type: 'unrelated-to', target: 'another-note' }] })).toBe(false);
+    const skills = { teaches: ['qs/library/skill/slope'], requires: ['qs/library/skill/linear-equation'] };
+    expect(valid({ ...base, ...skills }), JSON.stringify(valid.errors)).toBe(true);
+    expect(valid({ ...base, teaches: 'qs/library/skill/slope' })).toBe(false);
+  });
 });
