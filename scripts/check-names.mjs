@@ -143,7 +143,13 @@ if (renameDone) {
     text.split('\n').forEach((rawLine, i) => {
       if (markdown && /^\s*(```|~~~)/.test(rawLine)) { fenced = !fenced; return; }
       if (markdown && fenced) return;
-      const lineText = markdown ? rawLine.replace(/`[^`]*`/g, (span) => ' '.repeat(span.length)) : rawLine;
+      // on a code line, code inside ${...} and a simple JSX expression ({strand.title}) keeps its names; the copy around it counts
+      const blank = (span) => ' '.repeat(span.length);
+      const lineText = markdown
+        ? rawLine.replace(/`[^`]*`/g, blank)
+        : prose
+          ? rawLine
+          : rawLine.replace(/\$\{[^}]*\}/g, blank).replace(/\{\s*[A-Za-z_$][\w$]*(?:\??\.[A-Za-z_$][\w$]*)*\s*\}/g, blank);
       if (rawLine.includes(KEEP) || !isPublicLine(rel, lineText)) return;
       for (const [name, re] of PATTERNS) {
         re.lastIndex = 0;
