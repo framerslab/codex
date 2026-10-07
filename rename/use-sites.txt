@@ -1,0 +1,3 @@
+# path:line:identifier; each line must still hold its identifier with RENAME_DONE unset too (the stored type value
+# `'strand'` of the embedding record described in the QA system architecture note).
+weaves/wiki/architecture/qa-system.md:1402:strand

@@ -1,0 +1,3 @@
+# Stored names that stay (spec 6.2), one exact identifier per line; exempt from the public scan by exact token
+# (a bare word only as a quoted literal). From the confirmed private rows in the monorepo's scripts/rename/codex.classification.tsv.
+strand

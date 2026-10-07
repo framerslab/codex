@@ -1,0 +1,3 @@
+# Tracked path prefixes where the old names may stay once RENAME_DONE=1 (plan Task 3): history is never rewritten.
+# rename/ and scripts/check-names.mjs are skipped by the guard itself. The README's migration section is added in Task 5.
+codex-history/

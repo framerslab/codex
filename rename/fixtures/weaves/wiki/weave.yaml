@@ -1,0 +1,38 @@
+slug: wiki
+title: "Wiki"
+description: "Knowledge base - contains Frame documentation, OpenStrand spec, and reference material"
+
+scope: |
+  This weave contains reference documentation and knowledge:
+  - Frame application documentation and guides
+  - OpenStrand specification and schema docs
+  - Technical architecture documentation
+  - Contribution guides and development docs
+  - General knowledge and reference material
+
+boundaries: |
+  This weave does NOT contain:
+  - Personal reflections (see reflections weave)
+  - Writing drafts (see writings weave)
+  - Quick notes and tasks (see notes weave)
+
+looms:
+  - frame
+  - openstrand
+  - architecture
+  - contributing
+  - development
+  - examples
+  - tutorials
+
+metadata:
+  domain: knowledge
+  audience: [everyone, contributors, developers]
+  license: CC-BY-4.0
+
+tags: [wiki, knowledge, documentation, reference, frame, openstrand]
+
+publishing:
+  status: published
+  maintainers: [jddunn]
+

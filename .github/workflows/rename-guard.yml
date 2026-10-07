@@ -1,0 +1,25 @@
+name: rename-guard
+on:
+  push:
+    branches: [master]
+  pull_request:
+jobs:
+  guard:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          package-manager-cache: false
+      - name: Install without build scripts (the fixture test and the guard load no native module)
+        # The repository's other workflows fail at their pnpm install when better-sqlite3 builds from source; this job needs
+        # only the pure JavaScript readers (gray-matter, js-yaml, uuid, the vocabulary loader) and vitest.
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Compatibility fixtures (today's weave, loom and strand files read unchanged)
+        run: ./node_modules/.bin/vitest run tests/rename-fixtures.test.js --coverage.enabled=false
+      - name: Rename guard (protected identifiers at their use sites; public names once RENAME_DONE=1)
+        if: ${{ !cancelled() }}
+        run: node scripts/check-names.mjs .
+        env:
+          RENAME_DONE: ${{ vars.RENAME_DONE_CODEX || '' }}

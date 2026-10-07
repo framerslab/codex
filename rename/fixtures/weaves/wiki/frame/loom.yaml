@@ -1,0 +1,17 @@
+slug: frame
+title: "Frame Documentation"
+summary: |
+  Complete documentation for the Frame application ecosystem.
+  Includes user guides, architecture docs, and API references.
+
+tags: [frame, documentation, guides, application]
+
+ordering: manual
+
+relationships:
+  - targetSlug: openstrand
+    type: extends
+    strength: 0.8
+  - targetSlug: architecture
+    type: parallels
+    strength: 0.7
