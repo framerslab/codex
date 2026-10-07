@@ -10,7 +10,14 @@
  *   rename/use-sites.txt               path:line:identifier, one per line: where each stored name is used (see "Use sites" below)
  *   rename/public-allowlist.txt        path prefixes where the old names may stay (the README's migration section, the deprecation notice, rename/)
  * Scans only `git ls-files` under the scope. Patterns: openstrand (any case); the word strand/strands; CamelCase Strand identifiers
- * (never the strand inside openstrand); also file and directory names. With RENAME_DONE=1 every public occurrence outside the allowlist fails.
+ * (never the strand inside openstrand).
+ *
+ * RENAME_DONE=1: a line fails when it carries a pattern and the classification would call it public (scripts/rename/classify.py,
+ * Task 2: prose files, and in code the URL, package and product names, quoted strings and JSX text). Code lines (identifiers,
+ * comments), private lines (stored names), test, generated and history files stay out, as do the allowlisted paths, protected
+ * identifiers, and a line that carries `rename-guard: keep` (a public line that keeps an old name on purpose, such as a migration
+ * note). A path fails when it carries openstrand; the word strand in a path is the stored layout (looms/, strands/) or a route kept
+ * as an alias, so paths are not held to it.
  *
  * Use sites: a bare word (strand, strands, openstrand) counts only as a quoted literal ('strand', "strand", `strand`), any other
  * identifier only as a whole token. A row passes on its recorded line. When edits elsewhere in the file moved that line, the row passes
@@ -21,7 +28,7 @@
  */
 import { execFileSync } from 'node:child_process';
 import { readFileSync, existsSync } from 'node:fs';
-import { join, resolve, relative } from 'node:path';
+import { extname, join, resolve, relative } from 'node:path';
 
 const scope = resolve(process.argv[2] ?? '.');
 const renameDone = process.env.RENAME_DONE === '1';
@@ -35,6 +42,35 @@ const PATTERNS = [
   ['strand_word', /(?<![A-Za-z])strands?(?![A-Za-z])/gi],
   ['strand_ident', /(?<![A-Za-z])(?:[a-z][A-Za-z0-9]*Strand[A-Za-z0-9]*|[Ss]trand[A-Z][A-Za-z0-9]*)/g],
 ];
+// The classification's rules (scripts/rename/classify.py), so RENAME_DONE demands exactly what Task 2 called public.
+const PRIVATE_HINTS = [
+  /indexedDB\.open\(|localStorage\.(get|set|remove)Item\(|sessionStorage\.|openDB\(/i,
+  /CREATE TABLE|ALTER TABLE|\btable\b\s*[:=]|\.table\(|tableName/i,
+  /backup[-_ ]?file|\.backup|backup-\$\{|export.*filename/i,
+  /\bstorageKey\w*|\bSTORAGE_KEY\w*|\bDB_NAME\b|\bdbName\b|STORE_NAME|objectStore/i,
+  /\bstrandPaths\b|\bstrandIds?\b\s*[:=]|\bstrandId\b|\bstrand_id\b|\bstrand_ids\b/,
+  /["'](strand|openstrand)["']\s*[,:}\]]|level\s*[:=]\s*["']strand["']|type\s*[:=]\s*["']strand["']/,
+];
+const PUBLIC_HINTS = [
+  /@framers\/openstrand|framers(ai|lab)\/openstrand|openstrand\.ai|openstrand-(sdk|app|admin|teams-backend|monorepo|plugins)/i,
+  /\/api\/strands|['"`]\/strands\/|['"`]strands\/|weaves\/[\w-]+\/openstrand|looms\/openstrand|\/strands\/\[/i,
+  />[^<]*\b(open)?strands?\b[^<]*<|\b(label|title|name|description|placeholder|heading|tooltip|aria-label)\s*[:=]\s*['"`][^'"`]*\b(open)?strands?\b/i,
+  /['"`][^'"`]*\b(open)?strands?\b[^'"`]*['"`]/i,
+];
+const GENERATED_FILES = /(^|\/)(index\.json|codex-(report|search|blocks|index|embeddings)\.json|.*\.sqlite3|.*\.db|.*\.tsbuildinfo|db_data\/|android\/app\/src\/main\/assets\/public\/|ios\/App\/App\/public\/|_next\/|\.next\/|out\/)/;
+const HISTORY_FILES = /(^|\/)(CHANGELOG\.md|docs\/archive\/|.*build-errors\.txt)/;
+const TEST_FILES = /(^|\/)(__tests__\/|tests?\/|.*\.test\.[jt]sx?$|.*\.spec\.[jt]sx?$)/;
+const I18N_FILES = /(^|\/)(i18n|locales)\/.*\.json$/;
+const PROSE_EXT = new Set(['.md', '.mdx', '.txt', '.html', '.rst', '.webmanifest']);
+const KEEP = 'rename-guard: keep';
+// a test file's public rows are code in the classification; generated and history files are never renamed
+const outOfScope = (rel) => HISTORY_FILES.test(rel) || GENERATED_FILES.test(rel) || TEST_FILES.test(rel);
+const isPublicLine = (rel, line) => {
+  if (I18N_FILES.test(rel)) return true;
+  if (PRIVATE_HINTS.some((h) => h.test(line))) return false;
+  if (PROSE_EXT.has(extname(rel).toLowerCase()) || ['docs/', 'weaves/', 'README'].some((p) => rel.startsWith(p))) return true;
+  return PUBLIC_HINTS.some((h) => h.test(line));
+};
 const BINARY = /\.(png|jpe?g|gif|webp|svg|ico|pdf|woff2?|ttf|otf|zip|gz|sqlite3?|db|mp[34]|wav|webm)$/i;
 const files = execFileSync('git', ['ls-files', '-z'], { cwd: scope }).toString().split('\0').filter(Boolean);
 const problems = [];
@@ -90,19 +126,15 @@ if (renameDone) {
   const exempt = (s) => protectedIds.some((id) => s === id);
   for (const rel of files) {
     if (allow.some((a) => rel.startsWith(a))) continue;
-    if (rel.startsWith('rename/') || rel.endsWith('check-names.mjs')) continue;
-    for (const [name, re] of PATTERNS) {
-      re.lastIndex = 0;
-      for (const hit of rel.matchAll(re)) {
-        if (name === 'strand_ident' && /openstrand/i.test(hit[0])) continue;
-        problems.push(`${rel}: file or directory name carries the old word (${hit[0]})`);
-        break;
-      }
-    }
+    if (rel.startsWith('rename/') || rel.endsWith('check-names.mjs') || rel.endsWith('check-names.test.mjs')) continue;
+    if (outOfScope(rel)) continue;
+    const named = rel.match(/openstrand/i);
+    if (named) problems.push(`${rel}: file or directory name carries the old word (${named[0]})`);
     if (BINARY.test(rel)) continue;
     let text; try { text = readFileSync(join(scope, rel), 'utf8'); } catch { continue; }
     if (text.includes('\u0000')) continue;
     text.split('\n').forEach((lineText, i) => {
+      if (lineText.includes(KEEP) || !isPublicLine(rel, lineText)) return;
       for (const [name, re] of PATTERNS) {
         re.lastIndex = 0;
         for (const hit of lineText.matchAll(re)) {
