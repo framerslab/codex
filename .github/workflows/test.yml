@@ -5,6 +5,7 @@ on:
     branches: [main, master]
     paths:
       - 'scripts/**'
+      - 'schema/**'
       - 'tests/**'
       - 'lib/**'
       - 'vocab/**'

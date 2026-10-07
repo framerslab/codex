@@ -37,6 +37,8 @@
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^1.6.1",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "gray-matter": "^4.0.3",
     "husky": "^8.0.3",
     "js-yaml": "^4.1.0",

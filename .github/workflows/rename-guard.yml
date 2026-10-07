@@ -16,8 +16,8 @@ jobs:
         # The repository's other workflows fail at their pnpm install when better-sqlite3 builds from source; this job needs
         # only the pure JavaScript readers (gray-matter, js-yaml, uuid, the vocabulary loader) and vitest.
         run: npm install --ignore-scripts --no-audit --no-fund
-      - name: Compatibility fixtures (today's weave, loom and strand files read unchanged)
-        run: ./node_modules/.bin/vitest run tests/rename-fixtures.test.js --coverage.enabled=false
+      - name: Compatibility fixtures and the format's schema files (today's weave, loom and strand files read unchanged)
+        run: ./node_modules/.bin/vitest run tests/rename-fixtures.test.js tests/schema.test.js --coverage.enabled=false
       - name: Rename guard (protected identifiers at their use sites; public names once RENAME_DONE=1)
         if: ${{ !cancelled() }}
         run: node scripts/check-names.mjs .

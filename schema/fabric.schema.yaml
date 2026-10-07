@@ -1,0 +1,20 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: FabricManifest
+description: >-
+  The optional manifest at the root of a fabric (fabric.yaml). A directory or repository that holds weaves/ is a fabric
+  with or without it; a missing manifest reads as version 1. .quarry/vault.json is the app's per-device state, never this file.
+type: object
+required: [format, version]
+properties:
+  format:
+    const: openquarry
+  name:
+    type: string
+    description: "The fabric's display name."
+  version:
+    type: integer
+    enum: [1, 2]
+    description: >-
+      1: the file names before the thread rename (weave.yaml, loom.yaml, strand.schema.yaml, looms/ and strands/ prefix
+      folders accepted). 2: the thread names (thread.schema.yaml; the prefix folders still accepted on read). A reader
+      refuses a fabric whose version it does not support.
