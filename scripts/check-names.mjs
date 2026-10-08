@@ -159,11 +159,16 @@ if (renameDone) {
       }
       // on a code line, code inside ${...} and a simple JSX expression ({strand.title}) keeps its names; the copy around it counts
       const blank = (span) => ' '.repeat(span.length);
+      // a <code>...</code> span is code wherever it appears
+      const noCode = rawLine.replace(/<code[^>]*>.*?<\/code>/g, blank);
       const lineText = markdown
-        ? rawLine.replace(/`[^`]*`/g, blank)
+        ? noCode.replace(/`[^`]*`/g, blank)
         : prose
-          ? rawLine
-          : rawLine.replace(/\$\{[^}]*\}/g, blank).replace(/\{\s*[A-Za-z_$][\w$]*(?:\??\.[A-Za-z_$][\w$]*)*\s*\}/g, blank);
+          ? noCode
+          : noCode.replace(/\$\{[^}]*\}/g, blank).replace(/\{\s*[A-Za-z_$][\w$]*(?:\??\.[A-Za-z_$][\w$]*)*\s*\}/g, blank);
+      // on a code line, a quoted string that holds a path (an import, a route, a folder) is code: remember its span
+      const pathSpans = [];
+      if (!prose) for (const m of lineText.matchAll(/'[^']*'|"[^"]*"|`[^`]*`/g)) if (m[0].includes('/')) pathSpans.push([m.index, m.index + m[0].length]);
       if (rawLine.includes(KEEP) || !isPublicLine(rel, lineText)) return;
       for (const [name, re] of PATTERNS) {
         re.lastIndex = 0;
@@ -179,6 +184,9 @@ if (renameDone) {
           while (a > 0 && /[A-Za-z0-9_\-]/.test(lineText[a - 1])) a--;
           while (b < lineText.length && /[A-Za-z0-9_\-]/.test(lineText[b])) b++;
           const token = lineText.slice(a, b);
+          // on a code line a member access (.strands) is code, and so is a hit inside a path-like string
+          if (!prose && a > 0 && lineText[a - 1] === '.') continue;
+          if (pathSpans.some(([x, y]) => start >= x && end <= y)) continue;
           // on a code line an object key (`strand: ...`, `{ strands: 12 }`) is code, not copy
           if (!prose && lineText[b] === ':' && lineText[b + 1] !== ':' && (a === 0 || /[\s{,(]/.test(lineText[a - 1]))) continue;
           const quoted = a > 0 && /["'`]/.test(lineText[a - 1]) && b < lineText.length && /["'`]/.test(lineText[b]);
