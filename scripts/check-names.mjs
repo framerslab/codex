@@ -182,9 +182,15 @@ if (renameDone) {
       const pathSpans = [], copySpans = [];
       if (!prose) {
         for (const m of lineText.matchAll(/'[^']*'|"[^"]*"|`[^`]*`/g)) { copySpans.push([m.index, m.index + m[0].length]); if (m[0].includes('/')) pathSpans.push([m.index, m.index + m[0].length]); }
-        for (const m of lineText.matchAll(/>([^<>]*)</g)) copySpans.push([m.index + 1, m.index + 1 + m[1].length]);
+        // JSX text between tags, minus the {...} expressions inside it (their strings are covered by the string spans)
+        for (const m of lineText.matchAll(/>([^<>]*)</g)) {
+          let at = m.index + 1;
+          for (const part of m[1].split(/(\{[^{}]*\})/)) { if (part && !part.startsWith('{')) copySpans.push([at, at + part.length]); at += part.length; }
+        }
       }
-      const inCopy = (x, y) => copySpans.some(([p, q]) => x >= p && y <= q);
+      // on a code line, copy is a string, JSX text between tags, or a line of plain JSX text; everything else is code
+      const plainJsx = !prose && /\.[jt]sx$/.test(rel) && jsxText(rawLine);
+      const inCopy = (x, y) => plainJsx || copySpans.some(([p, q]) => x >= p && y <= q);
       if (rawLine.includes(KEEP) || !isPublicLine(rel, lineText)) return;
       for (const [name, re] of PATTERNS) {
         re.lastIndex = 0;
@@ -200,6 +206,9 @@ if (renameDone) {
           while (a > 0 && /[A-Za-z0-9_\-]/.test(lineText[a - 1])) a--;
           while (b < lineText.length && /[A-Za-z0-9_\-]/.test(lineText[b])) b++;
           const token = lineText.slice(a, b);
+          // a token with a slash on either side is a path segment (a route, a folder, a link target), in any file
+          if ((a > 0 && lineText[a - 1] === '/') || lineText[b] === '/') continue;
+          if (!prose && !inCopy(start, end)) continue;
           // on a code line a member access (.strands) is code, and so is a hit inside a path-like string
           if (!prose && a > 0 && lineText[a - 1] === '.') continue;
           if (pathSpans.some(([x, y]) => start >= x && end <= y)) continue;
