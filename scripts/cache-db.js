@@ -353,7 +353,7 @@ class CodexCacheDB {
    * 
    * @example
    * const stats = await cache.getLoomStats('weaves/tech/python');
-   * console.log(`Loom has ${stats.totalFiles} strands`);
+   * console.log(`Loom has ${stats.totalFiles} threads`);
    */
   async getLoomStats(loomPath) {
     if (!this.isInitialized || !this.db) return null;

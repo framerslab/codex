@@ -439,7 +439,7 @@ async function main() {
   const options = { provider, model, dryRun, maxCost };
 
   if (processAll || paths.length === 0) {
-    console.log(`📁 Processing all strands in ${WEAVES_DIR}`);
+    console.log(`📁 Processing all threads in ${WEAVES_DIR}`);
     await processDirectory(WEAVES_DIR, vocabulary, options);
   } else {
     for (const p of paths) {

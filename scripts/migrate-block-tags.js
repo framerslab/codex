@@ -239,7 +239,7 @@ async function migrate(options = {}) {
   console.log('╚════════════════════════════════════════════════════════════════╝')
   console.log('')
   console.log(`  Duration: ${report.duration}`)
-  console.log(`  Strands processed: ${report.changes.newStrandsProcessed}`)
+  console.log(`  Threads processed: ${report.changes.newStrandsProcessed}`)
   console.log(`  New blocks created: ${report.changes.newBlocks}`)
   console.log(`  New tags suggested: ${report.changes.newTags}`)
   console.log('')

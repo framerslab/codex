@@ -766,7 +766,7 @@ async function main() {
         }
     } else {
         // Process all strands
-        console.log(`📁 Processing all strands in ${WEAVES_DIR}`);
+        console.log(`📁 Processing all threads in ${WEAVES_DIR}`);
         console.log('');
 
         walkDirectory(WEAVES_DIR, (filePath) => {
@@ -784,7 +784,7 @@ async function main() {
     }
 
     console.log('');
-    console.log(`✨ Processed ${results.length} strands`);
+    console.log(`✨ Processed ${results.length} threads`);
 
     // Build index unless skipped
     if (!skipIndex && !dryRun) {
@@ -795,7 +795,7 @@ async function main() {
 
         console.log('');
         console.log('   📊 Block Stats:');
-        console.log(`      - Strands with blocks: ${index.stats.totalStrands}`);
+        console.log(`      - Threads with blocks: ${index.stats.totalStrands}`);
         console.log(`      - Total blocks: ${index.stats.totalBlocks}`);
         console.log(`      - Total block tags: ${index.stats.totalTags}`);
         console.log(`      - Unique tags: ${index.stats.uniqueTags}`);

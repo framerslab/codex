@@ -581,7 +581,7 @@ function main() {
   console.log('');
 
   if (processAll || paths.length === 0) {
-    console.log(`📁 Processing all strands in ${WEAVES_DIR}`);
+    console.log(`📁 Processing all threads in ${WEAVES_DIR}`);
     const results = processDirectory(WEAVES_DIR, dryRun);
     console.log('');
     console.log(`✨ Processed ${results.length} files`);

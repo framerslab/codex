@@ -134,7 +134,7 @@ async function buildSearchIndex() {
     throw new Error('codex-index.json is empty or malformed.')
   }
 
-  console.log(`📚 Building search data for ${entries.length} strands...`)
+  console.log(`📚 Building search data for ${entries.length} threads...`)
 
   const bm25 = {
     totalDocs: entries.length,

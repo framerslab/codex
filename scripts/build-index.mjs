@@ -187,7 +187,7 @@ const formatSegment = (segment = '') =>
     .join(' ');
 
 const formatLoomTitle = (relativePath = '') => {
-  if (!relativePath) return 'Loose strands (root)';
+  if (!relativePath) return 'Loose threads (root)';
   return relativePath
     .split(/[\\/]/)
     .filter(Boolean)
@@ -294,7 +294,7 @@ function buildIndex() {
   };
   const outPath = path.join(ROOT, 'index.json');
   fs.writeFileSync(outPath, JSON.stringify(index, null, 2), 'utf8');
-  console.log(`✅ Wrote ${outPath} with ${flat.length} strands.`);
+  console.log(`✅ Wrote ${outPath} with ${flat.length} threads.`);
 
   // Also write as codex-index.json for consistency
   const codexIndexPath = path.join(ROOT, 'codex-index.json');
@@ -310,7 +310,7 @@ function buildIndex() {
 
   console.log(`✅ Wrote ${blocksOutPath}`);
   console.log(`   📊 Block Stats:`);
-  console.log(`      - Strands with blocks: ${blocksIndex.stats.totalStrands}`);
+  console.log(`      - Threads with blocks: ${blocksIndex.stats.totalStrands}`);
   console.log(`      - Total blocks: ${blocksIndex.stats.totalBlocks}`);
   console.log(`      - Total block tags: ${blocksIndex.stats.totalTags}`);
   console.log(`      - Unique tags: ${blocksIndex.stats.uniqueTags}`);
