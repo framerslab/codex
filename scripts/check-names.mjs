@@ -163,13 +163,26 @@ if (renameDone) {
     const yaml = /\.ya?ml$/i.test(rel);
     const allLines = text.split('\n');
     let inFrontmatter = markdown && allLines[0].trim() === '---';
+    // the indent of a copy field whose value is a block scalar (summary: |, description: >-): its deeper lines are copy
+    let blockCopy = null;
     const jsxFile = /\.[jt]sx$/.test(rel);
     let prevEndsTag = false, prevText = false;
     allLines.forEach((rawLine, i) => {
       const plainJsx = jsxFile && !prose && jsxText(rawLine, prevEndsTag, prevText);
       if (rawLine.trim()) { prevEndsTag = /(?<!=)>\s*$/.test(rawLine); prevText = plainJsx; }
-      if (inFrontmatter && i > 0 && rawLine.trim() === '---') { inFrontmatter = false; return; }
-      if ((yaml || inFrontmatter) && !/^\s*(?:-\s*)?(?:title|summary|description|name)\s*:/.test(rawLine)) return;
+      if (inFrontmatter && i > 0 && rawLine.trim() === '---') { inFrontmatter = false; blockCopy = null; return; }
+      if (yaml || inFrontmatter) {
+        let inBlock = false;
+        if (blockCopy !== null) {
+          if (rawLine.trim() === '' || rawLine.match(/^\s*/)[0].length > blockCopy) inBlock = true;
+          else blockCopy = null;
+        }
+        if (!inBlock) {
+          const field = rawLine.match(/^(\s*)(?:-\s*)?(?:title|summary|description|name)\s*:(.*)$/);
+          if (!field) return;
+          if (/^\s*[|>][-+]?\s*$/.test(field[2])) blockCopy = field[1].length;
+        }
+      }
       if (markdown && !inFrontmatter) {
         const open = rawLine.match(/^\s{0,3}(`{3,}|~{3,})/);
         if (fence) {
