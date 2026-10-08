@@ -1,34 +1,34 @@
 {
   "summary": {
-    "totalFiles": 38,
-    "indexedFiles": 38,
+    "totalFiles": 40,
+    "indexedFiles": 40,
     "skippedFiles": 0,
-    "validFiles": 38,
+    "validFiles": 40,
     "filesWithErrors": 0,
     "filesWithWarnings": 0,
-    "filesWithSuggestions": 38
+    "filesWithSuggestions": 40
   },
   "categorization": {
     "bySubject": {
-      "ai": 38,
-      "design": 38,
-      "knowledge": 38,
-      "media": 30,
-      "philosophy": 37,
-      "science": 37,
-      "security": 38,
-      "technology": 38,
+      "ai": 40,
+      "design": 40,
+      "knowledge": 40,
+      "media": 31,
+      "philosophy": 39,
+      "science": 38,
+      "security": 40,
+      "technology": 40,
       "knowledge-management": 2,
       "ai-infrastructure": 2,
       "artificial-intelligence": 4,
       "programming": 1
     },
     "byTopic": {
-      "api-reference": 38,
-      "architecture": 38,
-      "best-practices": 38,
-      "getting-started": 34,
-      "troubleshooting": 35,
+      "api-reference": 40,
+      "architecture": 40,
+      "best-practices": 40,
+      "getting-started": 35,
+      "troubleshooting": 37,
       "openstrand": 2,
       "fabric-codex": 1,
       "semantic-web": 1,
@@ -43,9 +43,9 @@
     "byDifficulty": {
       "expert": 5,
       "advanced": 2,
-      "intermediate": 15,
+      "intermediate": 18,
       "[object Object]": 1,
-      "beginner": 15
+      "beginner": 14
     },
     "confidenceScores": [
       {
@@ -581,7 +581,7 @@
       {
         "file": "weaves/wiki/openstrand/architecture.md",
         "category": "technology",
-        "score": 0.07094594594594594
+        "score": 0.07432432432432433
       },
       {
         "file": "weaves/wiki/openstrand/architecture.md",
@@ -856,7 +856,7 @@
       {
         "file": "weaves/wiki/openstrand/overview.md",
         "category": "technology",
-        "score": 0.2195945945945946
+        "score": 0.22297297297297297
       },
       {
         "file": "weaves/wiki/openstrand/overview.md",
@@ -1216,7 +1216,7 @@
       {
         "file": "weaves/wiki/openstrand/schema/hierarchy.md",
         "category": "technology",
-        "score": 0.13513513513513514
+        "score": 0.13851351351351351
       },
       {
         "file": "weaves/wiki/openstrand/schema/hierarchy.md",
@@ -1622,6 +1622,381 @@
         "file": "weaves/writings/weave.yaml",
         "category": "skill:contain",
         "score": 0.5052631578947369
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "ai",
+        "score": 0.007194244604316547
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "design",
+        "score": 0.011049723756906077
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "knowledge",
+        "score": 0.07567567567567568
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "philosophy",
+        "score": 0.00966183574879227
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "security",
+        "score": 0.027777777777777776
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "technology",
+        "score": 0.060810810810810814
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "api-reference",
+        "score": 0.08130081300813008
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "architecture",
+        "score": 0.021897810218978103
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "best-practices",
+        "score": 0.016129032258064516
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "troubleshooting",
+        "score": 0.018518518518518517
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:schema",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:object",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:http",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:https",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:tl",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:app",
+        "score": 0.5178571428571429
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:on",
+        "score": 0.5178571428571429
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:js",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:type",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:c",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:io",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:eq",
+        "score": 0.5023041474654378
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:version",
+        "score": 0.5157894736842106
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:as",
+        "score": 0.5157894736842106
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "ai",
+        "score": 0.06115107913669065
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "design",
+        "score": 0.07734806629834254
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "knowledge",
+        "score": 0.23243243243243245
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "media",
+        "score": 0.05223880597014925
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "philosophy",
+        "score": 0.06763285024154589
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "science",
+        "score": 0.02681992337164751
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "security",
+        "score": 0.07222222222222222
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "technology",
+        "score": 0.09121621621621621
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "api-reference",
+        "score": 0.1951219512195122
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "architecture",
+        "score": 0.043795620437956206
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "best-practices",
+        "score": 0.04838709677419355
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "getting-started",
+        "score": 0.11926605504587157
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "troubleshooting",
+        "score": 0.05555555555555555
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:schema",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:await",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:object",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:data",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:http",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:https",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:ci",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:structur",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:hash",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:tl",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:app",
+        "score": 0.5178571428571429
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:on",
+        "score": 0.5178571428571429
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:js",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:ts",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:type",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:pip",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:c",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:html",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:less",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:gener",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:io",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:prioritization",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:organization",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:teaching",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:eq",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:write",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:document",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:plan",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:organ",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:mediat",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:synthesi",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:priorit",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:teach",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:inclus",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:version",
+        "score": 0.5263157894736842
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:as",
+        "score": 0.5263157894736842
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:code",
+        "score": 0.5263157894736842
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:aw",
+        "score": 0.5263157894736842
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
@@ -4096,7 +4471,7 @@
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "technology",
-        "score": 0.1891891891891892
+        "score": 0.19256756756756757
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
@@ -4806,7 +5181,7 @@
       {
         "file": "weaves/wiki/examples/gallery-demo.md",
         "category": "knowledge",
-        "score": 0.04864864864864865
+        "score": 0.043243243243243246
       },
       {
         "file": "weaves/wiki/examples/gallery-demo.md",
@@ -4831,7 +5206,7 @@
       {
         "file": "weaves/wiki/examples/gallery-demo.md",
         "category": "technology",
-        "score": 0.05067567567567568
+        "score": 0.05405405405405406
       },
       {
         "file": "weaves/wiki/examples/gallery-demo.md",
@@ -5261,7 +5636,7 @@
       {
         "file": "weaves/wiki/tutorials/getting-started.md",
         "category": "technology",
-        "score": 0.125
+        "score": 0.12837837837837837
       },
       {
         "file": "weaves/wiki/tutorials/getting-started.md",
@@ -5536,7 +5911,7 @@
       {
         "file": "weaves/wiki/tutorials/markdown-features.md",
         "category": "technology",
-        "score": 0.17567567567567569
+        "score": 0.17905405405405406
       },
       {
         "file": "weaves/wiki/tutorials/markdown-features.md",
@@ -5906,7 +6281,7 @@
       {
         "file": "weaves/wiki/tutorials/media-guide.md",
         "category": "technology",
-        "score": 0.13513513513513514
+        "score": 0.13851351351351351
       },
       {
         "file": "weaves/wiki/tutorials/media-guide.md",
@@ -6671,7 +7046,7 @@
       {
         "file": "schema/strand.schema.yaml",
         "category": "ai",
-        "score": 0.050359712230215826
+        "score": 0.06115107913669065
       },
       {
         "file": "schema/strand.schema.yaml",
@@ -6681,17 +7056,17 @@
       {
         "file": "schema/strand.schema.yaml",
         "category": "knowledge",
-        "score": 0.2
+        "score": 0.23783783783783785
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "media",
-        "score": 0.04477611940298507
+        "score": 0.05223880597014925
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "philosophy",
-        "score": 0.06280193236714976
+        "score": 0.06763285024154589
       },
       {
         "file": "schema/strand.schema.yaml",
@@ -6701,17 +7076,17 @@
       {
         "file": "schema/strand.schema.yaml",
         "category": "security",
-        "score": 0.06666666666666667
+        "score": 0.07222222222222222
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "technology",
-        "score": 0.08445945945945946
+        "score": 0.08783783783783784
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "api-reference",
-        "score": 0.16260162601626016
+        "score": 0.1951219512195122
       },
       {
         "file": "schema/strand.schema.yaml",
@@ -6721,17 +7096,17 @@
       {
         "file": "schema/strand.schema.yaml",
         "category": "best-practices",
-        "score": 0.04032258064516129
+        "score": 0.04838709677419355
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "getting-started",
-        "score": 0.10091743119266056
+        "score": 0.11926605504587157
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "troubleshooting",
-        "score": 0.037037037037037035
+        "score": 0.05555555555555555
       },
       {
         "file": "schema/strand.schema.yaml",
@@ -6841,52 +7216,67 @@
       {
         "file": "schema/strand.schema.yaml",
         "category": "skill:prioritization",
-        "score": 0.5230414746543779
+        "score": 0.5299539170506913
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "skill:organization",
-        "score": 0.5230414746543779
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/strand.schema.yaml",
+        "category": "skill:teaching",
+        "score": 0.5299539170506913
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "skill:eq",
-        "score": 0.5230414746543779
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/strand.schema.yaml",
+        "category": "skill:write",
+        "score": 0.5299539170506913
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "skill:document",
-        "score": 0.5230414746543779
+        "score": 0.5299539170506913
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "skill:plan",
-        "score": 0.5230414746543779
+        "score": 0.5299539170506913
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "skill:organ",
-        "score": 0.5230414746543779
+        "score": 0.5299539170506913
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "skill:mediat",
-        "score": 0.5230414746543779
+        "score": 0.5299539170506913
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "skill:synthesi",
-        "score": 0.5230414746543779
+        "score": 0.5299539170506913
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "skill:priorit",
-        "score": 0.5230414746543779
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/strand.schema.yaml",
+        "category": "skill:teach",
+        "score": 0.5299539170506913
       },
       {
         "file": "schema/strand.schema.yaml",
         "category": "skill:inclus",
-        "score": 0.5230414746543779
+        "score": 0.5299539170506913
       },
       {
         "file": "schema/strand.schema.yaml",
@@ -7046,7 +7436,7 @@
       {
         "file": "docs/BLOCK_TAGGING_API.md",
         "category": "technology",
-        "score": 0.1858108108108108
+        "score": 0.1891891891891892
       },
       {
         "file": "docs/BLOCK_TAGGING_API.md",
@@ -7331,7 +7721,7 @@
       {
         "file": "docs/BLOCK_TAGGING_GUIDE.md",
         "category": "technology",
-        "score": 0.14189189189189189
+        "score": 0.14527027027027026
       },
       {
         "file": "docs/BLOCK_TAGGING_GUIDE.md",
@@ -7621,7 +8011,7 @@
       {
         "file": "docs/BLOCK_TAGGING_SCHEMA.md",
         "category": "technology",
-        "score": 0.12837837837837837
+        "score": 0.13175675675675674
       },
       {
         "file": "docs/BLOCK_TAGGING_SCHEMA.md",
@@ -7866,7 +8256,7 @@
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "technology",
-        "score": 0.12837837837837837
+        "score": 0.13175675675675674
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
@@ -8496,7 +8886,7 @@
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "technology",
-        "score": 0.31756756756756754
+        "score": 0.32094594594594594
       },
       {
         "file": "docs/DEVELOPMENT.md",
@@ -9726,7 +10116,7 @@
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "knowledge",
-        "score": 0.3837837837837838
+        "score": 0.3783783783783784
       },
       {
         "file": "docs/contributing/how-to-submit.md",
@@ -9751,7 +10141,7 @@
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "technology",
-        "score": 0.1858108108108108
+        "score": 0.1891891891891892
       },
       {
         "file": "docs/contributing/how-to-submit.md",
@@ -10116,7 +10506,7 @@
       {
         "file": "docs/contributing/submission-schema.md",
         "category": "technology",
-        "score": 0.2533783783783784
+        "score": 0.25675675675675674
       },
       {
         "file": "docs/contributing/submission-schema.md",
@@ -10576,7 +10966,7 @@
       {
         "file": "docs/openstrand-architecture.md",
         "category": "technology",
-        "score": 0.2195945945945946
+        "score": 0.22297297297297297
       },
       {
         "file": "docs/openstrand-architecture.md",
@@ -11016,7 +11406,7 @@
       {
         "file": "docs/schema-reference.md",
         "category": "knowledge",
-        "score": 0.41081081081081083
+        "score": 0.40540540540540543
       },
       {
         "file": "docs/schema-reference.md",
@@ -11041,7 +11431,7 @@
       {
         "file": "docs/schema-reference.md",
         "category": "technology",
-        "score": 0.25
+        "score": 0.2533783783783784
       },
       {
         "file": "docs/schema-reference.md",
@@ -11552,26 +11942,34 @@
     "fileWarnings": []
   },
   "vocabulary": {
-    "totalUniqueTerms": 374,
+    "totalUniqueTerms": 383,
     "suggestedAdditions": [
       {
         "term": "block",
-        "frequency": 7
-      },
-      {
-        "term": "blocks",
-        "frequency": 5
-      },
-      {
-        "term": "tagging",
-        "frequency": 4
+        "frequency": 8
       },
       {
         "term": "properties",
+        "frequency": 5
+      },
+      {
+        "term": "items",
+        "frequency": 4
+      },
+      {
+        "term": "openquarry",
         "frequency": 4
       },
       {
         "term": "worthiness",
+        "frequency": 4
+      },
+      {
+        "term": "blocks",
+        "frequency": 4
+      },
+      {
+        "term": "tagging",
         "frequency": 4
       },
       {
@@ -11587,11 +11985,11 @@
         "frequency": 3
       },
       {
-        "term": "items",
+        "term": "frame",
         "frequency": 3
       },
       {
-        "term": "frame",
+        "term": "threads",
         "frequency": 3
       },
       {
@@ -11603,15 +12001,19 @@
         "frequency": 3
       },
       {
+        "term": "org",
+        "frequency": 3
+      },
+      {
+        "term": "draft",
+        "frequency": 3
+      },
+      {
         "term": "suggestions",
         "frequency": 3
       },
       {
         "term": "const",
-        "frequency": 3
-      },
-      {
-        "term": "auto",
         "frequency": 3
       },
       {
@@ -11625,9 +12027,9 @@
     ]
   },
   "performance": {
-    "timeElapsed": "90.91s",
+    "timeElapsed": "90.93s",
     "cacheHitRate": "0%",
-    "filesProcessed": 38,
+    "filesProcessed": 40,
     "filesCached": 0,
     "speedup": "N/A (first run)"
   }
