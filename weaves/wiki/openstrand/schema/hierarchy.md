@@ -1072,7 +1072,7 @@ FABRIC (Knowledge Repository)
 | Layer | Description | Example |
 | ----- | ----------- | ------- |
 | **Fabric** | Complete repository containing all weaves. The highest organizational level. | `weaves/` |
-| **Weave** | Complete, self-contained universe of strands. No cross-weave dependencies. | `weaves/frame/` |
+| **Weave** | Complete, self-contained universe of threads. No cross-weave dependencies. | `weaves/frame/` |
 | **Loom** | Curated folder inside a weave. Groups threads by topic or workflow. | `weaves/frame/openstrand/` |
 | **Thread** | Individual markdown file with YAML frontmatter metadata. | `weaves/frame/openstrand/overview.md` |
 
@@ -1098,7 +1098,7 @@ Each layer provides different search scopes:
 - **Fabric-level:** Search across all knowledge
 - **Weave-level:** Search within a domain
 - **Loom-level:** Search within a topic
-- **Strand-level:** Search within a document
+- **Thread-level:** Search within a document
 
 ### For AI Traversal
 

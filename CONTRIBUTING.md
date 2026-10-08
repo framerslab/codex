@@ -153,6 +153,6 @@ For full details, examples, and schema reference, see:
 
 - [`docs/contributing/how-to-submit.md`](docs/contributing/how-to-submit.md)
 - [`docs/contributing/submission-schema.md`](docs/contributing/submission-schema.md)
-- [`docs/openstrand-architecture.md`](docs/openstrand-architecture.md)
+- [`docs/openquarry-architecture.md`](docs/openquarry-architecture.md)
 
 

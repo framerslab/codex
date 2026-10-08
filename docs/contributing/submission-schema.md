@@ -739,7 +739,7 @@ This schema is versioned using semantic versioning:
 
 ## Resources
 
-- **OpenQuarry ECA Spec**: [openstrand-architecture.md](../openstrand-architecture.md)
+- **OpenQuarry ECA Spec**: [openquarry-architecture.md](../openquarry-architecture.md)
 - **Submission Guide**: [how-to-submit.md](./how-to-submit.md)
 - **GitHub Repo**: [github.com/framerslab/codex](https://github.com/framerslab/codex)
 - **Discord**: [wilds.ai/discord](https://wilds.ai/discord)

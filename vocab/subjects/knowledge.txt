@@ -1,7 +1,7 @@
 # Knowledge Management Subject Vocabulary
 knowledge information data wisdom understanding learning education
 documentation docs reference manual handbook wiki encyclopedia
-openstrand strand strands weave weaves loom looms fabric codex
+openquarry openstrand thread threads strand strands weave weaves loom looms fabric codex
 schema metadata frontmatter yaml markdown taxonomy ontology
 hierarchy tree graph network node edge link relationship
 prerequisite reference citation cross-reference backlink

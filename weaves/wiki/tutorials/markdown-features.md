@@ -2496,7 +2496,7 @@ This data is indexed for search and displayed in the metadata panel.
 
 ## Advanced: Recursive Thread Composition
 
-Frame Codex supports **strand-in-strand** composition using catalog schemas:
+Frame Codex supports **thread-in-thread** composition using catalog schemas:
 
 ```markdown
 ![Gallery](./gallery/catalog.json)

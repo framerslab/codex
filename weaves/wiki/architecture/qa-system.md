@@ -1409,7 +1409,7 @@ interface EmbeddingEntry {
 
 ### Chunking Strategy
 
-1. **Strand-level**: Entire document for overview matching
+1. **Thread-level**: Entire document for overview matching
 2. **Section-level**: Markdown headers create natural boundaries
 3. **Semantic chunks**: ~500 tokens with 50-token overlap
 4. **Code blocks**: Treated as atomic units with language tags

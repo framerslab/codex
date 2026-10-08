@@ -1757,10 +1757,10 @@ Frame Codex implements the **Educational Content Atom (ECA)** specification:
 - **Accessibility**: WCAG compliance, reading levels
 - **Quality Metrics**: Peer review, evidence-based claims
 
-### Frame Codex vs OpenQuarry
+### Frame Codex and OpenQuarry
 
 - **Frame Codex**: Public markdown repository (this repo)
-- **OpenQuarry**: Full PKMS at openstrand.ai (all file types, AI analysis, private workspaces)
+- **OpenQuarry**: the open format these notes follow; the Quarry app at quarry.space reads and writes it
 
 ## Repository Structure
 

@@ -202,7 +202,7 @@ blocks:
 
 ## See Also
 
-- [strand.schema.yaml](../schema/strand.schema.yaml) - Full frontmatter schema
+- [thread.schema.yaml](../schema/thread.schema.yaml) - Full frontmatter schema
 - [blocks-index.schema.yaml](../schema/blocks-index.schema.yaml) - Index schema
 - [Block Tagging Guide](./BLOCK_TAGGING_GUIDE.md) - User guide
 - [Block Tagging API](./BLOCK_TAGGING_API.md) - API reference

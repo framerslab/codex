@@ -126,7 +126,7 @@ weaves/frame/
 └── guides/agentos/deployment.md
 ```
 
-Each folder inside `weaves/frame/` is treated as a loom, and every markdown file (at any depth) is a thread that can reference other strands.
+Each folder inside `weaves/frame/` is treated as a loom, and every markdown file (at any depth) is a thread that can reference other threads.
 
 ### Hierarchical Topic Structure (Critical Rule)
 

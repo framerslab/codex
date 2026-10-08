@@ -133,7 +133,7 @@ async function migrate(options = {}) {
   // Step 1: Analyze current state
   console.log('📊 Step 1: Analyzing current state...')
   const beforeStats = analyzeCurrentState()
-  console.log(`   Total strands: ${beforeStats.totalStrands}`)
+  console.log(`   Total threads: ${beforeStats.totalStrands}`)
   console.log(`   Already processed: ${beforeStats.strandsWithBlocks}`)
   console.log(`   Existing blocks: ${beforeStats.totalExistingBlocks}`)
   console.log(`   Existing tags: ${beforeStats.totalExistingTags}`)

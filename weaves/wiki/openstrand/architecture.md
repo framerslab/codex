@@ -282,7 +282,7 @@ This thread condenses the OpenQuarry Architecture into a short practitioner guid
 - Threads: atomic assets (docs, media, datasets); Looms: curated groups of threads (folders); Weaves: entire universes of content. No cross-weave edges.
 - Ingestion: parse frontmatter → validate → persist ECA → index (text + vector) → construct relations (within weave).
 - Retrieval: combine lexical + semantic + graph edges; re-rank with pedagogical and structural signals.
-- Pipelines: support multi-format content; normalize to Markdown + frontmatter; attach assets alongside strands.
+- Pipelines: support multi-format content; normalize to Markdown + frontmatter; attach assets alongside threads.
 
 ## Ingestion Mapping
 1. Read `weave.yaml` → create workspace scope  
@@ -299,5 +299,5 @@ This thread condenses the OpenQuarry Architecture into a short practitioner guid
 - Graph traversal to suggest next-items within a loom.
 
 ## Governance & SEO
-- Short executive summaries; single-topic threads; stable anchors; internal links between strands.
+- Short executive summaries; single-topic threads; stable anchors; internal links between threads.
 - Controlled vocabulary in `tags/index.yaml`; CI validates tag usage and relationships.

@@ -43,12 +43,12 @@ This repository contains:
 
 **📚 Browse the knowledge weaves:** All content is organized in the [`/weaves`](./weaves) directory.
 
-### Frame Codex vs OpenQuarry
+### Frame Codex and OpenQuarry
 
 - **Frame Codex**: Public markdown knowledge repository (this repo) - read-only, curated, version-controlled
-- **OpenQuarry**: Full personal knowledge management platform at [openstrand.ai](https://openstrand.ai) - supports any file type (images, videos, PDFs, code), AI analysis, serialization to markdown, private workspaces, and advanced features
+- **OpenQuarry**: the open format these notes follow, with schemas for weaves, looms and threads in [schema/](schema/); the Quarry app at [quarry.space](https://quarry.space) reads and writes it
 
-**Schema**: Frame Codex follows the [OpenQuarry schema specification](https://openstrand.ai/docs/schema) for weaves, looms, and strands. Looms are now inferred from folders (no `looms/` or `strands/` prefixes required) and threads are any markdown files within a weave.
+**Schema**: Frame Codex follows the [OpenQuarry format](schema/) for weaves, looms, and threads. Looms are now inferred from folders (no `looms/` or `strands/` prefixes required) and threads are any markdown files within a weave.
 Thread frontmatter now supports both `extractiveSummary` (deterministic NLP) and `aiSummary` (LLM) fields, plus a `notes` array for short bullet annotations that surface inside the Frame.dev viewer.
 
 ## 🔄 Automated Indexing Workflow

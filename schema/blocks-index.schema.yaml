@@ -20,11 +20,11 @@ properties:
       totalStrands:
         type: integer
         minimum: 0
-        description: "Number of strands with block-level data"
+        description: "Number of threads with block-level data"
       totalBlocks:
         type: integer
         minimum: 0
-        description: "Total number of blocks across all strands"
+        description: "Total number of blocks across all threads"
       totalTags:
         type: integer
         minimum: 0
@@ -68,17 +68,17 @@ properties:
           confidence: { type: number, minimum: 0, maximum: 1 }
   strands:
     type: object
-    description: "Per-strand block data, keyed by strand path"
+    description: "Per-thread block data, keyed by thread path"
     additionalProperties:
       type: object
       required: [path, blockCount, blocks]
       properties:
         path:
           type: string
-          description: "Relative path to the strand file"
+          description: "Relative path to the thread file"
         title:
           type: string
-          description: "Strand title for display"
+          description: "Thread title for display"
         blockCount:
           type: integer
           minimum: 0
@@ -90,7 +90,7 @@ properties:
           minimum: 0
         blocks:
           type: array
-          description: "All blocks in this strand"
+          description: "All blocks in this thread"
           items:
             type: object
             required: [id, line, type]

@@ -2324,7 +2324,7 @@ llm:
     citation: "always-source"  # or "inline", "footnote", "none"
 ```
 
-When answering questions, agents cite their sources with links back to the original Strands.
+When answering questions, agents cite their sources with links back to the original Threads.
 
 ### Tone and Detail
 
@@ -2415,4 +2415,4 @@ Want to go deeper? Explore these resources:
 - **[schema/hierarchy.md](schema/hierarchy.md)** – Detailed hierarchy specifications
 - **[architecture.md](architecture.md)** – Condensed architecture overview
 - **[frame.dev/codex](https://frame.dev/codex)** – Live Codex viewer
-- **[openstrand.ai](https://openstrand.ai)** – OpenQuarry protocol home
+- **[OpenQuarry schemas](https://github.com/framerslab/codex/tree/master/schema)** – the format's schema files
