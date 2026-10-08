@@ -134,7 +134,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-08T14:56:09.103Z"
+        "lastIndexed": "2026-10-08T15:01:08.138Z"
       }
     },
     "validation": {
@@ -281,7 +281,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-08T14:56:09.142Z"
+        "lastIndexed": "2026-10-08T15:01:08.178Z"
       }
     },
     "validation": {
@@ -425,7 +425,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-08T14:56:09.177Z"
+        "lastIndexed": "2026-10-08T15:01:08.214Z"
       }
     },
     "validation": {
@@ -462,7 +462,7 @@
       "ordering": "manual",
       "relationships": [
         {
-          "targetSlug": "openstrand",
+          "targetSlug": "openquarry",
           "type": "extends",
           "strength": 0.8
         },
@@ -534,7 +534,7 @@
         "confidence": {
           "ai": 0.0035971223021582736,
           "design": 0.0055248618784530384,
-          "knowledge": 0.08465608465608465,
+          "knowledge": 0.07936507936507936,
           "philosophy": 0.00966183574879227,
           "science": 0.007662835249042145,
           "security": 0.027777777777777776,
@@ -564,7 +564,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-08T14:56:09.199Z"
+        "lastIndexed": "2026-10-08T15:01:08.236Z"
       }
     },
     "validation": {
@@ -580,18 +580,18 @@
         "Key phrases found: frame documentation, complete documentation, documentation frame"
       ]
     },
-    "content": "slug: frame\ntitle: \"Frame Documentation\"\nsummary: |\n  Complete documentation for the Frame application ecosystem.\n  Includes user guides, architecture docs, and API references.\n\ntags: [frame, documentation, guides, application]\n\nordering: manual\n\nrelationships:\n  - targetSlug: openstrand\n    type: extends\n    strength: 0.8\n  - targetSlug: architecture\n    type: parallels\n    strength: 0.7\n",
+    "content": "slug: frame\ntitle: \"Frame Documentation\"\nsummary: |\n  Complete documentation for the Frame application ecosystem.\n  Includes user guides, architecture docs, and API references.\n\ntags: [frame, documentation, guides, application]\n\nordering: manual\n\nrelationships:\n  - targetSlug: openquarry\n    type: extends\n    strength: 0.8\n  - targetSlug: architecture\n    type: parallels\n    strength: 0.7\n",
     "searchText": "frame documentation complete documentation for the frame application ecosystem.\nincludes user guides, architecture docs, and api references.\n frame application guides architecture complete ecosystem includes user docs api references targetslug type strength documentation frame documentation complete documentation documentation frame frame application application ecosystem ecosystem includes includes user user guides guides architecture architecture docs"
   },
   {
-    "path": "weaves/wiki/openstrand/architecture.md",
+    "path": "weaves/wiki/openquarry/architecture.md",
     "name": "architecture.md",
     "type": "file",
     "metadata": {
       "id": "3c3ac6d5-8cc2-4106-9f4a-4f6134c3d0b2",
       "slug": "openstrand-architecture",
       "title": "OpenQuarry Architecture – Condensed Overview",
-      "summary": "A practical, implementation-focused overview of OpenStrand's architecture for ingestion and RAG.",
+      "summary": "A practical, implementation-focused overview of OpenQuarry's architecture for ingestion and RAG.",
       "version": "1.0.0",
       "contentType": "reference",
       "difficulty": {
@@ -1001,7 +1001,6 @@
         "keywords": [
           "threads",
           "index",
-          "openquarry",
           "ingestion",
           "loom",
           "assets",
@@ -1009,6 +1008,7 @@
           "frontmatter",
           "markdown",
           "search",
+          "openquarry",
           "architecture",
           "rag",
           "thread",
@@ -1057,7 +1057,7 @@
         "confidence": {
           "ai": 0.050359712230215826,
           "design": 0.03867403314917127,
-          "knowledge": 0.21164021164021163,
+          "knowledge": 0.20105820105820105,
           "media": 0.029850746268656716,
           "philosophy": 0.024154589371980676,
           "science": 0.034482758620689655,
@@ -1107,7 +1107,7 @@
             "RAG & Search"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:09.264Z"
+        "lastIndexed": "2026-10-08T15:01:08.300Z"
       }
     },
     "validation": {
@@ -1115,24 +1115,25 @@
       "errors": [],
       "warnings": [],
       "suggestions": [
-        "Consider adding tags: threads, index, openquarry, ingestion, loom",
+        "Consider adding tags: threads, index, ingestion, loom, assets",
         "Auto-detected subjects: ai, design, knowledge, media, philosophy, science, security, technology",
         "Auto-detected topics: api-reference, architecture, best-practices, getting-started, troubleshooting",
         "Key phrases found: openquarry architecture"
       ]
     },
     "content": "\nThis thread condenses the OpenQuarry Architecture into a short practitioner guide. For full details, see the comprehensive architecture document in the OpenQuarry repo and related threads in this loom.\n\n## Key Ideas\n- Threads: atomic assets (docs, media, datasets); Looms: curated groups of threads (folders); Weaves: entire universes of content. No cross-weave edges.\n- Ingestion: parse frontmatter → validate → persist ECA → index (text + vector) → construct relations (within weave).\n- Retrieval: combine lexical + semantic + graph edges; re-rank with pedagogical and structural signals.\n- Pipelines: support multi-format content; normalize to Markdown + frontmatter; attach assets alongside threads.\n\n## Ingestion Mapping\n1. Read `weave.yaml` → create workspace scope  \n2. Detect looms: any folder inside a weave is a loom (no `looms/` prefix needed)\n3. For each thread (markdown file):\n   - Extract frontmatter (id, slug, title, taxonomy, relationships)\n   - Store Markdown and assets\n   - Create edges only to threads in the same weave\n4. Build search index + embeddings\n\n## RAG & Search\n- Flat inverted index for fast client-side search (GitHub Pages).\n- Vector store for semantic similarity (server-side or local).\n- Graph traversal to suggest next-items within a loom.\n\n## Governance & SEO\n- Short executive summaries; single-topic threads; stable anchors; internal links between threads.\n- Controlled vocabulary in `tags/index.yaml`; CI validates tag usage and relationships.\n",
-    "searchText": "openquarry architecture – condensed overview a practical, implementation-focused overview of openstrand's architecture for ingestion and rag. threads index openquarry ingestion loom assets edges frontmatter markdown search architecture rag thread short vector openquarry architecture"
+    "searchText": "openquarry architecture – condensed overview a practical, implementation-focused overview of openquarry's architecture for ingestion and rag. threads index ingestion loom assets edges frontmatter markdown search openquarry architecture rag thread short vector openquarry architecture"
   },
   {
-    "path": "weaves/wiki/openstrand/loom.yaml",
+    "path": "weaves/wiki/openquarry/loom.yaml",
     "name": "loom.yaml",
     "type": "file",
     "metadata": {
-      "slug": "openstrand",
+      "slug": "openquarry",
       "title": "OpenQuarry Specification",
-      "summary": "The OpenStrand specification and schema documentation.\nDefines the portable, open format for knowledge strands.\n",
+      "summary": "The OpenQuarry specification and schema documentation.\nDefines the portable, open format for knowledge threads.\n",
       "tags": [
+        "openquarry",
         "openstrand",
         "specification",
         "schema",
@@ -1156,31 +1157,30 @@
         "keywords": [
           "specification",
           "schema",
+          "openquarry",
           "defines",
           "portable",
           "open",
-          "strands",
           "format",
-          "openstrand",
-          "openquarry",
           "knowledge",
+          "threads",
           "targetslug",
           "type",
           "strength",
           "interoperability",
-          "applies"
+          "applies",
+          "summary"
         ],
         "phrases": [
-          "openstrand specification",
-          "specification schema",
           "openquarry specification",
+          "specification schema",
           "schema documentation",
           "documentation defines",
           "defines portable",
           "portable open",
           "open format",
           "format knowledge",
-          "knowledge strands"
+          "knowledge threads"
         ],
         "subjects": [
           "ai",
@@ -1212,11 +1212,11 @@
         "confidence": {
           "ai": 0.0035971223021582736,
           "design": 0.022099447513812154,
-          "knowledge": 0.1164021164021164,
+          "knowledge": 0.12169312169312169,
           "philosophy": 0.00966183574879227,
           "science": 0.007662835249042145,
           "security": 0.022222222222222223,
-          "technology": 0.030405405405405407,
+          "technology": 0.033783783783783786,
           "api-reference": 0.024390243902439025,
           "architecture": 0.0364963503649635,
           "best-practices": 0.016129032258064516,
@@ -1241,7 +1241,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-08T14:56:09.287Z"
+        "lastIndexed": "2026-10-08T15:01:08.322Z"
       }
     },
     "validation": {
@@ -1254,21 +1254,21 @@
         "Auto-detected subjects: ai, design, knowledge, philosophy, science, security, technology",
         "Auto-detected topics: api-reference, architecture, best-practices",
         "Suggested difficulty: intermediate",
-        "Key phrases found: openstrand specification, specification schema, openquarry specification"
+        "Key phrases found: openquarry specification, specification schema, schema documentation"
       ]
     },
-    "content": "slug: openstrand\ntitle: \"OpenQuarry Specification\"\nsummary: |\n  The OpenStrand specification and schema documentation.\n  Defines the portable, open format for knowledge strands.\n\ntags: [openstrand, specification, schema, format, interoperability]\n\nordering: manual\n\nrelationships:\n  - targetSlug: frame\n    type: applies\n    strength: 0.9\n  - targetSlug: architecture\n    type: extends\n    strength: 0.6\n",
-    "searchText": "openquarry specification the openstrand specification and schema documentation.\ndefines the portable, open format for knowledge strands.\n specification schema defines portable open strands format openstrand openquarry knowledge targetslug type strength interoperability applies openstrand specification specification schema openquarry specification schema documentation documentation defines defines portable portable open open format format knowledge knowledge strands"
+    "content": "slug: openquarry\ntitle: \"OpenQuarry Specification\"\nsummary: |\n  The OpenQuarry specification and schema documentation.\n  Defines the portable, open format for knowledge threads.\n\ntags: [openquarry, openstrand, specification, schema, format, interoperability]\n\nordering: manual\n\nrelationships:\n  - targetSlug: frame\n    type: applies\n    strength: 0.9\n  - targetSlug: architecture\n    type: extends\n    strength: 0.6\n",
+    "searchText": "openquarry specification the openquarry specification and schema documentation.\ndefines the portable, open format for knowledge threads.\n specification schema openquarry defines portable open format knowledge threads targetslug type strength interoperability applies summary openquarry specification specification schema schema documentation documentation defines defines portable portable open open format format knowledge knowledge threads"
   },
   {
-    "path": "weaves/wiki/openstrand/overview.md",
+    "path": "weaves/wiki/openquarry/overview.md",
     "name": "overview.md",
     "type": "file",
     "metadata": {
       "id": "openstrand-overview",
       "slug": "openstrand-overview",
       "title": "OpenQuarry Overview",
-      "summary": "What OpenStrand is, why it exists, and how strands, looms, and weaves map to the analog OS.",
+      "summary": "What OpenQuarry is, why it exists, and how threads, looms, and weaves map to the analog OS.",
       "version": "1.0.0",
       "contentType": "markdown",
       "difficulty": "beginner",
@@ -3833,14 +3833,14 @@
           "react",
           "thread",
           "yaml",
-          "openquarry",
           "fabric",
           "hierarchy",
           "llm",
           "schema",
           "markdown",
           "shared",
-          "instructions"
+          "instructions",
+          "patterns"
         ],
         "phrases": [
           "self contained",
@@ -3850,9 +3850,9 @@
           "dev codex",
           "weaves topic",
           "openquarry overview",
+          "overview openquarry",
           "fabric entire",
-          "weave self",
-          "loom curated"
+          "weave self"
         ],
         "subjects": [
           "ai",
@@ -3895,7 +3895,7 @@
         "confidence": {
           "ai": 0.08992805755395683,
           "design": 0.15469613259668508,
-          "knowledge": 0.4708994708994709,
+          "knowledge": 0.4656084656084656,
           "media": 0.09701492537313433,
           "philosophy": 0.12077294685990338,
           "science": 0.09195402298850575,
@@ -3991,7 +3991,7 @@
             "- Rich"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:09.564Z"
+        "lastIndexed": "2026-10-08T15:01:08.597Z"
       }
     },
     "validation": {
@@ -4003,17 +4003,17 @@
       ]
     },
     "content": "\n# OpenQuarry Overview\n\nOpenQuarry is the shared schema that powers Fabric Codex—a hierarchy built for humans but optimized for machines. It treats knowledge as a fabric:\n\n- **Fabric** – the entire repository (`weaves/`)\n- **Weave** – a self-contained universe (for example, this `openstrand/` weave)\n- **Loom** – curated topic folder inside a weave (`schema/`, `playbooks/`, etc.)\n- **Thread** – atomic markdown file\n\nThe goal: ship knowledge that feels like a handcrafted book yet remains machine-readable, versioned, and searchable like Wikipedia.\n\n---\n\n## Why OpenQuarry?\n\nTraditional knowledge management tools force a choice: **human-friendly** or **machine-readable**. OpenQuarry eliminates this trade-off.\n\n### The Problem with Existing Solutions\n\n| Approach | Human Experience | AI Experience | Limitation |\n|----------|-----------------|---------------|------------|\n| **Plain Markdown** | Easy to write | Hard to parse relationships | No semantic structure |\n| **Database/CMS** | Locked in UI | API access only | No portability |\n| **Wiki Systems** | Good navigation | Flat structure | Weak linking |\n| **Note Apps** | Personal & fast | Proprietary format | Vendor lock-in |\n\n### The OpenQuarry Solution\n\nOpenQuarry adds an **invisible intelligence layer** to standard Markdown:\n\n1. **YAML Frontmatter** → Structured metadata that AI agents can parse\n2. **Typed Relationships** → Semantic links (`requires`, `extends`, `contradicts`)\n3. **LLM Instructions** → Control how AI interprets and summarizes content\n4. **Git-Native** → Version control, collaboration, and permanence built-in\n\n```yaml\n# Example: A strand that AI agents understand\n---\nid: \"auth-patterns-jwt\"\ntitle: \"JWT Authentication Patterns\"\nllm:\n  tone: \"technical\"\n  agentInstructions:\n    traversal: \"depth-first\"\n    citation: \"always-source\"\nrelationships:\n  - target: \"security-basics\"\n    type: \"requires\"\n  - target: \"oauth2-patterns\"\n    type: \"extends\"\n---\n```\n\n---\n\n## The Four-Tier Hierarchy\n\nOpenQuarry organizes knowledge into four nested layers. Each layer serves a specific purpose and maps to familiar concepts:\n\n### Fabric → Your Entire Knowledge Base\n\nThe **Fabric** is the root container—your complete repository of knowledge. Think of it as:\n- A library containing all your books\n- A database encompassing all tables\n- A universe containing all domains\n\n**In practice:** The `weaves/` directory in your repository.\n\n### Weave → Self-Contained Domains\n\nA **Weave** is a complete, independent universe of knowledge. Key properties:\n- **Self-contained** – No dependencies on other Weaves\n- **Publishable** – Can be exported, forked, or shared independently\n- **Themed** – Custom branding, icons, and styling\n\n**Examples:**\n- `weaves/openstrand/` – This documentation\n- `weaves/machine-learning/` – ML curriculum\n- `weaves/company-handbook/` – Internal docs\n\n### Loom → Curated Topics\n\nA **Loom** groups related Threads into navigable modules. Looms:\n- Define learning paths and prerequisites\n- Provide topic-level metadata\n- Enable hierarchical navigation\n\n**In this Weave:**\n- `schema/` – Technical specifications\n- `playbooks/` – Practical how-to guides\n\n### Thread → Atomic Knowledge Units\n\nThe **Thread** is the smallest unit—a single Markdown file with:\n- Rich YAML frontmatter\n- Typed semantic relationships\n- AI agent instructions\n- Auto-generated embeddings\n\n---\n\n## How AI Agents Use OpenQuarry\n\nOpenQuarry isn't just for humans. Every Thread carries instructions for AI systems:\n\n### Traversal Patterns\n\n```yaml\nllm:\n  agentInstructions:\n    traversal: \"depth-first\"  # or \"breadth-first\", \"prerequisite-ordered\"\n```\n\nAI agents know **how to navigate** your knowledge graph—following prerequisites, exploring related concepts, or diving deep into specifics.\n\n### Citation Behavior\n\n```yaml\nllm:\n  agentInstructions:\n    citation: \"always-source\"  # or \"inline\", \"footnote\", \"none\"\n```\n\nWhen answering questions, agents cite their sources with links back to the original Threads.\n\n### Tone and Detail\n\n```yaml\nllm:\n  tone: \"educational\"       # or \"technical\", \"casual\", \"formal\"\n  detail: \"comprehensive\"   # or \"summary\", \"bullet-points\"\n```\n\nThe same knowledge can be presented differently based on context—technical deep-dives for developers, summaries for executives.\n\n### Semantic Search\n\nEvery Thread is automatically embedded into a vector space. This enables:\n- **Meaning-based search** – Find related content even without keyword matches\n- **Concept clustering** – Discover unexpected connections\n- **Q&A over your knowledge** – Natural language queries with sourced answers\n\n---\n\n## The Value of Structured Knowledge\n\n### For Individuals\n\n- **Second Brain** – Build lasting knowledge with typed relationships\n- **Spaced Repetition** – Auto-generated flashcards from your Threads\n- **Offline Access** – Everything runs locally via WebAssembly\n\n### For Teams\n\n- **Shared Source of Truth** – Version-controlled documentation\n- **Onboarding** – New members navigate learning paths\n- **AI Assi",
-    "searchText": "openquarry overview what openstrand is, why it exists, and how strands, looms, and weaves map to the analog os. codex knowledge weaves agents react thread yaml openquarry fabric hierarchy llm schema markdown shared instructions self contained yaml llm codex viewer frame dev dev codex weaves topic openquarry overview fabric entire weave self loom curated"
+    "searchText": "openquarry overview what openquarry is, why it exists, and how threads, looms, and weaves map to the analog os. codex knowledge weaves agents react thread yaml fabric hierarchy llm schema markdown shared instructions patterns self contained yaml llm codex viewer frame dev dev codex weaves topic openquarry overview overview openquarry fabric entire weave self"
   },
   {
-    "path": "weaves/wiki/openstrand/schema/hierarchy.md",
+    "path": "weaves/wiki/openquarry/schema/hierarchy.md",
     "name": "hierarchy.md",
     "type": "file",
     "metadata": {
       "id": "openstrand-hierarchy",
       "slug": "openstrand-hierarchy",
       "title": "Hierarchy & Vocabulary",
-      "summary": "Complete guide to OpenStrand hierarchical organization: Fabric, Weave, Loom, and Strand.",
+      "summary": "Complete guide to OpenQuarry hierarchical organization: Fabric, Weave, Loom, and Thread.",
       "version": "1.0.0",
       "contentType": "reference",
       "difficulty": "intermediate",
@@ -5360,8 +5360,8 @@
           "specific",
           "technology",
           "subtopic",
-          "strand",
-          "knowledge"
+          "knowledge",
+          "loom"
         ],
         "phrases": [
           "weaves frame",
@@ -5370,10 +5370,10 @@
           "hierarchy vocabulary",
           "fabric weave",
           "weave loom",
-          "loom strand",
           "frame openstrand",
           "openstrand overview",
-          "codex viewer"
+          "codex viewer",
+          "https frame"
         ],
         "subjects": [
           "ai",
@@ -5491,7 +5491,7 @@
             "Hierarchy & Vocabulary"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:09.735Z"
+        "lastIndexed": "2026-10-08T15:01:08.773Z"
       }
     },
     "validation": {
@@ -5503,7 +5503,7 @@
       ]
     },
     "content": "\n# Hierarchy & Vocabulary\n\nOpenQuarry organizes knowledge into a four-tier hierarchy that mirrors how humans naturally think about information—from broad domains down to atomic concepts:\n\n```\nFABRIC (Knowledge Repository)\n└── WEAVE (Knowledge Universe)\n    └── LOOM (Topic Collection)\n        └── STRAND (Atomic Knowledge Unit)\n```\n\n| Layer | Description | Example |\n| ----- | ----------- | ------- |\n| **Fabric** | Complete repository containing all weaves. The highest organizational level. | `weaves/` |\n| **Weave** | Complete, self-contained universe of threads. No cross-weave dependencies. | `weaves/frame/` |\n| **Loom** | Curated folder inside a weave. Groups threads by topic or workflow. | `weaves/frame/openstrand/` |\n| **Thread** | Individual markdown file with YAML frontmatter metadata. | `weaves/frame/openstrand/overview.md` |\n\n---\n\n## Node Levels in the Viewer\n\nThe Codex viewer reads this hierarchy directly from GitHub and applies level-specific styling (fabric/weave/loom/strand) so humans can instantly see where they are. Metadata such as `tags`, `taxonomy`, or `publishing.status` flows into the sidebar and search filters.\n\n### Schema Goals\n\n1. **Nesting without magic** – folders on disk are the schema; no hidden database.\n2. **Frontmatter as API** – every thread's YAML block becomes structured data for search, analytics, and embeddings.\n3. **Machine-friendly URLs** – `https://frame.dev/codex?path=weaves/frame&file=openstrand/overview.md`\n\n---\n\n## Why This Hierarchy Matters\n\n### For Semantic Search\n\nEach layer provides different search scopes:\n- **Fabric-level:** Search across all knowledge\n- **Weave-level:** Search within a domain\n- **Loom-level:** Search within a topic\n- **Thread-level:** Search within a document\n\n### For AI Traversal\n\nThe hierarchy tells AI agents how to navigate:\n1. **Breadth-first:** Explore Looms in order\n2. **Depth-first:** Dive into prerequisites before moving on\n3. **Prerequisite-ordered:** Follow relationship chains\n\n### For Knowledge Graphs\n\nThe hierarchy maps to graph structures:\n- **Threads** → Nodes\n- **Relationships** → Edges\n- **Looms** → Clusters\n- **Weaves** → Subgraphs\n\n---\n\n## The Value of Structured Knowledge\n\n| Use Case | Benefit |\n|----------|---------|\n| **Personal notes** | Semantic search finds related content by meaning, not keywords |\n| **Team documentation** | AI agents answer questions with sourced citations |\n| **Learning paths** | Prerequisite relationships create guided curricula |\n| **Knowledge bases** | Graph visualization reveals hidden connections |\n\n---\n\n## Hierarchical Topic Structure\n\n**Folder depth determines topic specificity.** This is a fundamental OpenQuarry principle:\n\n> 📐 **Subfolders are SUBTOPICS of their parent folder. Topics MUST become more specific as you go deeper.**\n\n### How It Works\n\n```\nweaves/technology/                     # Topic: technology (broad)\n├── programming/                       # Topic: programming (more specific)\n│   ├── python/                        # Topic: python (even more specific)\n│   │   └── async/                     # Topic: async-python (most specific)\n│   │       └── coroutines.md          # Strand about Python coroutines\n│   └── rust/                          # Topic: rust (sibling to python)\n│       └── memory-safety.md\n└── infrastructure/                    # Topic: infrastructure (sibling to programming)\n    └── kubernetes/\n        └── networking.md\n```\n\n**The hierarchy implies:**\n- `programming/` is a subtopic of `technology/`\n- `python/` is a subtopic of `programming/`\n- `async/` is a subtopic of `python/`\n- Content in `async/` MUST be about async Python, not general async concepts\n\n### Topics vs Tags\n\n| Aspect | **Topics** (Hierarchical) | **Tags** (Independent) |\n|--------|---------------------------|------------------------|\n| Structure | Tree-like, parent-child | Flat, no hierarchy |\n| Inheritance | Child topics MUST narrow parent scope | No inheritance |\n| Sharing | Cannot share across unrelated branches | Can share across ANY level |\n| Purpose | Determines WHERE content lives | Describes WHAT content covers |\n| Example | `programming > python > async` | `best-practices`, `tutorial`, `advanced` |\n\n---\n\n## Next Steps\n\n- **[../overview.md](../overview.md)** — OpenQuarry overview and value proposition\n- **[../architecture.md](../architecture.md)** — Condensed architecture overview\n- **[frame.dev/codex](https://frame.dev/codex)** — Live Codex viewer\n",
-    "searchText": "hierarchy & vocabulary complete guide to openstrand hierarchical organization: fabric, weave, loom, and strand. python async hierarchy topic search overview programming weaves fabric codex specific technology subtopic strand knowledge weaves frame frame dev dev codex hierarchy vocabulary fabric weave weave loom loom strand frame openstrand openstrand overview codex viewer"
+    "searchText": "hierarchy & vocabulary complete guide to openquarry hierarchical organization: fabric, weave, loom, and thread. python async hierarchy topic search overview programming weaves fabric codex specific technology subtopic knowledge loom weaves frame frame dev dev codex hierarchy vocabulary fabric weave weave loom frame openstrand openstrand overview codex viewer https frame"
   },
   {
     "path": "weaves/writings/weave.yaml",
@@ -5632,7 +5632,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-08T14:56:09.781Z"
+        "lastIndexed": "2026-10-08T15:01:08.815Z"
       }
     },
     "validation": {
@@ -5775,7 +5775,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-08T14:56:09.832Z"
+        "lastIndexed": "2026-10-08T15:01:08.868Z"
       }
     },
     "validation": {
@@ -6350,7 +6350,7 @@
             "\"lesson"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:10.159Z"
+        "lastIndexed": "2026-10-08T15:01:09.199Z"
       }
     },
     "validation": {
@@ -6535,7 +6535,7 @@
             "Emerald |"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:10.660Z"
+        "lastIndexed": "2026-10-08T15:01:09.691Z"
       }
     },
     "validation": {
@@ -6613,12 +6613,12 @@
           "topic",
           "infrastructure",
           "frame",
-          "threads",
           "fabric",
           "coroutines",
           "best",
           "practices",
-          "codex"
+          "codex",
+          "threads"
         ],
         "phrases": [
           "frame codex",
@@ -6779,7 +6779,7 @@
             "- **Rich"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:11.282Z"
+        "lastIndexed": "2026-10-08T15:01:10.305Z"
       }
     },
     "validation": {
@@ -6791,7 +6791,7 @@
       ]
     },
     "content": "\n# OpenQuarry Architecture Overview\n\nOpenQuarry is the knowledge infrastructure that powers Frame.dev and Frame Codex. It provides a structured, AI-native way to organize, store, and retrieve humanity's knowledge.\n\n## Core Concepts\n\n### The Four-Tier Hierarchy\n\nOpenQuarry organizes knowledge using four fundamental primitives:\n\n**Fabric** - A collection of weaves\n- The highest level of organization\n- Represents an entire knowledge repository or ecosystem\n- Example: Frame Codex itself is a fabric\n- Contains multiple weaves that are conceptually related but independent\n\n**Thread** - The atomic unit of knowledge\n- A single document, image, dataset, or media file\n- Contains rich metadata for categorization and discovery\n- Can reference other threads within the same weave\n- Immutable once published (new versions create new threads)\n\n**Loom** - A curated collection of related threads\n- Groups threads by topic, theme, or learning path\n- Defines ordering (sequential, hierarchical, or network)\n- Provides context and relationships between threads\n- Acts as a module or chapter in the knowledge base\n\n**Weave** - A complete universe of knowledge\n- Self-contained collection with no external dependencies\n- Represents a domain, project, or knowledge area\n- No relationships exist between different weaves\n- Think of it as a separate universe or dimension\n\n### Why This Structure?\n\nThe Fabric/Weave/Loom/Strand architecture solves several key problems:\n\n1. **Isolation**: Weaves are completely independent, preventing knowledge pollution\n2. **Scalability**: Each weave can grow infinitely without affecting others\n3. **Clarity**: Clear boundaries make it obvious where knowledge belongs\n4. **Versioning**: Threads are immutable, making version control natural\n5. **AI-Friendly**: Structured metadata enables semantic search and RAG\n6. **Fabric-Scope Reasoning**: A single Fabric view allows cross-weave synthesis while preserving provenance\n\n### Superintelligence at Fabric Scope\n\nWhile weaves remain isolated for organization and provenance, analysis at the **Fabric** level permits traversal\nacross weaves for:\n\n- Cross-domain retrieval and context assembly\n- Whole-of-corpus synthesis and summarization\n- Global topic maps and knowledge graphs\n\nFabric-level queries always preserve original weave/loom/strand provenance. OpenQuarry uses this fabric view to let\nagents and superintelligence move seamlessly across domains while still understanding exactly where every fact came from.\n\n## How It Works\n\n### Knowledge Flow\n\n```\nFabric (Repository)\n  └── Weave (Universe)\n        └── Loom (Collection / any subdirectory)\n              ├── Strand (Markdown file)\n              ├── Strand (Markdown file)\n              └── Loom (Nested subdirectory)\n                    └── Strand (Markdown file)\n```\n\n### Example: Frame Ecosystem Weave\n\n```yaml\n# weaves/frame/weave.yaml\nslug: frame\ntitle: Frame.dev Ecosystem\ndescription: Complete knowledge base for Frame products and infrastructure\n```\n\nThis weave contains looms for:\n- OpenQuarry documentation\n- AgentOS guides\n- Frame API reference\n- Architecture patterns\n\n💡 **Physical layout**: Loosely structured folders — no `looms/` or `strands/` prefixes are required.\n\n```\nweaves/frame/\n├── weave.yaml\n├── overview.md\n├── openstrand/\n│   ├── loom.yaml\n│   └── architecture.md\n└── guides/agentos/deployment.md\n```\n\nEach folder inside `weaves/frame/` is treated as a loom, and every markdown file (at any depth) is a thread that can reference other threads.\n\n### Hierarchical Topic Structure (Critical Rule)\n\n**Folder depth determines topic specificity.** This is a fundamental OpenQuarry principle:\n\n> 📐 **Subfolders are SUBTOPICS of their parent folder. Topics MUST become more specific as you go deeper.**\n\n#### How It Works\n\n```\nweaves/technology/                     # Topic: technology (broad)\n├── programming/                       # Topic: programming (more specific)\n│   ├── python/                        # Topic: python (even more specific)\n│   │   └── async/                     # Topic: async-python (most specific)\n│   │       └── coroutines.md          # Strand about Python coroutines\n│   └── rust/                          # Topic: rust (sibling to python)\n│       └── memory-safety.md\n└── infrastructure/                    # Topic: infrastructure (sibling to programming)\n    └── kubernetes/\n        └── networking.md\n```\n\n**The hierarchy implies:**\n- `programming/` is a subtopic of `technology/`\n- `python/` is a subtopic of `programming/`\n- `async/` is a subtopic of `python/`\n- Content in `async/` MUST be about async Python, not general async concepts\n\n#### Topics vs Tags: The Critical Distinction\n\n| Aspect | **Topics** (Hierarchical) | **Tags** (Independent) |\n|--------|---------------------------|------------------------|\n| Structure | Tree-like, parent-child | Flat, no hierarchy |\n| Inheritance | Child topics MUST narrow parent scope | No inheritance |\n| Sharing | Cannot share across unrelated branches | Can share across",
-    "searchText": "openquarry architecture overview comprehensive guide to openquarry's knowledge infrastructure, explaining how weaves, looms, and threads work together to create the foundation for frame codex python async knowledge programming technology weaves topic infrastructure frame threads fabric coroutines best practices codex frame codex weaves technology best practices programming python python async frame dev markdown file technology programming knowledge graph openquarry architecture"
+    "searchText": "openquarry architecture overview comprehensive guide to openquarry's knowledge infrastructure, explaining how weaves, looms, and threads work together to create the foundation for frame codex python async knowledge programming technology weaves topic infrastructure frame fabric coroutines best practices codex threads frame codex weaves technology best practices programming python python async frame dev markdown file technology programming knowledge graph openquarry architecture"
   },
   {
     "path": "weaves/knowledge/ai-ml/llm_rag_evaluation.md",
@@ -15760,7 +15760,7 @@
             "RAG systems"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:13.066Z"
+        "lastIndexed": "2026-10-08T15:01:12.084Z"
       }
     },
     "validation": {
@@ -18506,7 +18506,7 @@
             "Producer & Consumer"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:15.174Z"
+        "lastIndexed": "2026-10-08T15:01:14.218Z"
       }
     },
     "validation": {
@@ -23204,7 +23204,7 @@
             "s1 & s2"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:24.344Z"
+        "lastIndexed": "2026-10-08T15:01:23.255Z"
       }
     },
     "validation": {
@@ -29467,7 +29467,7 @@
             "Intersection & Union"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:33.395Z"
+        "lastIndexed": "2026-10-08T15:01:32.497Z"
       }
     },
     "validation": {
@@ -29600,7 +29600,7 @@
             "signals": {
               "topicShift": 0.757,
               "entityDensity": 0.167,
-              "semanticNovelty": 0.598,
+              "semanticNovelty": 0.599,
               "structuralImportance": 0.405
             }
           }
@@ -29718,7 +29718,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.446,
-              "semanticNovelty": 0.53,
+              "semanticNovelty": 0.531,
               "structuralImportance": 0.7
             }
           }
@@ -29766,7 +29766,7 @@
             "signals": {
               "topicShift": 0.826,
               "entityDensity": 0.203,
-              "semanticNovelty": 0.536,
+              "semanticNovelty": 0.537,
               "structuralImportance": 0.5
             }
           }
@@ -29814,7 +29814,7 @@
             "signals": {
               "topicShift": 0.672,
               "entityDensity": 0.263,
-              "semanticNovelty": 0.599,
+              "semanticNovelty": 0.6,
               "structuralImportance": 0.5
             }
           }
@@ -29856,7 +29856,7 @@
             "signals": {
               "topicShift": 0.889,
               "entityDensity": 0.217,
-              "semanticNovelty": 0.641,
+              "semanticNovelty": 0.642,
               "structuralImportance": 0.5
             }
           }
@@ -30070,7 +30070,7 @@
             "signals": {
               "topicShift": 0.874,
               "entityDensity": 0.083,
-              "semanticNovelty": 0.614,
+              "semanticNovelty": 0.615,
               "structuralImportance": 0.29
             }
           }
@@ -30218,11 +30218,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.481,
+            "score": 0.482,
             "signals": {
               "topicShift": 0.759,
               "entityDensity": 0.429,
-              "semanticNovelty": 0.701,
+              "semanticNovelty": 0.702,
               "structuralImportance": 0.235
             }
           }
@@ -30284,7 +30284,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.146,
-              "semanticNovelty": 0.731,
+              "semanticNovelty": 0.732,
               "structuralImportance": 0.45
             }
           }
@@ -30358,7 +30358,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.371,
-              "semanticNovelty": 0.688,
+              "semanticNovelty": 0.689,
               "structuralImportance": 0.5
             }
           }
@@ -30578,7 +30578,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.37,
-              "semanticNovelty": 0.754,
+              "semanticNovelty": 0.755,
               "structuralImportance": 0.55
             }
           }
@@ -30646,7 +30646,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.292,
-              "semanticNovelty": 0.596,
+              "semanticNovelty": 0.597,
               "structuralImportance": 0.4
             }
           }
@@ -30952,11 +30952,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.935,
+            "score": 0.932,
             "signals": {
               "topicShift": 1,
               "entityDensity": 1,
-              "semanticNovelty": 0.937,
+              "semanticNovelty": 0.921,
               "structuralImportance": 0.85
             }
           }
@@ -30994,7 +30994,7 @@
             }
           ],
           "worthiness": {
-            "score": 0.569,
+            "score": 0.57,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.556,
@@ -31087,11 +31087,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.734,
+            "score": 0.732,
             "signals": {
               "topicShift": 0.915,
               "entityDensity": 0.8,
-              "semanticNovelty": 0.53,
+              "semanticNovelty": 0.519,
               "structuralImportance": 0.7
             }
           }
@@ -31139,7 +31139,7 @@
             "signals": {
               "topicShift": 0.608,
               "entityDensity": 0.26,
-              "semanticNovelty": 0.644,
+              "semanticNovelty": 0.641,
               "structuralImportance": 0.4
             }
           }
@@ -31190,12 +31190,6 @@
               "reasoning": "Propagated from document tags"
             },
             {
-              "tag": "strand",
-              "confidence": 0.7000000000000001,
-              "source": "existing",
-              "reasoning": "Propagated from document tags"
-            },
-            {
               "tag": "architecture",
               "confidence": 0.6000000000000001,
               "source": "existing",
@@ -31208,6 +31202,12 @@
               "reasoning": "Propagated from document tags"
             },
             {
+              "tag": "strand",
+              "confidence": 0.6000000000000001,
+              "source": "existing",
+              "reasoning": "Propagated from document tags"
+            },
+            {
               "tag": "knowledge",
               "confidence": 0.6,
               "source": "nlp",
@@ -31215,11 +31215,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.582,
+            "score": 0.581,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.191,
-              "semanticNovelty": 0.447,
+              "semanticNovelty": 0.44,
               "structuralImportance": 0.7
             }
           }
@@ -31267,7 +31267,7 @@
             "signals": {
               "topicShift": 0.942,
               "entityDensity": 0.219,
-              "semanticNovelty": 0.658,
+              "semanticNovelty": 0.659,
               "structuralImportance": 0.35
             }
           }
@@ -31400,7 +31400,7 @@
         "confidence": {
           "ai": 0.06474820143884892,
           "design": 0.11049723756906077,
-          "knowledge": 0.3968253968253968,
+          "knowledge": 0.3915343915343915,
           "media": 0.04477611940298507,
           "philosophy": 0.06280193236714976,
           "science": 0.09195402298850575,
@@ -31489,7 +31489,7 @@
             "- Rich"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:35.676Z"
+        "lastIndexed": "2026-10-08T15:01:34.750Z"
       }
     },
     "validation": {
@@ -31500,7 +31500,7 @@
         "Key phrases found: frame codex, loom folder, markdown file"
       ]
     },
-    "content": "\n# Frame Codex Architecture Overview\n\nFrame Codex is a structured, version-controlled knowledge repository designed as the canonical source of truth for AI systems and human learners.\n\n## Core Concepts\n\n### Four-Tier Knowledge Organization\n\n```\nFabric (Whole Codex)\n└── Weave (Universe)\n    ├── Loom (Folder)\n    │   ├── Strand (markdown file)\n    │   ├── Strand (markdown file)\n    │   └── ...\n    └── Loom (Folder)\n        └── ...\n```\n\n**Fabric**: The entire Codex corpus viewed as one living whole\n- Composed of multiple weaves (e.g., `frame`, `wiki`, `technology`)\n- Enables cross-weave traversal when operating at Fabric scope\n- Used by superintelligence/agents for holistic aggregation and synthesis\n\n**Weave**: Complete, isolated knowledge universe\n- No cross-weave relationships\n- Independent scope and taxonomy\n- Examples: `wiki`, `frame`, `technology`\n\n**Loom**: Any folder inside a weave\n- Organized by topic or module\n- No explicit `looms/` prefix needed\n- Metadata in optional `loom.yaml`\n\n**Thread**: Any markdown file inside a weave\n- Self-contained, focused on one concept\n- Rich metadata in YAML frontmatter\n- No explicit `strands/` folder needed\n\n### Why This Structure?\n\n1. **Modularity**: Each thread is independent and reusable\n2. **Discoverability**: Looms (folders) provide natural organization\n3. **Isolation**: Weaves prevent namespace collisions\n4. **Scalability**: Can grow to millions of threads\n5. **AI-Friendly**: Clear structure for LLM ingestion\n6. **Simple**: Folders = looms, markdown files = threads (auto-detected)\n\n### Superintelligence at Fabric Scope\n\nWhile weaves remain isolated for organization and provenance, analysis at the **Fabric** level permits traversal across weaves for:\n\n- Cross-domain retrieval and context assembly\n- Whole-of-corpus synthesis and summarization\n- Global topic maps and knowledge graphs\n\nFabric-level queries always preserve original weave/loom/strand provenance.\n\n## SQL Cache Layer\n\nFrame Codex uses [@framers/sql-storage-adapter](https://github.com/framerslab/sql-storage-adapter) for intelligent caching.\n\n### Performance\n\n- **First run**: ~30s for 100 files (full analysis)\n- **Subsequent**: ~2-5s for 5 changed files (85-95% speedup)\n- **Storage**: ~500KB-2MB for 100 files\n\n### How It Works\n\n1. **SHA-based change detection**: Only re-process modified files\n2. **Loom-scoped caching**: Store aggregate stats per loom (folder)\n3. **Keyword caching**: Pre-computed TF-IDF scores\n4. **GitHub Actions cache**: Persistent across CI runs\n\n### Cache Tables\n\n```sql\nfiles       -- File metadata, SHA, analysis JSON\nkeywords    -- Extracted keywords with TF-IDF scores\nstats       -- Loom/weave aggregate statistics\n```\n\n## Static NLP Pipeline\n\n**No LLM calls, $0 cost, runs in CI:**\n\n1. **TF-IDF**: Keyword extraction and ranking\n2. **N-grams**: Common phrase detection\n3. **Vocabulary matching**: Auto-categorization\n4. **Readability scoring**: Flesch-Kincaid grade level\n5. **Sentiment heuristics**: Simple keyword patterns\n\n### Output\n\n- `codex-index.json`: Searchable index for frame.dev/codex\n- `codex-report.json`: Analytics and validation results\n\n## Automation Workflows\n\n### On Every PR\n\n1. **Schema validation**: Required fields, types, enums\n2. **Content quality**: Length, forbidden patterns, duplicates\n3. **Static NLP**: Auto-categorization and tagging\n4. **Optional AI**: GPT-4 quality analysis (if `OPENAI_API_KEY` set)\n\n### Auto-Merge (Trusted Weavers)\n\n- Users in `.github/WEAVERS.txt` get auto-approved + merged\n- Requires 5+ high-quality contributions\n- Validation must pass\n\n### Full Re-Catalog\n\n- Triggered manually or on schedule\n- Updates all metadata and statistics\n- Creates PR (manual approval by default)\n- Toggle: `AUTO_CATALOG_MERGE=true`\n\n## OpenQuarry Integration\n\nFrame Codex implements the **Educational Content Atom (ECA)** specification:\n\n- **Learning Design**: Objectives, outcomes, Bloom's taxonomy\n- **Time Estimates**: Reading, exercises, projects\n- **Modalities**: Text, visual, audio, video, kinesthetic\n- **Assessments**: Formative and summative\n- **Accessibility**: WCAG compliance, reading levels\n- **Quality Metrics**: Peer review, evidence-based claims\n\n### Frame Codex and OpenQuarry\n\n- **Frame Codex**: Public markdown repository (this repo)\n- **OpenQuarry**: the open format these notes follow; the Quarry app at quarry.space reads and writes it\n\n## Repository Structure\n\n```\ncodex/\n├── weaves/              # Knowledge universes\n│   ├── wiki/           # Meta-documentation\n│   │   ├── weave.yaml\n│   │   ├── architecture/    # Loom (folder)\n│   │   │   └── overview.md  # Strand (markdown file)\n│   │   └── ...\n│   ├── frame/          # Frame ecosystem knowledge\n│   │   ├── weave.yaml\n│   │   ├── openstrand/      # Loom (folder)\n│   │   │   └── architecture.md  # Strand (markdown file)\n│   │   └── ...\n│   └── technology/     # Tech & CS content\n├── schema/             # Validation schemas\n├── docs/               # Development guides\n├── scripts/            # Automation scr",
+    "content": "\n# Frame Codex Architecture Overview\n\nFrame Codex is a structured, version-controlled knowledge repository designed as the canonical source of truth for AI systems and human learners.\n\n## Core Concepts\n\n### Four-Tier Knowledge Organization\n\n```\nFabric (Whole Codex)\n└── Weave (Universe)\n    ├── Loom (Folder)\n    │   ├── Strand (markdown file)\n    │   ├── Strand (markdown file)\n    │   └── ...\n    └── Loom (Folder)\n        └── ...\n```\n\n**Fabric**: The entire Codex corpus viewed as one living whole\n- Composed of multiple weaves (e.g., `frame`, `wiki`, `technology`)\n- Enables cross-weave traversal when operating at Fabric scope\n- Used by superintelligence/agents for holistic aggregation and synthesis\n\n**Weave**: Complete, isolated knowledge universe\n- No cross-weave relationships\n- Independent scope and taxonomy\n- Examples: `wiki`, `frame`, `technology`\n\n**Loom**: Any folder inside a weave\n- Organized by topic or module\n- No explicit `looms/` prefix needed\n- Metadata in optional `loom.yaml`\n\n**Thread**: Any markdown file inside a weave\n- Self-contained, focused on one concept\n- Rich metadata in YAML frontmatter\n- No explicit `strands/` folder needed\n\n### Why This Structure?\n\n1. **Modularity**: Each thread is independent and reusable\n2. **Discoverability**: Looms (folders) provide natural organization\n3. **Isolation**: Weaves prevent namespace collisions\n4. **Scalability**: Can grow to millions of threads\n5. **AI-Friendly**: Clear structure for LLM ingestion\n6. **Simple**: Folders = looms, markdown files = threads (auto-detected)\n\n### Superintelligence at Fabric Scope\n\nWhile weaves remain isolated for organization and provenance, analysis at the **Fabric** level permits traversal across weaves for:\n\n- Cross-domain retrieval and context assembly\n- Whole-of-corpus synthesis and summarization\n- Global topic maps and knowledge graphs\n\nFabric-level queries always preserve original weave/loom/strand provenance.\n\n## SQL Cache Layer\n\nFrame Codex uses [@framers/sql-storage-adapter](https://github.com/framerslab/sql-storage-adapter) for intelligent caching.\n\n### Performance\n\n- **First run**: ~30s for 100 files (full analysis)\n- **Subsequent**: ~2-5s for 5 changed files (85-95% speedup)\n- **Storage**: ~500KB-2MB for 100 files\n\n### How It Works\n\n1. **SHA-based change detection**: Only re-process modified files\n2. **Loom-scoped caching**: Store aggregate stats per loom (folder)\n3. **Keyword caching**: Pre-computed TF-IDF scores\n4. **GitHub Actions cache**: Persistent across CI runs\n\n### Cache Tables\n\n```sql\nfiles       -- File metadata, SHA, analysis JSON\nkeywords    -- Extracted keywords with TF-IDF scores\nstats       -- Loom/weave aggregate statistics\n```\n\n## Static NLP Pipeline\n\n**No LLM calls, $0 cost, runs in CI:**\n\n1. **TF-IDF**: Keyword extraction and ranking\n2. **N-grams**: Common phrase detection\n3. **Vocabulary matching**: Auto-categorization\n4. **Readability scoring**: Flesch-Kincaid grade level\n5. **Sentiment heuristics**: Simple keyword patterns\n\n### Output\n\n- `codex-index.json`: Searchable index for frame.dev/codex\n- `codex-report.json`: Analytics and validation results\n\n## Automation Workflows\n\n### On Every PR\n\n1. **Schema validation**: Required fields, types, enums\n2. **Content quality**: Length, forbidden patterns, duplicates\n3. **Static NLP**: Auto-categorization and tagging\n4. **Optional AI**: GPT-4 quality analysis (if `OPENAI_API_KEY` set)\n\n### Auto-Merge (Trusted Weavers)\n\n- Users in `.github/WEAVERS.txt` get auto-approved + merged\n- Requires 5+ high-quality contributions\n- Validation must pass\n\n### Full Re-Catalog\n\n- Triggered manually or on schedule\n- Updates all metadata and statistics\n- Creates PR (manual approval by default)\n- Toggle: `AUTO_CATALOG_MERGE=true`\n\n## OpenQuarry Integration\n\nFrame Codex implements the **Educational Content Atom (ECA)** specification:\n\n- **Learning Design**: Objectives, outcomes, Bloom's taxonomy\n- **Time Estimates**: Reading, exercises, projects\n- **Modalities**: Text, visual, audio, video, kinesthetic\n- **Assessments**: Formative and summative\n- **Accessibility**: WCAG compliance, reading levels\n- **Quality Metrics**: Peer review, evidence-based claims\n\n### Frame Codex and OpenQuarry\n\n- **Frame Codex**: Public markdown repository (this repo)\n- **OpenQuarry**: the open format these notes follow; the Quarry app at quarry.space reads and writes it\n\n## Repository Structure\n\n```\ncodex/\n├── weaves/              # Knowledge universes\n│   ├── wiki/           # Meta-documentation\n│   │   ├── weave.yaml\n│   │   ├── architecture/    # Loom (folder)\n│   │   │   └── overview.md  # Strand (markdown file)\n│   │   └── ...\n│   ├── frame/          # Frame ecosystem knowledge\n│   │   ├── weave.yaml\n│   │   ├── openquarry/      # Loom (folder)\n│   │   │   └── architecture.md  # Strand (markdown file)\n│   │   └── ...\n│   └── technology/     # Tech & CS content\n├── schema/             # Validation schemas\n├── docs/               # Development guides\n├── scripts/            # Automation scr",
     "searchText": "frame codex architecture overview high-level architecture of frame codex: three-tier knowledge organization, sql caching, static nlp, and automation codex loom frame folder auto sql caching automation knowledge fabric files organization quality whole detected frame codex loom folder markdown file strand markdown static nlp codex architecture architecture overview tier knowledge knowledge organization cross weave"
   },
   {
@@ -34563,7 +34563,7 @@
             "PAT             │"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:38.951Z"
+        "lastIndexed": "2026-10-08T15:01:37.995Z"
       }
     },
     "validation": {
@@ -35233,7 +35233,7 @@
             "- **Art Deco Frames**:"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:39.879Z"
+        "lastIndexed": "2026-10-08T15:01:38.887Z"
       }
     },
     "validation": {
@@ -38047,7 +38047,7 @@
             "Web Workers:"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:41.681Z"
+        "lastIndexed": "2026-10-08T15:01:40.676Z"
       }
     },
     "validation": {
@@ -41110,7 +41110,7 @@
             "Art Deco"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:44.451Z"
+        "lastIndexed": "2026-10-08T15:01:43.453Z"
       }
     },
     "validation": {
@@ -46122,7 +46122,7 @@
             "- Art Deco"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:47.550Z"
+        "lastIndexed": "2026-10-08T15:01:46.577Z"
       }
     },
     "validation": {
@@ -49924,7 +49924,7 @@
             "San Francisco,"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:51.156Z"
+        "lastIndexed": "2026-10-08T15:01:50.172Z"
       }
     },
     "validation": {
@@ -49953,11 +49953,11 @@
       "slug": "wiki",
       "title": "Wiki",
       "description": "Knowledge base - contains Frame documentation, OpenQuarry spec, and reference material",
-      "scope": "This weave contains reference documentation and knowledge:\n- Frame application documentation and guides\n- OpenStrand specification and schema docs\n- Technical architecture documentation\n- Contribution guides and development docs\n- General knowledge and reference material\n",
+      "scope": "This weave contains reference documentation and knowledge:\n- Frame application documentation and guides\n- OpenQuarry format and schema docs\n- Technical architecture documentation\n- Contribution guides and development docs\n- General knowledge and reference material\n",
       "boundaries": "This weave does NOT contain:\n- Personal reflections (see reflections weave)\n- Writing drafts (see writings weave)\n- Quick notes and tasks (see notes weave)\n",
       "looms": [
         "frame",
-        "openstrand",
+        "openquarry",
         "architecture",
         "contributing",
         "development",
@@ -49987,7 +49987,7 @@
           "jddunn"
         ]
       },
-      "summary": "slug: wiki\ntitle: \"Wiki\"\ndescription: \"Knowledge base - contains Frame documentation, OpenQuarry spec, and reference material\"\n\nscope: |\n  This weave contains reference documentation and knowledge:\n  - Frame application documentation and guides\n  - OpenStrand specification and schema docs\n  - Tec...",
+      "summary": "slug: wiki\ntitle: \"Wiki\"\ndescription: \"Knowledge base - contains Frame documentation, OpenQuarry spec, and reference material\"\n\nscope: |\n  This weave contains reference documentation and knowledge:\n  - Frame application documentation and guides\n  - OpenQuarry format and schema docs\n  - Technical ...",
       "autoGenerated": {
         "keywords": [
           "spec",
@@ -49995,16 +49995,16 @@
           "knowledge",
           "wiki",
           "documentation",
+          "openquarry",
           "contains",
           "docs",
-          "specification",
-          "openstrand",
           "frame",
           "weave",
           "application",
           "contribution",
           "development",
-          "everyone"
+          "everyone",
+          "reference"
         ],
         "phrases": [
           "reference material",
@@ -50037,33 +50037,32 @@
         "skills": [
           "schema",
           "data",
-          "ci",
           "tl",
           "app",
           "on",
           "ts",
           "c",
           "gener",
-          "io"
+          "io",
+          "writing"
         ],
         "difficulty": "beginner",
         "confidence": {
           "ai": 0.01079136690647482,
-          "design": 0.011049723756906077,
-          "knowledge": 0.19047619047619047,
+          "design": 0.016574585635359115,
+          "knowledge": 0.17989417989417988,
           "philosophy": 0.024154589371980676,
-          "science": 0.01532567049808429,
+          "science": 0.011494252873563218,
           "security": 0.022222222222222223,
-          "technology": 0.05405405405405406,
+          "technology": 0.05067567567567568,
           "api-reference": 0.04065040650406504,
           "architecture": 0.0364963503649635,
           "best-practices": 0.024193548387096774,
           "getting-started": 0.05504587155963303,
           "troubleshooting": 0.018518518518518517,
-          "skill:schema": 0.5192307692307693,
-          "skill:data": 0.5192307692307693,
-          "skill:ci": 0.5192307692307693,
-          "skill:tl": 0.5192307692307693,
+          "skill:schema": 0.5144230769230769,
+          "skill:data": 0.5144230769230769,
+          "skill:tl": 0.5144230769230769,
           "skill:app": 0.5178571428571429,
           "skill:on": 0.5178571428571429,
           "skill:ts": 0.5246913580246914,
@@ -50087,7 +50086,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-08T14:56:51.647Z"
+        "lastIndexed": "2026-10-08T15:01:50.662Z"
       }
     },
     "validation": {
@@ -50104,8 +50103,8 @@
         "Key phrases found: reference material, slug wiki, wiki title"
       ]
     },
-    "content": "slug: wiki\ntitle: \"Wiki\"\ndescription: \"Knowledge base - contains Frame documentation, OpenQuarry spec, and reference material\"\n\nscope: |\n  This weave contains reference documentation and knowledge:\n  - Frame application documentation and guides\n  - OpenStrand specification and schema docs\n  - Technical architecture documentation\n  - Contribution guides and development docs\n  - General knowledge and reference material\n\nboundaries: |\n  This weave does NOT contain:\n  - Personal reflections (see reflections weave)\n  - Writing drafts (see writings weave)\n  - Quick notes and tasks (see notes weave)\n\nlooms:\n  - frame\n  - openstrand\n  - architecture\n  - contributing\n  - development\n  - examples\n  - tutorials\n\nmetadata:\n  domain: knowledge\n  audience: [everyone, contributors, developers]\n  license: CC-BY-4.0\n\ntags: [wiki, knowledge, documentation, reference, frame, openstrand]\n\npublishing:\n  status: published\n  maintainers: [jddunn]\n\n",
-    "searchText": "wiki slug: wiki\ntitle: \"wiki\"\ndescription: \"knowledge base - contains frame documentation, openquarry spec, and reference material\"\n\nscope: |\n  this weave contains reference documentation and knowledge:\n  - frame application documentation and guides\n  - openstrand specification and schema docs\n  - tec... spec material knowledge wiki documentation contains docs specification openstrand frame weave application contribution development everyone reference material slug wiki wiki title title wiki wiki description description knowledge knowledge base base contains contains frame frame documentation"
+    "content": "slug: wiki\ntitle: \"Wiki\"\ndescription: \"Knowledge base - contains Frame documentation, OpenQuarry spec, and reference material\"\n\nscope: |\n  This weave contains reference documentation and knowledge:\n  - Frame application documentation and guides\n  - OpenQuarry format and schema docs\n  - Technical architecture documentation\n  - Contribution guides and development docs\n  - General knowledge and reference material\n\nboundaries: |\n  This weave does NOT contain:\n  - Personal reflections (see reflections weave)\n  - Writing drafts (see writings weave)\n  - Quick notes and tasks (see notes weave)\n\nlooms:\n  - frame\n  - openquarry\n  - architecture\n  - contributing\n  - development\n  - examples\n  - tutorials\n\nmetadata:\n  domain: knowledge\n  audience: [everyone, contributors, developers]\n  license: CC-BY-4.0\n\ntags: [wiki, knowledge, documentation, reference, frame, openstrand]\n\npublishing:\n  status: published\n  maintainers: [jddunn]\n\n",
+    "searchText": "wiki slug: wiki\ntitle: \"wiki\"\ndescription: \"knowledge base - contains frame documentation, openquarry spec, and reference material\"\n\nscope: |\n  this weave contains reference documentation and knowledge:\n  - frame application documentation and guides\n  - openquarry format and schema docs\n  - technical ... spec material knowledge wiki documentation openquarry contains docs frame weave application contribution development everyone reference reference material slug wiki wiki title title wiki wiki description description knowledge knowledge base base contains contains frame frame documentation"
   },
   {
     "path": "schema/blocks-index.schema.yaml",
@@ -50456,7 +50455,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-08T14:56:52.579Z"
+        "lastIndexed": "2026-10-08T15:01:51.601Z"
       }
     },
     "validation": {
@@ -50640,7 +50639,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-08T14:56:52.911Z"
+        "lastIndexed": "2026-10-08T15:01:51.930Z"
       }
     },
     "validation": {
@@ -51215,7 +51214,7 @@
             "\"lesson"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:54.939Z"
+        "lastIndexed": "2026-10-08T15:01:54.010Z"
       }
     },
     "validation": {
@@ -51362,7 +51361,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-08T14:56:55.171Z"
+        "lastIndexed": "2026-10-08T15:01:54.239Z"
       }
     },
     "validation": {
@@ -51537,7 +51536,7 @@
             "<li"
           ]
         },
-        "lastIndexed": "2026-10-08T14:56:57.428Z"
+        "lastIndexed": "2026-10-08T15:01:56.468Z"
       }
     },
     "validation": {
@@ -51718,7 +51717,7 @@
             "Emerald |"
           ]
         },
-        "lastIndexed": "2026-10-08T14:57:00.187Z"
+        "lastIndexed": "2026-10-08T15:01:59.244Z"
       }
     },
     "validation": {
@@ -51882,7 +51881,7 @@
             "Emerald |"
           ]
         },
-        "lastIndexed": "2026-10-08T14:57:02.363Z"
+        "lastIndexed": "2026-10-08T15:02:01.407Z"
       }
     },
     "validation": {
@@ -52059,7 +52058,7 @@
             "Max Cost:"
           ]
         },
-        "lastIndexed": "2026-10-08T14:57:05.124Z"
+        "lastIndexed": "2026-10-08T15:02:04.141Z"
       }
     },
     "validation": {
@@ -52289,7 +52288,7 @@
             "\"John Doe\","
           ]
         },
-        "lastIndexed": "2026-10-08T14:57:08.060Z"
+        "lastIndexed": "2026-10-08T15:02:07.061Z"
       }
     },
     "validation": {
@@ -52522,7 +52521,7 @@
             "GitHub"
           ]
         },
-        "lastIndexed": "2026-10-08T14:57:14.870Z"
+        "lastIndexed": "2026-10-08T15:02:13.842Z"
       }
     },
     "validation": {
@@ -52718,7 +52717,7 @@
             "clay |"
           ]
         },
-        "lastIndexed": "2026-10-08T14:57:18.354Z"
+        "lastIndexed": "2026-10-08T15:02:17.300Z"
       }
     },
     "validation": {
@@ -52925,7 +52924,7 @@
             "GitHub"
           ]
         },
-        "lastIndexed": "2026-10-08T14:57:21.859Z"
+        "lastIndexed": "2026-10-08T15:02:20.797Z"
       }
     },
     "validation": {
@@ -53154,7 +53153,7 @@
             "PAT** (Optional)"
           ]
         },
-        "lastIndexed": "2026-10-08T14:57:27.226Z"
+        "lastIndexed": "2026-10-08T15:02:26.169Z"
       }
     },
     "validation": {
@@ -53403,7 +53402,7 @@
             "[alice,"
           ]
         },
-        "lastIndexed": "2026-10-08T14:57:34.179Z"
+        "lastIndexed": "2026-10-08T15:02:33.112Z"
       }
     },
     "validation": {
@@ -53466,8 +53465,8 @@
           "react",
           "skill",
           "array",
-          "typescript",
           "openstrand",
+          "typescript",
           "categorization",
           "npm",
           "topics",
@@ -53644,7 +53643,7 @@
             "[Skills & Spiral"
           ]
         },
-        "lastIndexed": "2026-10-08T14:57:38.669Z"
+        "lastIndexed": "2026-10-08T15:02:37.582Z"
       }
     },
     "validation": {
@@ -53656,6 +53655,6 @@
       ]
     },
     "content": "\n# Frame Codex Schema Reference\n\nThis document provides the complete schema reference for all Frame Codex content types.\n\n## Weave Schema\n\nA Weave represents a complete, self-contained universe of knowledge.\n\n### Required Fields\n\n- `slug` (string): Unique identifier, lowercase with hyphens\n- `title` (string): Human-readable name\n- `description` (string): Comprehensive description\n\n### Optional Fields\n\n- `maintainedBy` (object): Maintainer information\n  - `name` (string): Name of person or organization\n  - `url` (string): Contact or website URL\n- `license` (string): Content license (default: MIT)\n- `tags` (array): Categorization tags from controlled vocabulary\n\n### Example\n\n```yaml\nslug: frame\ntitle: Frame.dev Ecosystem\ndescription: Comprehensive knowledge base for Frame.dev products and infrastructure\nmaintainedBy:\n  name: Frame.dev Team\n  url: https://frame.dev\nlicense: MIT\ntags:\n  - technology\n  - ai-infrastructure\n  - superintelligence\n```\n\n## Loom Schema\n\nA Loom is a curated collection of related threads within a weave.\n\n### Required Fields\n\n- `slug` (string): Unique identifier within the weave\n- `title` (string): Display title\n- `summary` (string): Brief description\n\n### Optional Fields\n\n- `tags` (array): Subject tags for categorization\n- `ordering` (object): How threads are organized\n  - `type` (enum): `sequential`, `hierarchical`, or `network`\n  - `items` (array): Ordered list of thread slugs\n\n### Example\n\n```yaml\nslug: getting-started\ntitle: Getting Started with Frame\nsummary: Essential guides and tutorials for new Frame developers\ntags:\n  - tutorial\n  - beginner\nordering:\n  type: sequential\n  items:\n    - installation\n    - hello-world\n    - core-concepts\n    - first-project\n```\n\n## Thread Schema\n\nA Thread is an atomic unit of knowledge - a document, image, or dataset.\n\n### Required Fields\n\n- `id` (string): Globally unique identifier (UUID)\n- `slug` (string): URL-friendly identifier\n- `title` (string): Display title\n\n### Optional Fields\n\n- `summary` (string): Brief abstract (recommended for search)\n- `version` (string): Semantic version (default: 1.0.0)\n- `contentType` (enum): `markdown`, `code`, `data`, or `media`\n- `difficulty` (enum): `beginner`, `intermediate`, `advanced`, or `expert`\n- `taxonomy` (object): Categorization\n  - `subjects` (array): High-level categories\n  - `topics` (array): Specific topics **⚠️ MUST match folder depth - see note below**\n- `tags` (array): Freeform tags **✓ Independent - can be shared across any level**\n- `skills` (array): Learning prerequisites for spiral learning **🎯 Used for path planning**\n\n> **⚠️ Topics vs Tags vs Skills**:\n> - **Topics** are HIERARCHICAL and must become MORE SPECIFIC as folder depth increases\n> - **Tags** are INDEPENDENT categorization labels - what the content is *about*\n> - **Skills** are PREREQUISITES for learning - what you need to *know* before reading\n> \n> See [Hierarchical Topic Structure](./openstrand-architecture.md#hierarchical-topic-structure-critical-rule) and [Skills & Spiral Learning](#skills--spiral-learning) below.\n\n- `relationships` (object): Connections to other threads\n  - `requires` (array): Prerequisites\n  - `references` (array): Related threads\n  - `seeAlso` (array): External URLs\n- `publishing` (object): Publication metadata\n  - `created` (string): ISO 8601 timestamp\n  - `updated` (string): ISO 8601 timestamp\n  - `status` (enum): `draft`, `published`, `archived`\n\n### Example\n\n```yaml\n---\nid: 550e8400-e29b-41d4-a716-446655440000\nslug: openstrand-architecture\ntitle: OpenStrand Architecture Overview\nsummary: Comprehensive guide to OpenStrand's system architecture and design principles\nversion: 1.2.0\ncontentType: markdown\ndifficulty: intermediate\ntaxonomy:\n  subjects:\n    - technology\n    - ai\n  topics:\n    - architecture\n    - getting-started\ntags:\n  - openstrand\n  - architecture\n  - knowledge-graph\nskills:\n  - typescript\n  - yaml\n  - git\nrelationships:\n  requires:\n    - core-concepts\n  references:\n    - frame-codex-intro\n    - api-reference\n  seeAlso:\n    - https://openstrand.ai\n    - https://frame.dev\npublishing:\n  created: 2025-01-15T00:00:00Z\n  updated: 2025-01-15T00:00:00Z\n  status: published\n---\n\n# Your content here...\n```\n\n## Validation Rules\n\n### Slug Format\n\n- Lowercase letters, numbers, and hyphens only\n- No spaces or special characters\n- Must be unique within scope (weave/loom)\n\n### ID Format\n\n- Must be a valid UUID v4\n- Globally unique across all threads\n- Generate using `npm run generate-template`\n\n### Version Format\n\n- Semantic versioning: `MAJOR.MINOR.PATCH`\n- Example: `1.0.0`, `2.1.3`\n\n### Content Requirements\n\n- Minimum 100 characters of meaningful content\n- No unfinished sections or test content\n- Proper markdown formatting\n- Valid YAML frontmatter\n\n## Auto-Generated Metadata\n\nThe indexer automatically generates:\n\n- **Keywords**: Extracted using TF-IDF algorithm\n- **Phrases**: Common multi-word expressions\n- **Subjects**: Matched from controlled vocabulary\n- **Topics**: Detected from content analysis\n- *",
-    "searchText": "frame codex schema reference complete reference for weave, loom, and thread schemas with examples and validation rules skills spiral string learning fields react skill array typescript openstrand categorization npm topics architecture possible spiral learning openstrand architecture controlled vocabulary frame dev npm run frame codex learning path skills spiral schema reference required fields"
+    "searchText": "frame codex schema reference complete reference for weave, loom, and thread schemas with examples and validation rules skills spiral string learning fields react skill array openstrand typescript categorization npm topics architecture possible spiral learning openstrand architecture controlled vocabulary frame dev npm run frame codex learning path skills spiral schema reference required fields"
   }
 ]

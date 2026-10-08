@@ -446,7 +446,7 @@
       {
         "file": "weaves/wiki/frame/loom.yaml",
         "category": "knowledge",
-        "score": 0.08465608465608465
+        "score": 0.07936507936507936
       },
       {
         "file": "weaves/wiki/frame/loom.yaml",
@@ -544,952 +544,952 @@
         "score": 0.5046082949308756
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "ai",
         "score": 0.050359712230215826
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "design",
         "score": 0.03867403314917127
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "knowledge",
-        "score": 0.21164021164021163
+        "score": 0.20105820105820105
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "media",
         "score": 0.029850746268656716
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "philosophy",
         "score": 0.024154589371980676
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "science",
         "score": 0.034482758620689655
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "security",
         "score": 0.03888888888888889
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "technology",
         "score": 0.07432432432432433
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "api-reference",
         "score": 0.032520325203252036
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "architecture",
         "score": 0.043795620437956206
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "best-practices",
         "score": 0.06451612903225806
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "getting-started",
         "score": 0.027522935779816515
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "troubleshooting",
         "score": 0.05555555555555555
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:data",
         "score": 0.5240384615384616
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:ci",
         "score": 0.5240384615384616
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:search",
         "score": 0.5240384615384616
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:structur",
         "score": 0.5240384615384616
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:tl",
         "score": 0.5240384615384616
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:app",
         "score": 0.5357142857142857
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:pages",
         "score": 0.5357142857142857
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:on",
         "score": 0.5357142857142857
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:page",
         "score": 0.5357142857142857
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:ts",
         "score": 0.5308641975308642
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:pip",
         "score": 0.5308641975308642
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:go",
         "score": 0.5308641975308642
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:c",
         "score": 0.5308641975308642
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:io",
         "score": 0.5308641975308642
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:focus",
         "score": 0.5069124423963134
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:document",
         "score": 0.5069124423963134
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:focu",
         "score": 0.5069124423963134
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:git",
         "score": 0.5210526315789473
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:github",
         "score": 0.5210526315789473
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:control",
         "score": 0.5210526315789473
       },
       {
-        "file": "weaves/wiki/openstrand/architecture.md",
+        "file": "weaves/wiki/openquarry/architecture.md",
         "category": "skill:as",
         "score": 0.5210526315789473
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "ai",
         "score": 0.0035971223021582736
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "design",
         "score": 0.022099447513812154
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "knowledge",
-        "score": 0.1164021164021164
+        "score": 0.12169312169312169
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "philosophy",
         "score": 0.00966183574879227
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "science",
         "score": 0.007662835249042145
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "security",
         "score": 0.022222222222222223
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "technology",
-        "score": 0.030405405405405407
+        "score": 0.033783783783783786
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "api-reference",
         "score": 0.024390243902439025
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "architecture",
         "score": 0.0364963503649635
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "best-practices",
         "score": 0.016129032258064516
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "skill:schema",
         "score": 0.5144230769230769
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "skill:ci",
         "score": 0.5144230769230769
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "skill:tl",
         "score": 0.5144230769230769
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "skill:app",
         "score": 0.5178571428571429
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "skill:on",
         "score": 0.5178571428571429
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "skill:ts",
         "score": 0.5246913580246914
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "skill:type",
         "score": 0.5246913580246914
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "skill:c",
         "score": 0.5246913580246914
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "skill:io",
         "score": 0.5246913580246914
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "skill:documentation",
         "score": 0.5046082949308756
       },
       {
-        "file": "weaves/wiki/openstrand/loom.yaml",
+        "file": "weaves/wiki/openquarry/loom.yaml",
         "category": "skill:document",
         "score": 0.5046082949308756
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "ai",
         "score": 0.08992805755395683
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "design",
         "score": 0.15469613259668508
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "knowledge",
-        "score": 0.4708994708994709
+        "score": 0.4656084656084656
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "media",
         "score": 0.09701492537313433
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "philosophy",
         "score": 0.12077294685990338
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "science",
         "score": 0.09195402298850575
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "security",
         "score": 0.11666666666666667
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "technology",
         "score": 0.22297297297297297
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "api-reference",
         "score": 0.17073170731707318
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "architecture",
         "score": 0.15328467153284672
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "best-practices",
         "score": 0.13709677419354838
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "getting-started",
         "score": 0.28440366972477066
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "troubleshooting",
         "score": 0.12962962962962962
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:authentication",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:auth",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:oauth",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:jwt",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:database",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:schema",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:unit",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:data",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:http",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:https",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:security",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:ci",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:authent",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:databas",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:inherit",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:search",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:structur",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:secur",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:tl",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:react",
         "score": 0.5357142857142857
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:app",
         "score": 0.5357142857142857
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:api",
         "score": 0.5357142857142857
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:on",
         "score": 0.5357142857142857
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:javascript",
         "score": 0.5555555555555556
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:ts",
         "score": 0.5555555555555556
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:type",
         "score": 0.5555555555555556
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:rust",
         "score": 0.5555555555555556
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:go",
         "score": 0.5555555555555556
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:java",
         "score": 0.5555555555555556
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:c",
         "score": 0.5555555555555556
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:gener",
         "score": 0.5555555555555556
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:io",
         "score": 0.5555555555555556
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:documentation",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:management",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:collaboration",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:learning",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:onboarding",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:eq",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:trust",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:write",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:present",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:document",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:manag",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:organ",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:collabor",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:learn",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:train",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:onboard",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:understand",
         "score": 0.5391705069124424
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:git",
         "score": 0.5684210526315789
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:github",
         "score": 0.5684210526315789
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:version",
         "score": 0.5684210526315789
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:control",
         "score": 0.5684210526315789
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:container",
         "score": 0.5684210526315789
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:as",
         "score": 0.5684210526315789
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:code",
         "score": 0.5684210526315789
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:web",
         "score": 0.5684210526315789
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:contain",
         "score": 0.5684210526315789
       },
       {
-        "file": "weaves/wiki/openstrand/overview.md",
+        "file": "weaves/wiki/openquarry/overview.md",
         "category": "skill:redi",
         "score": 0.5684210526315789
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "ai",
         "score": 0.05755395683453238
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "design",
         "score": 0.06629834254143646
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "knowledge",
         "score": 0.3862433862433862
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "media",
         "score": 0.08208955223880597
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "philosophy",
         "score": 0.06763285024154589
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "science",
         "score": 0.05747126436781609
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "security",
         "score": 0.05555555555555555
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "technology",
         "score": 0.13851351351351351
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "api-reference",
         "score": 0.07317073170731707
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "architecture",
         "score": 0.10218978102189781
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "best-practices",
         "score": 0.08870967741935484
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "getting-started",
         "score": 0.12844036697247707
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "troubleshooting",
         "score": 0.046296296296296294
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:database",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:schema",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:unit",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:async",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:programming",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:inheritance",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:data",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:structures",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:networking",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:http",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:https",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:ci",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:databas",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:program",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:inherit",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:search",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:structur",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:network",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:tl",
         "score": 0.5913461538461539
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:app",
         "score": 0.5267857142857143
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:api",
         "score": 0.5267857142857143
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:on",
         "score": 0.5267857142857143
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:ts",
         "score": 0.5617283950617284
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:python",
         "score": 0.5617283950617284
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:py",
         "score": 0.5617283950617284
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:rust",
         "score": 0.5617283950617284
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:go",
         "score": 0.5617283950617284
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:asp",
         "score": 0.5617283950617284
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:c",
         "score": 0.5617283950617284
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:annot",
         "score": 0.5617283950617284
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:gener",
         "score": 0.5617283950617284
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:io",
         "score": 0.5617283950617284
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:documentation",
         "score": 0.5230414746543779
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:organization",
         "score": 0.5230414746543779
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:learning",
         "score": 0.5230414746543779
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:eq",
         "score": 0.5230414746543779
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:document",
         "score": 0.5230414746543779
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:narr",
         "score": 0.5230414746543779
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:organ",
         "score": 0.5230414746543779
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:learn",
         "score": 0.5230414746543779
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:git",
         "score": 0.5631578947368421
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:github",
         "score": 0.5631578947368421
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:branch",
         "score": 0.5631578947368421
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:kubernetes",
         "score": 0.5631578947368421
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:infrastructure",
         "score": 0.5631578947368421
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:as",
         "score": 0.5631578947368421
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:code",
         "score": 0.5631578947368421
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:contain",
         "score": 0.5631578947368421
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:kubernet",
         "score": 0.5631578947368421
       },
       {
-        "file": "weaves/wiki/openstrand/schema/hierarchy.md",
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
         "category": "skill:infrastructur",
         "score": 0.5631578947368421
       },
@@ -4911,7 +4911,7 @@
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "knowledge",
-        "score": 0.3968253968253968
+        "score": 0.3915343915343915
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
@@ -7081,12 +7081,12 @@
       {
         "file": "weaves/wiki/weave.yaml",
         "category": "design",
-        "score": 0.011049723756906077
+        "score": 0.016574585635359115
       },
       {
         "file": "weaves/wiki/weave.yaml",
         "category": "knowledge",
-        "score": 0.19047619047619047
+        "score": 0.17989417989417988
       },
       {
         "file": "weaves/wiki/weave.yaml",
@@ -7096,7 +7096,7 @@
       {
         "file": "weaves/wiki/weave.yaml",
         "category": "science",
-        "score": 0.01532567049808429
+        "score": 0.011494252873563218
       },
       {
         "file": "weaves/wiki/weave.yaml",
@@ -7106,7 +7106,7 @@
       {
         "file": "weaves/wiki/weave.yaml",
         "category": "technology",
-        "score": 0.05405405405405406
+        "score": 0.05067567567567568
       },
       {
         "file": "weaves/wiki/weave.yaml",
@@ -7136,22 +7136,17 @@
       {
         "file": "weaves/wiki/weave.yaml",
         "category": "skill:schema",
-        "score": 0.5192307692307693
+        "score": 0.5144230769230769
       },
       {
         "file": "weaves/wiki/weave.yaml",
         "category": "skill:data",
-        "score": 0.5192307692307693
-      },
-      {
-        "file": "weaves/wiki/weave.yaml",
-        "category": "skill:ci",
-        "score": 0.5192307692307693
+        "score": 0.5144230769230769
       },
       {
         "file": "weaves/wiki/weave.yaml",
         "category": "skill:tl",
-        "score": 0.5192307692307693
+        "score": 0.5144230769230769
       },
       {
         "file": "weaves/wiki/weave.yaml",
@@ -11947,7 +11942,7 @@
     "fileWarnings": []
   },
   "vocabulary": {
-    "totalUniqueTerms": 385,
+    "totalUniqueTerms": 386,
     "suggestedAdditions": [
       {
         "term": "block",
@@ -12024,7 +12019,7 @@
     ]
   },
   "performance": {
-    "timeElapsed": "89.90s",
+    "timeElapsed": "89.76s",
     "cacheHitRate": "0%",
     "filesProcessed": 40,
     "filesCached": 0,
