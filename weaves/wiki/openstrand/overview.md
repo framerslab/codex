@@ -1,7 +1,7 @@
 ---
 id: openstrand-overview
 slug: openstrand-overview
-title: OpenStrand Overview
+title: OpenQuarry Overview
 summary: >-
   What OpenStrand is, why it exists, and how strands, looms, and weaves map to
   the analog OS.
@@ -2201,22 +2201,22 @@ blocks:
         structuralImportance: 0.55
 ---
 
-# OpenStrand Overview
+# OpenQuarry Overview
 
-OpenStrand is the shared schema that powers Fabric Codex—a hierarchy built for humans but optimized for machines. It treats knowledge as a fabric:
+OpenQuarry is the shared schema that powers Fabric Codex—a hierarchy built for humans but optimized for machines. It treats knowledge as a fabric:
 
 - **Fabric** – the entire repository (`weaves/`)
 - **Weave** – a self-contained universe (for example, this `openstrand/` weave)
 - **Loom** – curated topic folder inside a weave (`schema/`, `playbooks/`, etc.)
-- **Strand** – atomic markdown file
+- **Thread** – atomic markdown file
 
 The goal: ship knowledge that feels like a handcrafted book yet remains machine-readable, versioned, and searchable like Wikipedia.
 
 ---
 
-## Why OpenStrand?
+## Why OpenQuarry?
 
-Traditional knowledge management tools force a choice: **human-friendly** or **machine-readable**. OpenStrand eliminates this trade-off.
+Traditional knowledge management tools force a choice: **human-friendly** or **machine-readable**. OpenQuarry eliminates this trade-off.
 
 ### The Problem with Existing Solutions
 
@@ -2227,9 +2227,9 @@ Traditional knowledge management tools force a choice: **human-friendly** or **m
 | **Wiki Systems** | Good navigation | Flat structure | Weak linking |
 | **Note Apps** | Personal & fast | Proprietary format | Vendor lock-in |
 
-### The OpenStrand Solution
+### The OpenQuarry Solution
 
-OpenStrand adds an **invisible intelligence layer** to standard Markdown:
+OpenQuarry adds an **invisible intelligence layer** to standard Markdown:
 
 1. **YAML Frontmatter** → Structured metadata that AI agents can parse
 2. **Typed Relationships** → Semantic links (`requires`, `extends`, `contradicts`)
@@ -2258,7 +2258,7 @@ relationships:
 
 ## The Four-Tier Hierarchy
 
-OpenStrand organizes knowledge into four nested layers. Each layer serves a specific purpose and maps to familiar concepts:
+OpenQuarry organizes knowledge into four nested layers. Each layer serves a specific purpose and maps to familiar concepts:
 
 ### Fabric → Your Entire Knowledge Base
 
@@ -2283,7 +2283,7 @@ A **Weave** is a complete, independent universe of knowledge. Key properties:
 
 ### Loom → Curated Topics
 
-A **Loom** groups related Strands into navigable modules. Looms:
+A **Loom** groups related Threads into navigable modules. Looms:
 - Define learning paths and prerequisites
 - Provide topic-level metadata
 - Enable hierarchical navigation
@@ -2292,9 +2292,9 @@ A **Loom** groups related Strands into navigable modules. Looms:
 - `schema/` – Technical specifications
 - `playbooks/` – Practical how-to guides
 
-### Strand → Atomic Knowledge Units
+### Thread → Atomic Knowledge Units
 
-The **Strand** is the smallest unit—a single Markdown file with:
+The **Thread** is the smallest unit—a single Markdown file with:
 - Rich YAML frontmatter
 - Typed semantic relationships
 - AI agent instructions
@@ -2302,9 +2302,9 @@ The **Strand** is the smallest unit—a single Markdown file with:
 
 ---
 
-## How AI Agents Use OpenStrand
+## How AI Agents Use OpenQuarry
 
-OpenStrand isn't just for humans. Every Strand carries instructions for AI systems:
+OpenQuarry isn't just for humans. Every Thread carries instructions for AI systems:
 
 ### Traversal Patterns
 
@@ -2338,7 +2338,7 @@ The same knowledge can be presented differently based on context—technical dee
 
 ### Semantic Search
 
-Every Strand is automatically embedded into a vector space. This enables:
+Every Thread is automatically embedded into a vector space. This enables:
 - **Meaning-based search** – Find related content even without keyword matches
 - **Concept clustering** – Discover unexpected connections
 - **Q&A over your knowledge** – Natural language queries with sourced answers
@@ -2350,7 +2350,7 @@ Every Strand is automatically embedded into a vector space. This enables:
 ### For Individuals
 
 - **Second Brain** – Build lasting knowledge with typed relationships
-- **Spaced Repetition** – Auto-generated flashcards from your Strands
+- **Spaced Repetition** – Auto-generated flashcards from your Threads
 - **Offline Access** – Everything runs locally via WebAssembly
 
 ### For Teams
@@ -2361,7 +2361,7 @@ Every Strand is automatically embedded into a vector space. This enables:
 
 ### For the AI Era
 
-- **Future-Proof** – OpenStrand protocol works with any AI system
+- **Future-Proof** – OpenQuarry protocol works with any AI system
 - **Portable** – Plain Markdown means no lock-in
 - **Trustworthy** – AI citations link to verifiable sources
 
@@ -2369,11 +2369,11 @@ Every Strand is automatically embedded into a vector space. This enables:
 
 ## Design Principles
 
-1. **Deterministic structure** – predictable paths ensure every strand has a stable URL and metadata envelope.
+1. **Deterministic structure** – predictable paths ensure every thread has a stable URL and metadata envelope.
 2. **Frontmatter-first** – YAML metadata becomes API-friendly tags and surfaces in the Codex viewer.
 3. **Privacy by default** – bookmarks/history live locally; analytics are optional and anonymized.
 4. **Shared theming** – Frame.dev and the Codex viewer use the same Tailwind preset, so your knowledge base inherits the analog look instantly.
-5. **AI-native** – Every Strand carries instructions for how AI agents should interpret, summarize, and present the content.
+5. **AI-native** – Every Thread carries instructions for how AI agents should interpret, summarize, and present the content.
 6. **Interoperability** – Standard Markdown with YAML ensures compatibility with any tool.
 
 ---
@@ -2385,9 +2385,9 @@ Every Strand is automatically embedded into a vector space. This enables:
 1. **Fork the template:** `github.com/framerslab/codex-template`
 2. **Create a Weave:** `mkdir weaves/my-topic`
 3. **Add a Loom:** `mkdir weaves/my-topic/basics && touch weaves/my-topic/basics/loom.yaml`
-4. **Write a Strand:** Create `introduction.md` with frontmatter
+4. **Write a Thread:** Create `introduction.md` with frontmatter
 
-### Example Strand
+### Example Thread
 
 ```markdown
 ---
@@ -2415,4 +2415,4 @@ Want to go deeper? Explore these resources:
 - **[schema/hierarchy.md](schema/hierarchy.md)** – Detailed hierarchy specifications
 - **[architecture.md](architecture.md)** – Condensed architecture overview
 - **[frame.dev/codex](https://frame.dev/codex)** – Live Codex viewer
-- **[openstrand.ai](https://openstrand.ai)** – OpenStrand protocol home
+- **[openstrand.ai](https://openstrand.ai)** – OpenQuarry protocol home

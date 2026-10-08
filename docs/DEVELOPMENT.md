@@ -460,12 +460,12 @@ function findRelatedLooms(loom) {
 ### Cost Optimization
 
 **Without Caching:**
-- 100 strands × 0.5s = 50 seconds per PR
+- 100 threads × 0.5s = 50 seconds per PR
 - Expensive for large weaves
 
 **With Loom-Scoped + Caching:**
-- 1 loom (5 strands) × 0.5s = 2.5 seconds
-- 2 related looms (10 strands) × 0.5s = 5 seconds
+- 1 loom (5 threads) × 0.5s = 2.5 seconds
+- 2 related looms (10 threads) × 0.5s = 5 seconds
 - **Total: ~7.5 seconds** (85% reduction)
 
 **Cache Hit Rate:**
@@ -514,17 +514,17 @@ class CachedIndexer extends CodexIndexer {
 ### When to Aggregate
 
 **Loom-Level (Always):**
-- Total strands in loom
+- Total threads in loom
 - Average difficulty
 - Topic distribution
 - Vocabulary frequency
-- **Cost: O(n) where n = strands in loom**
+- **Cost: O(n) where n = threads in loom**
 
 **Weave-Level (On-Demand Only):**
-- Total strands across all looms
+- Total threads across all looms
 - Cross-loom relationships
 - Global vocabulary
-- **Cost: O(n) where n = all strands in weave**
+- **Cost: O(n) where n = all threads in weave**
 
 ### Aggregation Strategy
 
@@ -554,7 +554,7 @@ function aggregateWeaveStats(weave) {
 4. Weekly scheduled job (off-peak hours)
 
 **NOT on:**
-- Individual strand updates
+- Individual thread updates
 - Metadata-only changes
 - PR reviews/comments
 

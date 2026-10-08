@@ -1,8 +1,8 @@
 ---
 id: openstrand-architecture-overview
 slug: openstrand-architecture
-title: OpenStrand Architecture Overview
-summary: Comprehensive guide to OpenStrand's knowledge infrastructure, explaining how Weaves, Looms, and Strands work together to create the foundation for Frame Codex
+title: OpenQuarry Architecture Overview
+summary: Comprehensive guide to OpenQuarry's knowledge infrastructure, explaining how Weaves, Looms, and Threads work together to create the foundation for Frame Codex
 version: 1.0.0
 contentType: markdown
 difficulty: intermediate
@@ -28,15 +28,15 @@ publishing:
   status: published
 ---
 
-# OpenStrand Architecture Overview
+# OpenQuarry Architecture Overview
 
-OpenStrand is the knowledge infrastructure that powers Frame.dev and Frame Codex. It provides a structured, AI-native way to organize, store, and retrieve humanity's knowledge.
+OpenQuarry is the knowledge infrastructure that powers Frame.dev and Frame Codex. It provides a structured, AI-native way to organize, store, and retrieve humanity's knowledge.
 
 ## Core Concepts
 
 ### The Four-Tier Hierarchy
 
-OpenStrand organizes knowledge using four fundamental primitives:
+OpenQuarry organizes knowledge using four fundamental primitives:
 
 **Fabric** - A collection of weaves
 - The highest level of organization
@@ -44,16 +44,16 @@ OpenStrand organizes knowledge using four fundamental primitives:
 - Example: Frame Codex itself is a fabric
 - Contains multiple weaves that are conceptually related but independent
 
-**Strand** - The atomic unit of knowledge
+**Thread** - The atomic unit of knowledge
 - A single document, image, dataset, or media file
 - Contains rich metadata for categorization and discovery
-- Can reference other strands within the same weave
-- Immutable once published (new versions create new strands)
+- Can reference other threads within the same weave
+- Immutable once published (new versions create new threads)
 
-**Loom** - A curated collection of related strands
-- Groups strands by topic, theme, or learning path
+**Loom** - A curated collection of related threads
+- Groups threads by topic, theme, or learning path
 - Defines ordering (sequential, hierarchical, or network)
-- Provides context and relationships between strands
+- Provides context and relationships between threads
 - Acts as a module or chapter in the knowledge base
 
 **Weave** - A complete universe of knowledge
@@ -69,7 +69,7 @@ The Fabric/Weave/Loom/Strand architecture solves several key problems:
 1. **Isolation**: Weaves are completely independent, preventing knowledge pollution
 2. **Scalability**: Each weave can grow infinitely without affecting others
 3. **Clarity**: Clear boundaries make it obvious where knowledge belongs
-4. **Versioning**: Strands are immutable, making version control natural
+4. **Versioning**: Threads are immutable, making version control natural
 5. **AI-Friendly**: Structured metadata enables semantic search and RAG
 6. **Fabric-Scope Reasoning**: A single Fabric view allows cross-weave synthesis while preserving provenance
 
@@ -82,7 +82,7 @@ across weaves for:
 - Whole-of-corpus synthesis and summarization
 - Global topic maps and knowledge graphs
 
-Fabric-level queries always preserve original weave/loom/strand provenance. OpenStrand uses this fabric view to let
+Fabric-level queries always preserve original weave/loom/strand provenance. OpenQuarry uses this fabric view to let
 agents and superintelligence move seamlessly across domains while still understanding exactly where every fact came from.
 
 ## How It Works
@@ -109,7 +109,7 @@ description: Complete knowledge base for Frame products and infrastructure
 ```
 
 This weave contains looms for:
-- OpenStrand documentation
+- OpenQuarry documentation
 - AgentOS guides
 - Frame API reference
 - Architecture patterns
@@ -126,11 +126,11 @@ weaves/frame/
 └── guides/agentos/deployment.md
 ```
 
-Each folder inside `weaves/frame/` is treated as a loom, and every markdown file (at any depth) is a strand that can reference other strands.
+Each folder inside `weaves/frame/` is treated as a loom, and every markdown file (at any depth) is a thread that can reference other strands.
 
 ### Hierarchical Topic Structure (Critical Rule)
 
-**Folder depth determines topic specificity.** This is a fundamental OpenStrand principle:
+**Folder depth determines topic specificity.** This is a fundamental OpenQuarry principle:
 
 > 📐 **Subfolders are SUBTOPICS of their parent folder. Topics MUST become more specific as you go deeper.**
 
@@ -201,7 +201,7 @@ tags: [python]
 
 #### Tags Are Free-Form
 
-Unlike topics, **tags have no hierarchy**. A deeply nested strand can share tags with root-level content:
+Unlike topics, **tags have no hierarchy**. A deeply nested thread can share tags with root-level content:
 
 ```yaml
 # weaves/technology/programming/python/async/coroutines.md
@@ -215,7 +215,7 @@ Both files share `best-practices` because tags describe cross-cutting concerns, 
 
 ### Metadata Schema
 
-Every strand includes:
+Every thread includes:
 - **Identity**: UUID, slug, title
 - **Content**: Summary, body, content type
 - **Taxonomy**: Subjects, topics, tags
@@ -231,9 +231,9 @@ This rich metadata enables:
 
 ## Integration with Frame Codex
 
-Frame Codex is the public manifestation of OpenStrand's architecture:
+Frame Codex is the public manifestation of OpenQuarry's architecture:
 
-1. **Data Layer**: Codex stores all weaves, looms, and strands as files
+1. **Data Layer**: Codex stores all weaves, looms, and threads as files
 2. **Index Layer**: Auto-indexing creates searchable metadata
 3. **API Layer**: Frame API exposes the knowledge graph
 4. **UI Layer**: Frame.dev provides the browsing interface
@@ -259,7 +259,7 @@ LLMs can:
 The same structure benefits human users:
 
 - **Browse by topic** through looms
-- **Follow learning paths** with ordered strands
+- **Follow learning paths** with ordered threads
 - **Discover connections** via relationships
 - **Search semantically** using natural language
 - **Track versions** to see evolution
@@ -270,7 +270,7 @@ The same structure benefits human users:
 
 - **GitHub**: Primary storage as markdown and YAML files
 - **Git**: Version control for all content
-- **Raw URLs**: Direct access to any strand
+- **Raw URLs**: Direct access to any thread
 
 ### Indexing
 
@@ -292,7 +292,7 @@ Future enhancements planned:
 
 1. **LLM-Powered QC**: Automated quality control using our own models
 2. **Smart Suggestions**: AI-generated metadata improvements
-3. **Auto-Relationships**: Discover connections between strands
+3. **Auto-Relationships**: Discover connections between threads
 4. **Translation**: Multi-language support with auto-translation
 5. **Embeddings**: Vector search for semantic similarity
 
@@ -304,7 +304,7 @@ When you contribute to Frame Codex, you're adding to this knowledge infrastructu
 
 1. **Choose a weave** - Or create a new one
 2. **Find or create a loom** - Group related content
-3. **Add your strand** - Follow the schema
+3. **Add your thread** - Follow the schema
 4. **Let automation help** - Auto-tagging and validation
 
 The system will:
@@ -319,4 +319,4 @@ The system will:
 - [Schema Reference](./schema-reference.md)
 - [Contributing Guide](../../.github/pull_request_template.md)
 - [Frame Codex](https://frame.dev/codex)
-- [OpenStrand](https://openstrand.ai)
+- [OpenQuarry](https://openstrand.ai)

@@ -1341,9 +1341,9 @@ The heart of intelligent retrieval:
 - Sub-100ms inference time
 
 #### Embedding Index
-- Pre-computed embeddings for all strands
+- Pre-computed embeddings for all threads
 - Stored in `codex-embeddings.json`
-- Hierarchical indexing: strand → section → paragraph
+- Hierarchical indexing: thread → section → paragraph
 - Incremental updates on new content
 
 #### Similarity Scoring
@@ -1356,7 +1356,7 @@ The heart of intelligent retrieval:
 
 Constructs comprehensive, contextual responses:
 
-- **Multi-source synthesis**: Combines relevant sections from multiple strands
+- **Multi-source synthesis**: Combines relevant sections from multiple threads
 - **Code extraction**: Highlights relevant code snippets
 - **Visual aids**: Includes diagrams and images when helpful
 - **Related links**: Suggests deeper reading
@@ -1479,7 +1479,7 @@ Bot:  [Shows creation process with context from previous answer]
 
 - **Embedding cache**: Store computed embeddings in IndexedDB
 - **Answer cache**: LRU cache for recent Q&A pairs
-- **Prefetch strategy**: Load embeddings for visible strands
+- **Prefetch strategy**: Load embeddings for visible threads
 
 ### Progressive Enhancement
 

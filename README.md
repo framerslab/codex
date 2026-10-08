@@ -12,7 +12,7 @@
 [![GitHub](https://img.shields.io/badge/GitHub-framerslab%2Fcodex-black?logo=github)](https://github.com/framerslab/codex)
 [![License](https://img.shields.io/badge/License-CC--BY--4.0-green.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](docs/contributing/how-to-submit.md)
-[![OpenStrand](https://img.shields.io/badge/Schema-OpenStrand-purple)](https://openstrand.ai)
+[![OpenQuarry](https://img.shields.io/badge/Format-OpenQuarry-purple)](https://quarry.space)
 [![Build](https://img.shields.io/github/actions/workflow/status/framerslab/codex/auto-index.yml?label=Index)](https://github.com/framerslab/codex/actions)
 [![Tests](https://img.shields.io/github/actions/workflow/status/framerslab/codex/test.yml?label=Tests)](https://github.com/framerslab/codex/actions/workflows/test.yml)
 
@@ -35,21 +35,21 @@ Frame Codex is a data-only knowledge repository designed as the canonical source
 
 This repository contains:
 
-- **Pure content** - [Weaves](./weaves) (top-level directories), looms (any folder inside a weave), strands (markdown files), tags, and schemas
-- **Markdown-only** - The primary source of truth (OpenStrand ingests any file type and serializes to markdown)
+- **Pure content** - [Weaves](./weaves) (top-level directories), looms (any folder inside a weave), threads (markdown files), tags, and schemas
+- **Markdown-only** - The primary source of truth (OpenQuarry ingests any file type and serializes to markdown)
 - **No UI** - The viewer interface lives at [frame.dev/codex](https://frame.dev/codex)
-- **LLM-optimized** - Structured for knowledge graph ingestion by OpenStrand and other AI systems
+- **LLM-optimized** - Structured for knowledge graph ingestion by OpenQuarry and other AI systems
 - **AI + Human Friendly** - YAML frontmatter, semantic embeddings, and beautiful rendering for optimal consumption by both machines and people
 
 **📚 Browse the knowledge weaves:** All content is organized in the [`/weaves`](./weaves) directory.
 
-### Frame Codex vs OpenStrand
+### Frame Codex vs OpenQuarry
 
 - **Frame Codex**: Public markdown knowledge repository (this repo) - read-only, curated, version-controlled
-- **OpenStrand**: Full personal knowledge management platform at [openstrand.ai](https://openstrand.ai) - supports any file type (images, videos, PDFs, code), AI analysis, serialization to markdown, private workspaces, and advanced features
+- **OpenQuarry**: Full personal knowledge management platform at [openstrand.ai](https://openstrand.ai) - supports any file type (images, videos, PDFs, code), AI analysis, serialization to markdown, private workspaces, and advanced features
 
-**Schema**: Frame Codex follows the [OpenStrand schema specification](https://openstrand.ai/docs/schema) for weaves, looms, and strands. Looms are now inferred from folders (no `looms/` or `strands/` prefixes required) and strands are any markdown files within a weave.
-Strand frontmatter now supports both `extractiveSummary` (deterministic NLP) and `aiSummary` (LLM) fields, plus a `notes` array for short bullet annotations that surface inside the Frame.dev viewer.
+**Schema**: Frame Codex follows the [OpenQuarry schema specification](https://openstrand.ai/docs/schema) for weaves, looms, and strands. Looms are now inferred from folders (no `looms/` or `strands/` prefixes required) and threads are any markdown files within a weave.
+Thread frontmatter now supports both `extractiveSummary` (deterministic NLP) and `aiSummary` (LLM) fields, plus a `notes` array for short bullet annotations that surface inside the Frame.dev viewer.
 
 ## 🔄 Automated Indexing Workflow
 
@@ -60,7 +60,7 @@ Frame Codex uses a **hybrid NLP + LLM approach** with smart caching and manual o
 1. **TF-IDF Analysis** - Extracts keywords based on term frequency and inverse document frequency
 2. **N-gram Extraction** - Identifies multi-word phrases and technical terms
 3. **Vocabulary Matching** - Auto-tags content using controlled vocabulary from `tags/index.yaml`
-4. **Schema Validation** - Ensures compliance with OpenStrand schema (weave/loom/strand structure with organic folders)
+4. **Schema Validation** - Ensures compliance with OpenQuarry schema (weave/loom/strand structure with organic folders)
 5. **Duplicate Detection** - Catches near-duplicate content using fuzzy matching
 6. **Content Quality** - Minimum length, forbidden patterns (lorem ipsum, TODO)
 
@@ -71,7 +71,7 @@ Enabled via `OPENAI_API_KEY` secret (set `AI_PROVIDER=disabled` to skip):
 1. **Semantic Analysis** - Deep understanding of context and meaning (GPT-4)
 2. **Quality Scoring** - 0-100 score based on clarity, accuracy, completeness
 3. **Tag Suggestions** - AI-powered tag recommendations beyond vocabulary
-4. **Relationship Detection** - Finds connections between strands
+4. **Relationship Detection** - Finds connections between threads
 5. **Summary Generation** - Creates concise summaries for missing frontmatter
 
 **Cost**: ~$0.01-0.20 per PR (depending on content length: 100-10K words)
@@ -186,12 +186,12 @@ See [HYBRID_TAGGING_DATAFLOW.md](docs/HYBRID_TAGGING_DATAFLOW.md) for complete a
 
 ## Architecture
 
-The Codex uses the OpenStrand four-tier knowledge hierarchy:
+The Codex uses the OpenQuarry four-tier knowledge hierarchy:
 
 - **Fabric** - Collection of weaves (Frame Codex itself is a fabric containing multiple knowledge universes)
 - **Weave** - Complete knowledge universe with no cross-weave dependencies (e.g., `weaves/technology/`, `weaves/science/`)
-- **Loom** - Any subdirectory inside a weave, curated collection of related strands (topic/module, auto-detected from folder structure)
-- **Strand** - Atomic knowledge unit (individual markdown file at any depth within its weave)
+- **Loom** - Any subdirectory inside a weave, curated collection of related threads (topic/module, auto-detected from folder structure)
+- **Thread** - Atomic knowledge unit (individual markdown file at any depth within its weave)
 
 ### SQL Cache Layer
 
@@ -204,7 +204,7 @@ Frame Codex uses [@framers/sql-storage-adapter](https://github.com/framerslab/sq
 - Cache persists across workflow runs via GitHub Actions cache
 
 **Browser (IndexedDB via Frame.dev Codex UI):**
-- Caches fetched Codex strands locally for faster reloads
+- Caches fetched Codex threads locally for faster reloads
 - SQL-backed cache lives entirely in your browser (IndexedDB/sql.js), never on Frame.dev servers
 - No secrets or tokens are ever stored in this cache—only public markdown content
 - Quota: 50MB–1GB+ depending on browser
@@ -230,7 +230,7 @@ npm run build:search    # builds codex-search.json (BM25 + MiniLM embeddings)
 
 `codex-search.json` contains:
 
-- **BM25 postings** for every token (term frequency per strand)
+- **BM25 postings** for every token (term frequency per thread)
 - **Document metadata** (path, title, summary, weave/loom, doc length)
 - **Packed Float32 embeddings** (MiniLM-L6-v2, mean pooled, normalized) stored as base64
 
@@ -267,7 +267,7 @@ codex/
 
 ### For AI/LLM Integration
 
-Frame.dev and OpenStrand consume this content via:
+Frame.dev and OpenQuarry consume this content via:
 
 1. **GitHub API** - Dynamic folder browsing
 2. **Raw URLs** - Direct content fetching
@@ -401,14 +401,14 @@ AI_PROVIDER=disabled
 The Codex is organized hierarchically:
 - **Weaves**: Complete knowledge universes
 - **Looms**: Curated topic collections
-- **Strands**: Individual knowledge units
+- **Threads**: Individual knowledge units
 
 ## Integration
 
 This repository is designed to be consumed by:
 
 - **[Frame.dev](https://frame.dev)** - Web viewer interface with GraphQL API support
-- **[OpenStrand](https://openstrand.ai)** - Personal knowledge management
+- **[OpenQuarry](https://openstrand.ai)** - Personal knowledge management
 - **Your Application** - Via REST or GraphQL API
 
 ### 🔑 GitHub GraphQL API & Rate Limits
@@ -474,7 +474,7 @@ With attribution requirement.
   
   ### Connect
   
-  [Website](https://frame.dev) • [Quarry](https://frame.dev/quarry) • [Frame Codex](https://frame.dev/codex) • [OpenStrand](https://openstrand.ai) • [Discord](https://wilds.ai/discord) • [GitHub](https://github.com/framerslab)
+  [Website](https://frame.dev) • [Quarry](https://frame.dev/quarry) • [Frame Codex](https://frame.dev/codex) • [OpenQuarry](https://openstrand.ai) • [Discord](https://wilds.ai/discord) • [GitHub](https://github.com/framerslab)
   
   <br/>
   

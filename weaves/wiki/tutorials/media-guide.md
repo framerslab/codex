@@ -1419,15 +1419,15 @@ blocks:
 ---
 # Media Guide: Photos, Audio, Drawings & More
 
-Frame Codex treats **all media as first-class knowledge strands**. This guide shows you how to capture, upload, organize, and reference multimedia content in your Codex.
+Frame Codex treats **all media as first-class knowledge threads**. This guide shows you how to capture, upload, organize, and reference multimedia content in your Codex.
 
-## Philosophy: Everything is a Strand
+## Philosophy: Everything is a Thread
 
-In traditional knowledge bases, media files are mere "attachments." In Frame Codex, they are **strands** — interconnected nodes in the knowledge graph.
+In traditional knowledge bases, media files are mere "attachments." In Frame Codex, they are **threads** — interconnected nodes in the knowledge graph.
 
 A photo isn't just decoration—it's a semantic object with:
 - **Context** (when, where, why it was taken)
-- **Relationships** (linked to parent strand, related concepts)
+- **Relationships** (linked to parent thread, related concepts)
 - **Metadata** (tags, sentiment, visual features)
 - **Discoverability** (searchable, indexed, recommended)
 
@@ -1528,7 +1528,7 @@ The audio is automatically:
 - Verbal explanations of complex ideas
 
 **Collaboration:**
-- Leave voice comments on a strand
+- Leave voice comments on a thread
 - Narrate a tutorial or walkthrough
 - Record interviews or conversations
 
@@ -1573,7 +1573,7 @@ Enable guides to see:
 
 These are based on φ (phi) and help create visually balanced compositions.
 
-### Drawings as Strands
+### Drawings as Threads
 
 Exported drawings are saved as:
 - `./assets/drawings/drawing-{timestamp}.svg`
@@ -1618,9 +1618,9 @@ voice-2024-01-15T14-31-22.webm
 drawing-2024-01-15T14-32-45.svg
 ```
 
-### Asset as Strands
+### Asset as Threads
 
-Each asset is a **strand** that can have its own metadata:
+Each asset is a **thread** that can have its own metadata:
 
 ```markdown
 ---
@@ -1729,7 +1729,7 @@ When you click **Publish** in the editor:
 - Upload copyrighted material
 - Use overly large files
 - Forget to publish your drafts
-- Mix unrelated media in one strand
+- Mix unrelated media in one thread
 - Skip accessibility (alt text, captions)
 
 ## See Also

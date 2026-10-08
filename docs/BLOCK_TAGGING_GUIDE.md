@@ -105,7 +105,7 @@ Tags come from multiple sources, each with a confidence score:
 
 In the Frame.dev viewer (quarry.space):
 
-1. Open any strand document
+1. Open any thread document
 2. Click the **Blocks** tab in the right sidebar
 3. View all blocks with their:
    - Type and position (line numbers)
@@ -128,7 +128,7 @@ Since block tags are stored in the Codex repository (not the browser), contribut
 ### Option 2: Direct PR
 
 1. Fork the [framerslab/codex](https://github.com/framerslab/codex) repository
-2. Edit the strand's frontmatter:
+2. Edit the thread's frontmatter:
 
 ```yaml
 ---

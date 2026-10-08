@@ -127,12 +127,12 @@ The enhanced contribution modal provides:
    ```
 
 3. **Add Your Content**
-   - Place files directly within the target weave. Any folder becomes a loom, and any markdown file becomes a strand:
+   - Place files directly within the target weave. Any folder becomes a loom, and any markdown file becomes a thread:
      ```
      weaves/
        [weave-name]/
          weave.yaml
-         overview.md                 # Strand at weave root
+         overview.md                 # Thread at weave root
          [loom-folder]/              # e.g. guides/, research/, notes/
            loom.yaml (optional)
            your-content.md
@@ -213,7 +213,7 @@ The enhanced contribution modal provides:
 
 ## Example Submission
 
-Here's a complete example of a well-formatted strand:
+Here's a complete example of a well-formatted thread:
 
 ```markdown
 ---
@@ -322,7 +322,7 @@ To become a Weaver, maintain high quality and request nomination from maintainer
 
 ### Content Quality
 
-1. **Be Specific**: Focus on one topic per strand
+1. **Be Specific**: Focus on one topic per thread
 2. **Be Clear**: Use simple language, define jargon
 3. **Be Complete**: Cover the topic thoroughly
 4. **Be Accurate**: Fact-check and cite sources

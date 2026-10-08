@@ -2,7 +2,7 @@
 id: schema-reference-guide
 slug: schema-reference
 title: Frame Codex Schema Reference
-summary: Complete reference for Weave, Loom, and Strand schemas with examples and validation rules
+summary: Complete reference for Weave, Loom, and Thread schemas with examples and validation rules
 version: 1.0.0
 contentType: markdown
 difficulty: intermediate
@@ -62,7 +62,7 @@ tags:
 
 ## Loom Schema
 
-A Loom is a curated collection of related strands within a weave.
+A Loom is a curated collection of related threads within a weave.
 
 ### Required Fields
 
@@ -73,9 +73,9 @@ A Loom is a curated collection of related strands within a weave.
 ### Optional Fields
 
 - `tags` (array): Subject tags for categorization
-- `ordering` (object): How strands are organized
+- `ordering` (object): How threads are organized
   - `type` (enum): `sequential`, `hierarchical`, or `network`
-  - `items` (array): Ordered list of strand slugs
+  - `items` (array): Ordered list of thread slugs
 
 ### Example
 
@@ -95,9 +95,9 @@ ordering:
     - first-project
 ```
 
-## Strand Schema
+## Thread Schema
 
-A Strand is an atomic unit of knowledge - a document, image, or dataset.
+A Thread is an atomic unit of knowledge - a document, image, or dataset.
 
 ### Required Fields
 
@@ -124,9 +124,9 @@ A Strand is an atomic unit of knowledge - a document, image, or dataset.
 > 
 > See [Hierarchical Topic Structure](./openstrand-architecture.md#hierarchical-topic-structure-critical-rule) and [Skills & Spiral Learning](#skills--spiral-learning) below.
 
-- `relationships` (object): Connections to other strands
+- `relationships` (object): Connections to other threads
   - `requires` (array): Prerequisites
-  - `references` (array): Related strands
+  - `references` (array): Related threads
   - `seeAlso` (array): External URLs
 - `publishing` (object): Publication metadata
   - `created` (string): ISO 8601 timestamp
@@ -188,7 +188,7 @@ publishing:
 ### ID Format
 
 - Must be a valid UUID v4
-- Globally unique across all strands
+- Globally unique across all threads
 - Generate using `npm run generate-template`
 
 ### Version Format
@@ -301,7 +301,7 @@ Skills are a special metadata field designed for the **Spiral Learning Path** fe
 
 The spiral learning algorithm uses skills to:
 
-1. **Build prerequisite graphs**: Skills create edges between strands
+1. **Build prerequisite graphs**: Skills create edges between threads
 2. **Calculate learning paths**: Find optimal order to learn topics
 3. **Track mastery**: Skills can be marked as "learned" by users
 4. **Personalize recommendations**: Suggest content based on skill gaps
@@ -327,7 +327,7 @@ tags:
 
 When a user sets this as their "goal" in the Spiral Path, the system:
 1. Identifies they need `typescript`, `react`, `websockets`, `state-management`
-2. Finds beginner strands that **teach** these skills
+2. Finds beginner threads that **teach** these skills
 3. Builds an optimal learning path from start → goal
 
 ### Skill Detection
@@ -360,6 +360,6 @@ Schemas may evolve over time. When they do:
 
 ## Learn More
 
-- [OpenStrand Architecture](./openstrand-architecture.md)
+- [OpenQuarry Architecture](./openstrand-architecture.md)
 - [Contributing Guide](../.github/pull_request_template.md)
 - [Auto-Indexing Documentation](../scripts/auto-index.js)

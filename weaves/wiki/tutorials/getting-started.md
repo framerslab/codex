@@ -1168,7 +1168,7 @@ Frame Codex is a **four-tier hierarchical knowledge base** designed for both hum
 1. **Fabric** — The entire knowledge universe (the whole Codex)
 2. **Weave** — A thematic collection (e.g., "Wiki", "Tutorials", "Research")
 3. **Loom** — A category within a weave (e.g., "Architecture", "Examples")
-4. **Strand** — An individual document (like this one!)
+4. **Thread** — An individual document (like this one!)
 
 ```
 Fabric (Frame Codex)
@@ -1185,12 +1185,12 @@ The left sidebar shows your current location in the hierarchy:
 
 - **Weaves** are shown in bold with distinctive colors
 - **Looms** are nested underneath weaves
-- **Strands** appear as clickable items within looms
+- **Threads** appear as clickable items within looms
 - Current selection is highlighted with a golden ring
 
 ### The Content Area
 
-The center panel displays your selected strand in beautiful markdown rendering with:
+The center panel displays your selected thread in beautiful markdown rendering with:
 
 - Syntax highlighting for code blocks
 - Auto-generated galleries for multiple images
@@ -1204,12 +1204,12 @@ The right sidebar shows:
 - **File info** — path, size, last modified
 - **Tags** — auto-suggested or manual keywords
 - **Readability** — Flesch-Kincaid score and estimated reading time
-- **Vocabulary** — domain-specific terms found in the strand
+- **Vocabulary** — domain-specific terms found in the thread
 - **Sentiment** — emotional tone analysis
 
-## Your First Strand
+## Your First Thread
 
-Let's create your first knowledge strand!
+Let's create your first knowledge thread!
 
 ### 1. Open the Editor
 
@@ -1326,15 +1326,15 @@ $$
 $$
 ```
 
-## Media as Strands
+## Media as Threads
 
-In Frame Codex, **everything is a strand** — including media files!
+In Frame Codex, **everything is a thread** — including media files!
 
 ### Photos
 
-When you capture a photo, it becomes a strand in `./assets/photos/` and is automatically:
+When you capture a photo, it becomes a thread in `./assets/photos/` and is automatically:
 - Timestamped
-- Linked to the parent strand
+- Linked to the parent thread
 - Indexed for search
 - Added to the gallery if there are multiple
 
@@ -1354,11 +1354,11 @@ Whiteboard sketches export as SVG to `./assets/drawings/` and retain:
 - Golden ratio guides
 - Layer information
 
-## The Recursive Nature of Strands
+## The Recursive Nature of Threads
 
-Here's where it gets magical: **strands can contain strands**.
+Here's where it gets magical: **threads can contain threads**.
 
-A single media collection can be treated as one logical strand with a `catalog.json` schema:
+A single media collection can be treated as one logical thread with a `catalog.json` schema:
 
 ```json
 {

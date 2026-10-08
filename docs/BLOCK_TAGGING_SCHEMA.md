@@ -4,7 +4,7 @@ This document provides the technical schema reference for block-level tags in th
 
 ## Frontmatter Schema
 
-Block data is stored in the `blocks` array within each strand's YAML frontmatter:
+Block data is stored in the `blocks` array within each thread's YAML frontmatter:
 
 ```yaml
 ---

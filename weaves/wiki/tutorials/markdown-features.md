@@ -2102,7 +2102,7 @@ E = mc^2^
 ```
 
 **Best practices:**
-- Use one `#` heading per strand (the title)
+- Use one `#` heading per thread (the title)
 - Start hierarchy at `##` for sections
 - Don't skip levels (e.g., `##` → `####`)
 - Keep headings concise and descriptive
@@ -2167,7 +2167,7 @@ E = mc^2^
 
 [OpenAI](https://openai.com)
 
-### Internal Strand Links
+### Internal Thread Links
 
 ```markdown
 [Architecture Overview](/wiki/architecture/overview)
@@ -2408,7 +2408,7 @@ These are parsed for semantic indexing but don't create hyperlinks (yet).
 
 ## Control Flags (Hidden from Render)
 
-Add metadata flags at the top of your strand that won't appear in the rendered view:
+Add metadata flags at the top of your thread that won't appear in the rendered view:
 
 ```markdown
 skip_ai: true # Exclude from AI analysis
@@ -2460,7 +2460,7 @@ Fabric --> Weave
 
 ## Frontmatter (YAML)
 
-Add metadata at the **end** of your strand:
+Add metadata at the **end** of your thread:
 
 ```markdown
 ---
@@ -2494,7 +2494,7 @@ This data is indexed for search and displayed in the metadata panel.
 - Use generic alt text like "image1"
 - Forget to save your drafts!
 
-## Advanced: Recursive Strand Composition
+## Advanced: Recursive Thread Composition
 
 Frame Codex supports **strand-in-strand** composition using catalog schemas:
 
@@ -2502,7 +2502,7 @@ Frame Codex supports **strand-in-strand** composition using catalog schemas:
 ![Gallery](./gallery/catalog.json)
 ```
 
-Where `catalog.json` defines a logical strand collection:
+Where `catalog.json` defines a logical thread collection:
 
 ```json
 {

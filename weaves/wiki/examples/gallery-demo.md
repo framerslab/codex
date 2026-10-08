@@ -197,7 +197,7 @@ blocks:
 ---
 # Art Deco Gallery Demo
 
-This strand demonstrates the automatic gallery generation for multiple images.
+This thread demonstrates the automatic gallery generation for multiple images.
 
 ## Individual Images
 

@@ -27,9 +27,9 @@ node scripts/block-processor.js --help
 
 You should see usage information.
 
-## Part 2: Processing Your First Strand
+## Part 2: Processing Your First Thread
 
-### Create a Sample Strand
+### Create a Sample Thread
 
 Create `weaves/tutorial/my-first-strand.md`:
 
@@ -260,7 +260,7 @@ cat codex-blocks.json | jq '.stats'
 
 ### Accept Suggestions Manually
 
-Edit the strand frontmatter to move suggestions to tags:
+Edit the thread frontmatter to move suggestions to tags:
 
 ```yaml
 blocks:
@@ -305,7 +305,7 @@ When you push changes to `weaves/`:
 ### Open the Viewer
 
 1. Go to [quarry.space](https://quarry.space)
-2. Navigate to your strand
+2. Navigate to your thread
 3. Click the **Blocks** tab
 
 ### What You'll See
@@ -318,7 +318,7 @@ When you push changes to `weaves/`:
 
 ## Next Steps
 
-1. **Process more strands**: Run `node scripts/block-processor.js --all`
+1. **Process more threads**: Run `node scripts/block-processor.js --all`
 2. **Improve vocabulary**: Add terms to `tags/index.yaml`
 3. **Review suggestions**: Accept or reject pending tags
 4. **Contribute**: Submit PRs with tag improvements

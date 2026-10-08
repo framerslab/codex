@@ -1660,19 +1660,19 @@ Fabric (Whole Codex)
 - No explicit `looms/` prefix needed
 - Metadata in optional `loom.yaml`
 
-**Strand**: Any markdown file inside a weave
+**Thread**: Any markdown file inside a weave
 - Self-contained, focused on one concept
 - Rich metadata in YAML frontmatter
 - No explicit `strands/` folder needed
 
 ### Why This Structure?
 
-1. **Modularity**: Each strand is independent and reusable
+1. **Modularity**: Each thread is independent and reusable
 2. **Discoverability**: Looms (folders) provide natural organization
 3. **Isolation**: Weaves prevent namespace collisions
-4. **Scalability**: Can grow to millions of strands
+4. **Scalability**: Can grow to millions of threads
 5. **AI-Friendly**: Clear structure for LLM ingestion
-6. **Simple**: Folders = looms, markdown files = strands (auto-detected)
+6. **Simple**: Folders = looms, markdown files = threads (auto-detected)
 
 ### Superintelligence at Fabric Scope
 
@@ -1746,7 +1746,7 @@ stats       -- Loom/weave aggregate statistics
 - Creates PR (manual approval by default)
 - Toggle: `AUTO_CATALOG_MERGE=true`
 
-## OpenStrand Integration
+## OpenQuarry Integration
 
 Frame Codex implements the **Educational Content Atom (ECA)** specification:
 
@@ -1757,10 +1757,10 @@ Frame Codex implements the **Educational Content Atom (ECA)** specification:
 - **Accessibility**: WCAG compliance, reading levels
 - **Quality Metrics**: Peer review, evidence-based claims
 
-### Frame Codex vs OpenStrand
+### Frame Codex vs OpenQuarry
 
 - **Frame Codex**: Public markdown repository (this repo)
-- **OpenStrand**: Full PKMS at openstrand.ai (all file types, AI analysis, private workspaces)
+- **OpenQuarry**: Full PKMS at openstrand.ai (all file types, AI analysis, private workspaces)
 
 ## Repository Structure
 
@@ -1786,7 +1786,7 @@ codex/
     └── workflows/      # CI/CD automation
 ```
 
-**Note:** Looms and strands are auto-detected from folder structure. No explicit `looms/` or `strands/` folders needed.
+**Note:** Looms and threads are auto-detected from folder structure. No explicit `looms/` or `strands/` folders needed.
 
 ## Learn More
 

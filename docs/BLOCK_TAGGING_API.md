@@ -168,7 +168,7 @@ function MyComponent({ strandPath }) {
 
 ## Utility Functions
 
-### Check if strand has blocks
+### Check if thread has blocks
 
 ```typescript
 const hasBlocks = await hasBlocksInIndex('weaves/technology/js-basics.md')
@@ -202,7 +202,7 @@ When running with API routes enabled, these endpoints are available:
 
 ### GET /api/blocks
 
-Fetch blocks for a strand:
+Fetch blocks for a thread:
 
 ```bash
 curl "/api/blocks?strandPath=weaves/technology/js-basics.md"

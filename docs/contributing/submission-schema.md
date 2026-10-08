@@ -2,7 +2,7 @@
 id: submission-schema-reference
 slug: submission-schema
 title: "Frame Codex Submission Schema Reference"
-summary: "Complete technical reference for Frame Codex content schema, including all fields, validation rules, and OpenStrand ECA integration"
+summary: "Complete technical reference for Frame Codex content schema, including all fields, validation rules, and OpenQuarry ECA integration"
 version: "2.0.0"
 contentType: markdown
 difficulty: intermediate
@@ -22,14 +22,14 @@ publishing:
 
 # Frame Codex Submission Schema Reference
 
-This document provides the complete technical specification for Frame Codex content schema, including integration with OpenStrand's Educational Content Atom (ECA) standard.
+This document provides the complete technical specification for Frame Codex content schema, including integration with OpenQuarry's Educational Content Atom (ECA) standard.
 
 ---
 
 ## Table of Contents
 
 1. [Schema Overview](#schema-overview)
-2. [Strand Schema (Individual Content)](#strand-schema)
+2. [Thread Schema (Individual Content)](#thread-schema)
 3. [Loom Schema (Collections)](#loom-schema)
 4. [Weave Schema (Universes)](#weave-schema)
 5. [ECA Integration](#eca-integration)
@@ -55,8 +55,8 @@ Weave (Universe)
 
 ### Key Principles
 
-- **Strands** are atomic, self-contained knowledge units
-- **Looms** curate related strands into coherent learning paths
+- **Threads** are atomic, self-contained knowledge units
+- **Looms** curate related threads into coherent learning paths
 - **Weaves** represent complete, isolated knowledge universes
 - **No cross-weave relationships** (each weave is independent)
 - **Subfolders are SUBTOPICS** - folder depth determines topic specificity (deeper = more specific)
@@ -65,9 +65,9 @@ Weave (Universe)
 
 ---
 
-## Strand Schema
+## Thread Schema
 
-Strands are individual markdown files with YAML frontmatter.
+Threads are individual markdown files with YAML frontmatter.
 
 ### Required Fields
 
@@ -131,9 +131,9 @@ publishing:
   authors: array<string>
 ```
 
-### OpenStrand ECA Extended Fields
+### OpenQuarry ECA Extended Fields
 
-Frame Codex supports the full OpenStrand Educational Content Atom (ECA) specification for advanced learning design:
+Frame Codex supports the full OpenQuarry Educational Content Atom (ECA) specification for advanced learning design:
 
 ```yaml
 # Learning Design
@@ -374,7 +374,7 @@ publishing:
 
 ## Loom Schema
 
-Looms are YAML manifest files that organize strands into collections.
+Looms are YAML manifest files that organize threads into collections.
 
 ### File Location
 
@@ -541,10 +541,10 @@ publishing:
 
 ## ECA Integration
 
-Frame Codex fully integrates with OpenStrand's Educational Content Atom (ECA) specification, enabling:
+Frame Codex fully integrates with OpenQuarry's Educational Content Atom (ECA) specification, enabling:
 
 ### Learning Analytics
-- Track learner progress through strands
+- Track learner progress through threads
 - Measure mastery levels
 - Identify knowledge gaps
 - Recommend personalized paths
@@ -621,7 +621,7 @@ The auto-indexer assigns quality scores based on:
 
 ## Examples
 
-### Minimal Valid Strand
+### Minimal Valid Thread
 
 ```yaml
 ---
@@ -639,9 +639,9 @@ difficulty: beginner
 This is the minimal valid content.
 ```
 
-### Comprehensive Strand
+### Comprehensive Thread
 
-See [Full Example](#full-example) above for a complete, production-ready strand with all ECA fields.
+See [Full Example](#full-example) above for a complete, production-ready thread with all ECA fields.
 
 ### Simple Loom
 
@@ -676,8 +676,8 @@ looms: [quick-start, advanced-topics]
 
 ### Content
 
-1. **One Topic**: Each strand should cover one focused topic
-2. **Self-Contained**: Strands should be understandable alone
+1. **One Topic**: Each thread should cover one focused topic
+2. **Self-Contained**: Threads should be understandable alone
 3. **Well-Structured**: Use headings, lists, code blocks
 4. **Examples**: Include practical examples
 5. **Citations**: Link to sources and references
@@ -739,7 +739,7 @@ This schema is versioned using semantic versioning:
 
 ## Resources
 
-- **OpenStrand ECA Spec**: [openstrand-architecture.md](../openstrand-architecture.md)
+- **OpenQuarry ECA Spec**: [openstrand-architecture.md](../openstrand-architecture.md)
 - **Submission Guide**: [how-to-submit.md](./how-to-submit.md)
 - **GitHub Repo**: [github.com/framerslab/codex](https://github.com/framerslab/codex)
 - **Discord**: [wilds.ai/discord](https://wilds.ai/discord)

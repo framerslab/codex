@@ -12,7 +12,7 @@ Frame Codex is a **data-only, markdown-first knowledge fabric** designed for AI 
 - **Fabric** – The entire repository: a collection of weaves.
 - **Weave** – Top-level knowledge universe (e.g. `weaves/frame/`, `weaves/wiki/`).
 - **Loom** – Any subdirectory inside a weave (topic/module, inferred from folders).
-- **Strand** – Individual markdown file at any depth inside a weave (atomic unit).
+- **Thread** – Individual markdown file at any depth inside a weave (atomic unit).
 
 There is **no UI** in this repo. The primary viewer lives at:
 
@@ -83,10 +83,10 @@ If you prefer the CLI, follow the traditional flow:
      weaves/
        [weave]/                # e.g. frame/, wiki/, technology/
          weave.yaml
-         overview.md           # Strand at weave root
+         overview.md           # Thread at weave root
          guides/               # Loom (folder inferred from path)
            loom.yaml           # Optional
-           intro.md            # Strand
+           intro.md            # Thread
            deep-dive/notes.md  # Nested loom/strand
      ```
 
@@ -144,7 +144,7 @@ You can reuse the Frame.dev Codex UI to render **any** Codex-style repository:
 
 ## 5. Quality Guidelines
 
-- **Content**: Clear, self-contained strands with real knowledge (no placeholders).
+- **Content**: Clear, self-contained threads with real knowledge (no placeholders).
 - **Metadata**: Fill in `title`, `summary`, `tags`, `difficulty`, `subjects`, `topics`.
 - **Structure**: Use headings, lists, and code blocks for readability.
 - **Licensing**: Contributions must be compatible with **CC-BY-4.0**.

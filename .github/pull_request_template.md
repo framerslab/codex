@@ -6,7 +6,7 @@
 ## Type of Content
 - [ ] 📚 New Weave (complete knowledge universe)
 - [ ] 🧵 New Loom (curated collection)
-- [ ] 📄 New Strand (individual knowledge unit)
+- [ ] 📄 New Thread (individual knowledge unit)
 - [ ] 🔧 Update to existing content
 - [ ] 🐛 Fix errors or inaccuracies
 
@@ -15,7 +15,7 @@
 ### Required Metadata
 - [ ] **Title**: Clear and descriptive (3-100 characters)
 - [ ] **Summary**: Concise abstract (20-300 characters)
-- [ ] **ID**: Unique identifier (UUID for strands)
+- [ ] **ID**: Unique identifier (UUID for threads)
 - [ ] **Version**: Semantic version number (e.g., 1.0.0)
 
 ### Content Quality

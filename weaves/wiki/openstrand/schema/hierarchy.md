@@ -1060,7 +1060,7 @@ blocks:
 
 # Hierarchy & Vocabulary
 
-OpenStrand organizes knowledge into a four-tier hierarchy that mirrors how humans naturally think about information—from broad domains down to atomic concepts:
+OpenQuarry organizes knowledge into a four-tier hierarchy that mirrors how humans naturally think about information—from broad domains down to atomic concepts:
 
 ```
 FABRIC (Knowledge Repository)
@@ -1073,8 +1073,8 @@ FABRIC (Knowledge Repository)
 | ----- | ----------- | ------- |
 | **Fabric** | Complete repository containing all weaves. The highest organizational level. | `weaves/` |
 | **Weave** | Complete, self-contained universe of strands. No cross-weave dependencies. | `weaves/frame/` |
-| **Loom** | Curated folder inside a weave. Groups strands by topic or workflow. | `weaves/frame/openstrand/` |
-| **Strand** | Individual markdown file with YAML frontmatter metadata. | `weaves/frame/openstrand/overview.md` |
+| **Loom** | Curated folder inside a weave. Groups threads by topic or workflow. | `weaves/frame/openstrand/` |
+| **Thread** | Individual markdown file with YAML frontmatter metadata. | `weaves/frame/openstrand/overview.md` |
 
 ---
 
@@ -1085,7 +1085,7 @@ The Codex viewer reads this hierarchy directly from GitHub and applies level-spe
 ### Schema Goals
 
 1. **Nesting without magic** – folders on disk are the schema; no hidden database.
-2. **Frontmatter as API** – every strand's YAML block becomes structured data for search, analytics, and embeddings.
+2. **Frontmatter as API** – every thread's YAML block becomes structured data for search, analytics, and embeddings.
 3. **Machine-friendly URLs** – `https://frame.dev/codex?path=weaves/frame&file=openstrand/overview.md`
 
 ---
@@ -1110,7 +1110,7 @@ The hierarchy tells AI agents how to navigate:
 ### For Knowledge Graphs
 
 The hierarchy maps to graph structures:
-- **Strands** → Nodes
+- **Threads** → Nodes
 - **Relationships** → Edges
 - **Looms** → Clusters
 - **Weaves** → Subgraphs
@@ -1130,7 +1130,7 @@ The hierarchy maps to graph structures:
 
 ## Hierarchical Topic Structure
 
-**Folder depth determines topic specificity.** This is a fundamental OpenStrand principle:
+**Folder depth determines topic specificity.** This is a fundamental OpenQuarry principle:
 
 > 📐 **Subfolders are SUBTOPICS of their parent folder. Topics MUST become more specific as you go deeper.**
 
@@ -1169,6 +1169,6 @@ weaves/technology/                     # Topic: technology (broad)
 
 ## Next Steps
 
-- **[../overview.md](../overview.md)** — OpenStrand overview and value proposition
+- **[../overview.md](../overview.md)** — OpenQuarry overview and value proposition
 - **[../architecture.md](../architecture.md)** — Condensed architecture overview
 - **[frame.dev/codex](https://frame.dev/codex)** — Live Codex viewer

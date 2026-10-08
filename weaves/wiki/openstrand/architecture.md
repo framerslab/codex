@@ -1,7 +1,7 @@
 ---
 id: 3c3ac6d5-8cc2-4106-9f4a-4f6134c3d0b2
 slug: openstrand-architecture
-title: OpenStrand Architecture – Condensed Overview
+title: OpenQuarry Architecture – Condensed Overview
 summary: >-
   A practical, implementation-focused overview of OpenStrand's architecture for
   ingestion and RAG.
@@ -276,10 +276,10 @@ blocks:
         structuralImportance: 0.45
 ---
 
-This strand condenses the OpenStrand Architecture into a short practitioner guide. For full details, see the comprehensive architecture document in the OpenStrand repo and related strands in this loom.
+This thread condenses the OpenQuarry Architecture into a short practitioner guide. For full details, see the comprehensive architecture document in the OpenQuarry repo and related threads in this loom.
 
 ## Key Ideas
-- Strands: atomic assets (docs, media, datasets); Looms: curated groups of strands (folders); Weaves: entire universes of content. No cross-weave edges.
+- Threads: atomic assets (docs, media, datasets); Looms: curated groups of threads (folders); Weaves: entire universes of content. No cross-weave edges.
 - Ingestion: parse frontmatter → validate → persist ECA → index (text + vector) → construct relations (within weave).
 - Retrieval: combine lexical + semantic + graph edges; re-rank with pedagogical and structural signals.
 - Pipelines: support multi-format content; normalize to Markdown + frontmatter; attach assets alongside strands.
@@ -287,10 +287,10 @@ This strand condenses the OpenStrand Architecture into a short practitioner guid
 ## Ingestion Mapping
 1. Read `weave.yaml` → create workspace scope  
 2. Detect looms: any folder inside a weave is a loom (no `looms/` prefix needed)
-3. For each strand (markdown file):
+3. For each thread (markdown file):
    - Extract frontmatter (id, slug, title, taxonomy, relationships)
    - Store Markdown and assets
-   - Create edges only to strands in the same weave
+   - Create edges only to threads in the same weave
 4. Build search index + embeddings
 
 ## RAG & Search
@@ -299,5 +299,5 @@ This strand condenses the OpenStrand Architecture into a short practitioner guid
 - Graph traversal to suggest next-items within a loom.
 
 ## Governance & SEO
-- Short executive summaries; single-topic strands; stable anchors; internal links between strands.
+- Short executive summaries; single-topic threads; stable anchors; internal links between strands.
 - Controlled vocabulary in `tags/index.yaml`; CI validates tag usage and relationships.
