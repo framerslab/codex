@@ -69,9 +69,21 @@ const PROSE_EXT = new Set(['.md', '.mdx', '.txt', '.html', '.rst', '.webmanifest
 const KEEP = 'rename-guard: keep';
 // a test file's public rows are code in the classification; generated and history files are never renamed
 const outOfScope = (rel) => HISTORY_FILES.test(rel) || GENERATED_FILES.test(rel) || TEST_FILES.test(rel);
+const STORED_VALUE = PRIVATE_HINTS[5];
+const jsxText = (line) => {
+  // JSX text alone on its line: plain words, no quotes, braces or code punctuation, not a statement
+  if (/^\s*(\/\/|\/\*|\*|import\b|export\b|const\b|let\b|var\b|return\b|if\b|for\b|case\b|default\b|type\b|interface\b|function\b|\||[})\]])/.test(line)) return false;
+  const words = line.replace(/<[^>]+>/g, ' ');
+  if (/["'`{}=;()\[\]]/.test(words)) return false;
+  return (words.match(/[A-Za-z]+/g) || []).length >= 2;
+};
 const isPublicLine = (rel, line) => {
   if (I18N_FILES.test(rel)) return true;
-  if (PRIVATE_HINTS.some((h) => h.test(line))) return false;
+  if (/\.[jt]sx$/.test(rel) && jsxText(line)) return true;
+  // a protected stored value on the line (level: 'strand') must not hide the copy beside it (label: 'Strand')
+  const rest = line.replace(STORED_VALUE, (m) => ' '.repeat(m.length));
+  if (PRIVATE_HINTS.some((h) => h !== STORED_VALUE && h.test(line))) return false;
+  if (STORED_VALUE.test(line) && !PUBLIC_HINTS.some((h) => h.test(rest))) return false;
   if (PROSE_EXT.has(extname(rel).toLowerCase()) || ['docs/', 'weaves/', 'README'].some((p) => rel.startsWith(p))) return true;
   return PUBLIC_HINTS.some((h) => h.test(line));
 };
@@ -159,16 +171,20 @@ if (renameDone) {
       }
       // on a code line, code inside ${...} and a simple JSX expression ({strand.title}) keeps its names; the copy around it counts
       const blank = (span) => ' '.repeat(span.length);
-      // a <code>...</code> span is code wherever it appears
-      const noCode = rawLine.replace(/<code[^>]*>.*?<\/code>/g, blank);
+      // a <code>...</code> span is code wherever it appears; a ?strand= or &strand= query parameter is a stored name
+      const noCode = rawLine.replace(/<code[^>]*>.*?<\/code>/g, blank).replace(/[?&]strands?=/g, blank);
       const lineText = markdown
         ? noCode.replace(/`[^`]*`/g, blank)
         : prose
           ? noCode
           : noCode.replace(/\$\{[^}]*\}/g, blank).replace(/\{\s*[A-Za-z_$][\w$]*(?:\??\.[A-Za-z_$][\w$]*)*\s*\}/g, blank);
       // on a code line, a quoted string that holds a path (an import, a route, a folder) is code: remember its span
-      const pathSpans = [];
-      if (!prose) for (const m of lineText.matchAll(/'[^']*'|"[^"]*"|`[^`]*`/g)) if (m[0].includes('/')) pathSpans.push([m.index, m.index + m[0].length]);
+      const pathSpans = [], copySpans = [];
+      if (!prose) {
+        for (const m of lineText.matchAll(/'[^']*'|"[^"]*"|`[^`]*`/g)) { copySpans.push([m.index, m.index + m[0].length]); if (m[0].includes('/')) pathSpans.push([m.index, m.index + m[0].length]); }
+        for (const m of lineText.matchAll(/>([^<>]*)</g)) copySpans.push([m.index + 1, m.index + 1 + m[1].length]);
+      }
+      const inCopy = (x, y) => copySpans.some(([p, q]) => x >= p && y <= q);
       if (rawLine.includes(KEEP) || !isPublicLine(rel, lineText)) return;
       for (const [name, re] of PATTERNS) {
         re.lastIndex = 0;
@@ -188,11 +204,11 @@ if (renameDone) {
           if (!prose && a > 0 && lineText[a - 1] === '.') continue;
           if (pathSpans.some(([x, y]) => start >= x && end <= y)) continue;
           // on a code line an object key (`strand: ...`, `{ strands: 12 }`) is code, not copy
-          if (!prose && lineText[b] === ':' && lineText[b + 1] !== ':' && (a === 0 || /[\s{,(]/.test(lineText[a - 1]))) continue;
+          if (!prose && !inCopy(start, end) && lineText[b] === ':' && lineText[b + 1] !== ':' && (a === 0 || /[\s{,(]/.test(lineText[a - 1]))) continue;
           const quoted = a > 0 && /["'`]/.test(lineText[a - 1]) && b < lineText.length && /["'`]/.test(lineText[b]);
           const bare = /^(open)?strands?$/i.test(token);
           // a bare word (strand, strands, openstrand) is a protected stored value only as a quoted literal; any other protected identifier is exempt by its exact token
-          if ((exempt(token) && (!bare || quoted)) || (exempt(hit[0]) && !bare)) continue;
+          if ((exempt(token) && (!bare || quoted)) || (name === 'strand_ident' && exempt(hit[0]))) continue;
           problems.push(`${rel}:${i + 1}: public occurrence remains (${hit[0]})`);
           break;
         }
