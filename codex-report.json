@@ -61,7 +61,7 @@
       {
         "file": "weaves/knowledge/weave.yaml",
         "category": "knowledge",
-        "score": 0.15135135135135136
+        "score": 0.14814814814814814
       },
       {
         "file": "weaves/knowledge/weave.yaml",
@@ -211,7 +211,7 @@
       {
         "file": "weaves/notes/weave.yaml",
         "category": "knowledge",
-        "score": 0.08648648648648649
+        "score": 0.08465608465608465
       },
       {
         "file": "weaves/notes/weave.yaml",
@@ -331,7 +331,7 @@
       {
         "file": "weaves/reflections/weave.yaml",
         "category": "knowledge",
-        "score": 0.05405405405405406
+        "score": 0.05291005291005291
       },
       {
         "file": "weaves/reflections/weave.yaml",
@@ -446,7 +446,7 @@
       {
         "file": "weaves/wiki/frame/loom.yaml",
         "category": "knowledge",
-        "score": 0.08648648648648649
+        "score": 0.08465608465608465
       },
       {
         "file": "weaves/wiki/frame/loom.yaml",
@@ -556,7 +556,7 @@
       {
         "file": "weaves/wiki/openstrand/architecture.md",
         "category": "knowledge",
-        "score": 0.20540540540540542
+        "score": 0.21164021164021163
       },
       {
         "file": "weaves/wiki/openstrand/architecture.md",
@@ -726,7 +726,7 @@
       {
         "file": "weaves/wiki/openstrand/loom.yaml",
         "category": "knowledge",
-        "score": 0.11351351351351352
+        "score": 0.1164021164021164
       },
       {
         "file": "weaves/wiki/openstrand/loom.yaml",
@@ -831,7 +831,7 @@
       {
         "file": "weaves/wiki/openstrand/overview.md",
         "category": "knowledge",
-        "score": 0.4594594594594595
+        "score": 0.4708994708994709
       },
       {
         "file": "weaves/wiki/openstrand/overview.md",
@@ -1191,7 +1191,7 @@
       {
         "file": "weaves/wiki/openstrand/schema/hierarchy.md",
         "category": "knowledge",
-        "score": 0.3837837837837838
+        "score": 0.3862433862433862
       },
       {
         "file": "weaves/wiki/openstrand/schema/hierarchy.md",
@@ -1506,7 +1506,7 @@
       {
         "file": "weaves/writings/weave.yaml",
         "category": "knowledge",
-        "score": 0.08648648648648649
+        "score": 0.08465608465608465
       },
       {
         "file": "weaves/writings/weave.yaml",
@@ -1636,7 +1636,7 @@
       {
         "file": "schema/fabric.schema.yaml",
         "category": "knowledge",
-        "score": 0.07567567567567568
+        "score": 0.08465608465608465
       },
       {
         "file": "schema/fabric.schema.yaml",
@@ -1756,7 +1756,7 @@
       {
         "file": "schema/thread.schema.yaml",
         "category": "knowledge",
-        "score": 0.23243243243243245
+        "score": 0.2328042328042328
       },
       {
         "file": "schema/thread.schema.yaml",
@@ -2011,7 +2011,7 @@
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "knowledge",
-        "score": 0.21621621621621623
+        "score": 0.21164021164021163
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
@@ -2329,6 +2329,471 @@
         "score": 0.5789473684210527
       },
       {
+        "file": "docs/openquarry-architecture.md",
+        "category": "ai",
+        "score": 0.12949640287769784
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "design",
+        "score": 0.11049723756906077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "knowledge",
+        "score": 0.4656084656084656
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "media",
+        "score": 0.11940298507462686
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "philosophy",
+        "score": 0.1111111111111111
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "science",
+        "score": 0.10344827586206896
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "security",
+        "score": 0.08888888888888889
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "technology",
+        "score": 0.22297297297297297
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "api-reference",
+        "score": 0.17886178861788618
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "architecture",
+        "score": 0.1897810218978102
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "best-practices",
+        "score": 0.22580645161290322
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "getting-started",
+        "score": 0.1926605504587156
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "troubleshooting",
+        "score": 0.16666666666666666
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:schema",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:unit",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:integration",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:async-programming",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:async",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:immutable",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:programming",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:inheritance",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:data",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:networking",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:http",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:https",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:ssl",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:ci",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:deployment",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:integr",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:async-program",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:immut",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:program",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:inherit",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:search",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:structur",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:network",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:tl",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:deploy",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:app",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:api",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:on",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:js",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:ts",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:type",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:python",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:py",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:rust",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:go",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:asp",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:scala",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:c",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:less",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:annot",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:gener",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:io",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:documentation",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:analysis",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:synthesis",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:organization",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:learning",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:eq",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:understanding",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:respect",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:present",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:document",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:narr",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:plan",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:organ",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:analysi",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:synthesi",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:product",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:learn",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:understand",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:belong",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:git",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:github",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:version",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:control",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:commit",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:branch",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:image",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:kubernetes",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:infrastructure",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:as",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:code",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:web",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:merg",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:contain",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:imag",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:kubernet",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:infrastructur",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:aw",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:servic",
+        "score": 0.6210526315789474
+      },
+      {
         "file": "weaves/knowledge/ai-ml/llm_rag_evaluation.md",
         "category": "ai",
         "score": 0.26258992805755393
@@ -2341,7 +2806,7 @@
       {
         "file": "weaves/knowledge/ai-ml/llm_rag_evaluation.md",
         "category": "knowledge",
-        "score": 0.24864864864864866
+        "score": 0.24338624338624337
       },
       {
         "file": "weaves/knowledge/ai-ml/llm_rag_evaluation.md",
@@ -2866,7 +3331,7 @@
       {
         "file": "weaves/knowledge/programming/kafka_practical_guide.md",
         "category": "knowledge",
-        "score": 0.15135135135135136
+        "score": 0.15343915343915343
       },
       {
         "file": "weaves/knowledge/programming/kafka_practical_guide.md",
@@ -3261,7 +3726,7 @@
       {
         "file": "weaves/knowledge/programming/python_senior_interview_crash_course.md",
         "category": "knowledge",
-        "score": 0.25405405405405407
+        "score": 0.25925925925925924
       },
       {
         "file": "weaves/knowledge/programming/python_senior_interview_crash_course.md",
@@ -3901,7 +4366,7 @@
       {
         "file": "weaves/knowledge/programming/typescript_crash_course.md",
         "category": "knowledge",
-        "score": 0.1891891891891892
+        "score": 0.18518518518518517
       },
       {
         "file": "weaves/knowledge/programming/typescript_crash_course.md",
@@ -4446,7 +4911,7 @@
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "knowledge",
-        "score": 0.3891891891891892
+        "score": 0.3968253968253968
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
@@ -4466,7 +4931,7 @@
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "security",
-        "score": 0.07777777777777778
+        "score": 0.06666666666666667
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
@@ -4631,87 +5096,92 @@
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:documentation",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:analysis",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:synthesis",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:organization",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:focus",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:learning",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:eq",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:trust",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:evidence-based",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
+      },
+      {
+        "file": "weaves/wiki/architecture/overview.md",
+        "category": "skill:write",
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:document",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:organ",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:analysi",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:synthesi",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:schedul",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:focu",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:learn",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:adapt",
-        "score": 0.5391705069124424
+        "score": 0.5414746543778802
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
@@ -4781,7 +5251,7 @@
       {
         "file": "weaves/wiki/architecture/qa-system.md",
         "category": "knowledge",
-        "score": 0.2972972972972973
+        "score": 0.30158730158730157
       },
       {
         "file": "weaves/wiki/architecture/qa-system.md",
@@ -5181,7 +5651,7 @@
       {
         "file": "weaves/wiki/examples/gallery-demo.md",
         "category": "knowledge",
-        "score": 0.043243243243243246
+        "score": 0.047619047619047616
       },
       {
         "file": "weaves/wiki/examples/gallery-demo.md",
@@ -5336,7 +5806,7 @@
       {
         "file": "weaves/wiki/tutorials/executable-code.md",
         "category": "knowledge",
-        "score": 0.10270270270270271
+        "score": 0.10052910052910052
       },
       {
         "file": "weaves/wiki/tutorials/executable-code.md",
@@ -5611,7 +6081,7 @@
       {
         "file": "weaves/wiki/tutorials/getting-started.md",
         "category": "knowledge",
-        "score": 0.33513513513513515
+        "score": 0.3386243386243386
       },
       {
         "file": "weaves/wiki/tutorials/getting-started.md",
@@ -5886,7 +6356,7 @@
       {
         "file": "weaves/wiki/tutorials/markdown-features.md",
         "category": "knowledge",
-        "score": 0.2864864864864865
+        "score": 0.2857142857142857
       },
       {
         "file": "weaves/wiki/tutorials/markdown-features.md",
@@ -6256,7 +6726,7 @@
       {
         "file": "weaves/wiki/tutorials/media-guide.md",
         "category": "knowledge",
-        "score": 0.3027027027027027
+        "score": 0.30687830687830686
       },
       {
         "file": "weaves/wiki/tutorials/media-guide.md",
@@ -6616,7 +7086,7 @@
       {
         "file": "weaves/wiki/weave.yaml",
         "category": "knowledge",
-        "score": 0.1891891891891892
+        "score": 0.19047619047619047
       },
       {
         "file": "weaves/wiki/weave.yaml",
@@ -6761,7 +7231,7 @@
       {
         "file": "schema/blocks-index.schema.yaml",
         "category": "knowledge",
-        "score": 0.08648648648648649
+        "score": 0.09523809523809523
       },
       {
         "file": "schema/blocks-index.schema.yaml",
@@ -6786,7 +7256,7 @@
       {
         "file": "schema/blocks-index.schema.yaml",
         "category": "technology",
-        "score": 0.06756756756756757
+        "score": 0.07094594594594594
       },
       {
         "file": "schema/blocks-index.schema.yaml",
@@ -6926,7 +7396,7 @@
       {
         "file": "schema/loom.schema.yaml",
         "category": "knowledge",
-        "score": 0.03783783783783784
+        "score": 0.037037037037037035
       },
       {
         "file": "schema/loom.schema.yaml",
@@ -7056,7 +7526,7 @@
       {
         "file": "schema/strand.schema.yaml",
         "category": "knowledge",
-        "score": 0.23783783783783785
+        "score": 0.2328042328042328
       },
       {
         "file": "schema/strand.schema.yaml",
@@ -7311,7 +7781,7 @@
       {
         "file": "schema/weave.schema.yaml",
         "category": "knowledge",
-        "score": 0.02702702702702703
+        "score": 0.026455026455026454
       },
       {
         "file": "schema/weave.schema.yaml",
@@ -7411,7 +7881,7 @@
       {
         "file": "docs/BLOCK_TAGGING_API.md",
         "category": "knowledge",
-        "score": 0.16756756756756758
+        "score": 0.1693121693121693
       },
       {
         "file": "docs/BLOCK_TAGGING_API.md",
@@ -7696,7 +8166,7 @@
       {
         "file": "docs/BLOCK_TAGGING_GUIDE.md",
         "category": "knowledge",
-        "score": 0.3081081081081081
+        "score": 0.30687830687830686
       },
       {
         "file": "docs/BLOCK_TAGGING_GUIDE.md",
@@ -7986,7 +8456,7 @@
       {
         "file": "docs/BLOCK_TAGGING_SCHEMA.md",
         "category": "knowledge",
-        "score": 0.1945945945945946
+        "score": 0.19576719576719576
       },
       {
         "file": "docs/BLOCK_TAGGING_SCHEMA.md",
@@ -8231,7 +8701,7 @@
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "knowledge",
-        "score": 0.31351351351351353
+        "score": 0.31746031746031744
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
@@ -8526,7 +8996,7 @@
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "knowledge",
-        "score": 0.24324324324324326
+        "score": 0.23809523809523808
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
@@ -8861,7 +9331,7 @@
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "knowledge",
-        "score": 0.2864864864864865
+        "score": 0.291005291005291
       },
       {
         "file": "docs/DEVELOPMENT.md",
@@ -9376,7 +9846,7 @@
       {
         "file": "docs/NLP_VOCABULARY_SYSTEM.md",
         "category": "knowledge",
-        "score": 0.2702702702702703
+        "score": 0.26455026455026454
       },
       {
         "file": "docs/NLP_VOCABULARY_SYSTEM.md",
@@ -9796,7 +10266,7 @@
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "knowledge",
-        "score": 0.16216216216216217
+        "score": 0.15873015873015872
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
@@ -10116,7 +10586,7 @@
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "knowledge",
-        "score": 0.3783783783783784
+        "score": 0.37566137566137564
       },
       {
         "file": "docs/contributing/how-to-submit.md",
@@ -10481,7 +10951,7 @@
       {
         "file": "docs/contributing/submission-schema.md",
         "category": "knowledge",
-        "score": 0.5081081081081081
+        "score": 0.5132275132275133
       },
       {
         "file": "docs/contributing/submission-schema.md",
@@ -10929,471 +11399,6 @@
         "score": 0.5842105263157895
       },
       {
-        "file": "docs/openstrand-architecture.md",
-        "category": "ai",
-        "score": 0.12949640287769784
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "design",
-        "score": 0.11049723756906077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "knowledge",
-        "score": 0.4594594594594595
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "media",
-        "score": 0.11940298507462686
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "philosophy",
-        "score": 0.1111111111111111
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "science",
-        "score": 0.10344827586206896
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "security",
-        "score": 0.08888888888888889
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "technology",
-        "score": 0.22297297297297297
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "api-reference",
-        "score": 0.17886178861788618
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "architecture",
-        "score": 0.1897810218978102
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "best-practices",
-        "score": 0.22580645161290322
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "getting-started",
-        "score": 0.1926605504587156
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "troubleshooting",
-        "score": 0.16666666666666666
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:schema",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:unit",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:integration",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:async-programming",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:async",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:immutable",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:programming",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:inheritance",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:data",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:networking",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:http",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:https",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:ssl",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:ci",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:deployment",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:integr",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:async-program",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:immut",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:program",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:inherit",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:search",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:structur",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:network",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:tl",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:deploy",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:app",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:api",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:on",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:js",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:ts",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:type",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:python",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:py",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:rust",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:go",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:asp",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:scala",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:c",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:less",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:annot",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:gener",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:io",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:documentation",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:analysis",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:synthesis",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:organization",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:learning",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:eq",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:understanding",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:respect",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:present",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:document",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:narr",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:plan",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:organ",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:analysi",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:synthesi",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:product",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:learn",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:understand",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:belong",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:git",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:github",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:version",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:control",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:commit",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:branch",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:image",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:kubernetes",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:infrastructure",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:as",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:code",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:web",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:merg",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:contain",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:imag",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:kubernet",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:infrastructur",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:aw",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openstrand-architecture.md",
-        "category": "skill:servic",
-        "score": 0.6210526315789474
-      },
-      {
         "file": "docs/schema-reference.md",
         "category": "ai",
         "score": 0.06115107913669065
@@ -11406,7 +11411,7 @@
       {
         "file": "docs/schema-reference.md",
         "category": "knowledge",
-        "score": 0.40540540540540543
+        "score": 0.4126984126984127
       },
       {
         "file": "docs/schema-reference.md",
@@ -11942,11 +11947,11 @@
     "fileWarnings": []
   },
   "vocabulary": {
-    "totalUniqueTerms": 383,
+    "totalUniqueTerms": 385,
     "suggestedAdditions": [
       {
         "term": "block",
-        "frequency": 8
+        "frequency": 9
       },
       {
         "term": "properties",
@@ -11957,7 +11962,7 @@
         "frequency": 4
       },
       {
-        "term": "openquarry",
+        "term": "frame",
         "frequency": 4
       },
       {
@@ -11981,18 +11986,6 @@
         "frequency": 3
       },
       {
-        "term": "topics",
-        "frequency": 3
-      },
-      {
-        "term": "frame",
-        "frequency": 3
-      },
-      {
-        "term": "threads",
-        "frequency": 3
-      },
-      {
         "term": "assets",
         "frequency": 3
       },
@@ -12013,6 +12006,10 @@
         "frequency": 3
       },
       {
+        "term": "golden",
+        "frequency": 3
+      },
+      {
         "term": "const",
         "frequency": 3
       },
@@ -12027,7 +12024,7 @@
     ]
   },
   "performance": {
-    "timeElapsed": "90.70s",
+    "timeElapsed": "90.85s",
     "cacheHitRate": "0%",
     "filesProcessed": 40,
     "filesCached": 0,
