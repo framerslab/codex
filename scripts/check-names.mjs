@@ -16,7 +16,8 @@
  * Task 2: prose files, and in code the URL, package and product names, quoted strings and JSX text). Code lines (identifiers,
  * comments), private lines (stored names), test, generated and history files stay out, as do the allowlisted paths, protected
  * identifiers, CamelCase identifiers on code lines (code, which the sweep does not rename), code quoted in prose (fenced blocks,
- * inline code), and a line that carries `rename-guard: keep` (a public line that keeps an old name on purpose, such as a migration
+ * inline code), frontmatter and YAML data lines (only title, summary, description and name values are copy), and a line that
+ * carries `rename-guard: keep` (a public line that keeps an old name on purpose, such as a migration
  * note). A path fails when it carries openstrand; the word strand in a path is the stored layout (looms/, strands/) or a route kept
  * as an alias, so paths are not held to it.
  *
@@ -141,8 +142,14 @@ if (renameDone) {
     const markdown = prose && !I18N_FILES.test(rel);
     // a fence closes only on the same marker, at least as long, with nothing after it (CommonMark)
     let fence = null;
-    text.split('\n').forEach((rawLine, i) => {
-      if (markdown) {
+    // frontmatter and YAML manifests hold data (ids, slugs, tags, topics, link targets, block tags); only display values are copy
+    const yaml = /\.ya?ml$/i.test(rel);
+    const allLines = text.split('\n');
+    let inFrontmatter = markdown && allLines[0].trim() === '---';
+    allLines.forEach((rawLine, i) => {
+      if (inFrontmatter && i > 0 && rawLine.trim() === '---') { inFrontmatter = false; return; }
+      if ((yaml || inFrontmatter) && !/^\s*(?:-\s*)?(?:title|summary|description|name)\s*:/.test(rawLine)) return;
+      if (markdown && !inFrontmatter) {
         const open = rawLine.match(/^\s{0,3}(`{3,}|~{3,})/);
         if (fence) {
           if (open && open[1][0] === fence[0] && open[1].length >= fence.length && /^\s*$/.test(rawLine.slice(open[0].length))) fence = null;
