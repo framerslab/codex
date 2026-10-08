@@ -231,6 +231,10 @@ if (renameDone) {
           const token = lineText.slice(a, b);
           // a compound token (strand-canvas-basics) inside a whitespace-free string is an id
           if (token !== hit[0] && idStrings.some(([x, y]) => start >= x && end <= y)) continue;
+          // in a whitespace-free string a word joined by '.', ':' or '/' to more of the string is a file name, a key or a path
+          // (strand.yml, `strand:${path}`); a separator that ends the string ('Strands:') leaves it copy
+          const inId = idStrings.find(([x, y]) => start >= x && end <= y);
+          if (inId && ((/[.:/]/.test(lineText[b]) && b + 1 < inId[1] - 1) || (/[.:/]/.test(lineText[a - 1]) && a - 2 > inId[0]))) continue;
           // a token with a slash on either side is a path segment (a route, a folder, a link target), in any file
           if ((a > 0 && lineText[a - 1] === '/') || lineText[b] === '/') continue;
           if (!prose && !inCopy(start, end)) continue;
