@@ -70,16 +70,21 @@ const KEEP = 'rename-guard: keep';
 // a test file's public rows are code in the classification; generated and history files are never renamed
 const outOfScope = (rel) => HISTORY_FILES.test(rel) || GENERATED_FILES.test(rel) || TEST_FILES.test(rel);
 const STORED_VALUE = PRIVATE_HINTS[5];
-const jsxText = (line) => {
-  // JSX text alone on its line: plain words, no quotes, braces or code punctuation, not a statement
-  if (/^\s*(\/\/|\/\*|\*|import\b|export\b|const\b|let\b|var\b|return\b|if\b|for\b|case\b|default\b|type\b|interface\b|function\b|\||[})\]])/.test(line)) return false;
-  const words = line.replace(/<[^>]+>/g, ' ');
-  if (/["'`{}=;()\[\]]/.test(words)) return false;
-  return (words.match(/[A-Za-z]+/g) || []).length >= 2;
+// the shape of a run of JSX text: words, no quotes, braces, code punctuation, comment marker, member access or object key
+// (a trailing comma is a sentence that wraps to the next line)
+const textShape = (t) => {
+  const w = t.replace(/<[^>]+>/g, ' ').trim();
+  if (!w || /["'`{}=;()\[\]]|=>|\/\/|\/\*|\w\.\w|^[\w$]+\s*:\s*\S/.test(w)) return false;
+  return /[A-Za-z]+\s+[A-Za-z]+/.test(w);
+};
+// JSX text alone on its line: a text shape, in JSX context (the previous line ended a tag, or was text itself), not a statement
+const jsxText = (line, prevEndsTag, prevText) => {
+  if (!(prevEndsTag || prevText)) return false;
+  if (/^\s*(\/\/|\/\*|\*|import\b|export\b|const\b|let\b|var\b|return\b|if\b|for\b|case\b|default\b|type\b|interface\b|function\b|\||[})\]<])/.test(line)) return false;
+  return textShape(line);
 };
 const isPublicLine = (rel, line) => {
   if (I18N_FILES.test(rel)) return true;
-  if (/\.[jt]sx$/.test(rel) && jsxText(line)) return true;
   // a protected stored value on the line (level: 'strand') must not hide the copy beside it (label: 'Strand')
   const rest = line.replace(STORED_VALUE, (m) => ' '.repeat(m.length));
   if (PRIVATE_HINTS.some((h) => h !== STORED_VALUE && h.test(line))) return false;
@@ -158,7 +163,11 @@ if (renameDone) {
     const yaml = /\.ya?ml$/i.test(rel);
     const allLines = text.split('\n');
     let inFrontmatter = markdown && allLines[0].trim() === '---';
+    const jsxFile = /\.[jt]sx$/.test(rel);
+    let prevEndsTag = false, prevText = false;
     allLines.forEach((rawLine, i) => {
+      const plainJsx = jsxFile && !prose && jsxText(rawLine, prevEndsTag, prevText);
+      if (rawLine.trim()) { prevEndsTag = /(?<!=)>\s*$/.test(rawLine); prevText = plainJsx; }
       if (inFrontmatter && i > 0 && rawLine.trim() === '---') { inFrontmatter = false; return; }
       if ((yaml || inFrontmatter) && !/^\s*(?:-\s*)?(?:title|summary|description|name)\s*:/.test(rawLine)) return;
       if (markdown && !inFrontmatter) {
@@ -188,10 +197,24 @@ if (renameDone) {
           for (const part of m[1].split(/(\{[^{}]*\})/)) { if (part && !part.startsWith('{')) copySpans.push([at, at + part.length]); at += part.length; }
         }
       }
-      // on a code line, copy is a string, JSX text between tags, or a line of plain JSX text; everything else is code
-      const plainJsx = !prose && /\.[jt]sx$/.test(rel) && jsxText(rawLine);
+      // on a code line, copy is a string, JSX text between or around tags, or a line of plain JSX text; everything else is code.
+      // Text around tags counts on a line that holds a JSX tag (a < that no identifier precedes, so Array<Strand> is not one)
+      // and is not a comment.
+      const aroundTags = [];
+      if (!prose && lineText.includes('>') && /(?<![\w$.])<\/?[A-Za-z]/.test(lineText) && !/^\s*(\/\/|\/\*|\*|\{\/\*)/.test(lineText)) {
+        const lastGt = lineText.lastIndexOf('>'), firstLt = lineText.indexOf('<');
+        if (!lineText.slice(lastGt + 1).includes('<') && textShape(lineText.slice(lastGt + 1))) aroundTags.push([lastGt + 1, lineText.length]);
+        if (firstLt > 0 && textShape(lineText.slice(0, firstLt))) aroundTags.push([0, firstLt]);
+        copySpans.push(...aroundTags);
+      }
       const inCopy = (x, y) => plainJsx || copySpans.some(([p, q]) => x >= p && y <= q);
-      if (rawLine.includes(KEEP) || !isPublicLine(rel, lineText)) return;
+      // a quoted string without whitespace that holds a hyphenated or underscored compound is an id or a slug, not copy
+      const idStrings = [];
+      // scanned on the line before ${...} blanking, so `strand-${id}` still reads as one token
+      if (!prose) for (const m of noCode.matchAll(/'[^'\s]*'|"[^"\s]*"|`[^`\s]*`/g)) idStrings.push([m.index, m.index + m[0].length]);
+      // a line the classification does not call public is still read for the JSX text around its tags, and only that text
+      const publicLine = plainJsx || isPublicLine(rel, lineText);
+      if (rawLine.includes(KEEP) || !(publicLine || aroundTags.length)) return;
       for (const [name, re] of PATTERNS) {
         re.lastIndex = 0;
         for (const hit of lineText.matchAll(re)) {
@@ -206,9 +229,12 @@ if (renameDone) {
           while (a > 0 && /[A-Za-z0-9_\-]/.test(lineText[a - 1])) a--;
           while (b < lineText.length && /[A-Za-z0-9_\-]/.test(lineText[b])) b++;
           const token = lineText.slice(a, b);
+          // a compound token (strand-canvas-basics) inside a whitespace-free string is an id
+          if (token !== hit[0] && idStrings.some(([x, y]) => start >= x && end <= y)) continue;
           // a token with a slash on either side is a path segment (a route, a folder, a link target), in any file
           if ((a > 0 && lineText[a - 1] === '/') || lineText[b] === '/') continue;
           if (!prose && !inCopy(start, end)) continue;
+          if (!publicLine && !aroundTags.some(([x, y]) => start >= x && end <= y)) continue;
           // on a code line a member access (.strands) is code, and so is a hit inside a path-like string
           if (!prose && a > 0 && lineText[a - 1] === '.') continue;
           if (pathSpans.some(([x, y]) => start >= x && end <= y)) continue;
