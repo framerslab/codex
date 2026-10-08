@@ -139,10 +139,17 @@ if (renameDone) {
     if (text.includes('\u0000')) continue;
     // in prose, code is quoted, not copy: fenced blocks and inline code spans keep the names they quote
     const markdown = prose && !I18N_FILES.test(rel);
-    let fenced = false;
+    // a fence closes only on the same marker, at least as long, with nothing after it (CommonMark)
+    let fence = null;
     text.split('\n').forEach((rawLine, i) => {
-      if (markdown && /^\s*(```|~~~)/.test(rawLine)) { fenced = !fenced; return; }
-      if (markdown && fenced) return;
+      if (markdown) {
+        const open = rawLine.match(/^\s{0,3}(`{3,}|~{3,})/);
+        if (fence) {
+          if (open && open[1][0] === fence[0] && open[1].length >= fence.length && /^\s*$/.test(rawLine.slice(open[0].length))) fence = null;
+          return;
+        }
+        if (open) { fence = open[1]; return; }
+      }
       // on a code line, code inside ${...} and a simple JSX expression ({strand.title}) keeps its names; the copy around it counts
       const blank = (span) => ' '.repeat(span.length);
       const lineText = markdown
