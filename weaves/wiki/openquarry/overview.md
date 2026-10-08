@@ -3,7 +3,7 @@ id: openstrand-overview
 slug: openstrand-overview
 title: OpenQuarry Overview
 summary: >-
-  What OpenStrand is, why it exists, and how strands, looms, and weaves map to
+  What OpenQuarry is, why it exists, and how threads, looms, and weaves map to
   the analog OS.
 version: 1.0.0
 contentType: markdown

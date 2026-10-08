@@ -3,8 +3,8 @@ id: openstrand-hierarchy
 slug: openstrand-hierarchy
 title: Hierarchy & Vocabulary
 summary: >-
-  Complete guide to OpenStrand hierarchical organization: Fabric, Weave, Loom,
-  and Strand.
+  Complete guide to OpenQuarry hierarchical organization: Fabric, Weave, Loom,
+  and Thread.
 version: 1.0.0
 contentType: reference
 difficulty: intermediate

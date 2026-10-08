@@ -3,7 +3,7 @@ id: 3c3ac6d5-8cc2-4106-9f4a-4f6134c3d0b2
 slug: openstrand-architecture
 title: OpenQuarry Architecture – Condensed Overview
 summary: >-
-  A practical, implementation-focused overview of OpenStrand's architecture for
+  A practical, implementation-focused overview of OpenQuarry's architecture for
   ingestion and RAG.
 version: 1.0.0
 contentType: reference

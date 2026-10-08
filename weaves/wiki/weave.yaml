@@ -5,7 +5,7 @@ description: "Knowledge base - contains Frame documentation, OpenQuarry spec, an
 scope: |
   This weave contains reference documentation and knowledge:
   - Frame application documentation and guides
-  - OpenStrand specification and schema docs
+  - OpenQuarry format and schema docs
   - Technical architecture documentation
   - Contribution guides and development docs
   - General knowledge and reference material
@@ -18,7 +18,7 @@ boundaries: |
 
 looms:
   - frame
-  - openstrand
+  - openquarry
   - architecture
   - contributing
   - development

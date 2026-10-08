@@ -9,7 +9,7 @@ tags: [frame, documentation, guides, application]
 ordering: manual
 
 relationships:
-  - targetSlug: openstrand
+  - targetSlug: openquarry
     type: extends
     strength: 0.8
   - targetSlug: architecture

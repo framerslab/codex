@@ -1,0 +1,17 @@
+slug: openquarry
+title: "OpenQuarry Specification"
+summary: |
+  The OpenQuarry specification and schema documentation.
+  Defines the portable, open format for knowledge threads.
+
+tags: [openquarry, openstrand, specification, schema, format, interoperability]
+
+ordering: manual
+
+relationships:
+  - targetSlug: frame
+    type: applies
+    strength: 0.9
+  - targetSlug: architecture
+    type: extends
+    strength: 0.6

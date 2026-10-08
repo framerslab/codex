@@ -1774,7 +1774,7 @@ codex/
 │   │   └── ...
 │   ├── frame/          # Frame ecosystem knowledge
 │   │   ├── weave.yaml
-│   │   ├── openstrand/      # Loom (folder)
+│   │   ├── openquarry/      # Loom (folder)
 │   │   │   └── architecture.md  # Strand (markdown file)
 │   │   └── ...
 │   └── technology/     # Tech & CS content
