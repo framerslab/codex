@@ -172,6 +172,8 @@ if (renameDone) {
           while (a > 0 && /[A-Za-z0-9_\-]/.test(lineText[a - 1])) a--;
           while (b < lineText.length && /[A-Za-z0-9_\-]/.test(lineText[b])) b++;
           const token = lineText.slice(a, b);
+          // on a code line an object key (`strand: ...`, `{ strands: 12 }`) is code, not copy
+          if (!prose && lineText[b] === ':' && lineText[b + 1] !== ':' && (a === 0 || /[\s{,(]/.test(lineText[a - 1]))) continue;
           const quoted = a > 0 && /["'`]/.test(lineText[a - 1]) && b < lineText.length && /["'`]/.test(lineText[b]);
           const bare = /^(open)?strands?$/i.test(token);
           // a bare word (strand, strands, openstrand) is a protected stored value only as a quoted literal; any other protected identifier is exempt by its exact token
