@@ -168,9 +168,9 @@ export function parseMarkdownToBlocks(content) {
       continue;
     }
 
-    // Handle empty lines
+    // A blank line ends whatever block is open (a code block keeps its blank lines: it is handled above)
     if (trimmed === '') {
-      if (currentBlock && currentBlock.type !== BLOCK_TYPES.PARAGRAPH) {
+      if (currentBlock) {
         currentBlock.endLine = lineNum - 1;
         blocks.push(currentBlock);
         currentBlock = null;
