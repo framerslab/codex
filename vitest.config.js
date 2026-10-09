@@ -19,6 +19,8 @@ export default defineConfig({
       reportsDirectory: './coverage',
       include: [
         'scripts/**/*.js',
+        'scripts/markdown-blocks.mjs',
+        'scripts/block-scoring.mjs',
         'lib/**/*.js'
       ],
       exclude: [

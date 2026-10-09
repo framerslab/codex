@@ -1,8 +1,7 @@
 /**
- * Unit tests for block-processor.js
- * 
- * Tests block parsing, worthiness scoring, and frontmatter updates.
- * 
+ * Unit tests for the block processor: the Markdown parser (scripts/markdown-blocks.mjs) and the worthiness scoring
+ * (scripts/block-scoring.mjs). Both are the modules the index job runs; nothing here is a copy.
+ *
  * Run: npx vitest run tests/block-processor.test.js
  */
 
@@ -10,106 +9,17 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import fs from 'fs'
 import path from 'path'
 import os from 'os'
-import { parseMarkdownToBlocks } from '../scripts/markdown-blocks.mjs'
-
-// The parser is the script's own (scripts/markdown-blocks.mjs). The scoring helpers below are copies of the
-// script's logic (block-processor.js runs its command line on import, so they cannot be imported from it).
-
-// ============================================================================
-// MOCK IMPLEMENTATIONS (extracted logic for testing)
-// ============================================================================
-
-const BLOCK_TYPES = {
-  HEADING: 'heading',
-  PARAGRAPH: 'paragraph',
-  CODE: 'code',
-  LIST: 'list',
-  BLOCKQUOTE: 'blockquote',
-  TABLE: 'table',
-  HTML: 'html'
-}
-
-function generateSlug(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .slice(0, 50)
-}
-
-function tokenize(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s]/g, ' ')
-    .split(/\s+/)
-    .filter(w => w.length > 2)
-}
-
-function termFrequency(tokens) {
-  const tf = {}
-  for (const token of tokens) {
-    tf[token] = (tf[token] || 0) + 1
-  }
-  const max = Math.max(...Object.values(tf), 1)
-  for (const token in tf) {
-    tf[token] /= max
-  }
-  return tf
-}
-
-function cosineSimilarity(tf1, tf2) {
-  const allTerms = new Set([...Object.keys(tf1), ...Object.keys(tf2)])
-  let dotProduct = 0
-  let norm1 = 0
-  let norm2 = 0
-
-  for (const term of allTerms) {
-    const v1 = tf1[term] || 0
-    const v2 = tf2[term] || 0
-    dotProduct += v1 * v2
-    norm1 += v1 * v1
-    norm2 += v2 * v2
-  }
-
-  if (norm1 === 0 || norm2 === 0) return 0
-  return dotProduct / (Math.sqrt(norm1) * Math.sqrt(norm2))
-}
-
-function calculateEntityDensity(text) {
-  const words = text.split(/\s+/).filter(w => w.length > 0)
-  if (words.length === 0) return 0
-
-  let entityCount = 0
-  const capitalizedWords = words.filter(w => /^[A-Z][a-z]/.test(w))
-  entityCount += capitalizedWords.length
-  
-  const technicalTerms = words.filter(w => 
-    /[a-z][A-Z]/.test(w) || /_/.test(w) || /^[A-Z]{2,}$/.test(w)
-  )
-  entityCount += technicalTerms.length
-
-  return Math.min(1, entityCount / words.length)
-}
-
-function calculateStructuralImportance(block, blockIndex, totalBlocks) {
-  let score = 0
-
-  if (block.type === BLOCK_TYPES.HEADING) {
-    score = 1 - (block.headingLevel - 1) * 0.15
-  } else if (block.type === BLOCK_TYPES.CODE) {
-    score = 0.7
-  } else if (block.type === BLOCK_TYPES.PARAGRAPH) {
-    const text = (block.content || []).join(' ')
-    const wordCount = text.split(/\s+/).length
-    score = Math.min(0.5, 0.2 + wordCount * 0.005)
-  }
-
-  if (blockIndex < 3) score += 0.1
-  if (blockIndex >= totalBlocks - 2) score += 0.05
-
-  return Math.min(1, Math.max(0, score))
-}
+import { parseMarkdownToBlocks, generateSlug } from '../scripts/markdown-blocks.mjs'
+import {
+  tokenize,
+  termFrequency,
+  cosineSimilarity,
+  calculateTopicShift,
+  calculateEntityDensity,
+  calculateSemanticNovelty,
+  calculateStructuralImportance,
+  calculateWorthiness,
+} from '../scripts/block-scoring.mjs'
 
 // ============================================================================
 // TESTS
@@ -166,6 +76,30 @@ describe('Block Processor', () => {
       
       const codeBlocks = blocks.filter(b => b.type === 'code')
       expect(codeBlocks).toHaveLength(2)
+    })
+
+    it('should type blockquotes, lists, tables and HTML, each ending at a blank line', () => {
+      const content = [
+        '> A quote',
+        '> on two lines',
+        '',
+        '- one',
+        '- two',
+        '- three',
+        '',
+        '| a | b |',
+        '|---|---|',
+        '| 1 | 2 |',
+        '',
+        '<div class="note"></div>',
+      ].join('\n')
+      const blocks = parseMarkdownToBlocks(content)
+      expect(blocks.map(b => [b.type, b.line, b.endLine])).toEqual([
+        ['blockquote', 1, 2],
+        ['list', 4, 6],
+        ['table', 8, 10],
+        ['html', 12, 12],
+      ])
     })
   })
 
@@ -296,6 +230,28 @@ describe('Block Processor', () => {
       
       expect(earlyScore).toBeGreaterThan(lateScore)
     })
+  })
+})
+
+describe('Worthiness scoring', () => {
+  it('scores the first block and a block without a document as neutral', () => {
+    expect(calculateTopicShift({ word: 1 }, null)).toBe(0.5)
+    expect(calculateTopicShift({ word: 1 }, {})).toBe(0.5)
+    expect(calculateSemanticNovelty({ word: 1 }, {})).toBe(0.5)
+    expect(calculateTopicShift({ word: 1 }, { word: 1 })).toBeCloseTo(0)
+    expect(calculateSemanticNovelty({ word: 1 }, { other: 1 })).toBe(1)
+  })
+
+  it('weights the four signals into one score, rounded to three places', () => {
+    const block = { type: 'heading', headingLevel: 1, content: ['# The Parser'] }
+    const result = calculateWorthiness(block, 0, 10, null, {})
+    // a first H1: structural 1 (1 + 0.1, capped), neutral shift and novelty, entity density 2 of 3 words
+    expect(result.signals).toEqual({ topicShift: 0.5, entityDensity: 0.667, semanticNovelty: 0.5, structuralImportance: 1 })
+    expect(result.score).toBe(Math.round((0.5 * 0.2 + (2 / 3) * 0.25 + 0.5 * 0.2 + 1 * 0.35) * 1000) / 1000)
+  })
+
+  it('counts code-like tokens at half weight in the entity density', () => {
+    expect(calculateEntityDensity('call foo() now')).toBeCloseTo(0.5 / 3)
   })
 })
 
