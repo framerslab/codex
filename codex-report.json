@@ -12019,7 +12019,7 @@
     ]
   },
   "performance": {
-    "timeElapsed": "93.43s",
+    "timeElapsed": "57.13s",
     "cacheHitRate": "0%",
     "filesProcessed": 40,
     "filesCached": 0,
