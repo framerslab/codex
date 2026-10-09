@@ -10,9 +10,10 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import fs from 'fs'
 import path from 'path'
 import os from 'os'
+import { parseMarkdownToBlocks } from '../scripts/markdown-blocks.mjs'
 
-// Mock the block processor functions (we'll test the logic, not the CLI)
-// In a real scenario, you'd export these from block-processor.js
+// The parser is the script's own (scripts/markdown-blocks.mjs). The scoring helpers below are copies of the
+// script's logic (block-processor.js runs its command line on import, so they cannot be imported from it).
 
 // ============================================================================
 // MOCK IMPLEMENTATIONS (extracted logic for testing)
@@ -26,101 +27,6 @@ const BLOCK_TYPES = {
   BLOCKQUOTE: 'blockquote',
   TABLE: 'table',
   HTML: 'html'
-}
-
-function parseMarkdownToBlocks(content) {
-  const lines = content.split('\n')
-  const blocks = []
-  let currentBlock = null
-  let inCodeBlock = false
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
-    const lineNum = i + 1
-    const trimmed = line.trim()
-
-    // Handle code blocks
-    if (trimmed.startsWith('```')) {
-      if (!inCodeBlock) {
-        if (currentBlock) {
-          currentBlock.endLine = lineNum - 1
-          blocks.push(currentBlock)
-        }
-        currentBlock = {
-          type: BLOCK_TYPES.CODE,
-          line: lineNum,
-          content: []
-        }
-        inCodeBlock = true
-      } else {
-        currentBlock.content.push(line)
-        currentBlock.endLine = lineNum
-        blocks.push(currentBlock)
-        currentBlock = null
-        inCodeBlock = false
-      }
-      continue
-    }
-
-    if (inCodeBlock) {
-      currentBlock.content.push(line)
-      continue
-    }
-
-    // Handle headings
-    const headingMatch = line.match(/^(#{1,6})\s+(.+)$/)
-    if (headingMatch) {
-      if (currentBlock) {
-        currentBlock.endLine = lineNum - 1
-        blocks.push(currentBlock)
-      }
-      const level = headingMatch[1].length
-      const text = headingMatch[2].trim()
-      
-      currentBlock = {
-        type: BLOCK_TYPES.HEADING,
-        line: lineNum,
-        endLine: lineNum,
-        headingLevel: level,
-        headingText: text,
-        content: [line]
-      }
-      blocks.push(currentBlock)
-      currentBlock = null
-      continue
-    }
-
-    // Handle empty lines
-    if (trimmed === '') {
-      if (currentBlock && currentBlock.type !== BLOCK_TYPES.PARAGRAPH) {
-        currentBlock.endLine = lineNum - 1
-        blocks.push(currentBlock)
-        currentBlock = null
-      }
-      continue
-    }
-
-    // Default: paragraph
-    if (!currentBlock || currentBlock.type !== BLOCK_TYPES.PARAGRAPH) {
-      if (currentBlock) {
-        currentBlock.endLine = lineNum - 1
-        blocks.push(currentBlock)
-      }
-      currentBlock = {
-        type: BLOCK_TYPES.PARAGRAPH,
-        line: lineNum,
-        content: []
-      }
-    }
-    currentBlock.content.push(line)
-  }
-
-  if (currentBlock) {
-    currentBlock.endLine = lines.length
-    blocks.push(currentBlock)
-  }
-
-  return blocks
 }
 
 function generateSlug(text) {
