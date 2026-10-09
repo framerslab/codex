@@ -134,7 +134,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-09T05:24:50.193Z"
+        "lastIndexed": "2026-10-09T05:27:04.865Z"
       }
     },
     "validation": {
@@ -281,7 +281,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-09T05:24:50.226Z"
+        "lastIndexed": "2026-10-09T05:27:04.906Z"
       }
     },
     "validation": {
@@ -425,7 +425,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-09T05:24:50.282Z"
+        "lastIndexed": "2026-10-09T05:27:04.944Z"
       }
     },
     "validation": {
@@ -564,7 +564,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-09T05:24:50.300Z"
+        "lastIndexed": "2026-10-09T05:27:04.965Z"
       }
     },
     "validation": {
@@ -655,7 +655,7 @@
         {
           "id": "block-2",
           "line": 2,
-          "endLine": 3,
+          "endLine": 2,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -1107,7 +1107,7 @@
             "RAG & Search"
           ]
         },
-        "lastIndexed": "2026-10-09T05:24:50.349Z"
+        "lastIndexed": "2026-10-09T05:27:05.038Z"
       }
     },
     "validation": {
@@ -1241,7 +1241,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-09T05:24:50.369Z"
+        "lastIndexed": "2026-10-09T05:27:05.059Z"
       }
     },
     "validation": {
@@ -1342,7 +1342,7 @@
         {
           "id": "block-4",
           "line": 4,
-          "endLine": 5,
+          "endLine": 4,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -1438,7 +1438,7 @@
         {
           "id": "block-11",
           "line": 11,
-          "endLine": 12,
+          "endLine": 11,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -1529,7 +1529,7 @@
         {
           "id": "block-17",
           "line": 17,
-          "endLine": 18,
+          "endLine": 17,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -1695,7 +1695,7 @@
         {
           "id": "block-30",
           "line": 30,
-          "endLine": 31,
+          "endLine": 30,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -1877,7 +1877,7 @@
         {
           "id": "block-59",
           "line": 59,
-          "endLine": 60,
+          "endLine": 59,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -2595,7 +2595,7 @@
         {
           "id": "block-105",
           "line": 105,
-          "endLine": 106,
+          "endLine": 105,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -2712,7 +2712,7 @@
         {
           "id": "block-115",
           "line": 115,
-          "endLine": 116,
+          "endLine": 115,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -2822,7 +2822,7 @@
         {
           "id": "block-125",
           "line": 125,
-          "endLine": 126,
+          "endLine": 125,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -2944,7 +2944,7 @@
         {
           "id": "block-135",
           "line": 135,
-          "endLine": 136,
+          "endLine": 135,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -3753,7 +3753,7 @@
         {
           "id": "block-211",
           "line": 211,
-          "endLine": 212,
+          "endLine": 211,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -3991,7 +3991,7 @@
             "- Rich"
           ]
         },
-        "lastIndexed": "2026-10-09T05:24:50.582Z"
+        "lastIndexed": "2026-10-09T05:27:05.339Z"
       }
     },
     "validation": {
@@ -4086,7 +4086,7 @@
         {
           "id": "block-4",
           "line": 4,
-          "endLine": 5,
+          "endLine": 4,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -4255,7 +4255,7 @@
         {
           "id": "block-24",
           "line": 24,
-          "endLine": 25,
+          "endLine": 24,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -5491,7 +5491,7 @@
             "Hierarchy & Vocabulary"
           ]
         },
-        "lastIndexed": "2026-10-09T05:24:50.710Z"
+        "lastIndexed": "2026-10-09T05:27:05.518Z"
       }
     },
     "validation": {
@@ -5632,7 +5632,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-09T05:24:50.762Z"
+        "lastIndexed": "2026-10-09T05:27:05.561Z"
       }
     },
     "validation": {
@@ -5775,7 +5775,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-09T05:24:50.806Z"
+        "lastIndexed": "2026-10-09T05:27:05.616Z"
       }
     },
     "validation": {
@@ -6350,7 +6350,7 @@
             "\"lesson"
           ]
         },
-        "lastIndexed": "2026-10-09T05:24:51.049Z"
+        "lastIndexed": "2026-10-09T05:27:05.942Z"
       }
     },
     "validation": {
@@ -6535,7 +6535,7 @@
             "Emerald |"
           ]
         },
-        "lastIndexed": "2026-10-09T05:24:51.446Z"
+        "lastIndexed": "2026-10-09T05:27:06.437Z"
       }
     },
     "validation": {
@@ -6779,7 +6779,7 @@
             "- **Rich"
           ]
         },
-        "lastIndexed": "2026-10-09T05:24:51.954Z"
+        "lastIndexed": "2026-10-09T05:27:07.069Z"
       }
     },
     "validation": {
@@ -6871,7 +6871,7 @@
         {
           "id": "block-3",
           "line": 3,
-          "endLine": 4,
+          "endLine": 3,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -7275,7 +7275,7 @@
         {
           "id": "block-45",
           "line": 45,
-          "endLine": 46,
+          "endLine": 45,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -7410,7 +7410,7 @@
         {
           "id": "block-53",
           "line": 53,
-          "endLine": 54,
+          "endLine": 53,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -7581,7 +7581,7 @@
         {
           "id": "block-71",
           "line": 71,
-          "endLine": 72,
+          "endLine": 71,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -7679,7 +7679,7 @@
         {
           "id": "block-77",
           "line": 77,
-          "endLine": 78,
+          "endLine": 77,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -8924,7 +8924,7 @@
         {
           "id": "block-164",
           "line": 164,
-          "endLine": 165,
+          "endLine": 164,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -9155,7 +9155,7 @@
         {
           "id": "block-183",
           "line": 183,
-          "endLine": 184,
+          "endLine": 183,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -9382,7 +9382,7 @@
         {
           "id": "block-200",
           "line": 200,
-          "endLine": 201,
+          "endLine": 200,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -9472,7 +9472,7 @@
         {
           "id": "block-211",
           "line": 211,
-          "endLine": 212,
+          "endLine": 211,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -9558,7 +9558,7 @@
         {
           "id": "block-215",
           "line": 215,
-          "endLine": 216,
+          "endLine": 215,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -9631,7 +9631,7 @@
         {
           "id": "block-222",
           "line": 222,
-          "endLine": 223,
+          "endLine": 222,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -9710,7 +9710,7 @@
         {
           "id": "block-230",
           "line": 230,
-          "endLine": 231,
+          "endLine": 230,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -9797,7 +9797,7 @@
         {
           "id": "block-234",
           "line": 234,
-          "endLine": 235,
+          "endLine": 234,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -10026,7 +10026,7 @@
         {
           "id": "block-264",
           "line": 264,
-          "endLine": 265,
+          "endLine": 264,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -10325,7 +10325,7 @@
         {
           "id": "block-299",
           "line": 299,
-          "endLine": 300,
+          "endLine": 299,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -10404,7 +10404,7 @@
         {
           "id": "block-307",
           "line": 307,
-          "endLine": 308,
+          "endLine": 307,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -10490,7 +10490,7 @@
         {
           "id": "block-311",
           "line": 311,
-          "endLine": 312,
+          "endLine": 311,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -10586,16 +10586,10 @@
         {
           "id": "block-322",
           "line": 322,
-          "endLine": 325,
+          "endLine": 322,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
-            {
-              "tag": "ref-41",
-              "confidence": 1,
-              "source": "inline",
-              "reasoning": "Explicit inline hashtag in content"
-            },
             {
               "tag": "high-stakes",
               "confidence": 0.6,
@@ -10622,14 +10616,57 @@
             }
           ],
           "worthiness": {
-            "score": 0.481,
+            "score": 0.482,
             "signals": {
               "topicShift": 0.859,
-              "entityDensity": 0.263,
-              "semanticNovelty": 0.701,
-              "structuralImportance": 0.295
+              "entityDensity": 0.182,
+              "semanticNovelty": 0.88,
+              "structuralImportance": 0.255
             }
           }
+        },
+        {
+          "id": "block-324",
+          "line": 324,
+          "endLine": 324,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "ref-41",
+              "confidence": 1,
+              "source": "inline",
+              "reasoning": "Explicit inline hashtag in content"
+            },
+            {
+              "tag": "openai",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "graders",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "guide",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            }
+          ],
+          "worthiness": {
+            "score": 0.515,
+            "signals": {
+              "topicShift": 1,
+              "entityDensity": 0.375,
+              "semanticNovelty": 0.685,
+              "structuralImportance": 0.24
+            }
+          },
+          "extractiveSummary": "OpenAI's graders guide [[41]](#ref-41) provides modern rubric patterns"
         },
         {
           "id": "human-review-calibration-audits",
@@ -10660,9 +10697,9 @@
             }
           ],
           "worthiness": {
-            "score": 0.774,
+            "score": 0.798,
             "signals": {
-              "topicShift": 0.882,
+              "topicShift": 1,
               "entityDensity": 0.667,
               "semanticNovelty": 0.931,
               "structuralImportance": 0.7
@@ -10672,7 +10709,7 @@
         {
           "id": "block-328",
           "line": 328,
-          "endLine": 329,
+          "endLine": 328,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -10990,7 +11027,7 @@
         {
           "id": "block-351",
           "line": 351,
-          "endLine": 352,
+          "endLine": 351,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -11106,7 +11143,7 @@
         {
           "id": "block-360",
           "line": 360,
-          "endLine": 361,
+          "endLine": 360,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -11278,7 +11315,7 @@
         {
           "id": "block-389",
           "line": 389,
-          "endLine": 390,
+          "endLine": 389,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -11375,7 +11412,7 @@
         {
           "id": "block-398",
           "line": 398,
-          "endLine": 399,
+          "endLine": 398,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -11473,7 +11510,7 @@
         {
           "id": "block-404",
           "line": 404,
-          "endLine": 405,
+          "endLine": 404,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -11932,7 +11969,7 @@
         {
           "id": "block-454",
           "line": 454,
-          "endLine": 455,
+          "endLine": 454,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -12208,7 +12245,7 @@
         {
           "id": "block-488",
           "line": 488,
-          "endLine": 489,
+          "endLine": 488,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -12995,7 +13032,7 @@
         {
           "id": "block-566",
           "line": 566,
-          "endLine": 567,
+          "endLine": 566,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -15760,7 +15797,7 @@
             "RAG systems"
           ]
         },
-        "lastIndexed": "2026-10-09T05:24:53.402Z"
+        "lastIndexed": "2026-10-09T05:27:08.886Z"
       }
     },
     "validation": {
@@ -18506,7 +18543,7 @@
             "Producer & Consumer"
           ]
         },
-        "lastIndexed": "2026-10-09T05:24:55.101Z"
+        "lastIndexed": "2026-10-09T05:27:11.067Z"
       }
     },
     "validation": {
@@ -22905,7 +22942,7 @@
         {
           "id": "block-3655",
           "line": 3655,
-          "endLine": 3662,
+          "endLine": 3655,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -23204,7 +23241,7 @@
             "s1 & s2"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:02.500Z"
+        "lastIndexed": "2026-10-09T05:27:20.619Z"
       }
     },
     "validation": {
@@ -29467,7 +29504,7 @@
             "Intersection & Union"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:09.945Z"
+        "lastIndexed": "2026-10-09T05:27:30.265Z"
       }
     },
     "validation": {
@@ -29566,7 +29603,7 @@
         {
           "id": "block-4",
           "line": 4,
-          "endLine": 5,
+          "endLine": 4,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -30030,7 +30067,7 @@
         {
           "id": "block-52",
           "line": 52,
-          "endLine": 53,
+          "endLine": 52,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -30102,7 +30139,7 @@
         {
           "id": "block-58",
           "line": 58,
-          "endLine": 59,
+          "endLine": 58,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -30188,7 +30225,7 @@
         {
           "id": "block-62",
           "line": 62,
-          "endLine": 63,
+          "endLine": 62,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -30964,7 +31001,7 @@
         {
           "id": "block-124",
           "line": 124,
-          "endLine": 125,
+          "endLine": 124,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -31489,7 +31526,7 @@
             "- Rich"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:11.791Z"
+        "lastIndexed": "2026-10-09T05:27:32.582Z"
       }
     },
     "validation": {
@@ -31544,7 +31581,7 @@
         {
           "id": "block-3",
           "line": 3,
-          "endLine": 4,
+          "endLine": 3,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -31612,7 +31649,7 @@
         {
           "id": "block-7",
           "line": 7,
-          "endLine": 8,
+          "endLine": 7,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -31804,7 +31841,7 @@
         {
           "id": "block-41",
           "line": 41,
-          "endLine": 42,
+          "endLine": 41,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -31926,7 +31963,7 @@
         {
           "id": "block-50",
           "line": 50,
-          "endLine": 51,
+          "endLine": 50,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -32155,7 +32192,7 @@
         {
           "id": "block-64",
           "line": 64,
-          "endLine": 65,
+          "endLine": 64,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -32464,7 +32501,7 @@
         {
           "id": "block-86",
           "line": 86,
-          "endLine": 87,
+          "endLine": 86,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -32929,7 +32966,7 @@
         {
           "id": "block-162",
           "line": 162,
-          "endLine": 163,
+          "endLine": 162,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -33051,7 +33088,7 @@
         {
           "id": "block-195",
           "line": 195,
-          "endLine": 196,
+          "endLine": 195,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -34289,31 +34326,13 @@
         {
           "id": "block-335",
           "line": 335,
-          "endLine": 338,
+          "endLine": 335,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
             {
-              "tag": "question",
-              "confidence": 0.55,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
-            },
-            {
               "tag": "understanding",
-              "confidence": 0.5,
-              "source": "nlp",
-              "reasoning": "TF-IDF keyword extraction"
-            },
-            {
-              "tag": "just",
-              "confidence": 0.5,
-              "source": "nlp",
-              "reasoning": "TF-IDF keyword extraction"
-            },
-            {
-              "tag": "this",
-              "confidence": 0.5,
+              "confidence": 0.6,
               "source": "nlp",
               "reasoning": "TF-IDF keyword extraction"
             },
@@ -34322,18 +34341,84 @@
               "confidence": 0.44999999999999996,
               "source": "existing",
               "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "question",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "frame",
+              "confidence": 0.375,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "codex",
+              "confidence": 0.375,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
             }
           ],
           "worthiness": {
-            "score": 0.535,
+            "score": 0.508,
             "signals": {
               "topicShift": 1,
-              "entityDensity": 0.169,
-              "semanticNovelty": 0.59,
-              "structuralImportance": 0.5
+              "entityDensity": 0.162,
+              "semanticNovelty": 0.662,
+              "structuralImportance": 0.385
             }
           },
           "extractiveSummary": "The Frame Codex Q&A system transforms the act of questioning from mere retrieval into a journey of discovery"
+        },
+        {
+          "id": "block-337",
+          "line": 337,
+          "endLine": 337,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "this",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "question",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "questions",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "understanding",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "every",
+              "confidence": 0.375,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            }
+          ],
+          "worthiness": {
+            "score": 0.483,
+            "signals": {
+              "topicShift": 0.889,
+              "entityDensity": 0.18,
+              "semanticNovelty": 0.731,
+              "structuralImportance": 0.325
+            }
+          }
         },
         {
           "id": "block-339",
@@ -34355,7 +34440,7 @@
         {
           "id": "block-341",
           "line": 341,
-          "endLine": 346,
+          "endLine": 345,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -34563,7 +34648,7 @@
             "PAT             │"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:14.486Z"
+        "lastIndexed": "2026-10-09T05:27:35.939Z"
       }
     },
     "validation": {
@@ -34631,7 +34716,7 @@
         {
           "id": "block-3",
           "line": 3,
-          "endLine": 4,
+          "endLine": 3,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -34711,36 +34796,78 @@
         {
           "id": "block-7",
           "line": 7,
-          "endLine": 10,
+          "endLine": 7,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
             {
-              "tag": "images",
-              "confidence": 0.55,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
-            },
-            {
               "tag": "single",
-              "confidence": 0.375,
+              "confidence": 0.6,
               "source": "nlp",
               "reasoning": "TF-IDF keyword extraction"
             },
             {
               "tag": "display",
-              "confidence": 0.375,
+              "confidence": 0.6,
               "source": "nlp",
               "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "images",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
             }
           ],
           "worthiness": {
-            "score": 0.366,
+            "score": 0.443,
             "signals": {
               "topicShift": 0.646,
-              "entityDensity": 0.357,
-              "semanticNovelty": 0.324,
-              "structuralImportance": 0.235
+              "entityDensity": 0.375,
+              "semanticNovelty": 0.715,
+              "structuralImportance": 0.22
+            }
+          }
+        },
+        {
+          "id": "block-9",
+          "line": 9,
+          "endLine": 9,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "beautiful",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "sunset",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "https",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "images",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            }
+          ],
+          "worthiness": {
+            "score": 0.392,
+            "signals": {
+              "topicShift": 0.842,
+              "entityDensity": 0.333,
+              "semanticNovelty": 0.326,
+              "structuralImportance": 0.215
             }
           }
         },
@@ -34785,7 +34912,55 @@
         {
           "id": "block-13",
           "line": 13,
-          "endLine": 20,
+          "endLine": 13,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "when",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "have",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "more",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "images",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "gallery",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            }
+          ],
+          "worthiness": {
+            "score": 0.459,
+            "signals": {
+              "topicShift": 0.84,
+              "entityDensity": 0.206,
+              "semanticNovelty": 0.697,
+              "structuralImportance": 0.285
+            }
+          }
+        },
+        {
+          "id": "block-15",
+          "line": 15,
+          "endLine": 19,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -34797,30 +34972,24 @@
             },
             {
               "tag": "https",
-              "confidence": 0.6,
-              "source": "nlp",
-              "reasoning": "TF-IDF keyword extraction"
+              "confidence": 0.7,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
             },
             {
               "tag": "unsplash",
               "confidence": 0.6,
               "source": "nlp",
               "reasoning": "TF-IDF keyword extraction"
-            },
-            {
-              "tag": "gallery",
-              "confidence": 0.44999999999999996,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
             }
           ],
           "worthiness": {
-            "score": 0.409,
+            "score": 0.418,
             "signals": {
-              "topicShift": 0.958,
-              "entityDensity": 0.315,
-              "semanticNovelty": 0.107,
-              "structuralImportance": 0.335
+              "topicShift": 0.894,
+              "entityDensity": 0.5,
+              "semanticNovelty": 0.133,
+              "structuralImportance": 0.25
             }
           }
         },
@@ -34853,9 +35022,9 @@
             }
           ],
           "worthiness": {
-            "score": 0.777,
+            "score": 0.785,
             "signals": {
-              "topicShift": 0.958,
+              "topicShift": 1,
               "entityDensity": 0.5,
               "semanticNovelty": 0.814,
               "structuralImportance": 0.85
@@ -34865,7 +35034,55 @@
         {
           "id": "block-23",
           "line": 23,
-          "endLine": 29,
+          "endLine": 23,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "preserves",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "your",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "gallery",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "images",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "captions",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            }
+          ],
+          "worthiness": {
+            "score": 0.398,
+            "signals": {
+              "topicShift": 0.592,
+              "entityDensity": 0.167,
+              "semanticNovelty": 0.763,
+              "structuralImportance": 0.245
+            }
+          }
+        },
+        {
+          "id": "block-25",
+          "line": 25,
+          "endLine": 28,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -34886,27 +35103,15 @@
               "confidence": 0.7,
               "source": "existing",
               "reasoning": "Consistent with prior block tags"
-            },
-            {
-              "tag": "gallery",
-              "confidence": 0.44999999999999996,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
-            },
-            {
-              "tag": "captions",
-              "confidence": 0.44999999999999996,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
             }
           ],
           "worthiness": {
-            "score": 0.445,
+            "score": 0.495,
             "signals": {
-              "topicShift": 0.898,
-              "entityDensity": 0.5,
-              "semanticNovelty": 0.132,
-              "structuralImportance": 0.325
+              "topicShift": 0.967,
+              "entityDensity": 0.688,
+              "semanticNovelty": 0.158,
+              "structuralImportance": 0.28
             }
           }
         },
@@ -34945,30 +35150,24 @@
         {
           "id": "block-32",
           "line": 32,
-          "endLine": 41,
+          "endLine": 32,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
             {
-              "tag": "unsplash",
-              "confidence": 0.7,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
+              "tag": "regular",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
             },
             {
-              "tag": "images",
-              "confidence": 0.7,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
+              "tag": "text",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
             },
             {
-              "tag": "https",
-              "confidence": 0.7,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
-            },
-            {
-              "tag": "image",
+              "tag": "breaks",
               "confidence": 0.6,
               "source": "nlp",
               "reasoning": "TF-IDF keyword extraction"
@@ -34981,12 +35180,134 @@
             }
           ],
           "worthiness": {
-            "score": 0.432,
+            "score": 0.505,
             "signals": {
               "topicShift": 1,
-              "entityDensity": 0.389,
-              "semanticNovelty": 0.168,
-              "structuralImportance": 0.29
+              "entityDensity": 0.25,
+              "semanticNovelty": 0.808,
+              "structuralImportance": 0.23
+            }
+          },
+          "extractiveSummary": "Regular text breaks the gallery grouping:"
+        },
+        {
+          "id": "block-34",
+          "line": 34,
+          "endLine": 35,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "images",
+              "confidence": 0.7,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "image",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "https",
+              "confidence": 0.55,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "unsplash",
+              "confidence": 0.55,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            }
+          ],
+          "worthiness": {
+            "score": 0.445,
+            "signals": {
+              "topicShift": 1,
+              "entityDensity": 0.5,
+              "semanticNovelty": 0.217,
+              "structuralImportance": 0.22
+            }
+          }
+        },
+        {
+          "id": "block-37",
+          "line": 37,
+          "endLine": 37,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "some",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "between",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "text",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            }
+          ],
+          "worthiness": {
+            "score": 0.556,
+            "signals": {
+              "topicShift": 1,
+              "entityDensity": 0.375,
+              "semanticNovelty": 0.928,
+              "structuralImportance": 0.22
+            }
+          },
+          "extractiveSummary": "Some text in between"
+        },
+        {
+          "id": "block-39",
+          "line": 39,
+          "endLine": 40,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "images",
+              "confidence": 0.7,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "image",
+              "confidence": 0.7,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "https",
+              "confidence": 0.55,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "unsplash",
+              "confidence": 0.55,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            }
+          ],
+          "worthiness": {
+            "score": 0.447,
+            "signals": {
+              "topicShift": 1,
+              "entityDensity": 0.5,
+              "semanticNovelty": 0.226,
+              "structuralImportance": 0.22
             }
           }
         },
@@ -35024,13 +35345,13 @@
           "tags": [],
           "suggestedTags": [
             {
-              "tag": "images",
+              "tag": "image",
               "confidence": 0.65,
               "source": "existing",
               "reasoning": "Consistent with prior block tags"
             },
             {
-              "tag": "image",
+              "tag": "images",
               "confidence": 0.65,
               "source": "existing",
               "reasoning": "Consistent with prior block tags"
@@ -35078,15 +35399,15 @@
         {
           "id": "block-53",
           "line": 53,
-          "endLine": 57,
+          "endLine": 56,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
             {
               "tag": "gallery",
-              "confidence": 0.55,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
             },
             {
               "tag": "metadata",
@@ -35233,7 +35554,7 @@
             "- **Art Deco Frames**:"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:15.412Z"
+        "lastIndexed": "2026-10-09T05:27:36.872Z"
       }
     },
     "validation": {
@@ -35332,7 +35653,7 @@
         {
           "id": "block-4",
           "line": 4,
-          "endLine": 5,
+          "endLine": 4,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -35429,7 +35750,7 @@
         {
           "id": "block-10",
           "line": 10,
-          "endLine": 11,
+          "endLine": 10,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -35579,7 +35900,7 @@
         {
           "id": "block-18",
           "line": 18,
-          "endLine": 19,
+          "endLine": 18,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -35726,7 +36047,7 @@
         {
           "id": "block-26",
           "line": 26,
-          "endLine": 27,
+          "endLine": 26,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -35963,7 +36284,7 @@
         {
           "id": "block-62",
           "line": 62,
-          "endLine": 63,
+          "endLine": 62,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -36145,7 +36466,7 @@
         {
           "id": "block-85",
           "line": 85,
-          "endLine": 86,
+          "endLine": 85,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -37509,7 +37830,7 @@
         {
           "id": "block-217",
           "line": 217,
-          "endLine": 218,
+          "endLine": 217,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -37605,7 +37926,7 @@
         {
           "id": "block-226",
           "line": 226,
-          "endLine": 227,
+          "endLine": 226,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -37697,7 +38018,7 @@
         {
           "id": "block-232",
           "line": 232,
-          "endLine": 235,
+          "endLine": 232,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -37709,7 +38030,7 @@
             },
             {
               "tag": "output",
-              "confidence": 0.65,
+              "confidence": 0.55,
               "source": "existing",
               "reasoning": "Consistent with prior block tags"
             },
@@ -37726,19 +38047,55 @@
               "reasoning": "TF-IDF keyword extraction"
             },
             {
-              "tag": "blocks",
-              "confidence": 0.5,
-              "source": "nlp",
-              "reasoning": "TF-IDF keyword extraction"
+              "tag": "execution",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
             }
           ],
           "worthiness": {
-            "score": 0.409,
+            "score": 0.414,
             "signals": {
-              "topicShift": 0.669,
-              "entityDensity": 0.155,
-              "semanticNovelty": 0.578,
-              "structuralImportance": 0.345
+              "topicShift": 0.742,
+              "entityDensity": 0.125,
+              "semanticNovelty": 0.612,
+              "structuralImportance": 0.32
+            }
+          }
+        },
+        {
+          "id": "block-234",
+          "line": 234,
+          "endLine": 234,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "blocks",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "this",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "output",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            }
+          ],
+          "worthiness": {
+            "score": 0.453,
+            "signals": {
+              "topicShift": 0.755,
+              "entityDensity": 0.3,
+              "semanticNovelty": 0.74,
+              "structuralImportance": 0.225
             }
           }
         },
@@ -37763,9 +38120,9 @@
             }
           ],
           "worthiness": {
-            "score": 0.502,
+            "score": 0.507,
             "signals": {
-              "topicShift": 0.531,
+              "topicShift": 0.553,
               "entityDensity": 0,
               "semanticNovelty": 0.756,
               "structuralImportance": 0.7
@@ -37787,9 +38144,9 @@
             },
             {
               "tag": "fabric",
-              "confidence": 0.44999999999999996,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
             }
           ],
           "worthiness": {
@@ -37847,16 +38204,16 @@
           "tags": [],
           "suggestedTags": [
             {
-              "tag": "this",
+              "tag": "allows",
               "confidence": 0.6,
               "source": "nlp",
               "reasoning": "TF-IDF keyword extraction"
             },
             {
-              "tag": "allows",
-              "confidence": 0.6,
-              "source": "nlp",
-              "reasoning": "TF-IDF keyword extraction"
+              "tag": "this",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
             }
           ],
           "worthiness": {
@@ -37891,9 +38248,9 @@
             },
             {
               "tag": "results",
-              "confidence": 0.44999999999999996,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
             }
           ],
           "worthiness": {
@@ -38047,7 +38404,7 @@
             "Web Workers:"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:16.880Z"
+        "lastIndexed": "2026-10-09T05:27:38.715Z"
       }
     },
     "validation": {
@@ -38111,7 +38468,7 @@
         {
           "id": "block-3",
           "line": 3,
-          "endLine": 4,
+          "endLine": 3,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -38185,7 +38542,7 @@
         {
           "id": "block-7",
           "line": 7,
-          "endLine": 8,
+          "endLine": 7,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -38407,7 +38764,7 @@
         {
           "id": "block-27",
           "line": 27,
-          "endLine": 28,
+          "endLine": 27,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [],
@@ -38498,7 +38855,7 @@
         {
           "id": "block-36",
           "line": 36,
-          "endLine": 37,
+          "endLine": 36,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -38608,7 +38965,7 @@
         {
           "id": "block-45",
           "line": 45,
-          "endLine": 46,
+          "endLine": 45,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -38718,7 +39075,7 @@
         {
           "id": "block-55",
           "line": 55,
-          "endLine": 56,
+          "endLine": 55,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -38792,7 +39149,7 @@
         {
           "id": "block-59",
           "line": 59,
-          "endLine": 60,
+          "endLine": 59,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -38878,7 +39235,7 @@
         {
           "id": "block-63",
           "line": 63,
-          "endLine": 64,
+          "endLine": 63,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -38982,7 +39339,7 @@
         {
           "id": "block-80",
           "line": 80,
-          "endLine": 81,
+          "endLine": 80,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -39098,7 +39455,7 @@
         {
           "id": "block-89",
           "line": 89,
-          "endLine": 90,
+          "endLine": 89,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -39172,7 +39529,7 @@
         {
           "id": "block-93",
           "line": 93,
-          "endLine": 95,
+          "endLine": 93,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -39196,14 +39553,46 @@
             }
           ],
           "worthiness": {
-            "score": 0.488,
+            "score": 0.507,
             "signals": {
-              "topicShift": 0.808,
-              "entityDensity": 0.375,
-              "semanticNovelty": 0.708,
-              "structuralImportance": 0.26
+              "topicShift": 0.764,
+              "entityDensity": 0.333,
+              "semanticNovelty": 0.925,
+              "structuralImportance": 0.245
             }
-          }
+          },
+          "extractiveSummary": "Click **Publish** to create a pull request on GitHub"
+        },
+        {
+          "id": "block-95",
+          "line": 95,
+          "endLine": 95,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "system",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "will",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            }
+          ],
+          "worthiness": {
+            "score": 0.52,
+            "signals": {
+              "topicShift": 1,
+              "entityDensity": 0.5,
+              "semanticNovelty": 0.601,
+              "structuralImportance": 0.215
+            }
+          },
+          "extractiveSummary": "The system will:"
         },
         {
           "id": "block-96",
@@ -39244,9 +39633,9 @@
             }
           ],
           "worthiness": {
-            "score": 0.58,
+            "score": 0.584,
             "signals": {
-              "topicShift": 0.843,
+              "topicShift": 0.864,
               "entityDensity": 0.38,
               "semanticNovelty": 0.62,
               "structuralImportance": 0.55
@@ -39288,7 +39677,7 @@
         {
           "id": "block-104",
           "line": 104,
-          "endLine": 105,
+          "endLine": 104,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -39547,7 +39936,7 @@
         {
           "id": "block-128",
           "line": 128,
-          "endLine": 129,
+          "endLine": 128,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -39951,7 +40340,7 @@
         {
           "id": "block-174",
           "line": 174,
-          "endLine": 175,
+          "endLine": 174,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -40367,13 +40756,13 @@
         {
           "id": "block-202",
           "line": 202,
-          "endLine": 205,
+          "endLine": 202,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
             {
               "tag": "threads",
-              "confidence": 0.65,
+              "confidence": 0.55,
               "source": "existing",
               "reasoning": "Consistent with prior block tags"
             },
@@ -40391,12 +40780,54 @@
             }
           ],
           "worthiness": {
-            "score": 0.463,
+            "score": 0.461,
             "signals": {
-              "topicShift": 0.796,
-              "entityDensity": 0.125,
-              "semanticNovelty": 0.802,
-              "structuralImportance": 0.32
+              "topicShift": 0.684,
+              "entityDensity": 0.222,
+              "semanticNovelty": 0.913,
+              "structuralImportance": 0.245
+            }
+          }
+        },
+        {
+          "id": "block-204",
+          "line": 204,
+          "endLine": 204,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "single",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "media",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "collection",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "threads",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            }
+          ],
+          "worthiness": {
+            "score": 0.455,
+            "signals": {
+              "topicShift": 0.909,
+              "entityDensity": 0.067,
+              "semanticNovelty": 0.8,
+              "structuralImportance": 0.275
             }
           }
         },
@@ -40433,7 +40864,7 @@
         {
           "id": "block-223",
           "line": 223,
-          "endLine": 224,
+          "endLine": 223,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -40495,7 +40926,7 @@
         {
           "id": "block-227",
           "line": 227,
-          "endLine": 228,
+          "endLine": 227,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -40579,7 +41010,7 @@
         {
           "id": "block-234",
           "line": 234,
-          "endLine": 235,
+          "endLine": 234,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -40641,7 +41072,7 @@
         {
           "id": "block-238",
           "line": 238,
-          "endLine": 239,
+          "endLine": 238,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -40739,7 +41170,7 @@
         {
           "id": "block-252",
           "line": 252,
-          "endLine": 253,
+          "endLine": 252,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -40917,7 +41348,7 @@
         {
           "id": "block-265",
           "line": 265,
-          "endLine": 271,
+          "endLine": 270,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -41110,7 +41541,7 @@
             "Art Deco"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:19.154Z"
+        "lastIndexed": "2026-10-09T05:27:41.561Z"
       }
     },
     "validation": {
@@ -41178,7 +41609,7 @@
         {
           "id": "block-3",
           "line": 3,
-          "endLine": 4,
+          "endLine": 3,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -41289,7 +41720,7 @@
         {
           "id": "block-9",
           "line": 9,
-          "endLine": 10,
+          "endLine": 9,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -41491,7 +41922,7 @@
         {
           "id": "block-28",
           "line": 28,
-          "endLine": 30,
+          "endLine": 29,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -41589,7 +42020,7 @@
         {
           "id": "block-38",
           "line": 38,
-          "endLine": 40,
+          "endLine": 39,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [],
@@ -42160,7 +42591,7 @@
         {
           "id": "block-116",
           "line": 116,
-          "endLine": 117,
+          "endLine": 116,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -42345,7 +42776,7 @@
         {
           "id": "block-131",
           "line": 131,
-          "endLine": 132,
+          "endLine": 131,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -42605,7 +43036,7 @@
         {
           "id": "block-153",
           "line": 153,
-          "endLine": 154,
+          "endLine": 153,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -42923,7 +43354,7 @@
         {
           "id": "block-183",
           "line": 183,
-          "endLine": 184,
+          "endLine": 183,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -43307,7 +43738,7 @@
         {
           "id": "block-219",
           "line": 219,
-          "endLine": 220,
+          "endLine": 219,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -43564,7 +43995,7 @@
         {
           "id": "block-242",
           "line": 242,
-          "endLine": 243,
+          "endLine": 242,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -43925,7 +44356,7 @@
         {
           "id": "block-289",
           "line": 289,
-          "endLine": 290,
+          "endLine": 289,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -44012,7 +44443,7 @@
         {
           "id": "block-295",
           "line": 295,
-          "endLine": 296,
+          "endLine": 295,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -44243,7 +44674,7 @@
         {
           "id": "block-322",
           "line": 322,
-          "endLine": 323,
+          "endLine": 322,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -44408,7 +44839,24 @@
         {
           "id": "block-336",
           "line": 336,
-          "endLine": 339,
+          "endLine": 336,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [],
+          "worthiness": {
+            "score": 0.479,
+            "signals": {
+              "topicShift": 1,
+              "entityDensity": 0,
+              "semanticNovelty": 1,
+              "structuralImportance": 0.225
+            }
+          }
+        },
+        {
+          "id": "block-338",
+          "line": 338,
+          "endLine": 338,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -44426,15 +44874,14 @@
             }
           ],
           "worthiness": {
-            "score": 0.525,
+            "score": 0.446,
             "signals": {
-              "topicShift": 1,
-              "entityDensity": 0.192,
+              "topicShift": 0.5,
+              "entityDensity": 0.313,
               "semanticNovelty": 0.92,
-              "structuralImportance": 0.265
+              "structuralImportance": 0.24
             }
-          },
-          "extractiveSummary": "🚀 🎨 📚 ✨ 🔥\nOr use Unicode directly: ✨ 🌟 💫 ⭐"
+          }
         },
         {
           "id": "footnotes",
@@ -44575,7 +45022,7 @@
         {
           "id": "block-355",
           "line": 355,
-          "endLine": 356,
+          "endLine": 355,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -44650,7 +45097,7 @@
         {
           "id": "block-359",
           "line": 359,
-          "endLine": 360,
+          "endLine": 359,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -44740,7 +45187,7 @@
         {
           "id": "block-367",
           "line": 367,
-          "endLine": 368,
+          "endLine": 367,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -45280,7 +45727,7 @@
         {
           "id": "block-411",
           "line": 411,
-          "endLine": 412,
+          "endLine": 411,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -45364,7 +45811,7 @@
         {
           "id": "block-425",
           "line": 425,
-          "endLine": 426,
+          "endLine": 425,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -45610,7 +46057,7 @@
         {
           "id": "block-447",
           "line": 447,
-          "endLine": 448,
+          "endLine": 447,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -45688,7 +46135,7 @@
         {
           "id": "block-453",
           "line": 453,
-          "endLine": 454,
+          "endLine": 453,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -45766,7 +46213,7 @@
         {
           "id": "block-470",
           "line": 470,
-          "endLine": 471,
+          "endLine": 470,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -45899,7 +46346,7 @@
         {
           "id": "block-482",
           "line": 482,
-          "endLine": 487,
+          "endLine": 486,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -46122,7 +46569,7 @@
             "- Art Deco"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:21.816Z"
+        "lastIndexed": "2026-10-09T05:27:44.794Z"
       }
     },
     "validation": {
@@ -46190,7 +46637,7 @@
         {
           "id": "block-3",
           "line": 3,
-          "endLine": 4,
+          "endLine": 3,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -46277,7 +46724,7 @@
         {
           "id": "block-7",
           "line": 7,
-          "endLine": 9,
+          "endLine": 7,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -46294,12 +46741,6 @@
               "reasoning": "Consistent with prior block tags"
             },
             {
-              "tag": "photos",
-              "confidence": 0.44999999999999996,
-              "source": "existing",
-              "reasoning": "Consistent with prior block tags"
-            },
-            {
               "tag": "codex",
               "confidence": 0.44999999999999996,
               "source": "existing",
@@ -46310,18 +46751,66 @@
               "confidence": 0.44999999999999996,
               "source": "existing",
               "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "thread",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
             }
           ],
           "worthiness": {
-            "score": 0.515,
+            "score": 0.516,
             "signals": {
               "topicShift": 1,
-              "entityDensity": 0.177,
-              "semanticNovelty": 0.734,
-              "structuralImportance": 0.355
+              "entityDensity": 0.227,
+              "semanticNovelty": 0.756,
+              "structuralImportance": 0.31
             }
           },
           "extractiveSummary": "In traditional knowledge bases, media files are mere \"attachments"
+        },
+        {
+          "id": "block-9",
+          "line": 9,
+          "endLine": 9,
+          "type": "paragraph",
+          "tags": [],
+          "suggestedTags": [
+            {
+              "tag": "photo",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "just",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "decoration",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "photos",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            }
+          ],
+          "worthiness": {
+            "score": 0.478,
+            "signals": {
+              "topicShift": 1,
+              "entityDensity": 0.056,
+              "semanticNovelty": 0.892,
+              "structuralImportance": 0.245
+            }
+          }
         },
         {
           "id": "block-10",
@@ -46406,12 +46895,12 @@
         {
           "id": "block-17",
           "line": 17,
-          "endLine": 18,
+          "endLine": 17,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
             {
-              "tag": "media",
+              "tag": "decoration",
               "confidence": 0.44999999999999996,
               "source": "existing",
               "reasoning": "Consistent with prior block tags"
@@ -46424,6 +46913,12 @@
             },
             {
               "tag": "menu",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
+            },
+            {
+              "tag": "media",
               "confidence": 0.44999999999999996,
               "source": "existing",
               "reasoning": "Consistent with prior block tags"
@@ -46824,7 +47319,7 @@
         {
           "id": "block-59",
           "line": 59,
-          "endLine": 60,
+          "endLine": 59,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -47862,7 +48357,7 @@
         {
           "id": "block-155",
           "line": 155,
-          "endLine": 156,
+          "endLine": 155,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -48174,7 +48669,7 @@
         {
           "id": "block-183",
           "line": 183,
-          "endLine": 184,
+          "endLine": 183,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -48369,7 +48864,7 @@
         {
           "id": "block-204",
           "line": 204,
-          "endLine": 205,
+          "endLine": 204,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -48485,7 +48980,7 @@
         {
           "id": "block-218",
           "line": 218,
-          "endLine": 219,
+          "endLine": 218,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -48581,7 +49076,7 @@
         {
           "id": "block-238",
           "line": 238,
-          "endLine": 239,
+          "endLine": 238,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -48665,7 +49160,7 @@
         {
           "id": "block-244",
           "line": 244,
-          "endLine": 245,
+          "endLine": 244,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -49313,7 +49808,7 @@
         {
           "id": "block-290",
           "line": 290,
-          "endLine": 291,
+          "endLine": 290,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -49695,7 +50190,7 @@
         {
           "id": "block-329",
           "line": 329,
-          "endLine": 334,
+          "endLine": 333,
           "type": "paragraph",
           "tags": [],
           "suggestedTags": [
@@ -49924,7 +50419,7 @@
             "San Francisco,"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:24.787Z"
+        "lastIndexed": "2026-10-09T05:27:48.500Z"
       }
     },
     "validation": {
@@ -50086,7 +50581,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-09T05:25:25.198Z"
+        "lastIndexed": "2026-10-09T05:27:49.000Z"
       }
     },
     "validation": {
@@ -50455,7 +50950,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-09T05:25:25.969Z"
+        "lastIndexed": "2026-10-09T05:27:49.964Z"
       }
     },
     "validation": {
@@ -50639,7 +51134,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-09T05:25:26.242Z"
+        "lastIndexed": "2026-10-09T05:27:50.308Z"
       }
     },
     "validation": {
@@ -51214,7 +51709,7 @@
             "\"lesson"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:27.946Z"
+        "lastIndexed": "2026-10-09T05:27:52.443Z"
       }
     },
     "validation": {
@@ -51361,7 +51856,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-09T05:25:28.139Z"
+        "lastIndexed": "2026-10-09T05:27:52.798Z"
       }
     },
     "validation": {
@@ -51536,7 +52031,7 @@
             "<li"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:29.969Z"
+        "lastIndexed": "2026-10-09T05:27:55.144Z"
       }
     },
     "validation": {
@@ -51717,7 +52212,7 @@
             "Emerald |"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:32.304Z"
+        "lastIndexed": "2026-10-09T05:27:58.005Z"
       }
     },
     "validation": {
@@ -51881,7 +52376,7 @@
             "Emerald |"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:34.075Z"
+        "lastIndexed": "2026-10-09T05:28:00.253Z"
       }
     },
     "validation": {
@@ -52058,7 +52553,7 @@
             "Max Cost:"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:36.319Z"
+        "lastIndexed": "2026-10-09T05:28:03.138Z"
       }
     },
     "validation": {
@@ -52288,7 +52783,7 @@
             "\"John Doe\","
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:38.728Z"
+        "lastIndexed": "2026-10-09T05:28:06.226Z"
       }
     },
     "validation": {
@@ -52521,7 +53016,7 @@
             "GitHub"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:44.461Z"
+        "lastIndexed": "2026-10-09T05:28:13.416Z"
       }
     },
     "validation": {
@@ -52717,7 +53212,7 @@
             "clay |"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:47.300Z"
+        "lastIndexed": "2026-10-09T05:28:17.031Z"
       }
     },
     "validation": {
@@ -52924,7 +53419,7 @@
             "GitHub"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:50.177Z"
+        "lastIndexed": "2026-10-09T05:28:20.684Z"
       }
     },
     "validation": {
@@ -53153,7 +53648,7 @@
             "PAT** (Optional)"
           ]
         },
-        "lastIndexed": "2026-10-09T05:25:54.600Z"
+        "lastIndexed": "2026-10-09T05:28:26.203Z"
       }
     },
     "validation": {
@@ -53402,7 +53897,7 @@
             "[alice,"
           ]
         },
-        "lastIndexed": "2026-10-09T05:26:00.327Z"
+        "lastIndexed": "2026-10-09T05:28:33.317Z"
       }
     },
     "validation": {
@@ -53643,7 +54138,7 @@
             "[Skills & Spiral"
           ]
         },
-        "lastIndexed": "2026-10-09T05:26:04.024Z"
+        "lastIndexed": "2026-10-09T05:28:37.940Z"
       }
     },
     "validation": {
