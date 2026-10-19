@@ -176,6 +176,38 @@ describe('the Trusted Weavers workflow keeps the landing label on a head that pa
     expect(concurrency?.['cancel-in-progress']).toBe(true);
   });
 
+  it('reads the Weaver list from the base branch, so a pull request cannot list its own author', () => {
+    const checkout = workflow().jobs['check-weaver-status'].steps.find((step) =>
+      String(step.uses).startsWith('actions/checkout@')
+    );
+    expect(checkout?.with?.ref).toBe('${{ github.event.pull_request.base.ref }}');
+  });
+
+  it("gives a write token only to the jobs that write labels and comments, never to the one running the pull request's code", () => {
+    const { permissions, jobs } = workflow();
+    const writes = (scopes) =>
+      Object.entries(scopes ?? {})
+        .filter(([, level]) => level === 'write')
+        .map(([scope]) => scope)
+        .sort();
+    const WRITE_CALLS = /\b(addLabels|removeLabel|createLabel|createComment|updateComment)\s*\(/;
+    expect(typeof permissions).toBe('object');
+    expect(writes(permissions)).toEqual([]);
+    for (const [name, job] of Object.entries(jobs)) {
+      const writesWithWorkflowToken = (job.steps ?? []).some(
+        (step) =>
+          String(step.uses).startsWith('actions/github-script@') &&
+          String(step.with?.['github-token']).includes('secrets.GITHUB_TOKEN') &&
+          WRITE_CALLS.test(String(step.with?.script))
+      );
+      expect(writes(job.permissions), name).toEqual(writesWithWorkflowToken ? ['issues', 'pull-requests'] : []);
+    }
+    // validate-content installs and runs the pull request's code, so its checkout keeps no token on disk.
+    const checkout = jobs['validate-content'].steps.find((step) => String(step.uses).startsWith('actions/checkout@'));
+    expect(checkout.with.ref).toBe('${{ github.event.pull_request.head.sha }}');
+    expect(checkout.with['persist-credentials']).toBe(false);
+  });
+
   it.each(['synchronize', 'reopened'])('takes the label off on %s, before the checks run on the head', async (action) => {
     const { github, state } = fakeGitHub({ head: NEW, labels: ['landing'], comments: [guardsComment(OLD)] });
     await run(scriptOf('clear-landing', 'removeLabel'), { github, context: event(action, NEW) });
