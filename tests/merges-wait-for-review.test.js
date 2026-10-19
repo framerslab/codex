@@ -3,11 +3,12 @@
  * repository merges a pull request by itself or arms GitHub's auto-merge. The flows that would otherwise merge (inbox
  * categorization at 70 percent confidence or more, a trusted Weaver's validated pull request, the re-catalog script
  * when landing is requested) keep their guards, label the pull request `landing` and post one comment; a maintainer
- * lands it after the comment pass.
+ * lands it after the comment pass. A change of base takes the label off, since the guards ran against the old base.
  *
- * Besides scanning the workflow and script text, these tests run the code the flows run: the Trusted Weavers
- * workflow's github-script steps against a stand-in for the GitHub API, and the inbox workflow's shell step and the
- * re-catalog script in a scratch git repository, with stand-ins for gh, curl and npm first on the PATH.
+ * Besides scanning the workflow and script text, these tests run the code the flows run: the github-script steps of the
+ * Trusted Weavers and Landing follows the base workflows against a stand-in for the GitHub API, and the inbox
+ * workflow's shell step and the re-catalog script in a scratch git repository, with stand-ins for gh, curl and npm first
+ * on the PATH.
  *
  * Run: npx vitest run tests/merges-wait-for-review.test.js
  */
@@ -91,87 +92,107 @@ describe('the flows that would merge keep their guards, label the pull request l
   });
 });
 
-// The Trusted Weavers workflow starts only on pull requests into main, so its github-script steps run here, each as
-// the body of an async function the way actions/github-script runs it, against a stand-in for the GitHub API that
-// holds one pull request's head, labels and comments.
-describe('the Trusted Weavers workflow keeps the landing label on a head that passed, and only there', () => {
-  const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
-  const MARKER = '<!-- landing-guards -->';
-  const PR = 9;
-  const OLD = 'a'.repeat(40);
-  const NEW = 'b'.repeat(40);
+// The github-script steps of the Trusted Weavers and Landing follows the base workflows run here, each as the body of an
+// async function the way actions/github-script runs it, against a stand-in for the GitHub API that holds one pull
+// request's head, base, labels and comments.
+const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
+const MARKER = '<!-- landing-guards -->';
+const PR = 9;
+const OLD = 'a'.repeat(40);
+const NEW = 'b'.repeat(40);
 
-  const workflow = () => yaml.load(read('.github/workflows/auto-merge-weavers.yml'));
-  const scriptOf = (job, call) => {
-    const step = (workflow().jobs[job]?.steps ?? []).find(
-      (s) => String(s.uses).startsWith('actions/github-script@') && String(s.with?.script).includes(call)
-    );
-    if (!step) throw new Error(`job ${job} has no github-script step that calls ${call}`);
-    return step.with.script;
+const githubScript = (rel, job, call) => {
+  const step = (yaml.load(read(rel)).jobs[job]?.steps ?? []).find(
+    (s) => String(s.uses).startsWith('actions/github-script@') && String(s.with?.script).includes(call)
+  );
+  if (!step) throw new Error(`${rel}: job ${job} has no github-script step that calls ${call}`);
+  return step.with.script;
+};
+const run = (script, { github, context }) =>
+  new AsyncFunction('github', 'context', 'core', script)(github, context, { info() {}, warning() {} });
+const guardsComment = (sha) => ({ body: `${MARKER}\nGuards passed on ${sha.slice(0, 7)}:` });
+
+// A review bot can quote the marker inside a comment of its own, as one did on the pull request that added these flows.
+const quoting = {
+  user: { type: 'Bot', login: 'qodo-free-for-open-source-projects[bot]' },
+  body: `Find the bot comment that contains \`${MARKER}\` and update it.`,
+};
+
+// A comment written with the workflow token is github-actions[bot]'s, and that token edits no other author's comment.
+// onAddLabels runs as the label goes on and stands in for a change made meanwhile, such as an edit of the base.
+const ACTIONS_BOT = { type: 'Bot', login: 'github-actions[bot]' };
+const fakeGitHub = ({
+  head,
+  base = 'main',
+  labels = [],
+  comments = [],
+  failCreateComment = false,
+  onAddLabels = () => {},
+}) => {
+  const state = {
+    head,
+    base,
+    labels: new Set(labels),
+    comments: comments.map((comment, index) => ({ id: index + 1, user: ACTIONS_BOT, ...comment })),
+    reviews: [],
   };
-  const run = (script, { github, context }) =>
-    new AsyncFunction('github', 'context', 'core', script)(github, context, { info() {}, warning() {} });
+  const calls = [];
+  const fail = (status, message) => Object.assign(new Error(message), { status });
+  const api = (name, answer) => async (params = {}) => {
+    calls.push(name);
+    return { data: await answer(params) };
+  };
+  const github = {
+    paginate: async (method, params) => (await method(params)).data,
+    rest: {
+      pulls: {
+        get: api('pulls.get', () => ({ number: PR, head: { sha: state.head }, base: { ref: state.base } })),
+        createReview: api('pulls.createReview', (params) => {
+          state.reviews.push(params);
+          return {};
+        }),
+      },
+      issues: {
+        getLabel: api('issues.getLabel', ({ name }) => ({ name })),
+        createLabel: api('issues.createLabel', ({ name }) => ({ name })),
+        addLabels: api('issues.addLabels', ({ labels: names }) => {
+          for (const name of names) state.labels.add(name);
+          onAddLabels(state);
+          return [...state.labels].map((name) => ({ name }));
+        }),
+        removeLabel: api('issues.removeLabel', ({ name }) => {
+          if (!state.labels.delete(name)) throw fail(404, 'Label does not exist');
+          return [];
+        }),
+        listComments: api('issues.listComments', () => state.comments),
+        createComment: api('issues.createComment', ({ body }) => {
+          if (failCreateComment) throw fail(500, 'Server Error');
+          const comment = { id: state.comments.length + 1, user: ACTIONS_BOT, body };
+          state.comments.push(comment);
+          return comment;
+        }),
+        updateComment: api('issues.updateComment', ({ comment_id, body }) => {
+          const comment = state.comments.find(({ id }) => id === comment_id);
+          if (comment.user.login !== ACTIONS_BOT.login) throw fail(403, 'Resource not accessible by integration');
+          comment.body = body;
+          return comment;
+        }),
+      },
+    },
+  };
+  return { github, state, calls };
+};
+
+// The Trusted Weavers workflow starts only on pull requests into main.
+describe('the Trusted Weavers workflow keeps the landing label on a head that passed, and only there', () => {
+  const WEAVERS = '.github/workflows/auto-merge-weavers.yml';
+  const workflow = () => yaml.load(read(WEAVERS));
+  const scriptOf = (job, call) => githubScript(WEAVERS, job, call);
 
   const event = (action, sha) => ({
     repo: { owner: 'framerslab', repo: 'codex' },
-    payload: { action, pull_request: { number: PR, head: { sha }, user: { login: 'a-weaver' } } },
+    payload: { action, pull_request: { number: PR, head: { sha }, base: { ref: 'main' }, user: { login: 'a-weaver' } } },
   });
-  const guardsComment = (sha) => ({ body: `${MARKER}\nGuards passed on ${sha.slice(0, 7)}:` });
-
-  // A comment written with the workflow token is github-actions[bot]'s, and that token edits no other author's comment.
-  const ACTIONS_BOT = { type: 'Bot', login: 'github-actions[bot]' };
-  const fakeGitHub = ({ head, labels = [], comments = [], failCreateComment = false }) => {
-    const state = {
-      head,
-      labels: new Set(labels),
-      comments: comments.map((comment, index) => ({ id: index + 1, user: ACTIONS_BOT, ...comment })),
-      reviews: [],
-    };
-    const calls = [];
-    const fail = (status, message) => Object.assign(new Error(message), { status });
-    const api = (name, answer) => async (params = {}) => {
-      calls.push(name);
-      return { data: await answer(params) };
-    };
-    const github = {
-      paginate: async (method, params) => (await method(params)).data,
-      rest: {
-        pulls: {
-          get: api('pulls.get', () => ({ number: PR, head: { sha: state.head } })),
-          createReview: api('pulls.createReview', (params) => {
-            state.reviews.push(params);
-            return {};
-          }),
-        },
-        issues: {
-          getLabel: api('issues.getLabel', ({ name }) => ({ name })),
-          createLabel: api('issues.createLabel', ({ name }) => ({ name })),
-          addLabels: api('issues.addLabels', ({ labels: names }) => {
-            for (const name of names) state.labels.add(name);
-            return [...state.labels].map((name) => ({ name }));
-          }),
-          removeLabel: api('issues.removeLabel', ({ name }) => {
-            if (!state.labels.delete(name)) throw fail(404, 'Label does not exist');
-            return [];
-          }),
-          listComments: api('issues.listComments', () => state.comments),
-          createComment: api('issues.createComment', ({ body }) => {
-            if (failCreateComment) throw fail(500, 'Server Error');
-            const comment = { id: state.comments.length + 1, user: ACTIONS_BOT, body };
-            state.comments.push(comment);
-            return comment;
-          }),
-          updateComment: api('issues.updateComment', ({ comment_id, body }) => {
-            const comment = state.comments.find(({ id }) => id === comment_id);
-            if (comment.user.login !== ACTIONS_BOT.login) throw fail(403, 'Resource not accessible by integration');
-            comment.body = body;
-            return comment;
-          }),
-        },
-      },
-    };
-    return { github, state, calls };
-  };
 
   it('runs one at a time per pull request, a newer push cancelling the older run', () => {
     const { concurrency } = workflow();
@@ -279,12 +300,6 @@ describe('the Trusted Weavers workflow keeps the landing label on a head that pa
     expect(workflow().jobs['report-failed-checks'].if).toMatch(/failure\(\)/);
   });
 
-  // A review bot can quote the marker inside a comment of its own, as one did on the pull request that added this flow.
-  const quoting = {
-    user: { type: 'Bot', login: 'qodo-free-for-open-source-projects[bot]' },
-    body: `Find the bot comment that contains \`${MARKER}\` and update it.`,
-  };
-
   it('labels the head and writes its own guards comment when a review bot quoted the marker first', async () => {
     const { github, state } = fakeGitHub({ head: NEW, comments: [quoting] });
     await run(scriptOf('approve-and-label', 'addLabels'), { github, context: event('synchronize', NEW) });
@@ -310,6 +325,95 @@ describe('the Trusted Weavers workflow keeps the landing label on a head that pa
     const { github, state } = fakeGitHub({ head: NEW, labels: ['landing'], comments: [guardsComment(NEW)] });
     await run(scriptOf('report-failed-checks', 'removeLabel'), { github, context: event('synchronize', OLD) });
     expect(state.labels.has('landing')).toBe(true);
+    expect(state.comments[0].body).toContain('Guards passed on bbbbbbb');
+  });
+
+  // A change of base starts the Landing follows the base workflow, which can run while this one labels.
+  it('approves nothing and adds no label when the pull request no longer targets the base the checks ran against', async () => {
+    const { github, state, calls } = fakeGitHub({ head: NEW, base: 'index' });
+    await run(scriptOf('approve-and-label', 'createReview'), { github, context: event('synchronize', NEW) });
+    await run(scriptOf('approve-and-label', 'addLabels'), { github, context: event('synchronize', NEW) });
+    expect(state.reviews).toEqual([]);
+    expect(calls).not.toContain('issues.addLabels');
+    expect(state.comments).toHaveLength(0);
+  });
+
+  it.each([
+    ['the base', (state) => Object.assign(state, { base: 'index' })],
+    ['the head', (state) => Object.assign(state, { head: 'c'.repeat(40) })],
+  ])('takes the label back off when %s changes while the step labels', async (_what, change) => {
+    const { github, state } = fakeGitHub({ head: NEW, onAddLabels: change });
+    await run(scriptOf('approve-and-label', 'addLabels'), { github, context: event('synchronize', NEW) });
+    expect(state.labels.has('landing')).toBe(false);
+    expect(state.comments).toHaveLength(1);
+    expect(state.comments[0].body.startsWith(MARKER)).toBe(true);
+    expect(state.comments[0].body).not.toContain('Guards passed');
+  });
+});
+
+// A change of base starts the Landing follows the base workflow on a pull request into any branch: with no branch
+// filter, a retarget away from main starts it too. Its job runs only when the edit changed the base.
+describe('a change of base takes the landing label off, whichever flow added it', () => {
+  const BASE_FLOW = '.github/workflows/landing-follows-the-base.yml';
+  const JOB = 'clear-landing-on-base-change';
+  const edited = ({ from = 'main', to = 'index', labels = ['landing'] } = {}) => ({
+    repo: { owner: 'framerslab', repo: 'codex' },
+    payload: {
+      action: 'edited',
+      changes: { base: { ref: { from }, sha: { from: OLD } } },
+      pull_request: { number: PR, head: { sha: NEW }, base: { ref: to }, labels: labels.map((name) => ({ name })) },
+    },
+  });
+  const clear = (github, context) => run(githubScript(BASE_FLOW, JOB, 'removeLabel'), { github, context });
+
+  it('starts on every edit of a pull request into any branch, and runs its job only when the base changed', () => {
+    const workflow = yaml.load(read(BASE_FLOW));
+    expect(workflow.on).toEqual({ pull_request: { types: ['edited'] } });
+    expect(workflow.jobs[JOB].if).toBe('github.event.changes.base');
+  });
+
+  it('gives its one job a token that writes labels and comments, and checks out no code', () => {
+    const { permissions, jobs } = yaml.load(read(BASE_FLOW));
+    expect(permissions).toEqual({ contents: 'read' });
+    expect(Object.keys(jobs)).toEqual([JOB]);
+    expect(jobs[JOB].permissions).toEqual({ issues: 'write', 'pull-requests': 'write' });
+    expect(jobs[JOB].steps.some((step) => String(step.uses).startsWith('actions/checkout@'))).toBe(false);
+  });
+
+  it('takes the label off and says in the guards comment which base its guards ran against', async () => {
+    const { github, state } = fakeGitHub({
+      head: NEW,
+      base: 'index',
+      labels: ['landing'],
+      comments: [quoting, guardsComment(NEW)],
+    });
+    await clear(github, edited());
+    expect(state.labels.has('landing')).toBe(false);
+    expect(state.comments).toHaveLength(2);
+    expect(state.comments[0].body).toBe(quoting.body);
+    expect(state.comments[1].body.startsWith(MARKER)).toBe(true);
+    expect(state.comments[1].body).toContain('from `main` to `index`');
+  });
+
+  it('writes a guards comment on a pull request whose flow left none with the marker, such as an inbox move', async () => {
+    const { github, state } = fakeGitHub({ head: NEW, base: 'main', labels: ['landing'] });
+    await clear(github, edited({ from: 'master', to: 'main' }));
+    expect(state.labels.has('landing')).toBe(false);
+    expect(state.comments).toHaveLength(1);
+    expect(state.comments[0].body.startsWith(MARKER)).toBe(true);
+    expect(state.comments[0].body).toContain('from `master` to `main`');
+  });
+
+  it('leaves a pull request that carried no landing label alone', async () => {
+    const { github, calls } = fakeGitHub({ head: NEW, base: 'index' });
+    await clear(github, edited({ labels: [] }));
+    expect(calls).toEqual([]);
+  });
+
+  it('writes nothing more when the label was already taken off', async () => {
+    const { github, state, calls } = fakeGitHub({ head: NEW, base: 'index', comments: [guardsComment(NEW)] });
+    await clear(github, edited());
+    expect(calls).toEqual(['issues.removeLabel']);
     expect(state.comments[0].body).toContain('Guards passed on bbbbbbb');
   });
 });
@@ -549,11 +653,15 @@ describe('the re-catalog script labels its pull request landing only when the in
   });
 });
 
-// GitHub reports a broken workflow file only when an event would start it, and the Weaver workflow starts only on pull
-// requests into main, so the changed files are parsed here: the YAML, every shell `run:` block and the re-catalog
-// script (bash -n), and every actions/github-script body (compiled the way the action wraps it, as an async function).
+// GitHub reports a broken workflow file only when an event would start it, the Weaver workflow starts only on pull
+// requests into main and the base workflow only on a change of base, so the changed files are parsed here: the YAML,
+// every shell `run:` block and the re-catalog script (bash -n), and every actions/github-script body (compiled the way
+// the action wraps it, as an async function).
 describe('the changed workflows and script parse', () => {
-  const CHANGED_WORKFLOWS = ['.github/workflows/auto-categorize-inbox.yml', '.github/workflows/auto-merge-weavers.yml'];
+  const INBOX = '.github/workflows/auto-categorize-inbox.yml';
+  const WEAVERS = '.github/workflows/auto-merge-weavers.yml';
+  const BASE_FLOW = '.github/workflows/landing-follows-the-base.yml';
+  const CHANGED_WORKFLOWS = [INBOX, WEAVERS, BASE_FLOW];
   const withoutExpressions = (source) => source.replace(/\$\{\{[^}]*\}\}/g, 'X');
   const steps = (rel) => Object.values(yaml.load(read(rel)).jobs).flatMap((job) => job.steps ?? []);
   const bashSyntax = (source) => execFileSync('bash', ['-n'], { input: source, stdio: ['pipe', 'pipe', 'pipe'] });
@@ -564,14 +672,14 @@ describe('the changed workflows and script parse', () => {
     for (const job of Object.values(workflow.jobs)) expect(job.steps.length).toBeGreaterThan(0);
   });
 
-  it.each(CHANGED_WORKFLOWS)('every run block of %s passes bash -n', (rel) => {
+  it.each([INBOX, WEAVERS])('every run block of %s passes bash -n', (rel) => {
     const blocks = steps(rel).filter((step) => step.run).map((step) => withoutExpressions(step.run));
     expect(blocks.length).toBeGreaterThan(0);
     for (const block of blocks) expect(() => bashSyntax(block)).not.toThrow();
   });
 
-  it('every github-script body of the Weaver workflow compiles', () => {
-    const scripts = steps('.github/workflows/auto-merge-weavers.yml')
+  it.each([WEAVERS, BASE_FLOW])('every github-script body of %s compiles', (rel) => {
+    const scripts = steps(rel)
       .filter((step) => String(step.uses).startsWith('actions/github-script@'))
       .map((step) => withoutExpressions(step.with.script));
     expect(scripts.length).toBeGreaterThan(0);
