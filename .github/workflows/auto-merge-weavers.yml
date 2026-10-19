@@ -59,7 +59,11 @@ jobs:
             
             // Keep the one guards comment true while the checks run on this head.
             const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
-            const previous = comments.find((comment) => comment.user?.type === 'Bot' && comment.body?.includes(marker));
+            // The guards comment is this workflow's own: github-actions[bot]'s, starting with the marker. A review bot may
+            // quote the marker in a comment of its own, which the workflow token cannot edit.
+            const previous = comments.find(
+              (comment) => comment.user?.login === 'github-actions[bot]' && comment.body?.startsWith(marker)
+            );
             if (previous) {
               await github.rest.issues.updateComment({
                 owner,
@@ -257,7 +261,11 @@ jobs:
             // so the label comes off again when the comment cannot be written.
             try {
               const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
-              const previous = comments.find((comment) => comment.user?.type === 'Bot' && comment.body?.includes(marker));
+              // The guards comment is this workflow's own: github-actions[bot]'s, starting with the marker. A review bot may
+              // quote the marker in a comment of its own, which the workflow token cannot edit.
+              const previous = comments.find(
+                (comment) => comment.user?.login === 'github-actions[bot]' && comment.body?.startsWith(marker)
+              );
               if (previous) {
                 await github.rest.issues.updateComment({ owner, repo, comment_id: previous.id, body });
               } else {
@@ -304,7 +312,11 @@ jobs:
             
             const body = `${marker}\nThe checks failed on ${head}. The \`landing\` label stays off until a push passes them.`;
             const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
-            const previous = comments.find((comment) => comment.user?.type === 'Bot' && comment.body?.includes(marker));
+            // The guards comment is this workflow's own: github-actions[bot]'s, starting with the marker. A review bot may
+            // quote the marker in a comment of its own, which the workflow token cannot edit.
+            const previous = comments.find(
+              (comment) => comment.user?.login === 'github-actions[bot]' && comment.body?.startsWith(marker)
+            );
             if (previous) {
               await github.rest.issues.updateComment({ owner, repo, comment_id: previous.id, body });
             } else {
