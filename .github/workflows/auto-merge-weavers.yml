@@ -3,13 +3,15 @@
 # A pull request into main from a user listed in .github/WEAVERS.txt (the list as it reads on the
 # base branch, so a pull request cannot add its own author) runs the content checks: schema
 # validation of the changed Markdown and YAML files, the indexer's quality checks and the
-# duplicate check. When they pass and the commit they ran on is still the pull request's head, the
-# workflow approves that commit, adds the "landing" label and keeps one comment naming the guards
-# that passed. A push that moves the head, or a reopen, takes the label off until the checks pass
-# on the head, and a head whose checks fail keeps it off. Runs for one pull request go one at a
-# time: a newer push cancels the older run. Only the jobs that write labels and comments get a
-# token that can write; the job that installs and runs the pull request's code gets a read-only
-# token and keeps none in its checkout.
+# duplicate check. When they pass, and the pull request still has the head they ran on and still
+# targets main, the workflow approves that commit, adds the "landing" label and keeps one comment
+# naming the guards that passed; it reads the pull request again once the label is on and takes
+# the label back off if the head or the base moved meanwhile. A push that moves the head, or a
+# reopen, takes the label off until the checks pass on the head, a head whose checks fail keeps it
+# off, and a change of base takes it off in landing-follows-the-base.yml. Runs for one pull request
+# go one at a time: a newer push cancels the older run. Only the jobs that write labels and
+# comments get a token that can write; the job that installs and runs the pull request's code gets
+# a read-only token and keeps none in its checkout.
 #
 # The workflow never merges and never turns on GitHub's auto-merge. Every pull request is merged
 # only after its reviews and comments are read, fixed or answered and its threads resolved; a
@@ -189,11 +191,13 @@ jobs:
             const pull_number = context.payload.pull_request.number;
             const author = context.payload.pull_request.user.login;
             const validated = context.payload.pull_request.head.sha;
+            const base = context.payload.pull_request.base.ref;
             
-            // Approve only the commit this run validated; a newer push has its own run.
+            // Approve only the commit this run validated, while the pull request still targets the base the checks ran
+            // against; a newer push has its own run.
             const { data: current } = await github.rest.pulls.get({ owner, repo, pull_number });
-            if (current.head.sha !== validated) {
-              core.info(`The head moved from ${validated.slice(0, 7)} to ${current.head.sha.slice(0, 7)}; its own run approves it.`);
+            if (current.head.sha !== validated || current.base.ref !== base) {
+              core.info(`The pull request is on ${current.head.sha.slice(0, 7)} into ${current.base.ref}; this run checked ${validated.slice(0, 7)} into ${base}.`);
               return;
             }
             
@@ -215,15 +219,19 @@ jobs:
             const issue_number = context.payload.pull_request.number;
             const author = context.payload.pull_request.user.login;
             const validated = context.payload.pull_request.head.sha;
+            const base = context.payload.pull_request.base.ref;
             const head = validated.slice(0, 7);
             const marker = '<!-- landing-guards -->';
             
-            // Label only the commit this run validated; a newer push has its own run.
-            const { data: current } = await github.rest.pulls.get({ owner, repo, pull_number: issue_number });
-            if (current.head.sha !== validated) {
-              core.info(`The head moved from ${head} to ${current.head.sha.slice(0, 7)}; its own run labels it.`);
-              return;
-            }
+            // Label only the commit this run validated, while the pull request still targets the base the checks ran
+            // against; a newer push has its own run.
+            const moved = async () => {
+              const { data: current } = await github.rest.pulls.get({ owner, repo, pull_number: issue_number });
+              if (current.head.sha === validated && current.base.ref === base) return false;
+              core.info(`The pull request is on ${current.head.sha.slice(0, 7)} into ${current.base.ref}; this run checked ${head} into ${base}.`);
+              return true;
+            };
+            if (await moved()) return;
             
             // Create the label on first use; a concurrent run may create it first (422).
             try {
@@ -259,6 +267,7 @@ jobs:
             
             // One comment per pull request: a later run updates it. The label promises that comment,
             // so the label comes off again when the comment cannot be written.
+            let comment_id;
             try {
               const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
               // The guards comment is this workflow's own: github-actions[bot]'s, starting with the marker. A review bot may
@@ -268,12 +277,31 @@ jobs:
               );
               if (previous) {
                 await github.rest.issues.updateComment({ owner, repo, comment_id: previous.id, body });
+                comment_id = previous.id;
               } else {
-                await github.rest.issues.createComment({ owner, repo, issue_number, body });
+                const { data: created } = await github.rest.issues.createComment({ owner, repo, issue_number, body });
+                comment_id = created.id;
               }
             } catch (error) {
               await github.rest.issues.removeLabel({ owner, repo, issue_number, name: 'landing' }).catch(() => {});
               throw error;
+            }
+            
+            // A change of base starts landing-follows-the-base.yml, which takes off only a label that was on when the base
+            // changed. Read the pull request again now that the label and the comment are on, and take the label back off
+            // when the head or the base moved meanwhile.
+            if (await moved()) {
+              try {
+                await github.rest.issues.removeLabel({ owner, repo, issue_number, name: 'landing' });
+              } catch (error) {
+                if (error.status !== 404) throw error;
+              }
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id,
+                body: `${marker}\nThe pull request moved off ${head} into \`${base}\` while it was being labelled, so the \`landing\` label is off.`
+              });
             }
 
   report-failed-checks:

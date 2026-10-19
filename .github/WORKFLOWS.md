@@ -86,8 +86,8 @@ AI-powered content analysis and suggestions:
 Approval and the `landing` label for trusted contributors:
 - Checks the author against `.github/WEAVERS.txt` as it reads on the base branch, so a pull request cannot add its own author
 - Runs schema validation, the indexer's quality checks and the duplicate check
-- When the checks pass and the commit they ran on is still the head, approves that commit, adds the `landing` label and keeps one comment naming the guards that passed
-- A push that moves the head, or a reopen, takes the label off until the checks pass on the head; a head whose checks fail keeps it off, and the guards comment says so
+- When the checks pass, and the pull request still has the head they ran on and still targets `main`, approves that commit, adds the `landing` label and keeps one comment naming the guards that passed; it reads the pull request again once the label is on and takes the label back off if the head or the base moved meanwhile
+- A push that moves the head, or a reopen, takes the label off until the checks pass on the head; a head whose checks fail keeps it off, and the guards comment says so; a change of base takes it off through `landing-follows-the-base.yml`
 - Runs one at a time per pull request: a newer push cancels the older run
 - Only the jobs that write labels and comments get a token that can write; the job that installs and runs the pull request's code gets a read-only token and keeps none in its checkout
 - Never merges: a maintainer lands the pull request after its review comments are read, answered and resolved
@@ -124,9 +124,22 @@ Files each inbox note where it belongs:
 - A `suggest` result or an error opens an issue instead
 - Never merges: a maintainer lands a labelled pull request after its review comments are read, answered and resolved
 
+### 8. `landing-follows-the-base.yml` (Landing follows the base)
+
+**Triggers:**
+- Pull request edits (`edited`) on any base, with no branch filter, so a retarget away from `main` counts; the job runs only when the edit changed the base
+
+**Purpose:**
+Keeps the `landing` label true to the branch its guards ran against:
+- When the base of a pull request that carried `landing` changes, takes the label off and says in the guards comment (github-actions[bot]'s comment that starts with `<!-- landing-guards -->`, written when the pull request has none) which base the guards ran against
+- A pull request without the label, or whose label is already off, gets no write
+- Checks out no code; its one job gets a token that writes labels and comments
+- A maintainer adds the label again after checking the pull request against the new base; on a trusted Weaver's pull request into `main`, the Trusted Weavers workflow does on the next push or reopen
+- On a pull request from a fork the token can only read, so a label put there by hand stays and the job fails, which shows on the pull request
+
 ### The `landing` label
 
-No workflow here merges a pull request or turns on GitHub's auto-merge. A pull request is merged only after every review and comment on it has been read, fixed or answered and its threads resolved. Where a workflow's checks and guards pass, it adds the `landing` label (created on first use) and posts one comment saying which guards passed; when that comment cannot be posted, the label comes off again. A maintainer lands the pull request after that pass.
+No workflow here merges a pull request or turns on GitHub's auto-merge. A pull request is merged only after every review and comment on it has been read, fixed or answered and its threads resolved. Where a workflow's checks and guards pass, it adds the `landing` label (created on first use) and posts one comment saying which guards passed; when that comment cannot be posted, the label comes off again. A change of base takes the label off too, since the guards ran against the old base. A maintainer lands the pull request after that pass.
 
 ## Caching Strategy
 

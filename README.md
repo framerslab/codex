@@ -103,6 +103,7 @@ graph TD
 - `.github/workflows/ai-enhance-pr.yml` - Optional AI analysis on PRs
 - `.github/workflows/auto-merge-weavers.yml` - Approves trusted contributors' PRs that pass validation and labels them `landing`
 - `.github/workflows/auto-categorize-inbox.yml` - Moves inbox files to their suggested place in a PR, labelled `landing` at 70 percent confidence or more
+- `.github/workflows/landing-follows-the-base.yml` - Takes the `landing` label off a PR whose base changes, since its guards ran against the old base
 - `.github/workflows/changelog.yml` - Daily changelog generation (git + GitHub API)
 - `.github/workflows/test.yml` - Runs validation suite (no API keys)
 
