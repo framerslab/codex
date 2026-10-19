@@ -1,4 +1,15 @@
-name: Auto-Merge Trusted Weavers
+# Trusted Weaver pull requests: validate, approve and label for landing.
+#
+# A pull request opened by a user listed in .github/WEAVERS.txt runs the content checks: schema
+# validation of the changed Markdown and YAML files, the indexer's quality checks and the
+# duplicate check. When every check passes, the workflow approves the pull request, adds the
+# "landing" label and keeps one comment naming the guards that passed on the head it checked. A
+# run whose checks fail takes the label off again.
+#
+# The workflow never merges and never turns on GitHub's auto-merge. Every pull request is merged
+# only after its reviews and comments are read, fixed or answered and its threads resolved; a
+# maintainer lands a labelled pull request once that pass is done.
+name: Trusted Weavers
 
 on:
   pull_request:
@@ -6,8 +17,9 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
+  issues: write
   checks: read
 
 jobs:
@@ -102,7 +114,7 @@ jobs:
             exit 1
           fi
 
-  auto-approve-and-merge:
+  approve-and-label:
     needs: [check-weaver-status, validate-content]
     if: |
       needs.check-weaver-status.outputs.is_weaver == 'true' &&
@@ -117,77 +129,91 @@ jobs:
           script: |
             const { owner, repo } = context.repo;
             const pull_number = context.payload.pull_request.number;
+            const author = context.payload.pull_request.user.login;
             
             await github.rest.pulls.createReview({
               owner,
               repo,
               pull_number,
               event: 'APPROVE',
-              body: `✅ Auto-approved: @${{ needs.check-weaver-status.outputs.username }} is a trusted Weaver and all validation checks passed.
-              
-              **Validation Summary:**
-              - ✅ Schema validation passed
-              - ✅ Quality checks passed
-              - ✅ No duplicates detected
-              - ✅ Indexer ran successfully
-              
-              Merging automatically.`
+              body: `✅ Approved: @${author} is a trusted Weaver and all validation checks passed.`
             });
       
-      - name: Enable auto-merge
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GH_PAT }}
-          script: |
-            const { owner, repo } = context.repo;
-            const pull_number = context.payload.pull_request.number;
-            
-            try {
-              await github.rest.pulls.merge({
-                owner,
-                repo,
-                pull_number,
-                merge_method: 'squash',
-                commit_title: `${{ github.event.pull_request.title }} (#${pull_number})`,
-                commit_message: `Contributed by @${{ needs.check-weaver-status.outputs.username }} (Trusted Weaver)
-                
-                Auto-merged after passing all validation checks.`
-              });
-              
-              console.log('✅ PR merged successfully');
-            } catch (error) {
-              console.error('Failed to merge PR:', error.message);
-              
-              // Post comment explaining why merge failed
-              await github.rest.issues.createComment({
-                owner,
-                repo,
-                issue_number: pull_number,
-                body: `⚠️ Auto-merge failed: ${error.message}
-                
-                This may be due to merge conflicts or branch protection rules. Please merge manually.`
-              });
-            }
-      
-      - name: Post success comment
-        if: success()
+      - name: Label for landing and name the guards that passed
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { owner, repo } = context.repo;
-            const pull_number = context.payload.pull_request.number;
+            const issue_number = context.payload.pull_request.number;
+            const author = context.payload.pull_request.user.login;
+            const head = context.payload.pull_request.head.sha.slice(0, 7);
+            const marker = '<!-- landing-guards -->';
             
-            await github.rest.issues.createComment({
-              owner,
-              repo,
-              issue_number: pull_number,
-              body: `🎉 Thank you @${{ needs.check-weaver-status.outputs.username }} for your contribution!
-              
-              This PR has been automatically merged as you are a trusted Weaver.
-              
-              The search index will be rebuilt automatically and will be live within a few minutes.`
-            });
+            // Create the label on first use; a concurrent run may create it first (422).
+            try {
+              await github.rest.issues.getLabel({ owner, repo, name: 'landing' });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              try {
+                await github.rest.issues.createLabel({
+                  owner,
+                  repo,
+                  name: 'landing',
+                  color: '0e8a16',
+                  description: 'Checks and guards passed; lands after the comment pass'
+                });
+              } catch (createError) {
+                if (createError.status !== 422) throw createError;
+              }
+            }
+            
+            await github.rest.issues.addLabels({ owner, repo, issue_number, labels: ['landing'] });
+            
+            const body = [
+              marker,
+              `Thank you @${author} for your contribution! Guards passed on ${head}:`,
+              '',
+              `- @${author} is a trusted Weaver (listed in \`.github/WEAVERS.txt\`)`,
+              '- Schema validation of the changed Markdown and YAML files',
+              '- The indexer quality checks',
+              '- The duplicate check',
+              '',
+              'Labelled `landing`: this pull request lands after its review comments are read, answered and resolved. No workflow merges it.'
+            ].join('\n');
+            
+            // One comment per pull request: a later run updates it.
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
+            const previous = comments.find((comment) => comment.user?.type === 'Bot' && comment.body?.includes(marker));
+            if (previous) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: previous.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
+
+  clear-landing-label:
+    needs: [check-weaver-status, validate-content]
+    # failure() keeps the job from being skipped when the validation job it needs has failed
+    if: |
+      failure() &&
+      needs.check-weaver-status.outputs.is_weaver == 'true' &&
+      needs.validate-content.result == 'failure'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Take the landing label off when the checks fail
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            
+            try {
+              await github.rest.issues.removeLabel({ owner, repo, issue_number, name: 'landing' });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
 
   notify-non-weaver:
     needs: check-weaver-status
@@ -215,6 +241,6 @@ jobs:
               - 📝 Review the [contribution guidelines](../../wiki/codex/contributing.md)
               - 💬 Join our [Discord](https://wilds.ai/discord) for questions
               
-              **Become a Weaver:** After 5+ high-quality contributions, you can be nominated for auto-merge privileges!`
+              **Become a Weaver:** After 5+ high-quality contributions, you can be nominated as a trusted Weaver, whose pull requests are approved and labelled for landing once validation passes!`
             });
 

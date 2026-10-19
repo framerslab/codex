@@ -81,3 +81,40 @@ describe('the flows that would merge keep their guards, label the pull request l
     expect(text).toMatch(COMMENT);
   });
 });
+
+// GitHub reports a broken workflow file only when an event would start it, and the Weaver workflow starts only on pull
+// requests into main, so the changed files are parsed here: the YAML, every shell `run:` block and the re-catalog
+// script (bash -n), and every actions/github-script body (compiled the way the action wraps it, as an async function).
+describe('the changed workflows and script parse', () => {
+  const yaml = require('js-yaml');
+  const vm = require('vm');
+  const { execFileSync } = require('child_process');
+  const CHANGED_WORKFLOWS = ['.github/workflows/auto-categorize-inbox.yml', '.github/workflows/auto-merge-weavers.yml'];
+  const withoutExpressions = (source) => source.replace(/\$\{\{[^}]*\}\}/g, 'X');
+  const steps = (rel) => Object.values(yaml.load(read(rel)).jobs).flatMap((job) => job.steps ?? []);
+  const bashSyntax = (source) => execFileSync('bash', ['-n'], { input: source, stdio: ['pipe', 'pipe', 'pipe'] });
+
+  it.each(CHANGED_WORKFLOWS)('%s is valid YAML with jobs and steps', (rel) => {
+    const workflow = yaml.load(read(rel));
+    expect(Object.keys(workflow.jobs).length).toBeGreaterThan(0);
+    for (const job of Object.values(workflow.jobs)) expect(job.steps.length).toBeGreaterThan(0);
+  });
+
+  it.each(CHANGED_WORKFLOWS)('every run block of %s passes bash -n', (rel) => {
+    const blocks = steps(rel).filter((step) => step.run).map((step) => withoutExpressions(step.run));
+    expect(blocks.length).toBeGreaterThan(0);
+    for (const block of blocks) expect(() => bashSyntax(block)).not.toThrow();
+  });
+
+  it('every github-script body of the Weaver workflow compiles', () => {
+    const scripts = steps('.github/workflows/auto-merge-weavers.yml')
+      .filter((step) => String(step.uses).startsWith('actions/github-script@'))
+      .map((step) => withoutExpressions(step.with.script));
+    expect(scripts.length).toBe(4);
+    for (const script of scripts) expect(() => new vm.Script(`(async () => {\n${script}\n})`)).not.toThrow();
+  });
+
+  it('the re-catalog script passes bash -n', () => {
+    expect(() => bashSyntax(read('scripts/retrigger-full-catalog.sh'))).not.toThrow();
+  });
+});

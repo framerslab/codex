@@ -2,8 +2,9 @@
 #
 # This file lists trusted contributors ("Weavers") who have demonstrated
 # consistent high-quality contributions to the Frame Codex. PRs opened by
-# users in this list will be automatically approved and merged after passing
-# all validation checks.
+# users in this list are approved and labelled "landing" after passing all
+# validation checks; a maintainer lands them after their review comments are
+# read, answered and resolved. No workflow merges them.
 #
 # Format: One GitHub username per line (no @ symbol)
 # Comments start with #
@@ -16,6 +17,6 @@
 # Maintainers (full access):
 jddunn
 
-# Trusted Weavers (auto-merge after validation):
+# Trusted Weavers (approved and labelled for landing after validation):
 # Add trusted contributors below this line
 
