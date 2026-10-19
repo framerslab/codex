@@ -84,11 +84,12 @@ AI-powered content analysis and suggestions:
 
 **Purpose:**
 Approval and the `landing` label for trusted contributors:
-- Checks `.github/WEAVERS.txt` for the author
+- Checks the author against `.github/WEAVERS.txt` as it reads on the base branch, so a pull request cannot add its own author
 - Runs schema validation, the indexer's quality checks and the duplicate check
 - When the checks pass and the commit they ran on is still the head, approves that commit, adds the `landing` label and keeps one comment naming the guards that passed
 - A push that moves the head, or a reopen, takes the label off until the checks pass on the head; a head whose checks fail keeps it off, and the guards comment says so
 - Runs one at a time per pull request: a newer push cancels the older run
+- Only the jobs that write labels and comments get a token that can write; the job that installs and runs the pull request's code gets a read-only token and keeps none in its checkout
 - Never merges: a maintainer lands the pull request after its review comments are read, answered and resolved
 
 ### 5. `test.yml`

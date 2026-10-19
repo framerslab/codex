@@ -9,6 +9,9 @@
 # Format: One GitHub username per line (no @ symbol)
 # Comments start with #
 #
+# The Trusted Weavers workflow reads this file from the base branch, so a
+# name added in a pull request counts once that pull request is merged.
+#
 # To become a Weaver:
 # 1. Submit 5+ high-quality PRs that pass all validation
 # 2. Demonstrate understanding of the Codex schema and quality standards
