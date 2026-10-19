@@ -1,0 +1,70 @@
+# The landing label follows the pull request's base.
+#
+# A workflow adds the "landing" label once a pull request's checks and guards pass against the
+# branch it targets. Those guards say nothing about another branch, so when an edit changes the
+# base, this workflow takes the label off and says so in the guards comment (github-actions[bot]'s
+# comment that starts with the <!-- landing-guards --> marker; it writes one when the pull request
+# has none). A maintainer adds the label again after checking the pull request against the new
+# base; on a trusted Weaver's pull request into main, the Trusted Weavers workflow does on the next
+# push or reopen. Nothing here merges: every pull request is merged only after its reviews and
+# comments are read, fixed or answered and its threads resolved.
+#
+# It starts on every edit of a pull request into any branch, with no branch filter, so a retarget
+# away from main counts too, and its job runs only when the edit changed the base. A label added
+# after the change is left to whoever added it: the Trusted Weavers workflow reads the pull request
+# again once its label is on. The job checks out no code; its token writes labels and comments
+# only. On a pull request from a fork the token can only read, so a label put there by hand stays
+# and the job fails, which shows on the pull request. There is no concurrency group, so a later
+# edit of the title cannot cancel the run for a change of base.
+name: Landing follows the base
+
+on:
+  pull_request:
+    types: [edited]
+
+permissions:
+  contents: read
+
+jobs:
+  clear-landing-on-base-change:
+    if: github.event.changes.base
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Take the landing label off and say which base its guards ran against
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const from = context.payload.changes.base.ref.from;
+            const to = context.payload.pull_request.base.ref;
+            const marker = '<!-- landing-guards -->';
+
+            // The labels the pull request carried when its base changed.
+            if (!context.payload.pull_request.labels.some((label) => label.name === 'landing')) return;
+
+            try {
+              await github.rest.issues.removeLabel({ owner, repo, issue_number, name: 'landing' });
+            } catch (error) {
+              // Already off: whoever took it off has said why.
+              if (error.status === 404) return;
+              throw error;
+            }
+
+            const body = `${marker}\nThe base changed from \`${from}\` to \`${to}\`, so the \`landing\` label is off: its guards ran against \`${from}\`.`;
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
+            // The guards comment is github-actions[bot]'s, starting with the marker. A review bot may quote the marker in a
+            // comment of its own, which the workflow token cannot edit.
+            const previous = comments.find(
+              (comment) => comment.user?.login === 'github-actions[bot]' && comment.body?.startsWith(marker)
+            );
+            if (previous) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: previous.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }

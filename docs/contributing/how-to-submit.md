@@ -310,8 +310,8 @@ Frame Codex includes several automated systems to help ensure quality:
 ### Fast-Track (Trusted Weavers)
 
 After 5+ high-quality contributions, you can become a **Trusted Weaver**:
-- ✅ Auto-approval after validation passes
-- ✅ Instant merge (no waiting)
+- ✅ Approval and the `landing` label once validation passes
+- ✅ Your PR lands as soon as its review comments are read, answered and resolved
 - ✅ Direct commit access (optional)
 
 To become a Weaver, maintain high quality and request nomination from maintainers.

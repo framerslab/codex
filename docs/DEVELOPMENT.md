@@ -53,14 +53,11 @@ This will:
 Add to `framerslab/codex` repository settings:
 
 ```bash
-# Required for auto-merge workflow
+# Required for the Trusted Weavers workflow (approves validated PRs)
 GH_PAT=ghp_xxxxxxxxxxxxxxxxxxxx  # GitHub Personal Access Token (repo scope)
 
 # AI Enhancement (OPTIONAL - only if you want AI-powered PR analysis)
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
-
-# Auto-merge control (default: false - requires manual approval)
-AUTO_CATALOG_MERGE=false  # Set to 'true' to auto-merge re-catalog PRs
 
 # Configuration (optional)
 AI_PROVIDER=disabled  # Set to 'disabled' to skip AI entirely
@@ -73,11 +70,10 @@ AI_PROVIDER=disabled  # Set to 'disabled' to skip AI entirely
 OPENAI_API_KEY=sk-...
 ```
 
-**To enable auto-merge for re-catalog PRs:**
+**To label re-catalog PRs for landing** (exported in the shell that runs the re-catalog script):
 ```bash
-AUTO_CATALOG_MERGE=true
-# Default: false (requires manual approval)
-# Recommended: keep false to review metadata changes
+export AUTO_CATALOG_LAND=true
+# Default: false. The label marks the PR as checked; it lands after its review comments are read.
 ```
 
 **To disable AI enhancement:**
@@ -116,8 +112,8 @@ chmod +x scripts/retrigger-full-catalog.sh
 # Create PR with changes (requires manual approval)
 ./scripts/retrigger-full-catalog.sh
 
-# Force auto-merge (one-time override)
-./scripts/retrigger-full-catalog.sh --auto-merge
+# Label the PR for landing (one-time override)
+./scripts/retrigger-full-catalog.sh --land
 ```
 
 **What it does:**
@@ -125,7 +121,7 @@ chmod +x scripts/retrigger-full-catalog.sh
 2. Creates branch: `catalog/full-reindex-{timestamp}`
 3. Commits updated index files
 4. Creates PR with detailed summary
-5. **Waits for manual approval** (unless `AUTO_CATALOG_MERGE=true`)
+5. **Waits for review**: with `AUTO_CATALOG_LAND=true` or `--land`, and when the indexer skipped no file, it adds the `landing` label and one comment; a maintainer lands it after its review comments are read
 
 **Requirements:**
 - `GH_PAT` environment variable
@@ -670,14 +666,15 @@ node dist/auto-index.js
    - [Optional] Run AI enhancement
    ```
 
-6. **Auto-Merge (If Weaver):**
+6. **Label for Landing (If Weaver):**
    ```javascript
    if (isWeaver(author) && validationPassed) {
-     await github.pulls.merge({ pull_number })
+     await github.rest.issues.addLabels({ owner, repo, issue_number: pull_number, labels: ['landing'] })
    }
+   // A maintainer merges once the review comments are read, answered and resolved
    ```
 
-7. **Index Rebuild:**
+7. **Index Rebuild (after the merge):**
    ```bash
    npm run index -- --validate
    # Only processes affected loom + neighbors
@@ -690,7 +687,7 @@ node dist/auto-index.js
    - frame.dev/codex fetches updated index
    - Content searchable immediately
 
-**Total Time: 10-30 seconds** (most of it is GitHub API calls)
+**Automated steps: 10-30 seconds** (most of it is GitHub API calls); the merge waits for the review pass.
 
 ---
 

@@ -1107,12 +1107,12 @@ blocks:
         entityDensity: 0.31
         semanticNovelty: 0.718
         structuralImportance: 0.5
-  - id: auto-merge-trusted-weavers
+  - id: landing-trusted-weavers
     line: 109
     endLine: 109
     type: heading
     headingLevel: 3
-    headingText: Auto-Merge (Trusted Weavers)
+    headingText: Landing (Trusted Weavers)
     tags: []
     suggestedTags:
       - tag: architecture
@@ -1733,18 +1733,18 @@ stats       -- Loom/weave aggregate statistics
 3. **Static NLP**: Auto-categorization and tagging
 4. **Optional AI**: GPT-4 quality analysis (if `OPENAI_API_KEY` set)
 
-### Auto-Merge (Trusted Weavers)
+### Landing (Trusted Weavers)
 
-- Users in `.github/WEAVERS.txt` get auto-approved + merged
+- Pull requests from users in `.github/WEAVERS.txt` get approved and labelled `landing`
 - Requires 5+ high-quality contributions
-- Validation must pass
+- Validation must pass; a maintainer lands the pull request after its review comments are read
 
 ### Full Re-Catalog
 
 - Triggered manually or on schedule
 - Updates all metadata and statistics
 - Creates PR (manual approval by default)
-- Toggle: `AUTO_CATALOG_MERGE=true`
+- Toggle: `AUTO_CATALOG_LAND=true` labels the PR `landing`
 
 ## OpenQuarry Integration
 

@@ -92,14 +92,18 @@ graph TD
     H --> I[Validate Schemas]
     I -->|Pass| J{Trusted Weaver?}
     I -->|Fail| K[Block PR]
-    J -->|Yes| L[Auto-Merge]
+    J -->|Yes| L[Approve and label landing]
     J -->|No| M[Review Required]
+    L --> N[Merge after the review comments are read]
+    M --> N
 ```
 
 **Workflows**:
 - `.github/workflows/auto-index.yml` - Builds index on every commit (static NLP)
 - `.github/workflows/ai-enhance-pr.yml` - Optional AI analysis on PRs
-- `.github/workflows/auto-merge-weavers.yml` - Auto-approves PRs from trusted contributors
+- `.github/workflows/auto-merge-weavers.yml` - Approves trusted contributors' PRs that pass validation and labels them `landing`
+- `.github/workflows/auto-categorize-inbox.yml` - Moves inbox files to their suggested place in a PR, labelled `landing` at 70 percent confidence or more
+- `.github/workflows/landing-follows-the-base.yml` - Takes the `landing` label off a PR whose base changes, since its guards ran against the old base
 - `.github/workflows/changelog.yml` - Daily changelog generation (git + GitHub API)
 - `.github/workflows/test.yml` - Runs validation suite (no API keys)
 
@@ -111,8 +115,9 @@ You have full control over automation:
 # In .github/secrets (repository settings)
 SQL_CACHE_DISABLED=true          # Force full re-index (bypass cache)
 AI_PROVIDER=disabled             # Disable LLM enhancement entirely
-AUTO_CATALOG_MERGE=false         # Require manual approval for re-catalogs
 ```
+
+No workflow merges a pull request or turns on GitHub's auto-merge: a PR is merged after its reviews and comments are read, fixed or answered and its threads resolved. A workflow whose checks and guards pass adds the `landing` label and one comment instead. The re-catalog script does the same for its PR when `AUTO_CATALOG_LAND=true` is in its environment (see [docs/RECATALOG_GUIDE.md](docs/RECATALOG_GUIDE.md)).
 
 **Per-file overrides** (in frontmatter):
 ```yaml
@@ -347,7 +352,7 @@ We welcome contributions! Our automated systems help ensure quality:
 - **Auto-Tagging**: Smart tag suggestions via vocabulary matching
 - **Validation**: Quality assurance checks (schema, content, duplicates)
 - **AI Enhancement** (Optional): GPT-4/Claude analysis with quality scoring
-- **Auto-Merge**: Trusted Weavers (5+ contributions) get instant merge
+- **Fast Track**: Trusted Weavers (5+ contributions) get an approval and the `landing` label once validation passes; the PR lands after its review comments are read
 
 ### Quality Standards
 - Minimum 100 characters of meaningful content  
@@ -367,7 +372,7 @@ See [Contributing Guide](docs/contributing/how-to-submit.md) for details.
 Add these to repository settings → Secrets and variables → Actions:
 
 ```bash
-# Required for auto-merge workflow
+# Required for the Trusted Weavers workflow (approves validated PRs)
 GH_PAT=ghp_xxxxxxxxxxxxxxxxxxxx
 # GitHub Personal Access Token with 'repo' scope
 # Create at: https://github.com/settings/tokens/new?scopes=repo
@@ -375,11 +380,6 @@ GH_PAT=ghp_xxxxxxxxxxxxxxxxxxxx
 # Optional: AI-powered PR enhancement
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
 # Get at: https://platform.openai.com/api-keys
-
-# Auto-merge control for catalog updates (default: false)
-AUTO_CATALOG_MERGE=false
-# Set to 'true' to auto-merge full re-catalog PRs
-# Recommended: keep false and manually review metadata changes
 
 # Configuration (optional)
 AI_PROVIDER=disabled
@@ -389,9 +389,8 @@ AI_PROVIDER=disabled
 
 ### Secret Usage
 
-- **GH_PAT**: Required for auto-merge workflow to approve and merge PRs
+- **GH_PAT**: Lets the Trusted Weavers workflow approve validated PRs and other workflows trigger across repositories; no workflow merges a PR
 - **OPENAI_API_KEY**: Optional, enables AI quality analysis (cost varies by content length: ~$0.01-0.20/PR for 100-10K words)
-- **AUTO_CATALOG_MERGE**: Set to `true` to auto-merge full re-catalog PRs (default: `false`, requires manual approval)
 - **AI_PROVIDER**: Set to `disabled` to skip AI enhancement
 
 **Note:** The indexer and validator work WITHOUT any API keys. AI enhancement is purely optional for advanced quality analysis.

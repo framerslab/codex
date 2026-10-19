@@ -30,16 +30,15 @@ cd apps/codex
 ./scripts/retrigger-full-catalog.sh
 ```
 
-Creates a PR that requires manual approval (unless `AUTO_CATALOG_MERGE=true`)
+Creates a PR for review. With `AUTO_CATALOG_LAND=true` (or `--land`) the PR gets the `landing` label; it lands after its review comments are read.
 
 ---
 
 ## 🔑 Required GitHub Secrets
 
 ```bash
-GH_PAT=ghp_...                    # Required for auto-merge
+GH_PAT=ghp_...                    # Required for Weaver approvals
 OPENAI_API_KEY=sk-...            # Optional for AI analysis
-AUTO_CATALOG_MERGE=false         # Default: requires manual approval
 AI_PROVIDER=disabled             # Optional: disable AI
 ```
 
@@ -61,32 +60,25 @@ AI_PROVIDER=disabled             # Optional: disable AI
 
 1. **PR Opened** → Static NLP runs (free, 30s)
 2. **If OPENAI_API_KEY set** → AI analysis runs (~$0.05, 2min)
-3. **If author in WEAVERS.txt** → Auto-approve & merge
+3. **If author in WEAVERS.txt** → Approve and label `landing`
 4. **Else** → Manual review required
-5. **On merge** → Index rebuilds (free, 30s)
-6. **Live on frame.dev/codex** immediately
+5. **Review comments read, answered and resolved** → A maintainer merges
+6. **On merge** → Index rebuilds (free, 30s)
+7. **Live on frame.dev/codex** immediately
 
 ---
 
-## 🎯 Auto-Merge Control
+## 🎯 Landing Control
 
-**Default: Manual approval required** ✅ (Recommended)
+**Nothing merges a PR automatically.** A PR is merged after its reviews and comments are read, fixed or answered and its threads resolved.
 
-**Enable auto-merge:**
+**Label re-catalog PRs for landing:**
 ```bash
-# In GitHub secrets
-AUTO_CATALOG_MERGE=true
+# In the shell that runs the re-catalog script
+AUTO_CATALOG_LAND=true ./scripts/retrigger-full-catalog.sh
 ```
 
-**When to enable:**
-- High confidence in automation
-- Frequent re-catalogs needed
-- Well-tested vocabulary
-
-**When to keep disabled:**
-- Want human oversight
-- Testing new rules
-- Initial setup phase
+The `landing` label marks a PR whose checks and guards passed; a maintainer lands it after the comment pass.
 
 ---
 

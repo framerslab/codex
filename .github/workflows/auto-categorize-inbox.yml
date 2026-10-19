@@ -1,3 +1,15 @@
+# Auto-categorize inbox notes.
+#
+# On a push to master that adds Markdown under weaves/inbox/, or on a manual run, each file goes
+# through scripts/categorize-strand.js. An "auto-move" result opens a pull request that moves the
+# file to the suggested path; a "suggest" result opens a suggestion issue; anything else opens a
+# manual-triage issue.
+#
+# The workflow never merges. Every pull request is merged only after its reviews and comments are
+# read, fixed or answered and its threads resolved, so a move at 70 percent confidence or more gets
+# the "landing" label and one comment naming the guards it passed (when that comment cannot be
+# posted, the label comes off again), and a maintainer lands it after that pass. A move below 70
+# percent waits for a manual review.
 name: Auto-Categorize Inbox Strands
 
 on:
@@ -173,10 +185,28 @@ jobs:
               
               pr_number=$(echo "$pr_url" | grep -oP 'pull/\K[0-9]+' || gh pr list --head "$branch_name" --json number -q '.[0].number')
               
-              # Auto-merge if confidence >= 70%
+              # Label for landing if confidence >= 70%. Nothing here merges: a maintainer lands a
+              # labelled pull request after its review comments are read, answered and resolved.
               if [ "$confidence_pct" -ge 70 ] && [ -n "$pr_number" ]; then
-                echo "✅ Auto-merging PR #$pr_number (confidence: ${confidence_pct}%)"
-                gh pr merge "$pr_number" --squash --delete-branch || echo "⚠️ Auto-merge failed, PR remains open"
+                echo "🏷️ Labelling PR #$pr_number for landing (confidence: ${confidence_pct}%)"
+                # Create the label on first use
+                gh api "repos/$GITHUB_REPOSITORY/labels/landing" --silent 2>/dev/null \
+                  || gh api -X POST "repos/$GITHUB_REPOSITORY/labels" --silent \
+                       -f name=landing -f color=0e8a16 \
+                       -f description="Checks and guards passed; lands after the comment pass" \
+                  || true
+                if gh api -X POST "repos/$GITHUB_REPOSITORY/issues/$pr_number/labels" --silent -f "labels[]=landing"; then
+                  landing_body=$(printf '%s\n\n%s' \
+                    "Guards passed: the categorizer chose auto-move to \`$suggested_path\` at ${confidence_pct}% confidence (threshold 70%, method: $method)." \
+                    "Labelled \`landing\`: this pull request lands after its review comments are read, answered and resolved. No workflow merges it.")
+                  if ! gh api -X POST "repos/$GITHUB_REPOSITORY/issues/$pr_number/comments" --silent -f body="$landing_body"; then
+                    # The label promises a comment naming the guards; without the comment the label comes off
+                    gh api -X DELETE "repos/$GITHUB_REPOSITORY/issues/$pr_number/labels/landing" --silent || true
+                    echo "⚠️ Could not comment on PR #$pr_number, so it is not labelled; it remains open for manual review"
+                  fi
+                else
+                  echo "⚠️ Could not label PR #$pr_number, it remains open for manual review"
+                fi
               else
                 echo "👀 PR #$pr_number created, awaiting manual review (confidence: ${confidence_pct}%)"
               fi

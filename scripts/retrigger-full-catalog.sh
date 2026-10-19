@@ -10,15 +10,21 @@
 # 2. Auto-generate/update metadata where missing
 # 3. Suggest better categorization based on content analysis
 # 4. Create a PR with all proposed changes (requires approval by default)
-# 5. Optionally auto-merge if AUTO_CATALOG_MERGE=true secret is set
+# 5. Optionally label the PR "landing" (AUTO_CATALOG_LAND=true or --land) when
+#    the indexer skipped no file
+#
+# Nothing here merges the PR. A pull request lands only after its reviews and
+# comments are read, answered and resolved, so a maintainer lands a labelled
+# re-catalog PR after that pass.
 #
 # Usage:
 #   ./scripts/retrigger-full-catalog.sh
 #   ./scripts/retrigger-full-catalog.sh --dry-run
-#   ./scripts/retrigger-full-catalog.sh --auto-merge
+#   ./scripts/retrigger-full-catalog.sh --land
 #
 # Environment Variables:
-#   AUTO_CATALOG_MERGE=true    # Enable auto-merge (default: false)
+#   AUTO_CATALOG_LAND=true     # Label the PR for landing (default: false);
+#                              # AUTO_CATALOG_MERGE and --auto-merge are older names
 #   GH_PAT=ghp_...            # GitHub token for PR creation
 ###############################################################################
 
@@ -33,7 +39,7 @@ NC='\033[0m' # No Color
 
 # Parse arguments
 DRY_RUN=false
-FORCE_AUTO_MERGE=false
+FORCE_AUTO_LAND=false
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -41,8 +47,8 @@ while [[ $# -gt 0 ]]; do
       DRY_RUN=true
       shift
       ;;
-    --auto-merge)
-      FORCE_AUTO_MERGE=true
+    --land|--auto-merge)
+      FORCE_AUTO_LAND=true
       shift
       ;;
     *)
@@ -126,6 +132,7 @@ git add codex-index.json codex-report.json
 TOTAL_FILES=$(node -e "const r = require('./codex-report.json'); console.log(r.summary.indexedFiles)")
 VALID_FILES=$(node -e "const r = require('./codex-report.json'); console.log(r.summary.validFiles)")
 ERROR_FILES=$(node -e "const r = require('./codex-report.json'); console.log(r.summary.filesWithErrors)")
+SKIPPED_FILES=$(node -e "const r = require('./codex-report.json'); console.log(Number(r.summary.skippedFiles) || 0)")
 
 git commit -m "chore: full catalog re-index and metadata update
 
@@ -156,10 +163,10 @@ if [ -z "$GH_PAT" ]; then
   exit 0
 fi
 
-# Determine if auto-merge should be enabled
-AUTO_MERGE="${AUTO_CATALOG_MERGE:-false}"
-if [ "$FORCE_AUTO_MERGE" = true ]; then
-  AUTO_MERGE=true
+# Determine if the PR should be labelled for landing
+AUTO_LAND="${AUTO_CATALOG_LAND:-${AUTO_CATALOG_MERGE:-false}}"
+if [ "$FORCE_AUTO_LAND" = true ]; then
+  AUTO_LAND=true
 fi
 
 # Create PR body
@@ -171,15 +178,17 @@ This PR updates the search index and metadata for all Frame Codex content.
 - **Total files indexed**: ${TOTAL_FILES}
 - **Valid files**: ${VALID_FILES}
 - **Files with errors**: ${ERROR_FILES}
+- **Files skipped by the indexer**: ${SKIPPED_FILES}
 
 ### Changes
 - Updated \`codex-index.json\` with latest TF-IDF analysis
 - Updated \`codex-report.json\` with validation results
 - All changes are automatically generated via static NLP
 
-### Auto-Merge
-- **Enabled**: ${AUTO_MERGE}
+### Landing
+- **Label \`landing\` requested**: ${AUTO_LAND}
 - **Triggered by**: \`scripts/retrigger-full-catalog.sh\`
+- Lands after its review comments are read, answered and resolved; nothing merges it automatically
 
 ---
 
@@ -210,36 +219,52 @@ fi
 
 echo -e "${GREEN}✓${NC} Pull Request created: ${PR_URL}"
 
-# Auto-merge if enabled
-if [ "$AUTO_MERGE" = "true" ]; then
+# Label for landing if requested. Nothing here merges the PR: a maintainer
+# lands it after its review comments are read, answered and resolved. A file
+# the indexer skipped is missing from the index, so that PR is not labelled.
+if [ "$AUTO_LAND" = "true" ] && [ "$SKIPPED_FILES" -gt 0 ]; then
   echo ""
-  echo -e "${YELLOW}🤖 Auto-merge enabled. Merging PR...${NC}"
-  
-  # Wait a moment for CI to start
-  sleep 5
-  
-  # Merge PR
-  MERGE_RESPONSE=$(curl -s -X PUT \
-    -H "Authorization: Bearer $GH_PAT" \
-    -H "Accept: application/vnd.github+json" \
-    -H "X-GitHub-Api-Version: 2022-11-28" \
-    https://api.github.com/repos/framerslab/codex/pulls/${PR_NUMBER}/merge \
-    -d '{
-      "commit_title": "chore: full catalog re-index",
-      "commit_message": "Automated merge of catalog update",
-      "merge_method": "squash"
-    }')
-  
-  if echo "$MERGE_RESPONSE" | jq -e '.merged' > /dev/null; then
-    echo -e "${GREEN}✓${NC} PR merged successfully!"
+  echo -e "${YELLOW}⚠️  The indexer skipped ${SKIPPED_FILES} file(s), so the PR is not labelled landing. It waits for manual review.${NC}"
+elif [ "$AUTO_LAND" = "true" ]; then
+  echo ""
+  echo -e "${YELLOW}🏷️  Landing requested. Labelling PR #${PR_NUMBER}...${NC}"
+
+  API_URL="https://api.github.com/repos/framerslab/codex"
+  API_HEADERS=(
+    -H "Authorization: Bearer $GH_PAT"
+    -H "Accept: application/vnd.github+json"
+    -H "X-GitHub-Api-Version: 2022-11-28"
+  )
+
+  # Create the label on first use (a 422 reply means it exists already)
+  curl -s -o /dev/null "${API_HEADERS[@]}" -X POST "${API_URL}/labels" \
+    -d '{"name":"landing","color":"0e8a16","description":"Checks and guards passed; lands after the comment pass"}' || true
+
+  LABEL_RESPONSE=$(curl -s "${API_HEADERS[@]}" -X POST "${API_URL}/issues/${PR_NUMBER}/labels" \
+    -d '{"labels":["landing"]}')
+
+  if echo "$LABEL_RESPONSE" | jq -e 'type == "array" and any(.[]; .name == "landing")' > /dev/null; then
+    COMMENT_BODY="Guards passed: \`npm run index -- --validate\` exited 0 and skipped no file (${TOTAL_FILES} files indexed, ${VALID_FILES} valid, ${ERROR_FILES} with validation errors), and landing was requested for this run.
+
+Labelled \`landing\`: this pull request lands after its review comments are read, answered and resolved. No script or workflow merges it."
+    COMMENT_RESPONSE=$(curl -s "${API_HEADERS[@]}" -X POST "${API_URL}/issues/${PR_NUMBER}/comments" \
+      -d "{\"body\": $(echo "$COMMENT_BODY" | jq -Rs .)}")
+    if echo "$COMMENT_RESPONSE" | jq -e '.id' > /dev/null; then
+      echo -e "${GREEN}✓${NC} PR labelled landing. It lands after its review comments are read."
+    else
+      # The label promises a comment naming the guards; without the comment the label comes off
+      curl -s -o /dev/null "${API_HEADERS[@]}" -X DELETE "${API_URL}/issues/${PR_NUMBER}/labels/landing" || true
+      echo -e "${YELLOW}⚠️  Could not post the landing comment, so the label came off again. The PR waits for manual review.${NC}"
+      echo -e "   Reason: $(echo "$COMMENT_RESPONSE" | jq -r '.message // "unknown"')"
+    fi
   else
-    echo -e "${YELLOW}⚠️  Auto-merge failed. Manual approval required.${NC}"
-    echo -e "   Reason: $(echo "$MERGE_RESPONSE" | jq -r '.message')"
+    echo -e "${YELLOW}⚠️  Could not label the PR. It stays open for manual review.${NC}"
+    echo -e "   Reason: $(echo "$LABEL_RESPONSE" | jq -r '.message // "unknown"')"
   fi
 else
   echo ""
-  echo -e "${YELLOW}ℹ️  Auto-merge disabled. PR requires manual approval.${NC}"
-  echo -e "   To enable auto-merge, set: ${BLUE}AUTO_CATALOG_MERGE=true${NC}"
+  echo -e "${YELLOW}ℹ️  Landing label not requested. The PR waits for manual review.${NC}"
+  echo -e "   To label re-catalog PRs for landing, set: ${BLUE}AUTO_CATALOG_LAND=true${NC}"
 fi
 
 # Return to main branch
