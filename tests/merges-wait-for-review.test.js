@@ -118,11 +118,13 @@ describe('the Trusted Weavers workflow keeps the landing label on a head that pa
   });
   const guardsComment = (sha) => ({ body: `${MARKER}\nGuards passed on ${sha.slice(0, 7)}:` });
 
+  // A comment written with the workflow token is github-actions[bot]'s, and that token edits no other author's comment.
+  const ACTIONS_BOT = { type: 'Bot', login: 'github-actions[bot]' };
   const fakeGitHub = ({ head, labels = [], comments = [], failCreateComment = false }) => {
     const state = {
       head,
       labels: new Set(labels),
-      comments: comments.map((comment, index) => ({ id: index + 1, user: { type: 'Bot' }, ...comment })),
+      comments: comments.map((comment, index) => ({ id: index + 1, user: ACTIONS_BOT, ...comment })),
       reviews: [],
     };
     const calls = [];
@@ -155,12 +157,13 @@ describe('the Trusted Weavers workflow keeps the landing label on a head that pa
           listComments: api('issues.listComments', () => state.comments),
           createComment: api('issues.createComment', ({ body }) => {
             if (failCreateComment) throw fail(500, 'Server Error');
-            const comment = { id: state.comments.length + 1, user: { type: 'Bot' }, body };
+            const comment = { id: state.comments.length + 1, user: ACTIONS_BOT, body };
             state.comments.push(comment);
             return comment;
           }),
           updateComment: api('issues.updateComment', ({ comment_id, body }) => {
             const comment = state.comments.find(({ id }) => id === comment_id);
+            if (comment.user.login !== ACTIONS_BOT.login) throw fail(403, 'Resource not accessible by integration');
             comment.body = body;
             return comment;
           }),
@@ -274,6 +277,33 @@ describe('the Trusted Weavers workflow keeps the landing label on a head that pa
     expect(state.comments[0].body).toContain('failed on bbbbbbb');
     // failure() keeps the report from being skipped along with the failed validation job it needs.
     expect(workflow().jobs['report-failed-checks'].if).toMatch(/failure\(\)/);
+  });
+
+  // A review bot can quote the marker inside a comment of its own, as one did on the pull request that added this flow.
+  const quoting = {
+    user: { type: 'Bot', login: 'qodo-free-for-open-source-projects[bot]' },
+    body: `Find the bot comment that contains \`${MARKER}\` and update it.`,
+  };
+
+  it('labels the head and writes its own guards comment when a review bot quoted the marker first', async () => {
+    const { github, state } = fakeGitHub({ head: NEW, comments: [quoting] });
+    await run(scriptOf('approve-and-label', 'addLabels'), { github, context: event('synchronize', NEW) });
+    expect([...state.labels]).toEqual(['landing']);
+    expect(state.comments).toHaveLength(2);
+    expect(state.comments[0].body).toBe(quoting.body);
+    expect(state.comments[1].body).toContain('Guards passed on bbbbbbb');
+  });
+
+  it.each([
+    ['clear-landing', 'is off until the checks pass on bbbbbbb'],
+    ['report-failed-checks', 'failed on bbbbbbb'],
+  ])("%s updates its own guards comment and leaves a review bot's quote of the marker alone", async (job, text) => {
+    const { github, state } = fakeGitHub({ head: NEW, labels: ['landing'], comments: [quoting, guardsComment(OLD)] });
+    await run(scriptOf(job, 'removeLabel'), { github, context: event('synchronize', NEW) });
+    expect(state.labels.has('landing')).toBe(false);
+    expect(state.comments).toHaveLength(2);
+    expect(state.comments[0].body).toBe(quoting.body);
+    expect(state.comments[1].body).toContain(text);
   });
 
   it('leaves a newer head alone when the checks failed on an older one', async () => {
