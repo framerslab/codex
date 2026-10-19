@@ -77,8 +77,8 @@ chmod +x scripts/retrigger-full-catalog.sh
 3. Creates a new branch: `catalog/full-reindex-{timestamp}`
 4. Commits changes
 5. Pushes to GitHub
-6. **Creates a PR** (requires manual approval by default)
-7. Optionally auto-merges if `AUTO_CATALOG_MERGE=true`
+6. **Creates a PR** for review
+7. Optionally labels the PR `landing` if `AUTO_CATALOG_LAND=true` (a maintainer lands it after its review comments are read)
 
 **Options:**
 
@@ -86,8 +86,8 @@ chmod +x scripts/retrigger-full-catalog.sh
 # Dry run (see what would change, no PR)
 ./scripts/retrigger-full-catalog.sh --dry-run
 
-# Force auto-merge (overrides AUTO_CATALOG_MERGE setting)
-./scripts/retrigger-full-catalog.sh --auto-merge
+# Label the PR for landing (overrides AUTO_CATALOG_LAND)
+./scripts/retrigger-full-catalog.sh --land
 ```
 
 **Requirements:**
@@ -121,47 +121,36 @@ git push
 
 ---
 
-## Auto-Merge Configuration
+## Landing Label
 
-### Default Behavior: Manual Approval Required
+### Default Behavior: Review Required
 
-By default, full re-catalog PRs require **manual review and approval**. This is the recommended setting to catch any unexpected metadata changes.
+Full re-catalog PRs wait for **review**. Nothing merges a PR automatically: a PR lands only after its reviews and comments are read, fixed or answered and its threads resolved.
 
-### Enable Auto-Merge
+### Label for Landing
 
-Set this GitHub secret to enable automatic merging:
+Set this variable in the shell that runs the script:
 
 ```bash
-AUTO_CATALOG_MERGE=true
+AUTO_CATALOG_LAND=true
 ```
 
-**When enabled:**
-- Re-catalog PRs will auto-merge after validation passes
-- No human review required
-- Faster iteration, but less oversight
-
-**When to enable:**
-- High trust in automation
-- Frequent re-catalogs needed
-- Well-tested vocabulary and schema
-
-**When to keep disabled (recommended):**
-- Initial setup phase
-- Testing new categorization rules
-- Want to review metadata changes
-- Prefer human oversight
+**When set:**
+- The script adds the `landing` label to its PR and one comment naming the guards that passed (the indexer run and its file counts)
+- A maintainer lands the PR after its review comments are read
+- `AUTO_CATALOG_MERGE` and `--auto-merge` are older names for the same setting
 
 ### Toggle via Script
 
 ```bash
-# With auto-merge
-AUTO_CATALOG_MERGE=true ./scripts/retrigger-full-catalog.sh
+# Label the PR for landing
+AUTO_CATALOG_LAND=true ./scripts/retrigger-full-catalog.sh
 
-# Without auto-merge (default)
+# Without the label (default)
 ./scripts/retrigger-full-catalog.sh
 
-# Force auto-merge (one-time override)
-./scripts/retrigger-full-catalog.sh --auto-merge
+# Label the PR for landing (one-time override)
+./scripts/retrigger-full-catalog.sh --land
 ```
 
 ---
@@ -300,9 +289,9 @@ Fix errors in the files listed in `codex-report.json` → `validation.fileErrors
 
 Check that `GH_PAT` is set and has `repo` scope. Verify token hasn't expired.
 
-### "Auto-merge failed"
+### "Could not label the PR"
 
-Check branch protection rules. Ensure `GH_PAT` has sufficient permissions.
+Ensure `GH_PAT` can write issues and pull requests on the repository. The PR stays open for manual review.
 
 ---
 
@@ -335,7 +324,7 @@ on:
 3. ✅ If satisfied, run without `--dry-run` to create PR
 4. ✅ Review and merge PR
 5. ✅ Set up scheduled re-catalogs (optional)
-6. ✅ Configure `AUTO_CATALOG_MERGE` based on your workflow
+6. ✅ Set `AUTO_CATALOG_LAND=true` if re-catalog PRs should arrive labelled for landing
 
 ---
 

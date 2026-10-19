@@ -77,16 +77,18 @@ AI-powered content analysis and suggestions:
 - Add `skip-ai` label to skip AI analysis
 - Dependabot PRs are automatically skipped
 
-### 4. `auto-merge-weavers.yml`
+### 4. `auto-merge-weavers.yml` (Trusted Weavers)
 
 **Triggers:**
-- Pull requests from trusted Weavers
+- Pull requests into `main` (opened, synchronized, reopened)
 
 **Purpose:**
-Automatic approval and merge for trusted contributors:
-- Checks `.github/WEAVERS.txt` for author
-- Runs validation and duplicate checks
-- Auto-approves and squash merges
+Approval and the `landing` label for trusted contributors:
+- Checks `.github/WEAVERS.txt` for the author
+- Runs schema validation, the indexer's quality checks and the duplicate check
+- Approves the pull request, adds the `landing` label and keeps one comment naming the guards that passed
+- Takes the label off when a later push fails the checks
+- Never merges: a maintainer lands the pull request after its review comments are read, answered and resolved
 
 ### 5. `test.yml`
 
@@ -106,6 +108,23 @@ Automatic approval and merge for trusted contributors:
 
 **Purpose:**
 Builds search index with SQL caching and pushes to `index` branch.
+
+### 7. `auto-categorize-inbox.yml`
+
+**Triggers:**
+- Push to `master` that adds Markdown under `weaves/inbox/`
+- Manual dispatch (one file, or the LLM path forced)
+
+**Purpose:**
+Files each inbox note where it belongs:
+- An `auto-move` result opens a pull request that moves the file to the suggested path
+- At 70 percent confidence or more, that pull request gets the `landing` label and one comment naming the guards that passed; below 70 percent it waits for a manual review
+- A `suggest` result or an error opens an issue instead
+- Never merges: a maintainer lands a labelled pull request after its review comments are read, answered and resolved
+
+### The `landing` label
+
+No workflow here merges a pull request or turns on GitHub's auto-merge. A pull request is merged only after every review and comment on it has been read, fixed or answered and its threads resolved. Where a workflow's checks and guards pass, it adds the `landing` label (created on first use) and posts one comment saying which guards passed; a maintainer lands the pull request after that pass.
 
 ## Caching Strategy
 
@@ -195,7 +214,7 @@ The `finalize` job updates commit status with:
 2. **For Maintainers:**
    - Monitor workflow run times
    - Clear cache if builds are stale
-   - Review AI suggestions before auto-merge
+   - Review AI suggestions before landing a pull request
 
 3. **For Weavers:**
    - Ensure validation passes locally: `npm run validate`
