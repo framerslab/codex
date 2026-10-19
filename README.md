@@ -116,7 +116,7 @@ SQL_CACHE_DISABLED=true          # Force full re-index (bypass cache)
 AI_PROVIDER=disabled             # Disable LLM enhancement entirely
 ```
 
-No workflow merges a pull request or turns on GitHub's auto-merge: a PR is merged after its reviews and comments are read, fixed or answered and its threads resolved. A workflow whose checks and guards pass adds the `landing` label and one comment instead. The re-catalog script does the same for its PR when its shell sets `AUTO_CATALOG_LAND=true` (see [docs/RECATALOG_GUIDE.md](docs/RECATALOG_GUIDE.md)).
+No workflow merges a pull request or turns on GitHub's auto-merge: a PR is merged after its reviews and comments are read, fixed or answered and its threads resolved. A workflow whose checks and guards pass adds the `landing` label and one comment instead. The re-catalog script does the same for its PR when `AUTO_CATALOG_LAND=true` is in its environment (see [docs/RECATALOG_GUIDE.md](docs/RECATALOG_GUIDE.md)).
 
 **Per-file overrides** (in frontmatter):
 ```yaml

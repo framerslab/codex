@@ -86,8 +86,9 @@ AI-powered content analysis and suggestions:
 Approval and the `landing` label for trusted contributors:
 - Checks `.github/WEAVERS.txt` for the author
 - Runs schema validation, the indexer's quality checks and the duplicate check
-- Approves the pull request, adds the `landing` label and keeps one comment naming the guards that passed
-- Takes the label off when a later push fails the checks
+- When the checks pass and the commit they ran on is still the head, approves that commit, adds the `landing` label and keeps one comment naming the guards that passed
+- A push that moves the head, or a reopen, takes the label off until the checks pass on the head; a head whose checks fail keeps it off, and the guards comment says so
+- Runs one at a time per pull request: a newer push cancels the older run
 - Never merges: a maintainer lands the pull request after its review comments are read, answered and resolved
 
 ### 5. `test.yml`
@@ -124,7 +125,7 @@ Files each inbox note where it belongs:
 
 ### The `landing` label
 
-No workflow here merges a pull request or turns on GitHub's auto-merge. A pull request is merged only after every review and comment on it has been read, fixed or answered and its threads resolved. Where a workflow's checks and guards pass, it adds the `landing` label (created on first use) and posts one comment saying which guards passed; a maintainer lands the pull request after that pass.
+No workflow here merges a pull request or turns on GitHub's auto-merge. A pull request is merged only after every review and comment on it has been read, fixed or answered and its threads resolved. Where a workflow's checks and guards pass, it adds the `landing` label (created on first use) and posts one comment saying which guards passed; when that comment cannot be posted, the label comes off again. A maintainer lands the pull request after that pass.
 
 ## Caching Strategy
 

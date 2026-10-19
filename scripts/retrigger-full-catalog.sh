@@ -10,7 +10,8 @@
 # 2. Auto-generate/update metadata where missing
 # 3. Suggest better categorization based on content analysis
 # 4. Create a PR with all proposed changes (requires approval by default)
-# 5. Optionally label the PR "landing" (AUTO_CATALOG_LAND=true or --land)
+# 5. Optionally label the PR "landing" (AUTO_CATALOG_LAND=true or --land) when
+#    the indexer skipped no file
 #
 # Nothing here merges the PR. A pull request lands only after its reviews and
 # comments are read, answered and resolved, so a maintainer lands a labelled
@@ -131,6 +132,7 @@ git add codex-index.json codex-report.json
 TOTAL_FILES=$(node -e "const r = require('./codex-report.json'); console.log(r.summary.indexedFiles)")
 VALID_FILES=$(node -e "const r = require('./codex-report.json'); console.log(r.summary.validFiles)")
 ERROR_FILES=$(node -e "const r = require('./codex-report.json'); console.log(r.summary.filesWithErrors)")
+SKIPPED_FILES=$(node -e "const r = require('./codex-report.json'); console.log(Number(r.summary.skippedFiles) || 0)")
 
 git commit -m "chore: full catalog re-index and metadata update
 
@@ -176,6 +178,7 @@ This PR updates the search index and metadata for all Frame Codex content.
 - **Total files indexed**: ${TOTAL_FILES}
 - **Valid files**: ${VALID_FILES}
 - **Files with errors**: ${ERROR_FILES}
+- **Files skipped by the indexer**: ${SKIPPED_FILES}
 
 ### Changes
 - Updated \`codex-index.json\` with latest TF-IDF analysis
@@ -217,8 +220,12 @@ fi
 echo -e "${GREEN}✓${NC} Pull Request created: ${PR_URL}"
 
 # Label for landing if requested. Nothing here merges the PR: a maintainer
-# lands it after its review comments are read, answered and resolved.
-if [ "$AUTO_LAND" = "true" ]; then
+# lands it after its review comments are read, answered and resolved. A file
+# the indexer skipped is missing from the index, so that PR is not labelled.
+if [ "$AUTO_LAND" = "true" ] && [ "$SKIPPED_FILES" -gt 0 ]; then
+  echo ""
+  echo -e "${YELLOW}⚠️  The indexer skipped ${SKIPPED_FILES} file(s), so the PR is not labelled landing. It waits for manual review.${NC}"
+elif [ "$AUTO_LAND" = "true" ]; then
   echo ""
   echo -e "${YELLOW}🏷️  Landing requested. Labelling PR #${PR_NUMBER}...${NC}"
 
@@ -237,14 +244,18 @@ if [ "$AUTO_LAND" = "true" ]; then
     -d '{"labels":["landing"]}')
 
   if echo "$LABEL_RESPONSE" | jq -e 'type == "array" and any(.[]; .name == "landing")' > /dev/null; then
-    COMMENT_BODY="Guards passed: \`npm run index -- --validate\` finished without error (${TOTAL_FILES} files indexed, ${VALID_FILES} valid, ${ERROR_FILES} with errors), and landing was requested for this run.
+    COMMENT_BODY="Guards passed: \`npm run index -- --validate\` exited 0 and skipped no file (${TOTAL_FILES} files indexed, ${VALID_FILES} valid, ${ERROR_FILES} with validation errors), and landing was requested for this run.
 
 Labelled \`landing\`: this pull request lands after its review comments are read, answered and resolved. No script or workflow merges it."
     COMMENT_RESPONSE=$(curl -s "${API_HEADERS[@]}" -X POST "${API_URL}/issues/${PR_NUMBER}/comments" \
       -d "{\"body\": $(echo "$COMMENT_BODY" | jq -Rs .)}")
-    echo -e "${GREEN}✓${NC} PR labelled landing. It lands after its review comments are read."
-    if ! echo "$COMMENT_RESPONSE" | jq -e '.id' > /dev/null; then
-      echo -e "${YELLOW}⚠️  Could not post the landing comment: $(echo "$COMMENT_RESPONSE" | jq -r '.message // "unknown"')${NC}"
+    if echo "$COMMENT_RESPONSE" | jq -e '.id' > /dev/null; then
+      echo -e "${GREEN}✓${NC} PR labelled landing. It lands after its review comments are read."
+    else
+      # The label promises a comment naming the guards; without the comment the label comes off
+      curl -s -o /dev/null "${API_HEADERS[@]}" -X DELETE "${API_URL}/issues/${PR_NUMBER}/labels/landing" || true
+      echo -e "${YELLOW}⚠️  Could not post the landing comment, so the label came off again. The PR waits for manual review.${NC}"
+      echo -e "   Reason: $(echo "$COMMENT_RESPONSE" | jq -r '.message // "unknown"')"
     fi
   else
     echo -e "${YELLOW}⚠️  Could not label the PR. It stays open for manual review.${NC}"

@@ -7,8 +7,9 @@
 #
 # The workflow never merges. Every pull request is merged only after its reviews and comments are
 # read, fixed or answered and its threads resolved, so a move at 70 percent confidence or more gets
-# the "landing" label and one comment naming the guards it passed, and a maintainer lands it after
-# that pass. A move below 70 percent waits for a manual review.
+# the "landing" label and one comment naming the guards it passed (when that comment cannot be
+# posted, the label comes off again), and a maintainer lands it after that pass. A move below 70
+# percent waits for a manual review.
 name: Auto-Categorize Inbox Strands
 
 on:
@@ -198,8 +199,11 @@ jobs:
                   landing_body=$(printf '%s\n\n%s' \
                     "Guards passed: the categorizer chose auto-move to \`$suggested_path\` at ${confidence_pct}% confidence (threshold 70%, method: $method)." \
                     "Labelled \`landing\`: this pull request lands after its review comments are read, answered and resolved. No workflow merges it.")
-                  gh api -X POST "repos/$GITHUB_REPOSITORY/issues/$pr_number/comments" --silent -f body="$landing_body" \
-                    || echo "⚠️ Could not comment on PR #$pr_number"
+                  if ! gh api -X POST "repos/$GITHUB_REPOSITORY/issues/$pr_number/comments" --silent -f body="$landing_body"; then
+                    # The label promises a comment naming the guards; without the comment the label comes off
+                    gh api -X DELETE "repos/$GITHUB_REPOSITORY/issues/$pr_number/labels/landing" --silent || true
+                    echo "⚠️ Could not comment on PR #$pr_number, so it is not labelled; it remains open for manual review"
+                  fi
                 else
                   echo "⚠️ Could not label PR #$pr_number, it remains open for manual review"
                 fi

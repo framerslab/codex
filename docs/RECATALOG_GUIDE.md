@@ -129,14 +129,15 @@ Full re-catalog PRs wait for **review**. Nothing merges a PR automatically: a PR
 
 ### Label for Landing
 
-Set this variable in the shell that runs the script:
+Export this variable in the shell that runs the script:
 
 ```bash
-AUTO_CATALOG_LAND=true
+export AUTO_CATALOG_LAND=true
 ```
 
 **When set:**
 - The script adds the `landing` label to its PR and one comment naming the guards that passed (the indexer run and its file counts)
+- A run in which the indexer skipped a file gets no label, since that file is missing from the index
 - A maintainer lands the PR after its review comments are read
 - `AUTO_CATALOG_MERGE` and `--auto-merge` are older names for the same setting
 

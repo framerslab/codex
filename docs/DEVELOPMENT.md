@@ -70,9 +70,9 @@ AI_PROVIDER=disabled  # Set to 'disabled' to skip AI entirely
 OPENAI_API_KEY=sk-...
 ```
 
-**To label re-catalog PRs for landing** (set in the shell that runs the re-catalog script):
+**To label re-catalog PRs for landing** (exported in the shell that runs the re-catalog script):
 ```bash
-AUTO_CATALOG_LAND=true
+export AUTO_CATALOG_LAND=true
 # Default: false. The label marks the PR as checked; it lands after its review comments are read.
 ```
 
@@ -121,7 +121,7 @@ chmod +x scripts/retrigger-full-catalog.sh
 2. Creates branch: `catalog/full-reindex-{timestamp}`
 3. Commits updated index files
 4. Creates PR with detailed summary
-5. **Waits for review**: with `AUTO_CATALOG_LAND=true` or `--land` it adds the `landing` label and one comment; a maintainer lands it after its review comments are read
+5. **Waits for review**: with `AUTO_CATALOG_LAND=true` or `--land`, and when the indexer skipped no file, it adds the `landing` label and one comment; a maintainer lands it after its review comments are read
 
 **Requirements:**
 - `GH_PAT` environment variable

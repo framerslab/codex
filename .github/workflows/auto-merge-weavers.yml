@@ -1,10 +1,12 @@
 # Trusted Weaver pull requests: validate, approve and label for landing.
 #
-# A pull request opened by a user listed in .github/WEAVERS.txt runs the content checks: schema
-# validation of the changed Markdown and YAML files, the indexer's quality checks and the
-# duplicate check. When every check passes, the workflow approves the pull request, adds the
-# "landing" label and keeps one comment naming the guards that passed on the head it checked. A
-# run whose checks fail takes the label off again.
+# A pull request into main from a user listed in .github/WEAVERS.txt runs the content checks:
+# schema validation of the changed Markdown and YAML files, the indexer's quality checks and the
+# duplicate check. When they pass and the commit they ran on is still the pull request's head, the
+# workflow approves that commit, adds the "landing" label and keeps one comment naming the guards
+# that passed. A push that moves the head, or a reopen, takes the label off until the checks pass
+# on the head, and a head whose checks fail keeps it off. Runs for one pull request go one at a
+# time: a newer push cancels the older run.
 #
 # The workflow never merges and never turns on GitHub's auto-merge. Every pull request is merged
 # only after its reviews and comments are read, fixed or answered and its threads resolved; a
@@ -16,6 +18,11 @@ on:
     types: [opened, synchronize, reopened]
     branches: [main]
 
+# One run at a time per pull request: a newer push cancels the run for the older head.
+concurrency:
+  group: trusted-weavers-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
   pull-requests: write
@@ -23,6 +30,41 @@ permissions:
   checks: read
 
 jobs:
+  clear-landing:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Take the landing label off a head the checks have not passed yet
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const head = context.payload.pull_request.head.sha.slice(0, 7);
+            const marker = '<!-- landing-guards -->';
+            
+            // A new pull request has no earlier head; a label added as it was opened is its opener's.
+            if (context.payload.action === 'opened') return;
+            
+            try {
+              await github.rest.issues.removeLabel({ owner, repo, issue_number, name: 'landing' });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
+            
+            // Keep the one guards comment true while the checks run on this head.
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
+            const previous = comments.find((comment) => comment.user?.type === 'Bot' && comment.body?.includes(marker));
+            if (previous) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: previous.id,
+                body: `${marker}\nThe \`landing\` label is off until the checks pass on ${head} and a run labels it.`
+              });
+            }
+
   check-weaver-status:
     runs-on: ubuntu-latest
     outputs:
@@ -115,7 +157,7 @@ jobs:
           fi
 
   approve-and-label:
-    needs: [check-weaver-status, validate-content]
+    needs: [clear-landing, check-weaver-status, validate-content]
     if: |
       needs.check-weaver-status.outputs.is_weaver == 'true' &&
       needs.validate-content.result == 'success'
@@ -130,11 +172,20 @@ jobs:
             const { owner, repo } = context.repo;
             const pull_number = context.payload.pull_request.number;
             const author = context.payload.pull_request.user.login;
+            const validated = context.payload.pull_request.head.sha;
+            
+            // Approve only the commit this run validated; a newer push has its own run.
+            const { data: current } = await github.rest.pulls.get({ owner, repo, pull_number });
+            if (current.head.sha !== validated) {
+              core.info(`The head moved from ${validated.slice(0, 7)} to ${current.head.sha.slice(0, 7)}; its own run approves it.`);
+              return;
+            }
             
             await github.rest.pulls.createReview({
               owner,
               repo,
               pull_number,
+              commit_id: validated,
               event: 'APPROVE',
               body: `✅ Approved: @${author} is a trusted Weaver and all validation checks passed.`
             });
@@ -147,8 +198,16 @@ jobs:
             const { owner, repo } = context.repo;
             const issue_number = context.payload.pull_request.number;
             const author = context.payload.pull_request.user.login;
-            const head = context.payload.pull_request.head.sha.slice(0, 7);
+            const validated = context.payload.pull_request.head.sha;
+            const head = validated.slice(0, 7);
             const marker = '<!-- landing-guards -->';
+            
+            // Label only the commit this run validated; a newer push has its own run.
+            const { data: current } = await github.rest.pulls.get({ owner, repo, pull_number: issue_number });
+            if (current.head.sha !== validated) {
+              core.info(`The head moved from ${head} to ${current.head.sha.slice(0, 7)}; its own run labels it.`);
+              return;
+            }
             
             // Create the label on first use; a concurrent run may create it first (422).
             try {
@@ -182,16 +241,22 @@ jobs:
               'Labelled `landing`: this pull request lands after its review comments are read, answered and resolved. No workflow merges it.'
             ].join('\n');
             
-            // One comment per pull request: a later run updates it.
-            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
-            const previous = comments.find((comment) => comment.user?.type === 'Bot' && comment.body?.includes(marker));
-            if (previous) {
-              await github.rest.issues.updateComment({ owner, repo, comment_id: previous.id, body });
-            } else {
-              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            // One comment per pull request: a later run updates it. The label promises that comment,
+            // so the label comes off again when the comment cannot be written.
+            try {
+              const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
+              const previous = comments.find((comment) => comment.user?.type === 'Bot' && comment.body?.includes(marker));
+              if (previous) {
+                await github.rest.issues.updateComment({ owner, repo, comment_id: previous.id, body });
+              } else {
+                await github.rest.issues.createComment({ owner, repo, issue_number, body });
+              }
+            } catch (error) {
+              await github.rest.issues.removeLabel({ owner, repo, issue_number, name: 'landing' }).catch(() => {});
+              throw error;
             }
 
-  clear-landing-label:
+  report-failed-checks:
     needs: [check-weaver-status, validate-content]
     # failure() keeps the job from being skipped when the validation job it needs has failed
     if: |
@@ -201,18 +266,34 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Take the landing label off when the checks fail
+      - name: Take the landing label off and say in the guards comment that the checks failed
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { owner, repo } = context.repo;
             const issue_number = context.payload.pull_request.number;
+            const validated = context.payload.pull_request.head.sha;
+            const head = validated.slice(0, 7);
+            const marker = '<!-- landing-guards -->';
+            
+            // A newer push has its own run, which keeps the label and the comment.
+            const { data: current } = await github.rest.pulls.get({ owner, repo, pull_number: issue_number });
+            if (current.head.sha !== validated) return;
             
             try {
               await github.rest.issues.removeLabel({ owner, repo, issue_number, name: 'landing' });
             } catch (error) {
               if (error.status !== 404) throw error;
+            }
+            
+            const body = `${marker}\nThe checks failed on ${head}. The \`landing\` label stays off until a push passes them.`;
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
+            const previous = comments.find((comment) => comment.user?.type === 'Bot' && comment.body?.includes(marker));
+            if (previous) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: previous.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
             }
 
   notify-non-weaver:
