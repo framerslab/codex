@@ -7,8 +7,8 @@
  * https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow).
  *
  * The bump starts only on its Monday schedule or by hand, so GitHub reports a broken file only then. These tests parse
- * it, run its first step's shell with the secret empty and set, and read the token, the permissions, the checkout, the
- * lockfile refresh and the action pins.
+ * it, run its first step's shell with the secret empty and set, read the token, the permissions, the checkout, the
+ * lockfile refresh and the action pins, and make its commit in a scratch repository the way the action makes it.
  *
  * The bump labels nothing. Its pull request gets the landing label from landing-follows-the-bump-checks.yml, once its
  * own Test Suite and rename-guard runs pass on its head. That workflow starts on workflow_run, which runs the file as it
@@ -21,6 +21,7 @@
 import { describe, it, expect } from 'vitest';
 
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const yaml = require('js-yaml');
 const { execFileSync, spawnSync } = require('child_process');
@@ -94,6 +95,61 @@ describe('the bump opens its pull request with FRAMERS_BUMP_TOKEN, so the pull r
     for (const { ref, rest } of thirdParty) {
       expect(ref).toMatch(/^[\w.-]+\/[\w.-]+@[0-9a-f]{40}$/);
       expect(rest).toMatch(/^\s+# v\d+\.\d+\.\d+$/);
+    }
+  });
+
+  // The action commits the bump with `git add -- <add-paths>` and then `git commit` (src/create-or-update-branch.ts at
+  // v7.0.11), and git refuses the whole add when any one pathspec matches no file: builtin/add.c dies with "did not match
+  // any files" before it stages anything. git matches a plain pathspec with fnmatch(3), so the slash in **/package.json
+  // has to be there, and the root manifest does not match it. Run 39396254503 (20 October 2026) logged "fatal: pathspec
+  // '**/package.json' did not match any files" and stopped at "Unexpected error" with nothing committed. This makes that
+  // commit in a scratch repository holding this repository's tracked files, after changing every manifest the bump can
+  // change.
+  it('commits every manifest it changes, so each add-paths entry matches a file here', () => {
+    const create = stepUsing('peter-evans/create-pull-request');
+    // The action reads the input as a list split on newlines and commas.
+    const addPaths = String(create.with['add-paths'] ?? '')
+      .split(/[\n,]+/)
+      .map((entry) => entry.trim())
+      .filter(Boolean);
+    expect(addPaths.length).toBeGreaterThan(0);
+
+    const root = path.join(__dirname, '..');
+    const tracked = execFileSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8' })
+      .split('\0')
+      .filter((file) => file && fs.statSync(path.join(root, file), { throwIfNoEntry: false })?.isFile());
+    // The bump's script rewrites any package.json outside node_modules, and the lockfile refresh rewrites pnpm-lock.yaml.
+    const manifests = tracked.filter((file) => path.basename(file) === 'package.json' || file === 'pnpm-lock.yaml');
+    expect(manifests).toEqual(expect.arrayContaining(['package.json', 'pnpm-lock.yaml']));
+
+    const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'bump-commit-'));
+    const git = (...args) =>
+      spawnSync(
+        'git',
+        ['-c', 'user.name=bump', '-c', 'user.email=bump@example.invalid', '-c', 'commit.gpgsign=false', ...args],
+        { cwd: scratch, encoding: 'utf8' }
+      );
+    try {
+      for (const file of tracked) {
+        fs.mkdirSync(path.dirname(path.join(scratch, file)), { recursive: true });
+        fs.copyFileSync(path.join(root, file), path.join(scratch, file));
+      }
+      expect(git('init', '--quiet').status).toBe(0);
+      expect(git('add', '--all', '--force').status).toBe(0);
+      expect(git('commit', '--quiet', '--no-verify', '-m', 'master').status).toBe(0);
+
+      for (const file of manifests) fs.appendFileSync(path.join(scratch, file), '\n');
+
+      // The action commits only when git status lists a change under add-paths.
+      expect(git('status', '--porcelain', '-unormal', '--', ...addPaths).stdout).not.toBe('');
+      const add = git('add', '--', ...addPaths);
+      expect(add.status, add.stderr).toBe(0);
+      const commit = git('commit', '--quiet', '--no-verify', '-m', 'chore(deps): bump @framers/* deps');
+      expect(commit.status, commit.stdout + commit.stderr).toBe(0);
+      const committed = git('show', '--name-only', '--format=', 'HEAD').stdout.split('\n').filter(Boolean);
+      expect(committed.sort()).toEqual([...manifests].sort());
+    } finally {
+      fs.rmSync(scratch, { recursive: true, force: true });
     }
   });
 });
