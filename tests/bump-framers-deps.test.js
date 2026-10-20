@@ -10,6 +10,11 @@
  * it, run its first step's shell with the secret empty and set, and read the token, the permissions, the checkout, the
  * lockfile refresh and the action pins.
  *
+ * The bump labels nothing. Its pull request gets the landing label from landing-follows-the-bump-checks.yml, once its
+ * own Test Suite and rename-guard runs pass on its head. That workflow starts on workflow_run, which runs the file as it
+ * reads on master, so GitHub runs it only after it merges; these tests run its script against a stand-in for the GitHub
+ * API that holds the pull request's head, base, labels, comments and runs.
+ *
  * Run: npx vitest run tests/bump-framers-deps.test.js
  */
 
@@ -35,13 +40,14 @@ describe('the bump opens its pull request with FRAMERS_BUMP_TOKEN, so the pull r
     }
   });
 
-  it('pushes the branch and opens the pull request into master with the token, labelled landing', () => {
+  it('pushes the branch and opens the pull request into master with the token, and labels nothing itself', () => {
     const create = stepUsing('peter-evans/create-pull-request');
     expect(create.with.token).toBe('${{ secrets.FRAMERS_BUMP_TOKEN }}');
     // branch-token defaults to token, so the branch is pushed with the same token.
     expect(create.with).not.toHaveProperty('branch-token');
     expect(create.with.base).toBe('master');
-    expect(String(create.with.labels).split(/[\s,]+/)).toContain('landing');
+    // The label waits for the pull request's own checks: landing-follows-the-bump-checks.yml adds it once they pass.
+    expect(create.with).not.toHaveProperty('labels');
   });
 
   it("keeps the job's own GITHUB_TOKEN read-only, so nothing can open a pull request with it", () => {
@@ -89,5 +95,267 @@ describe('the bump opens its pull request with FRAMERS_BUMP_TOKEN, so the pull r
       expect(ref).toMatch(/^[\w.-]+\/[\w.-]+@[0-9a-f]{40}$/);
       expect(rest).toMatch(/^\s+# v\d+\.\d+\.\d+$/);
     }
+  });
+});
+
+// landing-follows-the-bump-checks.yml, run here the way actions/github-script runs a script: as the body of an async
+// function, against a stand-in for the GitHub API that holds the bump pull request's head, base, labels, comments and the
+// pull request runs GitHub lists for a commit.
+const LABEL_FLOW = '.github/workflows/landing-follows-the-bump-checks.yml';
+const JOB = 'follow-the-guards';
+const TEST_SUITE = '.github/workflows/test.yml';
+const RENAME_GUARD = '.github/workflows/rename-guard.yml';
+const BRANCH = 'chore/bump-framers-deps';
+const OWNER = 'framerslab';
+const REPO = 'codex';
+const PR = 12;
+const OLD = 'a'.repeat(40);
+const NEW = 'b'.repeat(40);
+const MARKER = '<!-- landing-guards -->';
+const ACTIONS_BOT = { type: 'Bot', login: 'github-actions[bot]' };
+const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
+
+const read = (rel) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+const labelFlow = () => yaml.load(read(LABEL_FLOW));
+const labelScript = () => {
+  const step = (labelFlow().jobs[JOB]?.steps ?? []).find((s) => String(s.uses).startsWith('actions/github-script@'));
+  if (!step) throw new Error(`${LABEL_FLOW}: job ${JOB} has no github-script step`);
+  return step.with.script;
+};
+
+// A pull request run of a workflow on a commit, as GitHub lists it.
+const prRun = (workflowPath, { id, sha = NEW, status = 'completed', conclusion = 'success', from = `${OWNER}/${REPO}` }) => ({
+  id,
+  run_number: id,
+  path: workflowPath,
+  head_sha: sha,
+  head_branch: BRANCH,
+  head_repository: { full_name: from },
+  event: 'pull_request',
+  status,
+  conclusion: status === 'completed' ? conclusion : null,
+});
+const bothPassed = () => [prRun(TEST_SUITE, { id: 101 }), prRun(RENAME_GUARD, { id: 102 })];
+const guardsComment = (sha) => ({ body: `${MARKER}\nGuards passed on ${sha.slice(0, 7)}:` });
+
+// A review bot can quote the marker inside a comment of its own, which the workflow token cannot edit.
+const quoting = {
+  user: { type: 'Bot', login: 'qodo-free-for-open-source-projects[bot]' },
+  body: `Find the bot comment that contains \`${MARKER}\` and update it.`,
+};
+
+// onAddLabels runs as the label goes on and stands in for a change made meanwhile, such as a push or an edit of the base.
+const fakeGitHub = ({
+  head = NEW,
+  base = 'master',
+  open = true,
+  labels = [],
+  comments = [],
+  runs = [],
+  failCreateComment = false,
+  onAddLabels = () => {},
+} = {}) => {
+  const state = {
+    head,
+    base,
+    labels: new Set(labels),
+    comments: comments.map((comment, index) => ({ id: index + 1, user: ACTIONS_BOT, ...comment })),
+  };
+  const calls = [];
+  const fail = (status, message) => Object.assign(new Error(message), { status });
+  const api = (name, answer) => async (params = {}) => {
+    calls.push(name);
+    return { data: await answer(params) };
+  };
+  const github = {
+    paginate: async (method, params) => (await method(params)).data,
+    rest: {
+      pulls: {
+        list: api('pulls.list', (params) =>
+          open && params.state === 'open' && params.head === `${OWNER}:${BRANCH}` && params.base === state.base
+            ? [{ number: PR, head: { sha: state.head, ref: BRANCH }, base: { ref: state.base } }]
+            : []
+        ),
+        get: api('pulls.get', () => ({ number: PR, head: { sha: state.head }, base: { ref: state.base } })),
+      },
+      actions: {
+        listWorkflowRunsForRepo: api('actions.listWorkflowRunsForRepo', (params) =>
+          runs.filter((r) => r.head_sha === params.head_sha && (!params.event || r.event === params.event))
+        ),
+      },
+      issues: {
+        getLabel: api('issues.getLabel', ({ name }) => ({ name })),
+        createLabel: api('issues.createLabel', ({ name }) => ({ name })),
+        addLabels: api('issues.addLabels', ({ labels: names }) => {
+          for (const name of names) state.labels.add(name);
+          onAddLabels(state);
+          return [...state.labels].map((name) => ({ name }));
+        }),
+        removeLabel: api('issues.removeLabel', ({ name }) => {
+          if (!state.labels.delete(name)) throw fail(404, 'Label does not exist');
+          return [];
+        }),
+        listComments: api('issues.listComments', () => state.comments),
+        createComment: api('issues.createComment', ({ body }) => {
+          if (failCreateComment) throw fail(500, 'Server Error');
+          const comment = { id: state.comments.length + 1, user: ACTIONS_BOT, body };
+          state.comments.push(comment);
+          return comment;
+        }),
+        updateComment: api('issues.updateComment', ({ comment_id, body }) => {
+          const comment = state.comments.find(({ id }) => id === comment_id);
+          if (comment.user.login !== ACTIONS_BOT.login) throw fail(403, 'Resource not accessible by integration');
+          comment.body = body;
+          return comment;
+        }),
+      },
+    },
+  };
+  return { github, state, calls };
+};
+
+// The workflow_run event of a guard's pull request run.
+const guardEvent = (action, sha = NEW) => ({
+  repo: { owner: OWNER, repo: REPO },
+  payload: {
+    action,
+    workflow_run: { head_sha: sha, head_branch: BRANCH, event: 'pull_request', head_repository: { full_name: `${OWNER}/${REPO}` } },
+  },
+});
+const follow = (github, context) =>
+  new AsyncFunction('github', 'context', 'core', labelScript())(github, context, { info() {}, warning() {} });
+
+describe('the bump pull request carries the landing label only on a head whose Test Suite and rename-guard passed', () => {
+  it('starts when Test Suite or rename-guard is requested or completes on the branch the bump pushes', () => {
+    const { on } = labelFlow();
+    expect(Object.keys(on)).toEqual(['workflow_run']);
+    expect(on.workflow_run.types).toEqual(['requested', 'completed']);
+    expect(on.workflow_run.branches).toEqual([stepUsing('peter-evans/create-pull-request').with.branch]);
+    // workflow_run names the workflows it follows by their names, so they stay the names the two files carry.
+    expect(on.workflow_run.workflows).toEqual([yaml.load(read(TEST_SUITE)).name, yaml.load(read(RENAME_GUARD)).name]);
+  });
+
+  it("runs only for a pull request from this repository's own bump branch, checks out no code and pastes nothing into its script", () => {
+    const { permissions, concurrency, jobs } = labelFlow();
+    expect(permissions).toEqual({ contents: 'read' });
+    expect(Object.keys(jobs)).toEqual([JOB]);
+    const job = jobs[JOB];
+    expect(job.if).toContain("github.event.workflow_run.event == 'pull_request'");
+    expect(job.if).toContain(`github.event.workflow_run.head_branch == '${BRANCH}'`);
+    expect(job.if).toContain('github.event.workflow_run.head_repository.full_name == github.repository');
+    expect(job.permissions).toEqual({ actions: 'read', issues: 'write', 'pull-requests': 'write' });
+    expect(job.steps.some((step) => String(step.uses).startsWith('actions/checkout@'))).toBe(false);
+    expect(labelScript()).not.toContain('${{');
+    // One run at a time per head, and a waiting run is never cancelled for a newer one.
+    expect(concurrency.group).toContain('github.event.workflow_run.head_sha');
+    expect(concurrency['cancel-in-progress']).toBe(false);
+  });
+
+  it('labels the head once both guards passed there, and keeps one guards comment naming both runs', async () => {
+    const { github, state } = fakeGitHub({ runs: bothPassed() });
+    // Each guard's completion starts the workflow; the second finds the label and the comment already there.
+    await follow(github, guardEvent('completed'));
+    await follow(github, guardEvent('completed'));
+    expect([...state.labels]).toEqual(['landing']);
+    expect(state.comments).toHaveLength(1);
+    expect(state.comments[0].body.startsWith(MARKER)).toBe(true);
+    expect(state.comments[0].body).toContain('Guards passed on bbbbbbb');
+    expect(state.comments[0].body).toContain('Test Suite, run 101');
+    expect(state.comments[0].body).toContain('rename-guard, run 102');
+  });
+
+  it.each([
+    ['still runs', [prRun(TEST_SUITE, { id: 101, status: 'in_progress' }), prRun(RENAME_GUARD, { id: 102 })]],
+    ['has no run yet', [prRun(RENAME_GUARD, { id: 102 })]],
+  ])('keeps the label off while a guard %s on the head', async (_what, runs) => {
+    const { github, state, calls } = fakeGitHub({ labels: ['landing'], comments: [guardsComment(OLD)], runs });
+    await follow(github, guardEvent('completed'));
+    expect(calls).not.toContain('issues.addLabels');
+    expect(state.labels.has('landing')).toBe(false);
+    expect(state.comments).toHaveLength(1);
+    expect(state.comments[0].body).toContain('off until Test Suite and rename-guard pass on bbbbbbb');
+  });
+
+  it.each(['failure', 'cancelled', 'timed_out', 'action_required'])(
+    'takes the label off a head where a guard ended %s, and says which in the guards comment',
+    async (conclusion) => {
+      const runs = [prRun(TEST_SUITE, { id: 101, conclusion }), prRun(RENAME_GUARD, { id: 102 })];
+      const { github, state } = fakeGitHub({ labels: ['landing'], comments: [quoting, guardsComment(OLD)], runs });
+      await follow(github, guardEvent('completed'));
+      expect(state.labels.has('landing')).toBe(false);
+      expect(state.comments).toHaveLength(2);
+      expect(state.comments[0].body).toBe(quoting.body);
+      expect(state.comments[1].body.startsWith(MARKER)).toBe(true);
+      expect(state.comments[1].body).toContain(`Test Suite (${conclusion}, run 101) did not pass on bbbbbbb`);
+    }
+  );
+
+  it("decides on each guard's newest run on the head, so a passing run after a failed one labels it", async () => {
+    const runs = [prRun(TEST_SUITE, { id: 101, conclusion: 'failure' }), prRun(TEST_SUITE, { id: 103 }), prRun(RENAME_GUARD, { id: 102 })];
+    const { github, state } = fakeGitHub({ runs });
+    await follow(github, guardEvent('completed'));
+    expect([...state.labels]).toEqual(['landing']);
+    expect(state.comments[0].body).toContain('Test Suite, run 103');
+  });
+
+  it("reads no other workflow's runs and no fork's runs on the same commit as the guards", async () => {
+    const runs = [
+      ...bothPassed(),
+      prRun('.github/workflows/landing-follows-the-base.yml', { id: 104, conclusion: 'skipped' }),
+      prRun(TEST_SUITE, { id: 105, conclusion: 'failure', from: 'someone/codex' }),
+    ];
+    const { github, state } = fakeGitHub({ runs });
+    await follow(github, guardEvent('completed'));
+    expect([...state.labels]).toEqual(['landing']);
+    expect(state.comments[0].body).toContain('Test Suite, run 101');
+  });
+
+  it('takes the label off when a guard starts on the head, and writes its own guards comment only where it had one', async () => {
+    const { github, state } = fakeGitHub({ labels: ['landing'], comments: [quoting, guardsComment(OLD)] });
+    await follow(github, guardEvent('requested'));
+    expect(state.labels.has('landing')).toBe(false);
+    expect(state.comments).toHaveLength(2);
+    expect(state.comments[0].body).toBe(quoting.body);
+    expect(state.comments[1].body).toContain('off until Test Suite and rename-guard pass on bbbbbbb');
+
+    const fresh = fakeGitHub({ comments: [quoting] });
+    await follow(fresh.github, guardEvent('requested'));
+    expect(fresh.calls).not.toContain('issues.createComment');
+    expect(fresh.state.comments).toEqual([expect.objectContaining({ body: quoting.body })]);
+  });
+
+  it('changes nothing for a run on an older head', async () => {
+    const runs = [prRun(TEST_SUITE, { id: 101, sha: OLD, conclusion: 'failure' }), prRun(RENAME_GUARD, { id: 102, sha: OLD })];
+    const { github, state, calls } = fakeGitHub({ labels: ['landing'], comments: [guardsComment(NEW)], runs });
+    await follow(github, guardEvent('completed', OLD));
+    await follow(github, guardEvent('requested', OLD));
+    expect(calls).toEqual(['pulls.list', 'pulls.list']);
+    expect(state.labels.has('landing')).toBe(true);
+    expect(state.comments[0].body).toContain('Guards passed on bbbbbbb');
+  });
+
+  it('does nothing without an open bump pull request into master', async () => {
+    const { github, calls } = fakeGitHub({ open: false, runs: bothPassed() });
+    await follow(github, guardEvent('completed'));
+    expect(calls).toEqual(['pulls.list']);
+  });
+
+  it.each([
+    ['the head', (state) => Object.assign(state, { head: 'c'.repeat(40) })],
+    ['the base', (state) => Object.assign(state, { base: 'main' })],
+  ])('takes the label back off when %s changes while the label goes on', async (_what, change) => {
+    const { github, state } = fakeGitHub({ runs: bothPassed(), onAddLabels: change });
+    await follow(github, guardEvent('completed'));
+    expect(state.labels.has('landing')).toBe(false);
+    expect(state.comments).toHaveLength(1);
+    expect(state.comments[0].body.startsWith(MARKER)).toBe(true);
+    expect(state.comments[0].body).toContain('moved off bbbbbbb');
+    expect(state.comments[0].body).not.toContain('Guards passed');
+  });
+
+  it('takes the label off again when the guards comment cannot be written', async () => {
+    const { github, state } = fakeGitHub({ runs: bothPassed(), failCreateComment: true });
+    await expect(follow(github, guardEvent('completed'))).rejects.toThrow();
+    expect(state.labels.has('landing')).toBe(false);
   });
 });
