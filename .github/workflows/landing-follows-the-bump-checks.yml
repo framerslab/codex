@@ -1,0 +1,215 @@
+# The weekly bump's pull request carries the landing label only on a head whose guards passed.
+#
+# bump-framers-deps.yml opens one pull request into master from chore/bump-framers-deps and labels nothing. Its guards
+# are that pull request's own Test Suite and rename-guard runs, which start because the bump pushes and opens it with
+# FRAMERS_BUMP_TOKEN. This workflow starts each time one of them is requested, starts or completes on that branch (a
+# re-run sends no requested event, only the other two), and decides from the runs as they stand, whichever event
+# started it: it reads each guard's newest pull request run on the pull request's head.
+# - Both passed: it adds the "landing" label (created on first use) and keeps the guards comment (github-actions[bot]'s
+#   comment that starts with the <!-- landing-guards --> marker) naming the two runs. When that comment cannot be
+#   written, the label comes off again.
+# - Either ended without passing: the label comes off and the guards comment says which.
+# - Either has no run yet or has not finished: the label stays off, and a guards comment already there says so.
+# Then it reads the pull request and the runs again and writes again while the head or the verdict changed, since a
+# push, a change of base or another guard's event may have come meanwhile; a pull request that left master while it was
+# labelled loses the label. A run for an older head changes nothing. A change of base is otherwise left to
+# landing-follows-the-base.yml.
+#
+# There is no concurrency group: GitHub cancels a group's waiting run when a newer one queues, and a cancelled run would
+# show on master's last commit. Reading again after each write keeps the last word with the latest state instead.
+#
+# workflow_run runs this file as it reads on master, the default branch, with a token that can write here, whichever
+# pull request the guards ran for. So its job checks out no code, runs only for a pull request from this repository's
+# own chore/bump-framers-deps branch (a fork's branch of the same name is skipped), and reads the run and the pull
+# request from the event and the API inside its script, never as text pasted into it. Nothing here merges: the pull
+# request lands after its review comments are read, answered and resolved.
+name: Landing follows the bump checks
+
+on:
+  workflow_run:
+    workflows: ['Test Suite', 'rename-guard']
+    types: [requested, in_progress, completed]
+    branches: [chore/bump-framers-deps]
+
+permissions:
+  contents: read
+
+jobs:
+  follow-the-guards:
+    if: |
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.head_branch == 'chore/bump-framers-deps' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Label the head both guards passed, and keep the label off a head they have not
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const trigger = context.payload.workflow_run;
+            const BRANCH = 'chore/bump-framers-deps';
+            const BASE = 'master';
+            // The pull request's guards, by the file each workflow runs from. Their runs are listed by that file, so the
+            // form GitHub gives a run's path in (its REST description shows path@ref) plays no part.
+            const GUARDS = [
+              { name: 'Test Suite', file: 'test.yml' },
+              { name: 'rename-guard', file: 'rename-guard.yml' }
+            ];
+            const marker = '<!-- landing-guards -->';
+
+            // The bump's open pull request, from this repository's branch into master.
+            const openPull = async () => {
+              const { data: pulls } = await github.rest.pulls.list({
+                owner,
+                repo,
+                state: 'open',
+                head: `${owner}:${BRANCH}`,
+                base: BASE,
+                per_page: 10
+              });
+              return pulls[0];
+            };
+
+            // Where the guards stand on a head, from each guard's newest pull request run there: 'pass' when both passed,
+            // 'fail' when either ended without passing, 'wait' while either has no run or has not finished.
+            const guardsOn = async (sha) => {
+              const results = [];
+              for (const guard of GUARDS) {
+                const runs = await github.paginate(github.rest.actions.listWorkflowRuns, {
+                  owner,
+                  repo,
+                  workflow_id: guard.file,
+                  head_sha: sha,
+                  event: 'pull_request',
+                  per_page: 100
+                });
+                const run = runs
+                  .filter((r) => r.head_branch === BRANCH && r.head_repository?.full_name === `${owner}/${repo}`)
+                  .sort((a, b) => b.run_number - a.run_number)[0];
+                results.push({ ...guard, run });
+              }
+              const failed = results.filter(({ run }) => run && run.status === 'completed' && run.conclusion !== 'success');
+              const passed = results.every(({ run }) => run && run.status === 'completed' && run.conclusion === 'success');
+              return { results, failed, verdict: failed.length > 0 ? 'fail' : passed ? 'pass' : 'wait' };
+            };
+
+            const takeLabelOff = async (issue_number) => {
+              try {
+                await github.rest.issues.removeLabel({ owner, repo, issue_number, name: 'landing' });
+              } catch (error) {
+                if (error.status !== 404) throw error;
+              }
+            };
+            // The guards comments are this workflow's own: github-actions[bot]'s, starting with the marker. A review bot may
+            // quote the marker in a comment of its own, which the workflow token cannot edit. Two runs at once may each
+            // have written one, so every one of them is kept true; one is written when there is none and create is set.
+            const writeGuardsComments = async (issue_number, body, create) => {
+              const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
+              const own = comments.filter(
+                (comment) => comment.user?.login === 'github-actions[bot]' && comment.body?.startsWith(marker)
+              );
+              for (const comment of own) {
+                if (comment.body !== body) {
+                  await github.rest.issues.updateComment({ owner, repo, comment_id: comment.id, body });
+                }
+              }
+              if (own.length === 0 && create) {
+                await github.rest.issues.createComment({ owner, repo, issue_number, body });
+              }
+            };
+
+            const write = async (issue_number, head, { results, failed, verdict }) => {
+              if (verdict === 'pass') {
+                // Create the label on first use; a concurrent run may create it first (422).
+                try {
+                  await github.rest.issues.getLabel({ owner, repo, name: 'landing' });
+                } catch (error) {
+                  if (error.status !== 404) throw error;
+                  try {
+                    await github.rest.issues.createLabel({
+                      owner,
+                      repo,
+                      name: 'landing',
+                      color: '0e8a16',
+                      description: 'Checks and guards passed; lands after the comment pass'
+                    });
+                  } catch (createError) {
+                    if (createError.status !== 422) throw createError;
+                  }
+                }
+                await github.rest.issues.addLabels({ owner, repo, issue_number, labels: ['landing'] });
+                const body = [
+                  marker,
+                  `Guards passed on ${head}:`,
+                  '',
+                  ...results.map(({ name, run }) => `- ${name}, run ${run.id}`),
+                  '',
+                  'Labelled `landing`: this pull request lands after its review comments are read, answered and resolved. No workflow merges it.'
+                ].join('\n');
+                // The label promises that comment, so the label comes off again when the comment cannot be written.
+                try {
+                  await writeGuardsComments(issue_number, body, true);
+                } catch (error) {
+                  await github.rest.issues.removeLabel({ owner, repo, issue_number, name: 'landing' }).catch(() => {});
+                  throw error;
+                }
+                return;
+              }
+              await takeLabelOff(issue_number);
+              if (verdict === 'fail') {
+                const which = failed.map(({ name, run }) => `${name} (${run.conclusion}, run ${run.id})`).join(' and ');
+                await writeGuardsComments(
+                  issue_number,
+                  `${marker}\n${which} did not pass on ${head}. The \`landing\` label stays off until a push passes Test Suite and rename-guard.`,
+                  true
+                );
+                return;
+              }
+              await writeGuardsComments(
+                issue_number,
+                `${marker}\nThe \`landing\` label is off until Test Suite and rename-guard pass on ${head}.`,
+                false
+              );
+            };
+
+            // Decide from the runs as they stand and write; then read again, and write again while the head or the verdict
+            // changed (three rounds at most).
+            let last = null;
+            for (let round = 1; round <= 3; round++) {
+              const pull = await openPull();
+              if (!pull) {
+                if (!last) {
+                  core.info(`No open pull request from ${BRANCH} into ${BASE}.`);
+                } else if (last.verdict === 'pass') {
+                  // The pull request labelled in this run may have left master meanwhile.
+                  const { data: labelled } = await github.rest.pulls.get({ owner, repo, pull_number: last.number });
+                  if (labelled.base.ref !== BASE) {
+                    await takeLabelOff(last.number);
+                    await writeGuardsComments(
+                      last.number,
+                      `${marker}\nThe pull request no longer targets \`${BASE}\`, the base its guards ran against, so the \`landing\` label is off.`,
+                      false
+                    );
+                  }
+                }
+                return;
+              }
+              const head = pull.head.sha.slice(0, 7);
+              // A run for an older head says nothing about the pull request's current one, whose own events decide.
+              if (!last && trigger.head_sha !== pull.head.sha) {
+                core.info(`This run is for ${trigger.head_sha.slice(0, 7)}; the pull request is on ${head}.`);
+                return;
+              }
+              const state = await guardsOn(pull.head.sha);
+              if (last && last.sha === pull.head.sha && last.verdict === state.verdict) return;
+              core.info(`The guards on ${head}: ${state.verdict}.`);
+              await write(pull.number, head, state);
+              last = { number: pull.number, sha: pull.head.sha, verdict: state.verdict };
+            }

@@ -95,7 +95,9 @@ Approval and the `landing` label for trusted contributors:
 ### 5. `test.yml`
 
 **Triggers:**
-- Push and PR to main
+- Every pull request into `main` or `master`
+- Push to `main` or `master` that changes `scripts/`, `schema/`, `tests/`, `lib/`, `vocab/`, `package.json` or `vitest.config.js`
+- Manual dispatch
 
 **Purpose:**
 - Unit tests with coverage
@@ -137,9 +139,39 @@ Keeps the `landing` label true to the branch its guards ran against:
 - A maintainer adds the label again after checking the pull request against the new base; on a trusted Weaver's pull request into `main`, the Trusted Weavers workflow does on the next push or reopen
 - On a pull request from a fork the token can only read, so a label put there by hand stays and the job fails, which shows on the pull request
 
+### 9. `bump-framers-deps.yml` (Bump @framers/* deps)
+
+**Triggers:**
+- Monday 06:00 UTC
+- Manual dispatch (`gh workflow run bump-framers-deps.yml`); a run from any branch bumps `master`
+
+**Purpose:**
+Moves every `@framers/*` pin in a `package.json` to the newest version on npm, refreshes `pnpm-lock.yaml` and opens one pull request into `master` from `chore/bump-framers-deps`:
+- Pushes the branch and opens the pull request with `FRAMERS_BUMP_TOKEN`, a personal token held as a framerslab organization secret. GitHub starts no ordinary workflow run for an event made with `GITHUB_TOKEN`: a pull request a workflow opens with it gets its `pull_request` runs in an approval-required state, with no job ([Triggering a workflow from a workflow](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow)). Opened with the personal token, the pull request gets Test Suite and rename-guard like any other
+- Stops at its first step, with an error, when `FRAMERS_BUMP_TOKEN` is not available; the job's own `GITHUB_TOKEN` only reads
+- Refreshes the lockfile with `--ignore-scripts` and pins its third-party actions to a commit, since the job holds a token that reaches past this repository
+- Labels nothing: `landing-follows-the-bump-checks.yml` adds `landing` once the pull request's Test Suite and rename-guard pass on its head, and the pull request lands after its review comments are read, answered and resolved
+- `tests/bump-framers-deps.test.js` reads the workflow and runs its first step, since GitHub reports a broken file only when the schedule or a dispatch starts it
+
+### 10. `landing-follows-the-bump-checks.yml` (Landing follows the bump checks)
+
+**Triggers:**
+- A Test Suite or rename-guard run requested, started (`in_progress`) or completed on `chore/bump-framers-deps`; a re-run sends no requested event, only the other two
+
+**Purpose:**
+Keeps the `landing` label on the weekly bump's pull request only on a head whose guards passed; its guards are that pull request's own Test Suite and rename-guard runs. Whichever event starts it, it reads each guard's newest pull request run on the pull request's head (listed by the guard's workflow file):
+- Both passed: adds `landing` (created on first use) and keeps the guards comment (github-actions[bot]'s comment that starts with `<!-- landing-guards -->`) naming the two runs; when that comment cannot be written, the label comes off again
+- Either ended without passing: takes the label off and says which in the guards comment
+- Either has no run yet or has not finished, as after a push, a reopen or a re-run: keeps the label off and says so in a guards comment already there
+- Then reads the pull request and the runs again and writes again while the head or the verdict changed, so an event handled late, a guard finishing meanwhile or a push keeps the last word with the latest state; a pull request that left `master` while it was labelled loses the label
+- A run for an older head changes nothing; a change of base is otherwise left to `landing-follows-the-base.yml`
+- No concurrency group: GitHub cancels a group's waiting run when a newer one queues, and a cancelled run would show on `master`'s last commit
+- `workflow_run` runs the file as it reads on `master` with a token that can write, so the job checks out no code, runs only for a pull request from this repository's own branch (a fork's branch of the same name is skipped) and reads the run and the pull request inside its script; it never merges
+- `tests/bump-framers-deps.test.js` runs its script against a stand-in for the GitHub API, since GitHub runs the file only once it is on `master`
+
 ### The `landing` label
 
-No workflow here merges a pull request or turns on GitHub's auto-merge. A pull request is merged only after every review and comment on it has been read, fixed or answered and its threads resolved. Where a workflow's checks and guards pass, it adds the `landing` label (created on first use) and posts one comment saying which guards passed; when that comment cannot be posted, the label comes off again. A change of base takes the label off too, since the guards ran against the old base. A maintainer lands the pull request after that pass.
+No workflow here merges a pull request or turns on GitHub's auto-merge. A pull request is merged only after every review and comment on it has been read, fixed or answered and its threads resolved. Where a workflow's checks and guards pass, it adds the `landing` label (created on first use) and posts one comment saying which guards passed; when that comment cannot be posted, the label comes off again. A change of base takes the label off too, since the guards ran against the old base. On the weekly bump's pull request the guards are its own Test Suite and rename-guard runs: the label goes on once both pass on its head, and comes off when a push, a reopen or a re-run starts either again there or when either fails. A maintainer lands the pull request after that pass.
 
 ## Caching Strategy
 
@@ -174,6 +206,7 @@ restore-keys:
 | `ANTHROPIC_API_KEY` | AI only | Claude API key for AI enhancement |
 | `OPENAI_API_KEY` | AI only | OpenAI API key (fallback) |
 | `GH_PAT` | Yes | Personal access token for cross-repo triggers |
+| `FRAMERS_BUMP_TOKEN` | Bump only | framerslab organization secret shared with this repository: the personal token the weekly bump pushes its branch and opens its pull request with, so the pull request's checks run |
 
 ## Manual Triggers
 

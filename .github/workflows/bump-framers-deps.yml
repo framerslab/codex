@@ -5,23 +5,50 @@ name: Bump @framers/* deps
 # pnpm lockfile when present, bumps git submodule pointers when present,
 # and opens a single Pull Request with the diff. The same workflow drops
 # into every repo that depends on the agentos family.
+#
+# The branch is pushed and the pull request opened with FRAMERS_BUMP_TOKEN, a personal token held as a framerslab
+# organization secret, never with GITHUB_TOKEN. An event that GITHUB_TOKEN causes starts no ordinary workflow run: a
+# pull request a workflow opens or pushes with it gets its pull_request runs in an approval-required state, with no job
+# until someone with write access approves them, while one opened with a personal token or a GitHub App token runs its
+# workflows as any pull request does. GitHub, "Triggering a workflow from a workflow":
+# https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow
+# Nothing here labels or merges the pull request: landing-follows-the-bump-checks.yml adds the landing label once its own
+# Test Suite and rename-guard runs pass on its head, and it lands after its review comments are read, answered and
+# resolved.
 
 on:
   schedule:
     - cron: '0 6 * * 1'  # Monday 06:00 UTC weekly
   workflow_dispatch: {}
 
+# The push and the pull request go through FRAMERS_BUMP_TOKEN, so the job's own GITHUB_TOKEN only reads.
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   bump:
     runs-on: ubuntu-latest
+    # FRAMERS_BUMP_TOKEN is a personal token that reaches past this repository, and a step can change what a later step
+    # of its job runs, so no install script runs in this job and its third-party actions are pinned to a commit, with
+    # the release that commit carries named beside it.
     steps:
+      # First, before anything is installed: without the secret, create-pull-request stops with "Input 'token' not
+      # supplied", but only after the install.
+      - name: FRAMERS_BUMP_TOKEN is available
+        env:
+          FRAMERS_BUMP_TOKEN: ${{ secrets.FRAMERS_BUMP_TOKEN }}
+        run: |
+          if [ -z "$FRAMERS_BUMP_TOKEN" ]; then
+            echo "::error::FRAMERS_BUMP_TOKEN is not available here; a pull request opened with GITHUB_TOKEN gets no CI job."
+            exit 1
+          fi
+
       - name: Checkout
         uses: actions/checkout@v5
         with:
+          # master, whichever branch a manual run names: the pull request goes into master, and a lockfile refreshed
+          # on another branch's dependencies is not master's.
+          ref: master
           submodules: recursive
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -32,7 +59,7 @@ jobs:
           python-version: '3.11'
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
         with:
           version: 10
 
@@ -50,16 +77,21 @@ jobs:
       - name: Bump @framers/* deps to latest published versions
         run: python3 .github/scripts/bump-framers-deps.py
 
+      # The lockfile needs no install script. pnpm 10 skips the dependencies' build scripts here (better-sqlite3,
+      # esbuild, onnxruntime-node, protobufjs and sharp, none of them allowed to build), and the root prepare script only
+      # writes husky's git hooks, which the pull request does not carry.
       - name: Refresh pnpm lockfile (when present)
         run: |
           if [ -f pnpm-lock.yaml ]; then
-            pnpm install --no-frozen-lockfile
+            pnpm install --no-frozen-lockfile --ignore-scripts
           fi
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.11
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # the personal token, so the pull request's own events start Test Suite and rename-guard (see the file's top);
+          # branch-token defaults to it, so the branch is pushed with it too
+          token: ${{ secrets.FRAMERS_BUMP_TOKEN }}
           commit-message: 'chore(deps): bump @framers/* deps to latest published versions'
           title: 'chore(deps): bump @framers/* deps to latest published versions'
           body: |
