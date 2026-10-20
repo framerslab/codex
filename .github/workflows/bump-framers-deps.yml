@@ -108,7 +108,11 @@ jobs:
           branch: chore/bump-framers-deps
           base: master
           delete-branch: true
+          # The manifests the bump changes here, and the only ones this repository tracks. The action stages them with
+          # one git add -- <add-paths>, and git stages nothing when one path matches no file: there is no package.json
+          # below the root and no .gitmodules, and a plain **/package.json does not match the root package.json, so run
+          # 39396254503 stopped at "fatal: pathspec '**/package.json' did not match any files" with nothing committed.
+          # A manifest tracked later goes on this list; tests/bump-framers-deps.test.js fails until it does.
           add-paths: |
-            **/package.json
+            package.json
             pnpm-lock.yaml
-            .gitmodules
