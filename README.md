@@ -106,7 +106,8 @@ graph TD
 - `.github/workflows/landing-follows-the-base.yml` - Takes the `landing` label off a PR whose base changes, since its guards ran against the old base
 - `.github/workflows/changelog.yml` - Daily changelog generation (git + GitHub API)
 - `.github/workflows/test.yml` - Runs validation suite (no API keys)
-- `.github/workflows/bump-framers-deps.yml` - Weekly pull request that moves the `@framers/*` dependencies to their newest npm versions, opened with `FRAMERS_BUMP_TOKEN` so its checks run, and labelled `landing`
+- `.github/workflows/bump-framers-deps.yml` - Weekly pull request that moves the `@framers/*` dependencies to their newest npm versions, opened with `FRAMERS_BUMP_TOKEN` so its checks run
+- `.github/workflows/landing-follows-the-bump-checks.yml` - Labels the weekly bump's PR `landing` once its Test Suite and rename-guard pass on its head, and keeps the label off a head they have not passed
 
 ### Manual Overrides & Controls
 

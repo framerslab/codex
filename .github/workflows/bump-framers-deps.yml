@@ -12,8 +12,9 @@ name: Bump @framers/* deps
 # until someone with write access approves them, while one opened with a personal token or a GitHub App token runs its
 # workflows as any pull request does. GitHub, "Triggering a workflow from a workflow":
 # https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow
-# The pull request carries the landing label from the start: its guards are its own Test Suite and rename-guard runs,
-# and it lands once they pass on its head and its review comments are read, answered and resolved. Nothing here merges.
+# Nothing here labels or merges the pull request: landing-follows-the-bump-checks.yml adds the landing label once its own
+# Test Suite and rename-guard runs pass on its head, and it lands after its review comments are read, answered and
+# resolved.
 
 on:
   schedule:
@@ -107,9 +108,6 @@ jobs:
           branch: chore/bump-framers-deps
           base: master
           delete-branch: true
-          # added on every run that finds the branch ahead of master, the one that opens the pull request included, so a
-          # label taken off by hand comes back with the next run (see the file's top)
-          labels: landing
           add-paths: |
             **/package.json
             pnpm-lock.yaml

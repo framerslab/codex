@@ -246,7 +246,7 @@ describe('the bump pull request carries the landing label only on a head whose T
     expect(job.permissions).toEqual({ actions: 'read', issues: 'write', 'pull-requests': 'write' });
     expect(job.steps.some((step) => String(step.uses).startsWith('actions/checkout@'))).toBe(false);
     expect(labelScript()).not.toContain('${{');
-    // One run at a time per head, and a waiting run is never cancelled for a newer one.
+    // One run at a time per head, and a running one is never cancelled for a newer one.
     expect(concurrency.group).toContain('github.event.workflow_run.head_sha');
     expect(concurrency['cancel-in-progress']).toBe(false);
   });

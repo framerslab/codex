@@ -150,12 +150,27 @@ Moves every `@framers/*` pin in a `package.json` to the newest version on npm, r
 - Pushes the branch and opens the pull request with `FRAMERS_BUMP_TOKEN`, a personal token held as a framerslab organization secret. GitHub starts no ordinary workflow run for an event made with `GITHUB_TOKEN`: a pull request a workflow opens with it gets its `pull_request` runs in an approval-required state, with no job ([Triggering a workflow from a workflow](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow)). Opened with the personal token, the pull request gets Test Suite and rename-guard like any other
 - Stops at its first step, with an error, when `FRAMERS_BUMP_TOKEN` is not available; the job's own `GITHUB_TOKEN` only reads
 - Refreshes the lockfile with `--ignore-scripts` and pins its third-party actions to a commit, since the job holds a token that reaches past this repository
-- Labels the pull request `landing` on every run that finds the branch ahead of `master`, the one that opens it included; the pull request lands once its checks pass on its head and its review comments are read, answered and resolved
+- Labels nothing: `landing-follows-the-bump-checks.yml` adds `landing` once the pull request's Test Suite and rename-guard pass on its head, and the pull request lands after its review comments are read, answered and resolved
 - `tests/bump-framers-deps.test.js` reads the workflow and runs its first step, since GitHub reports a broken file only when the schedule or a dispatch starts it
+
+### 10. `landing-follows-the-bump-checks.yml` (Landing follows the bump checks)
+
+**Triggers:**
+- A Test Suite or rename-guard run requested or completed on `chore/bump-framers-deps`
+
+**Purpose:**
+Keeps the `landing` label on the weekly bump's pull request only on a head whose guards passed; its guards are that pull request's own Test Suite and rename-guard runs:
+- When both have passed on the pull request's head (each guard's newest pull request run there), adds `landing` (created on first use) and keeps one guards comment (github-actions[bot]'s comment that starts with `<!-- landing-guards -->`) naming the two runs, then reads the pull request again and takes the label back off if the head or the base moved meanwhile
+- When either ends without passing on the head, takes the label off and says which in the guards comment
+- When a guard starts on the head (a push to the branch, or a reopen; GitHub sends no start for a re-run), and when one guard finishes there before the other, keeps the label off and says so in a guards comment already there
+- A run for an older head changes nothing; a change of base takes the label off in `landing-follows-the-base.yml`
+- `workflow_run` runs the file as it reads on `master` with a token that can write, so the job checks out no code, runs only for a pull request from this repository's own branch (a fork's branch of the same name is skipped) and reads the run and the pull request inside its script
+- Runs one at a time per head; never merges
+- `tests/bump-framers-deps.test.js` runs its script against a stand-in for the GitHub API, since GitHub runs the file only once it is on `master`
 
 ### The `landing` label
 
-No workflow here merges a pull request or turns on GitHub's auto-merge. A pull request is merged only after every review and comment on it has been read, fixed or answered and its threads resolved. Where a workflow's checks and guards pass, it adds the `landing` label (created on first use) and posts one comment saying which guards passed; when that comment cannot be posted, the label comes off again. A change of base takes the label off too, since the guards ran against the old base. The weekly bump labels its own pull request as it opens it: its guards are that pull request's Test Suite and rename-guard runs. A maintainer lands the pull request after that pass.
+No workflow here merges a pull request or turns on GitHub's auto-merge. A pull request is merged only after every review and comment on it has been read, fixed or answered and its threads resolved. Where a workflow's checks and guards pass, it adds the `landing` label (created on first use) and posts one comment saying which guards passed; when that comment cannot be posted, the label comes off again. A change of base takes the label off too, since the guards ran against the old base. On the weekly bump's pull request the guards are its own Test Suite and rename-guard runs: the label goes on once both pass on its head, and comes off when a push or a reopen starts them again there or when either fails. A maintainer lands the pull request after that pass.
 
 ## Caching Strategy
 
