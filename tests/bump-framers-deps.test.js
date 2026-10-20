@@ -7,8 +7,9 @@
  * https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow).
  *
  * The bump starts only on its Monday schedule or by hand, so GitHub reports a broken file only then. These tests parse
- * it, run its first step's shell with the secret empty and set, read the token, the permissions, the checkout, the
- * lockfile refresh and the action pins, and make its commit in a scratch repository the way the action makes it.
+ * it, run its first step's shell with the secret empty and set, run its npm lockfile refresh with a stand-in npm, read
+ * the token, the permissions, the checkout, the lockfile refreshes and the action pins, and make its commit in a scratch
+ * repository the way the action makes it.
  *
  * The bump labels nothing. Its pull request gets the landing label from landing-follows-the-bump-checks.yml, once its
  * own Test Suite and rename-guard runs pass on its head. That workflow starts on workflow_run, which runs the file as it
@@ -75,12 +76,59 @@ describe('the bump opens its pull request with FRAMERS_BUMP_TOKEN, so the pull r
     expect(stepUsing('actions/checkout').with.ref).toBe('master');
   });
 
-  it('refreshes the lockfile with no install script', () => {
+  it('refreshes the lockfiles with no install script', () => {
+    // \bnpm does not match inside pnpm, so this reads every pnpm and npm install the job runs.
     const installs = steps
       .flatMap((step) => String(step.run ?? '').split('\n'))
-      .filter((line) => /\bpnpm\s+(install|i|add)\b/.test(line));
+      .filter((line) => /\b(pnpm|npm)\s+(install|i|ci|add)\b/.test(line));
     expect(installs.length).toBeGreaterThan(0);
     for (const line of installs) expect(line).toMatch(/\s--ignore-scripts\b/);
+  });
+
+  // This repository tracks package-lock.json beside pnpm-lock.yaml, and npm ci (changelog.yml, async-processing.yml)
+  // stops when package-lock.json disagrees with package.json. Run 39470395461 (20 October 2026) opened pull request 9
+  // with @framers/sql-storage-adapter at ^0.8.1 in package.json and package-lock.json still at ^0.6.8. The refresh step
+  // runs here with a stand-in npm that records its arguments, once beside a package-lock.json and once without one.
+  it('refreshes package-lock.json when the file is there, writing the lockfile only and running no install script', () => {
+    const refresh = steps.find((step) => /\bnpm\s+install\b/.test(String(step.run ?? '')));
+    expect(refresh, 'a step that runs npm install').toBeDefined();
+
+    const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'bump-npm-'));
+    try {
+      const bin = path.join(scratch, 'bin');
+      const calls = path.join(scratch, 'calls');
+      fs.mkdirSync(bin);
+      fs.writeFileSync(path.join(bin, 'npm'), `#!/bin/sh\necho "$*" >> '${calls}'\n`, { mode: 0o755 });
+      const dir = (name, files) => {
+        const where = path.join(scratch, name);
+        fs.mkdirSync(where);
+        for (const file of files) fs.writeFileSync(path.join(where, file), '{}\n');
+        return where;
+      };
+      // The runner runs a step's script with bash -e.
+      const run = (cwd) =>
+        spawnSync('bash', ['-e', '-c', refresh.run], {
+          cwd,
+          env: { PATH: `${bin}${path.delimiter}${process.env.PATH}` },
+          encoding: 'utf8',
+        });
+
+      const without = run(dir('without', ['package.json']));
+      expect(without.status, without.stderr).toBe(0);
+      expect(fs.existsSync(calls)).toBe(false);
+
+      const beside = run(dir('beside', ['package.json', 'package-lock.json']));
+      expect(beside.status, beside.stderr).toBe(0);
+      const invocations = fs.readFileSync(calls, 'utf8').trim().split('\n');
+      expect(invocations).toHaveLength(1);
+      const args = invocations[0].split(' ');
+      expect(args[0]).toBe('install');
+      // --package-lock-only writes package-lock.json from package.json and the registry and ignores node_modules, so the
+      // tree the pnpm refresh installed plays no part.
+      expect(args).toEqual(expect.arrayContaining(['--package-lock-only', '--ignore-scripts']));
+    } finally {
+      fs.rmSync(scratch, { recursive: true, force: true });
+    }
   });
 
   it('pins every third-party action to a full commit, with the release it carries beside it', () => {
@@ -118,9 +166,12 @@ describe('the bump opens its pull request with FRAMERS_BUMP_TOKEN, so the pull r
     const tracked = execFileSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8' })
       .split('\0')
       .filter((file) => file && fs.statSync(path.join(root, file), { throwIfNoEntry: false })?.isFile());
-    // The bump's script rewrites any package.json outside node_modules, and the lockfile refresh rewrites pnpm-lock.yaml.
-    const manifests = tracked.filter((file) => path.basename(file) === 'package.json' || file === 'pnpm-lock.yaml');
-    expect(manifests).toEqual(expect.arrayContaining(['package.json', 'pnpm-lock.yaml']));
+    // The bump's script rewrites any package.json outside node_modules, and the lockfile refreshes rewrite pnpm-lock.yaml
+    // and package-lock.json.
+    const manifests = tracked.filter(
+      (file) => path.basename(file) === 'package.json' || file === 'pnpm-lock.yaml' || file === 'package-lock.json'
+    );
+    expect(manifests).toEqual(expect.arrayContaining(['package.json', 'pnpm-lock.yaml', 'package-lock.json']));
 
     const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'bump-commit-'));
     const git = (...args) =>

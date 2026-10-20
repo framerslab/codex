@@ -146,13 +146,14 @@ Keeps the `landing` label true to the branch its guards ran against:
 - Manual dispatch (`gh workflow run bump-framers-deps.yml`); a run from any branch bumps `master`
 
 **Purpose:**
-Moves every `@framers/*` pin in a `package.json` to the newest version on npm, refreshes `pnpm-lock.yaml` and opens one pull request into `master` from `chore/bump-framers-deps`:
+Moves every `@framers/*` pin in a `package.json` to the newest version on npm, refreshes `pnpm-lock.yaml` and `package-lock.json` and opens one pull request into `master` from `chore/bump-framers-deps`:
 - Pushes the branch and opens the pull request with `FRAMERS_BUMP_TOKEN`, a personal token held as a framerslab organization secret. GitHub starts no ordinary workflow run for an event made with `GITHUB_TOKEN`: a pull request a workflow opens with it gets its `pull_request` runs in an approval-required state, with no job ([Triggering a workflow from a workflow](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow)). Opened with the personal token, the pull request gets Test Suite and rename-guard like any other
 - Stops at its first step, with an error, when `FRAMERS_BUMP_TOKEN` is not available; the job's own `GITHUB_TOKEN` only reads
-- Refreshes the lockfile with `--ignore-scripts` and pins its third-party actions to a commit, since the job holds a token that reaches past this repository
-- Commits `package.json` and `pnpm-lock.yaml`, the manifests it changes here: create-pull-request stages its `add-paths` with one `git add`, which stages nothing when one of them matches no file, so a manifest tracked later goes on that list
+- Refreshes both lockfiles with `--ignore-scripts` and pins its third-party actions to a commit, since the job holds a token that reaches past this repository
+- Refreshes `package-lock.json` with `npm install --package-lock-only`, which writes the lockfile and installs nothing, because `npm ci` (in `changelog.yml` and `async-processing.yml`) stops when it disagrees with `package.json`
+- Commits `package.json`, `pnpm-lock.yaml` and `package-lock.json`, the manifests it changes here: create-pull-request stages its `add-paths` with one `git add`, which stages nothing when one of them matches no file, so a manifest tracked later goes on that list
 - Labels nothing: `landing-follows-the-bump-checks.yml` adds `landing` once the pull request's Test Suite and rename-guard pass on its head, and the pull request lands after its review comments are read, answered and resolved
-- `tests/bump-framers-deps.test.js` reads the workflow, runs its first step and makes its commit in a scratch repository holding this repository's files, since GitHub reports a broken file only when the schedule or a dispatch starts it
+- `tests/bump-framers-deps.test.js` reads the workflow, runs its first step and its npm lockfile refresh, and makes its commit in a scratch repository holding this repository's files, since GitHub reports a broken file only when the schedule or a dispatch starts it
 
 ### 10. `landing-follows-the-bump-checks.yml` (Landing follows the bump checks)
 
