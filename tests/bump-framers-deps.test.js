@@ -185,9 +185,6 @@ const fakeGitHub = ({
         get: api('pulls.get', () => ({ number: PR, head: { sha: state.head }, base: { ref: state.base } })),
       },
       actions: {
-        listWorkflowRunsForRepo: api('actions.listWorkflowRunsForRepo', (params) =>
-          runs.filter((r) => r.head_sha === params.head_sha && (!params.event || r.event === params.event))
-        ),
         // The runs of one workflow, named by its file as the API allows.
         listWorkflowRuns: api('actions.listWorkflowRuns', (params) =>
           runs.filter(
