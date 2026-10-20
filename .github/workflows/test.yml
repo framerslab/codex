@@ -11,17 +11,22 @@ on:
       - 'vocab/**'
       - 'package.json'
       - 'vitest.config.js'
+      # The licence badge reads LICENSE, and a change to this workflow tests itself on master.
+      - 'LICENSE'
+      - '.github/workflows/test.yml'
   pull_request:
     branches: [main, master]
   workflow_dispatch:
+
+# Every job reads; only Update Badges, which pushes the badges branch, gets contents: write.
+permissions:
+  contents: read
 
 jobs:
   unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
-    outputs:
-      coverage: ${{ steps.coverage.outputs.coverage }}
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -54,41 +59,29 @@ jobs:
       - name: Run unit tests
         run: pnpm test
       
+      # The coverage run also writes Vitest's JSON report, which the tests badge counts.
       - name: Run tests with coverage
-        id: coverage
-        run: |
-          pnpm run test:coverage
-          # Extract coverage percentage
-          if [ -f coverage/coverage-summary.json ]; then
-            COVERAGE=$(node -e "const c=require('./coverage/coverage-summary.json').total; console.log(Math.round((c.lines.pct+c.branches.pct+c.functions.pct+c.statements.pct)/4))")
-            echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
-            echo "📊 Coverage: $COVERAGE%"
-          fi
-      
-      - name: Generate badges
-        run: pnpm run badges
-      
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          files: ./coverage/lcov.info
-          flags: codex
-          name: codex-coverage
-        continue-on-error: true
-      
+        run: pnpm exec vitest run --coverage --reporter=default --reporter=json --outputFile.json="$RUNNER_TEMP/vitest-report.json"
+
+      # One shields.io endpoint file per README badge (tests, coverage, version, licence), from this run and this tree.
+      # Update Badges publishes them from master; on any other run they are only checked and archived.
+      - name: Write the badge files
+        run: node scripts/badges/write-badge-json.js --out "$RUNNER_TEMP/badges" --tests "$RUNNER_TEMP/vitest-report.json" --coverage coverage/coverage-summary.json
+
       - name: Archive coverage report
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: coverage/
           retention-days: 30
-      
-      - name: Archive badges
+
+      - name: Archive the badge files
         uses: actions/upload-artifact@v4
         with:
           name: badges
-          path: docs/badges/
-          retention-days: 90
+          path: ${{ runner.temp }}/badges/
+          if-no-files-found: error
+          retention-days: 7
 
   vocab-tests:
     name: Vocabulary & NLP Tests
@@ -323,39 +316,50 @@ jobs:
             .cache/codex.db
           retention-days: 7
 
-  # Commit badges to repo (main branch only)
+  # The README's tests, coverage, version and licence badges are shields.io endpoint badges, one JSON file per badge on
+  # the badges branch. Unit Tests wrote the files from this run (scripts/badges/write-badge-json.js). This job replaces
+  # the badges branch with them: one commit with no parent, pushed with a lease on the head it read
+  # (scripts/badges/publish-badges-branch.sh). It never pushes to master. The README reads the files through jsDelivr,
+  # because shields.io refuses any address whose host ends in github.com. It runs on master only, after the whole suite
+  # passed, and one run at a time, so two runs never race for the lease.
   update-badges:
     name: Update Badges
     runs-on: ubuntu-latest
-    needs: [unit-tests, integration]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [unit-tests, vocab-tests, cache-tests, integration]
+    if: github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    timeout-minutes: 10
     permissions:
-      contents: write
-    
+      contents: write # the badges branch
+    concurrency:
+      group: update-badges-master
+      cancel-in-progress: false
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-        with:
-          ref: main
-      
-      - name: Download badges artifact
+
+      - name: Download the badge files
         uses: actions/download-artifact@v4
         with:
           name: badges
-          path: docs/badges/
-      
-      - name: Commit badges
+          path: ${{ runner.temp }}/badges
+
+      - name: Replace the badges branch
+        env:
+          BADGES_SOURCE_SHA: ${{ github.sha }}
+        run: bash scripts/badges/publish-badges-branch.sh "$RUNNER_TEMP/badges"
+
+      # jsDelivr keeps a branch's files for up to 12 hours, and a purge makes the badges read the new files now. A purge
+      # that fails or is throttled warns, and that badge shows its old figure until jsDelivr's copy expires.
+      - name: Purge jsDelivr's copies
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Check if there are changes
-          if git diff --quiet docs/badges/; then
-            echo "📊 No badge changes to commit"
-          else
-            git add docs/badges/
-            git commit -m "chore: update coverage badges [skip ci]"
-            git push
-            echo "✅ Badges updated"
-          fi
+          for file in "$RUNNER_TEMP"/badges/*.json; do
+            path="/gh/${GITHUB_REPOSITORY}@badges/$(basename "$file")"
+            if response=$(curl -fsS --retry 3 --max-time 30 "https://purge.jsdelivr.net${path}") \
+              && [ "$(jq -r --arg path "$path" '.paths[$path].throttled' <<< "$response")" = "false" ]; then
+              echo "purged ${path}"
+            else
+              echo "::warning::jsDelivr did not purge ${path}; the badge shows its old figure until jsDelivr's copy expires (up to 12 hours)."
+            fi
+          done
 

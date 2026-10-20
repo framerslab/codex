@@ -23,9 +23,6 @@
     "test:coverage": "vitest run --coverage",
     "test:integration": "RUN_INTEGRATION_TESTS=1 node --test tests/llm.test.js",
     "test:ci": "vitest run --reporter=verbose --coverage",
-    "badges": "node scripts/generate-badges.js",
-    "badges:check": "node scripts/generate-badges.js --check",
-    "posttest:coverage": "node scripts/generate-badges.js",
     "prepare": "husky install"
   },
   "dependencies": {
