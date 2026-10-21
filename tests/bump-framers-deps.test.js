@@ -14,7 +14,9 @@
  * The bump labels nothing. Its pull request gets the landing label from landing-follows-the-bump-checks.yml, once its
  * own Test Suite and rename-guard runs pass on its head. That workflow starts on workflow_run, which runs the file as it
  * reads on master, so GitHub runs it only after it merges; these tests run its script against a stand-in for the GitHub
- * API that holds the pull request's head, base, labels, comments and runs.
+ * API that holds the pull request's head, base, labels, comments and runs. The same workflow labels the index pull request
+ * auto-index.yml opens from ci/codex-index (tests/index-pull-request.test.js reads that workflow); the cases at the end
+ * run its script for that branch.
  *
  * Run: npx vitest run tests/bump-framers-deps.test.js
  */
@@ -206,13 +208,15 @@ describe('the bump opens its pull request with FRAMERS_BUMP_TOKEN, so the pull r
 });
 
 // landing-follows-the-bump-checks.yml, run here the way actions/github-script runs a script: as the body of an async
-// function, against a stand-in for the GitHub API that holds the bump pull request's head, base, labels, comments and the
-// pull request runs GitHub lists for a commit.
+// function, against a stand-in for the GitHub API that holds a followed pull request's head, base, labels, comments and the
+// pull request runs GitHub lists for a commit. It follows the bump's pull request and the index's.
 const LABEL_FLOW = '.github/workflows/landing-follows-the-bump-checks.yml';
 const JOB = 'follow-the-guards';
 const TEST_SUITE = '.github/workflows/test.yml';
 const RENAME_GUARD = '.github/workflows/rename-guard.yml';
 const BRANCH = 'chore/bump-framers-deps';
+const INDEX = '.github/workflows/auto-index.yml';
+const INDEX_BRANCH = 'ci/codex-index';
 const OWNER = 'framerslab';
 const REPO = 'codex';
 const PR = 12;
@@ -229,18 +233,25 @@ const labelScript = () => {
   if (!step) throw new Error(`${LABEL_FLOW}: job ${JOB} has no github-script step`);
   return step.with.script;
 };
+// The branch auto-index.yml opens the index pull request from.
+const indexBranch = () => {
+  const steps = yaml.load(read(INDEX)).jobs['publish-artifacts']?.steps ?? [];
+  const step = steps.find((s) => String(s.uses).startsWith('peter-evans/create-pull-request@'));
+  if (!step) throw new Error(`${INDEX}: the publish job opens no pull request`);
+  return step.with.branch;
+};
 
 // A pull request run of a workflow on a commit, as GitHub lists it. GitHub's REST description gives a run's path as
 // path@ref (".github/workflows/build.yml@main"), so a run can carry either form.
 const prRun = (
   workflowPath,
-  { id, sha = NEW, status = 'completed', conclusion = 'success', from = `${OWNER}/${REPO}`, ref = null }
+  { id, sha = NEW, status = 'completed', conclusion = 'success', from = `${OWNER}/${REPO}`, ref = null, branch = BRANCH }
 ) => ({
   id,
   run_number: id,
   path: ref ? `${workflowPath}@${ref}` : workflowPath,
   head_sha: sha,
-  head_branch: BRANCH,
+  head_branch: branch,
   head_repository: { full_name: from },
   event: 'pull_request',
   status,
@@ -259,6 +270,7 @@ const quoting = {
 // such as a push, an edit of the base or a guard finishing.
 const fakeGitHub = ({
   head = NEW,
+  branch = BRANCH,
   base = 'master',
   open = true,
   labels = [],
@@ -285,8 +297,8 @@ const fakeGitHub = ({
     rest: {
       pulls: {
         list: api('pulls.list', (params) =>
-          open && params.state === 'open' && params.head === `${OWNER}:${BRANCH}` && params.base === state.base
-            ? [{ number: PR, head: { sha: state.head, ref: BRANCH }, base: { ref: state.base } }]
+          open && params.state === 'open' && params.head === `${OWNER}:${branch}` && params.base === state.base
+            ? [{ number: PR, head: { sha: state.head, ref: branch }, base: { ref: state.base } }]
             : []
         ),
         get: api('pulls.get', () => ({ number: PR, head: { sha: state.head }, base: { ref: state.base } })),
@@ -335,34 +347,36 @@ const fakeGitHub = ({
 };
 
 // The workflow_run event of a guard's pull request run.
-const guardEvent = (action, sha = NEW) => ({
+const guardEvent = (action, sha = NEW, branch = BRANCH) => ({
   repo: { owner: OWNER, repo: REPO },
   payload: {
     action,
-    workflow_run: { head_sha: sha, head_branch: BRANCH, event: 'pull_request', head_repository: { full_name: `${OWNER}/${REPO}` } },
+    workflow_run: { head_sha: sha, head_branch: branch, event: 'pull_request', head_repository: { full_name: `${OWNER}/${REPO}` } },
   },
 });
 const follow = (github, context) =>
   new AsyncFunction('github', 'context', 'core', labelScript())(github, context, { info() {}, warning() {} });
 
 describe('the bump pull request carries the landing label only on a head whose Test Suite and rename-guard passed', () => {
-  it('starts when Test Suite or rename-guard is requested, starts or completes on the branch the bump pushes', () => {
+  it('starts when Test Suite or rename-guard is requested, starts or completes on the branch the bump or the index pushes', () => {
     const { on } = labelFlow();
     expect(Object.keys(on)).toEqual(['workflow_run']);
     // A re-run sends no requested event, only in_progress and completed.
     expect(on.workflow_run.types).toEqual(['requested', 'in_progress', 'completed']);
-    expect(on.workflow_run.branches).toEqual([stepUsing('peter-evans/create-pull-request').with.branch]);
+    expect(indexBranch()).toBe(INDEX_BRANCH);
+    expect(on.workflow_run.branches).toEqual([stepUsing('peter-evans/create-pull-request').with.branch, indexBranch()]);
     // workflow_run names the workflows it follows by their names, so they stay the names the two files carry.
     expect(on.workflow_run.workflows).toEqual([yaml.load(read(TEST_SUITE)).name, yaml.load(read(RENAME_GUARD)).name]);
   });
 
-  it("runs only for a pull request from this repository's own bump branch, checks out no code and pastes nothing into its script", () => {
+  it("runs only for a pull request from this repository's own bump or index branch, checks out no code and pastes nothing into its script", () => {
     const { permissions, concurrency, jobs } = labelFlow();
     expect(permissions).toEqual({ contents: 'read' });
     expect(Object.keys(jobs)).toEqual([JOB]);
     const job = jobs[JOB];
     expect(job.if).toContain("github.event.workflow_run.event == 'pull_request'");
     expect(job.if).toContain(`github.event.workflow_run.head_branch == '${BRANCH}'`);
+    expect(job.if).toContain(`github.event.workflow_run.head_branch == '${INDEX_BRANCH}'`);
     expect(job.if).toContain('github.event.workflow_run.head_repository.full_name == github.repository');
     expect(job.permissions).toEqual({ actions: 'read', issues: 'write', 'pull-requests': 'write' });
     expect(job.steps.some((step) => String(step.uses).startsWith('actions/checkout@'))).toBe(false);
@@ -522,5 +536,52 @@ describe('the bump pull request carries the landing label only on a head whose T
     const { github, state } = fakeGitHub({ runs: bothPassed(), failCreateComment: true });
     await expect(follow(github, guardEvent('completed'))).rejects.toThrow();
     expect(state.labels.has('landing')).toBe(false);
+  });
+});
+
+// auto-index.yml opens the index pull request from ci/codex-index with FRAMERS_BUMP_TOKEN, as the bump opens its own, and
+// labels nothing; the same workflow keeps its landing label true to its guards.
+describe('the index pull request carries the landing label only on a head whose Test Suite and rename-guard passed', () => {
+  const indexRuns = (overrides = {}) => [
+    prRun(TEST_SUITE, { id: 201, branch: INDEX_BRANCH, ...overrides }),
+    prRun(RENAME_GUARD, { id: 202, branch: INDEX_BRANCH }),
+  ];
+
+  it('labels the index pull request once both guards passed on its head, and names both runs', async () => {
+    const { github, state } = fakeGitHub({ branch: INDEX_BRANCH, runs: indexRuns() });
+    await follow(github, guardEvent('completed', NEW, INDEX_BRANCH));
+    expect([...state.labels]).toEqual(['landing']);
+    expect(state.comments).toHaveLength(1);
+    expect(state.comments[0].body.startsWith(MARKER)).toBe(true);
+    expect(state.comments[0].body).toContain('Guards passed on bbbbbbb');
+    expect(state.comments[0].body).toContain('Test Suite, run 201');
+    expect(state.comments[0].body).toContain('rename-guard, run 202');
+  });
+
+  it('takes the label off the index pull request where a guard ended without passing, and says which', async () => {
+    const runs = indexRuns({ conclusion: 'failure' });
+    const { github, state } = fakeGitHub({ branch: INDEX_BRANCH, labels: ['landing'], comments: [guardsComment(OLD)], runs });
+    await follow(github, guardEvent('completed', NEW, INDEX_BRANCH));
+    expect(state.labels.has('landing')).toBe(false);
+    expect(state.comments).toHaveLength(1);
+    expect(state.comments[0].body).toContain('Test Suite (failure, run 201) did not pass on bbbbbbb');
+  });
+
+  it("reads only the index branch's runs for the index pull request", async () => {
+    // The bump branch's runs on the same commit say nothing about the index pull request.
+    const runs = [prRun(TEST_SUITE, { id: 101 }), prRun(RENAME_GUARD, { id: 102 })];
+    const { github, state, calls } = fakeGitHub({ branch: INDEX_BRANCH, runs });
+    await follow(github, guardEvent('completed', NEW, INDEX_BRANCH));
+    expect(calls).not.toContain('issues.addLabels');
+    expect(state.labels.has('landing')).toBe(false);
+  });
+
+  it('follows no branch but the two, whichever branch a run comes from', async () => {
+    const elsewhere = 'feature/elsewhere';
+    const runs = [prRun(TEST_SUITE, { id: 301, branch: elsewhere }), prRun(RENAME_GUARD, { id: 302, branch: elsewhere })];
+    const { github, state, calls } = fakeGitHub({ branch: elsewhere, labels: ['landing'], runs });
+    await follow(github, guardEvent('completed', NEW, elsewhere));
+    expect(calls).toEqual([]);
+    expect([...state.labels]).toEqual(['landing']);
   });
 });
