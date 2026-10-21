@@ -96,22 +96,37 @@ jobs:
             exit 1
           fi
 
+      # master's head, whichever commit this run built: create-pull-request starts the pull request from the branch checked
+      # out, so the pull request carries the index alone and merges without a conflict even after master took an earlier
+      # index pull request.
       - uses: actions/checkout@v5
+        with:
+          ref: master
 
       # Each run waits for its own build, so a run of an earlier commit can get here after a later commit's run. The index
       # is built from the paths whose change starts this workflow (on.push.paths). When master's head differs from this
       # run's commit under them, a later push changed them and its run publishes, so this run leaves the pull request alone
-      # instead of putting an older index on it.
+      # instead of putting an older index on it. When they match, no later run publishes, so this one does. A comparison
+      # that cannot be made fails the step, and nothing is published.
       - name: Leave the index to the run of a later change
         id: order
         run: |
-          git fetch --quiet --depth=1 origin master
-          if git diff --quiet "$GITHUB_SHA" FETCH_HEAD -- weaves scripts schema .github/workflows/auto-index.yml; then
-            echo "later=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "::notice::master changed weaves/, scripts/, schema/ or this workflow after ${GITHUB_SHA::7}; the run of that change publishes the index."
-            echo "later=true" >> "$GITHUB_OUTPUT"
-          fi
+          git fetch --quiet --depth=1 origin "$GITHUB_SHA"
+          status=0
+          git diff --quiet "$GITHUB_SHA" HEAD -- weaves scripts schema .github/workflows/auto-index.yml || status=$?
+          case "$status" in
+            0)
+              echo "later=false" >> "$GITHUB_OUTPUT"
+              ;;
+            1)
+              echo "::notice::master changed weaves/, scripts/, schema/ or this workflow after ${GITHUB_SHA::7}; the run of that change publishes the index."
+              echo "later=true" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "::error::git diff could not compare ${GITHUB_SHA::7} with master's head (exit $status)."
+              exit "$status"
+              ;;
+          esac
 
       - uses: actions/download-artifact@v8
         if: steps.order.outputs.later == 'false'
