@@ -151,12 +151,12 @@ describe('the bump opens its pull request with FRAMERS_BUMP_TOKEN, so the pull r
   });
 
   // The action commits the bump with `git add -- <add-paths>` and then `git commit` (src/create-or-update-branch.ts at
-  // v7.0.11), and git refuses the whole add when any one pathspec matches no file: builtin/add.c dies with "did not match
-  // any files" before it stages anything. git matches a plain pathspec with fnmatch(3), so the slash in **/package.json
-  // has to be there, and the root manifest does not match it. Run 39396254503 (20 October 2026) logged "fatal: pathspec
-  // '**/package.json' did not match any files" and stopped at "Unexpected error" with nothing committed. This makes that
-  // commit in a scratch repository holding this repository's tracked files, after changing every manifest the bump can
-  // change.
+  // v7.0.11, unchanged at v8.1.1), and git refuses the whole add when any one pathspec matches no file: builtin/add.c
+  // dies with "did not match any files" before it stages anything. git matches a plain pathspec with fnmatch(3), so the
+  // slash in **/package.json has to be there, and the root manifest does not match it. Run 39396254503 (20 October 2026)
+  // logged "fatal: pathspec '**/package.json' did not match any files" and stopped at "Unexpected error" with nothing
+  // committed. This makes that commit in a scratch repository holding this repository's tracked files, after changing
+  // every manifest the bump can change.
   it('commits every manifest it changes, so each add-paths entry matches a file here', () => {
     const create = stepUsing('peter-evans/create-pull-request');
     // The action reads the input as a list split on newlines and commas.

@@ -5,11 +5,11 @@
  * deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24"
  * (https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/). Three actions here
  * targeted Node.js 20: actions/github-script v7 (the two landing workflows, Trusted Weavers, async processing and the pull
- * request enhancement), peter-evans/create-pull-request v7.0.11 (the weekly bump and the index publish) and
- * peter-evans/repository-dispatch v3 (async processing). Each now runs the release whose action.yml says runs.using:
- * node24, pinned to that release's commit with the release named beside it, as the bump pins its actions: a tag can
- * move, a commit cannot. Each commit below was read from GitHub, from git/ref/tags/<release> and, where the tag is
- * annotated, from the tag object to its commit, together with the action.yml at that commit.
+ * request enhancement), peter-evans/create-pull-request v7.0.11 (the weekly bump, the index publish, the changelog and
+ * the block tag enhancement) and peter-evans/repository-dispatch v3 (async processing). Each now runs the release whose
+ * action.yml says runs.using: node24, pinned to that release's commit with the release named beside it, as the bump
+ * pins its actions: a tag can move, a commit cannot. Each commit below was read from GitHub, from git/ref/tags/<release>
+ * and, where the tag is annotated, from the tag object to its commit, together with the action.yml at that commit.
  *
  * github-script v9 runs a script as the body of an async function whose parameters are require, __original_require__,
  * github, octokit, getOctokit, context, core, exec, glob and io (src/main.ts at the pinned commit), so a script that
