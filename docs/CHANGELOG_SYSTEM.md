@@ -28,8 +28,8 @@ Frame Codex automatically tracks and records all changes, issues, and pull reque
 
 The changelog system runs weekly via GitHub Actions and records:
 
-1. **Git Changelog**: Parsed conventional commits with metadata, one line for each day
-2. **Issue Activity**: Created and closed issues and merged PRs, one line for each run
+1. **Git Changelog**: Parsed conventional commits with metadata, one line for each day on which commits reached `master`
+2. **Issue Activity**: Created and closed issues and merged PRs, one line for each run, over the days it records
 3. **Monthly JSONL Files**: `codex-history/YYYY-MM.jsonl`, one JSON object per line
 
 All history is stored in `codex-history/` and reaches `master` through a pull request from `ci/changelog`. [codex-history/README.md](../codex-history/README.md) describes the files and how to query them.
@@ -52,20 +52,20 @@ All history is stored in `codex-history/` and reaches `master` through a pull re
 
 ### Weekly Automation
 
-Every Monday at 00:00 UTC, `.github/workflows/changelog.yml` records the days since a first day: seven days ago, or the day a manual run names. A scheduled workflow here runs once a week at most.
+Every Monday at 00:00 UTC, `.github/workflows/changelog.yml` records the complete days, in UTC, before the day it runs on that are not yet recorded. A scheduled workflow here runs once a week at most. Each script starts after the last day it recorded, so a missed or failed run leaves no gap, and no run records a day half; with nothing recorded, it starts seven days before the run, and a manual run can name the first day.
 
 1. **Keeps an Open Pull Request's Lines**
-   - Takes the monthly files of a changelog pull request that has not landed
+   - Takes the monthly files of a changelog pull request that has not landed, so they count as recorded
 
 2. **Fetches Git History**
-   - Parses the commits on `master` since the first day
-   - Extracts conventional commit metadata
+   - Reads `master`'s first-parent history: a merge commit brings its pull request's commits, any other commit brings itself, and each commit is recorded on the day, in UTC, the commit that brought it was made, so a pull request's commits are recorded on the day it merged
+   - Extracts conventional commit metadata, reading each commit's whole message
    - Appends one line for each day to `codex-history/YYYY-MM.jsonl`, skipping the days already recorded
 
 3. **Fetches GitHub Activity** (if `GH_PAT` is set)
-   - Queries GitHub's GraphQL API for the activity since the first day
-   - Collects the issues created and closed and the PRs merged since then
-   - Appends one line, dated the first day, to that month's file
+   - Queries GitHub's GraphQL API, every page of each list, for the span from where the last recorded span ended
+   - Collects the issues created and closed and the PRs merged in the span, leaving out what an earlier line holds
+   - Appends one line, dated the span's first day and naming the day it ends at (`until`), to that month's file
 
 4. **Opens a Pull Request**
    - Opens or updates one pull request into `master` from `ci/changelog` with `FRAMERS_BUMP_TOKEN`, so its Test Suite and rename-guard run
@@ -76,18 +76,19 @@ Every Monday at 00:00 UTC, `.github/workflows/changelog.yml` records the days si
 You can also generate history manually:
 
 ```bash
-# From the repository's root: git changelog for a date range
-node scripts/generate-changelog.js --since 2025-01-01
+# From the repository's root: git changelog for a date range; --until is the first day not recorded
+# (today, in UTC, when left out), and --since the first day (after the last day recorded, when left out)
+node scripts/generate-changelog.js --since 2025-01-01 --until 2025-02-01
 
 # Issue activity (requires GH_PAT)
-GH_PAT=ghp_xxx node scripts/fetch-issue-activity.js --since 2025-01-01
+GH_PAT=ghp_xxx node scripts/fetch-issue-activity.js --since 2025-01-01 --until 2025-02-01
 ```
 
 ## Data Formats
 
 ### Git Changelog
 
-One line of `codex-history/YYYY-MM.jsonl` for each day of commits:
+One line of `codex-history/YYYY-MM.jsonl` for each day, in UTC, on which commits reached `master`; each commit's own `date` is the day it was written:
 
 ```json
 {
@@ -114,12 +115,13 @@ One line of `codex-history/YYYY-MM.jsonl` for each day of commits:
 
 ### Issue Activity
 
-One line of `codex-history/YYYY-MM.jsonl` for each run, dated its first day:
+One line of `codex-history/YYYY-MM.jsonl` for each run, dated its first day, with `until` the first day it does not cover:
 
 ```json
 {
   "type": "github_activity",
   "date": "2025-01-15",
+  "until": "2025-01-22",
   "repository": "framerslab/codex",
   "summary": {
     "issuesCreated": 2,
