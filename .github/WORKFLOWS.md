@@ -212,8 +212,8 @@ Records the history since a first day in `codex-history/YYYY-MM.jsonl` and bring
 
 **Purpose:**
 Refines the block tags and summaries in `weaves/` with `scripts/ai-enhance-blocks.js`, which calls a paid model:
-- The enhance job installs and runs the repository's code with the model keys and a read-only `GITHUB_TOKEN`, keeps no token in its checkout, and archives the strands it changed as a patch; the run's inputs reach the script as arguments, never as shell text
-- A manual run's second job applies the patch and opens or updates one pull request into `master` from `ci/ai-enhance-blocks` with `FRAMERS_BUMP_TOKEN`, carrying `weaves/` alone; the search index follows through the index pull request once the strands land
+- The enhance job installs and runs the repository's code with the model keys and a read-only `GITHUB_TOKEN`, keeps no token in its checkout, and archives the threads it changed as a patch; the run's inputs reach the script as arguments, never as shell text
+- A manual run's second job applies the patch and opens or updates one pull request into `master` from `ci/ai-enhance-blocks` with `FRAMERS_BUMP_TOKEN`, carrying `weaves/` alone; the search index follows through the index pull request once the threads land
 - A labelled pull request's second job commits the patch onto the pull request's own branch, as a fast-forward from the commit the enhancement ran on, and pushes it with `FRAMERS_BUMP_TOKEN`, so Test Suite and rename-guard run on the new head. When the branch moved meanwhile, the push is refused and the patch stays in the run's artifact for 30 days
 - No commit message carries a skip marker; GitHub starts no workflow for a push made with `GITHUB_TOKEN`, and none of the `pull_request` workflows of a head commit whose message says `[skip ci]`
 - The two jobs that hold `FRAMERS_BUMP_TOKEN` install and run none of the repository's code, and each stops at its first step, with an error, when the token is not available

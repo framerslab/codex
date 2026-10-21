@@ -302,7 +302,7 @@ When you push changes to `weaves/`:
 3. Set max cost and provider
 4. Review the PR with AI suggestions: the run opens or updates one pull request from `ci/ai-enhance-blocks`, which lands once its checks pass and its review comments are answered
 
-Or add the `ai-enhance` label to a pull request from a branch of this repository: the run commits the enhanced strands onto that pull request's branch, and its checks run on the new head.
+Or add the `ai-enhance` label to a pull request from a branch of this repository: the run commits the enhanced threads onto that pull request's branch, and its checks run on the new head.
 
 ## Part 8: Viewing in Frame.dev
 

@@ -1,10 +1,10 @@
 name: AI Enhance Block Tags
 
-# Runs scripts/ai-enhance-blocks.js, which calls a paid model to refine the block tags and summaries in the strands under
+# Runs scripts/ai-enhance-blocks.js, which calls a paid model to refine the block tags and summaries in the threads under
 # weaves/, by hand on master or when a pull request from this repository's own branch is labelled ai-enhance.
 #
 # The enhance job installs and runs the repository's code with the model keys and a read-only GITHUB_TOKEN, keeps no token
-# in its checkout, and archives the strands it changed as a patch. It pushes nothing:
+# in its checkout, and archives the threads it changed as a patch. It pushes nothing:
 # - On a manual run, the open-pull-request job opens or updates one pull request into master from ci/ai-enhance-blocks
 #   carrying the patch. master is protected, and a commit reaches it only once its required checks have passed, which a
 #   commit made in a job has not ("About protected branches", Require status checks before merging:
@@ -15,7 +15,7 @@ name: AI Enhance Block Tags
 # GITHUB_TOKEN, and none of the pull_request workflows of a head commit whose message says [skip ci], so with either the
 # new head's required checks would never report and the pull request could not merge. FRAMERS_BUMP_TOKEN reaches past this
 # repository, and a step can change what a later step of its job runs, so the two jobs that hold it install and run none of
-# the repository's code. The search index is not committed here: auto-index.yml builds it from master once the strands land
+# the repository's code. The search index is not committed here: auto-index.yml builds it from master once the threads land
 # and brings it through its own pull request. landing-follows-the-bump-checks.yml labels the manual run's pull request
 # landing once its Test Suite and rename-guard pass on its head. tests/ai-enhance-blocks.test.js reads this file.
 
@@ -116,15 +116,15 @@ jobs:
           echo "Running: node scripts/ai-enhance-blocks.js $*"
           node scripts/ai-enhance-blocks.js "$@"
 
-      # The strands the processing and the enhancement changed, as one patch for the job that commits them.
-      - name: Archive the enhanced strands
+      # The threads the processing and the enhancement changed, as one patch for the job that commits them.
+      - name: Archive the enhanced threads
         id: changes
         if: github.event.inputs.dry_run != 'true'
         run: |
           git add --all -- weaves
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "No strand changed."
+            echo "No thread changed."
           else
             mkdir -p "$RUNNER_TEMP/ai-enhance"
             git diff --cached --binary > "$RUNNER_TEMP/ai-enhance/blocks.patch"
@@ -191,7 +191,7 @@ jobs:
           name: ai-enhanced-blocks
           path: ${{ runner.temp }}/ai-enhance
 
-      - name: Apply the enhanced strands
+      - name: Apply the enhanced threads
         run: git apply "$RUNNER_TEMP/ai-enhance/blocks.patch"
 
       - name: Open or update the pull request
@@ -205,11 +205,11 @@ jobs:
           body: |
             Block tags and summaries refined by `scripts/ai-enhance-blocks.js` on master at ${{ needs.enhance.outputs.commit }}, by run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}: provider ${{ github.event.inputs.provider || 'openai' }}, at most $${{ github.event.inputs.max_cost || '5.00' }}.
 
-            master is protected, so the strands reach it through this pull request. The AI Enhance Block Tags workflow opens and updates it with `FRAMERS_BUMP_TOKEN`, so its Test Suite and rename-guard run; `landing-follows-the-bump-checks.yml` labels it `landing` once both pass on its head, and it lands after its review comments are read, answered and resolved. Read the tags and summaries a model wrote before it lands. The search index follows through the index pull request once the strands are on master. A later manual run replaces this branch with its own enhancement.
+            master is protected, so the threads reach it through this pull request. The AI Enhance Block Tags workflow opens and updates it with `FRAMERS_BUMP_TOKEN`, so its Test Suite and rename-guard run; `landing-follows-the-bump-checks.yml` labels it `landing` once both pass on its head, and it lands after its review comments are read, answered and resolved. Read the tags and summaries a model wrote before it lands. The search index follows through the index pull request once the threads are on master. A later manual run replaces this branch with its own enhancement.
           branch: ci/ai-enhance-blocks
           base: master
           delete-branch: true
-          # The strands alone; the action stages them with one git add, and weaves/ is always there.
+          # The threads alone; the action stages them with one git add, and weaves/ is always there.
           add-paths: |
             weaves
 
@@ -243,7 +243,7 @@ jobs:
 
       # A fast-forward of the pull request's branch from the commit the enhancement ran on. When the branch moved
       # meanwhile, git refuses the push and the step fails; the patch stays in the run's artifact.
-      - name: Commit the enhanced strands onto the pull request
+      - name: Commit the enhanced threads onto the pull request
         id: push
         env:
           HEAD_REF: ${{ github.event.pull_request.head.ref }}
