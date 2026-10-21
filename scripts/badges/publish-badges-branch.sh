@@ -2,21 +2,24 @@
 # Replaces the badges branch with the files of <dir>: one commit with no parent that holds those files alone, pushed
 # with a lease on the head this run read. A writer that moved the branch after that read keeps its head, and this run
 # fails. Only the badges ref is pushed; master is never written. A run whose commit is older than the one the branch's
-# files were counted from pushes nothing, and so does a run of that same commit with the same files; the same files
-# from a later commit are pushed again, so that the head names that commit.
+# files were counted from pushes nothing, and so does a run of that same commit with the same files, and a run of a
+# commit master no longer holds; the same files from a later commit are pushed again, so that the head names that
+# commit.
 #
 #   bash scripts/badges/publish-badges-branch.sh <dir> [<remote>] [<branch>]
 #
 # Run it inside a clone that can push to <remote> (default origin; branch default badges) and holds master's history
 # (actions/checkout with fetch-depth: 0); a shallow clone fetches the commit the branch names. The commit message names
-# the commit the files were counted from: BADGES_SOURCE_SHA, or the clone's HEAD. The Test Suite workflow's Update
-# Badges job runs it on pushes to master, with the files its Unit Tests job wrote (scripts/badges/write-badge-json.js).
+# the commit the files were counted from: BADGES_SOURCE_SHA, or the clone's HEAD, which must be in the history of
+# BADGES_SOURCE_BRANCH (default master) on <remote>. The Test Suite workflow's Update Badges job runs it on pushes to
+# master, with the files its Unit Tests job wrote (scripts/badges/write-badge-json.js).
 set -euo pipefail
 
 DIR="${1:?usage: publish-badges-branch.sh <dir> [<remote>] [<branch>]}"
 REMOTE="${2:-origin}"
 REF="refs/heads/${3:-badges}"
 SOURCE="${BADGES_SOURCE_SHA:-$(git rev-parse HEAD)}"
+MASTER="refs/heads/${BADGES_SOURCE_BRANCH:-master}"
 
 export GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-github-actions[bot]}"
 export GIT_AUTHOR_EMAIL="${GIT_AUTHOR_EMAIL:-41898282+github-actions[bot]@users.noreply.github.com}"
@@ -34,6 +37,27 @@ if [ -z "$entries" ]; then
   exit 1
 fi
 tree=$(printf '%s' "$entries" | git mktree)
+
+# The run's commit must still be in master's history. After a force-push replaced that history, a delayed run of a
+# commit master dropped would otherwise replace the badges of the history master now holds. Later commits on master
+# (the index commits auto-index.yml pushes, say) keep the run's commit in that history.
+if ! git fetch --quiet --no-tags "$REMOTE" "$MASTER"; then
+  echo "::error::Could not fetch $MASTER from $REMOTE." >&2
+  exit 1
+fi
+held=0
+git merge-base --is-ancestor "$SOURCE" FETCH_HEAD 2> /dev/null || held=$?
+case "$held" in
+  0) ;;
+  1)
+    echo "$SOURCE is not in the history of $MASTER on $REMOTE (a force-push replaced it, or it was never there); nothing to push."
+    exit 0
+    ;;
+  *)
+    echo "::error::Could not tell whether $SOURCE is in the history of $MASTER (git merge-base exited $held)." >&2
+    exit 1
+    ;;
+esac
 
 # The head this run replaces, or none when the branch does not exist yet. ls-remote --exit-code exits 2 when the ref
 # is missing; any other failure stops the run before anything is pushed.
