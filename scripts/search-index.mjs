@@ -121,17 +121,20 @@ const deriveLoom = (filePath = '') => {
 
 /**
  * A document's whole text, read from its file under root and parsed as scripts/auto-index.js parses it: the body after
- * the frontmatter for Markdown, the whole file for YAML. Null when the path names no such file under root.
+ * the frontmatter for Markdown, the whole file for YAML. Null when the path names no such file under root. The check
+ * compares real paths, so a link under root to a file outside it is not read: the indexer lists such a link by its own
+ * name and reads its target, and the whole target would reach the published vocabulary.
  */
 const readDocumentText = (entryPath, root) => {
   if (!entryPath) return null
-  const filePath = path.resolve(root, entryPath)
-  const relative = path.relative(root, filePath)
-  if (!relative || relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) return null
   try {
+    const realRoot = fs.realpathSync(root)
+    const filePath = fs.realpathSync(path.resolve(root, entryPath))
+    const relative = path.relative(realRoot, filePath)
+    if (!relative || relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) return null
     const raw = fs.readFileSync(filePath, 'utf8')
-    if (filePath.endsWith('.md') || filePath.endsWith('.mdx')) return matter(raw).content
-    if (filePath.endsWith('.yaml') || filePath.endsWith('.yml')) return raw
+    if (entryPath.endsWith('.md') || entryPath.endsWith('.mdx')) return matter(raw).content
+    if (entryPath.endsWith('.yaml') || entryPath.endsWith('.yml')) return raw
   } catch {
     // A missing or unreadable file, or frontmatter gray-matter cannot parse: the caller falls back to the excerpt.
   }
