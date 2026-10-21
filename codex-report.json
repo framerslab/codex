@@ -8711,12 +8711,12 @@
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "technology",
-        "score": 0.13175675675675674
+        "score": 0.13513513513513514
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "api-reference",
-        "score": 0.18699186991869918
+        "score": 0.2032520325203252
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
@@ -8736,67 +8736,72 @@
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "troubleshooting",
-        "score": 0.1574074074074074
+        "score": 0.17592592592592593
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:rest",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:schema",
-        "score": 0.5576923076923077
+        "score": 0.5625
+      },
+      {
+        "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
+        "category": "skill:test",
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:function",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:data",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:http",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:https",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:ci",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:cd",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:e2",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:search",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:structur",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:tl",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
@@ -8931,42 +8936,47 @@
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:git",
-        "score": 0.5631578947368421
+        "score": 0.5736842105263158
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:github",
-        "score": 0.5631578947368421
+        "score": 0.5736842105263158
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:version",
-        "score": 0.5631578947368421
+        "score": 0.5736842105263158
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:commit",
-        "score": 0.5631578947368421
+        "score": 0.5736842105263158
+      },
+      {
+        "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
+        "category": "skill:branch",
+        "score": 0.5736842105263158
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:npm",
-        "score": 0.5631578947368421
+        "score": 0.5736842105263158
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:pnpm",
-        "score": 0.5631578947368421
+        "score": 0.5736842105263158
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:as",
-        "score": 0.5631578947368421
+        "score": 0.5736842105263158
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "skill:code",
-        "score": 0.5631578947368421
+        "score": 0.5736842105263158
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
@@ -9306,7 +9316,7 @@
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "ai",
-        "score": 0.09712230215827339
+        "score": 0.10431654676258993
       },
       {
         "file": "docs/DEVELOPMENT.md",
@@ -9366,7 +9376,7 @@
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "troubleshooting",
-        "score": 0.25
+        "score": 0.25925925925925924
       },
       {
         "file": "docs/DEVELOPMENT.md",
@@ -10311,7 +10321,7 @@
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "troubleshooting",
-        "score": 0.24074074074074073
+        "score": 0.25
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
@@ -11937,7 +11947,7 @@
     "fileWarnings": []
   },
   "vocabulary": {
-    "totalUniqueTerms": 387,
+    "totalUniqueTerms": 386,
     "suggestedAdditions": [
       {
         "term": "block",
@@ -12014,7 +12024,7 @@
     ]
   },
   "performance": {
-    "timeElapsed": "89.44s",
+    "timeElapsed": "92.98s",
     "cacheHitRate": "0%",
     "filesProcessed": 40,
     "filesCached": 0,
