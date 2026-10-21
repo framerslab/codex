@@ -1,5 +1,19 @@
 name: Build and Publish Codex Index
 
+# The build-index job builds codex-index.json, codex-search.json, codex-report.json and codex-blocks.json and archives
+# them. On master, publish-artifacts then opens or updates one pull request into master from ci/codex-index carrying
+# them. It never pushes to master: master is protected, and a commit reaches it only once its required checks have
+# passed, which a commit made in a job has not ("About protected branches", Require status checks before merging:
+# https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging).
+#
+# The branch is pushed and the pull request opened with FRAMERS_BUMP_TOKEN, a personal token held as a framerslab
+# organization secret, as bump-framers-deps.yml does: a pull request a workflow opens with GITHUB_TOKEN gets its
+# pull_request runs in an approval-required state, with no job, so its required checks would never report. The commit
+# message carries no skip marker, since GitHub starts none of the pull_request workflows of a head commit whose message
+# says [skip ci]. Nothing here labels or merges the pull request: landing-follows-the-bump-checks.yml adds the landing
+# label once its Test Suite and rename-guard pass on its head, and it lands after its review comments are read, answered
+# and resolved. tests/index-pull-request.test.js reads this file.
+
 on:
   push:
     paths:
@@ -11,6 +25,10 @@ on:
   repository_dispatch:
     types:
       - frame-deploy-complete
+
+# The pull request goes through FRAMERS_BUMP_TOKEN, so each job's own GITHUB_TOKEN only reads.
+permissions:
+  contents: read
 
 jobs:
   build-index:
@@ -47,7 +65,7 @@ jobs:
         run: pnpm run build:search
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: codex-search-assets
           path: |
@@ -59,23 +77,68 @@ jobs:
   publish-artifacts:
     needs: build-index
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
+    # One run at a time, so two runs never push the pull request branch at once; GitHub keeps the newest waiting run.
+    concurrency:
+      group: codex-index-pull-request
+      cancel-in-progress: false
+    # FRAMERS_BUMP_TOKEN is a personal token that reaches past this repository, and a step can change what a later step of
+    # its job runs, so this job installs and runs none of the repository's code, and its third-party action is pinned to a
+    # commit, with the release that commit carries named beside it.
     steps:
+      # First: without the secret, create-pull-request stops with "Input 'token' not supplied" only at its own step.
+      - name: FRAMERS_BUMP_TOKEN is available
+        env:
+          FRAMERS_BUMP_TOKEN: ${{ secrets.FRAMERS_BUMP_TOKEN }}
+        run: |
+          if [ -z "$FRAMERS_BUMP_TOKEN" ]; then
+            echo "::error::FRAMERS_BUMP_TOKEN is not available here; a pull request opened with GITHUB_TOKEN gets no CI job."
+            exit 1
+          fi
+
       - uses: actions/checkout@v5
-      
-      - uses: actions/download-artifact@v4
+
+      # Each run waits for its own build, so a run of an earlier commit can get here after a later commit's run. The index
+      # is built from the paths whose change starts this workflow (on.push.paths). When master's head differs from this
+      # run's commit under them, a later push changed them and its run publishes, so this run leaves the pull request alone
+      # instead of putting an older index on it.
+      - name: Leave the index to the run of a later change
+        id: order
+        run: |
+          git fetch --quiet --depth=1 origin master
+          if git diff --quiet "$GITHUB_SHA" FETCH_HEAD -- weaves scripts schema .github/workflows/auto-index.yml; then
+            echo "later=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::master changed weaves/, scripts/, schema/ or this workflow after ${GITHUB_SHA::7}; the run of that change publishes the index."
+            echo "later=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/download-artifact@v8
+        if: steps.order.outputs.later == 'false'
         with:
           name: codex-search-assets
           path: .
 
-      - name: Commit and push JSON assets
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add codex-index.json codex-search.json codex-report.json codex-blocks.json
-          if ! git diff --cached --quiet; then
-            git commit -m "ci(codex): update search index and block tags [skip ci]"
-            git push
-          else
-            echo "No changes to commit."
-          fi
+      - name: Open or update the index pull request
+        if: steps.order.outputs.later == 'false'
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.11
+        with:
+          # the personal token, so the pull request's own events start Test Suite and rename-guard (see the file's top);
+          # branch-token defaults to it, so the branch is pushed with it too
+          token: ${{ secrets.FRAMERS_BUMP_TOKEN }}
+          commit-message: 'ci(codex): update search index and block tags'
+          title: 'ci(codex): update search index and block tags'
+          body: |
+            The search index files built from ${{ github.sha }} by run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}: `codex-index.json`, `codex-search.json`, `codex-report.json` and `codex-blocks.json`.
+
+            master is protected, so the index reaches it through this pull request. The Build and Publish Codex Index workflow opens and updates it with `FRAMERS_BUMP_TOKEN`, so its Test Suite and rename-guard run; `landing-follows-the-bump-checks.yml` labels it `landing` once both pass on its head, and it lands after its review comments are read, answered and resolved. A later run replaces this branch with its own build, and closes the pull request when the index no longer differs from master's.
+          branch: ci/codex-index
+          base: master
+          delete-branch: true
+          # The four files the build job archives, each tracked here. The action stages them with one git add -- <add-paths>,
+          # which stages nothing when one path matches no file; tests/index-pull-request.test.js checks the list.
+          add-paths: |
+            codex-index.json
+            codex-search.json
+            codex-report.json
+            codex-blocks.json
