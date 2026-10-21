@@ -58,6 +58,10 @@ function countTests(report) {
   return counts;
 }
 
+/**
+ * The tests badge: the tests that passed, then those that failed, the test files that could not run and the tests
+ * skipped. It is red when a test failed or a file could not run.
+ */
 function testsBadge(counts) {
   const parts = [`${counts.passed} passed`];
   if (counts.failed) parts.push(`${counts.failed} failed`);
@@ -87,6 +91,7 @@ function coverageBadge(summary) {
   return endpoint('coverage', `${figure}%`, color);
 }
 
+/** The version package.json names, or "not declared" when it names none. */
 function versionBadge(pkg) {
   const version = typeof pkg?.version === 'string' ? pkg.version.trim() : '';
   return version ? endpoint('version', `v${version}`, 'blue') : endpoint('version', 'not declared', 'lightgrey');
@@ -134,6 +139,7 @@ function licenceBadge(root, pkg) {
   return declared ? endpoint('licence', declared, 'blue') : endpoint('licence', 'not declared', 'lightgrey');
 }
 
+/** Reads and parses one JSON input, naming it in the error when it is missing, unreadable or not JSON. */
 function readJson(file, what) {
   let text;
   try {
@@ -158,6 +164,7 @@ function buildBadges({ tests, coverage, root }) {
   return badges;
 }
 
+/** The README the badges branch carries: where its files come from and how the README on master reads them. */
 function branchReadme(repo) {
   return [
     '# badges',
@@ -172,6 +179,7 @@ function branchReadme(repo) {
   ].join('\n');
 }
 
+/** The command line's options; refuses an unknown or incomplete argument, and a run without --out or --tests. */
 function parseArgs(argv) {
   const options = { root: path.resolve(__dirname, '..', '..') };
   for (let i = 0; i < argv.length; i += 2) {
@@ -183,6 +191,7 @@ function parseArgs(argv) {
   return options;
 }
 
+/** Writes one file per badge and the branch's README into out, which must be new or empty. */
 function writeBadges(out, badges, repo) {
   if (fs.existsSync(out) && fs.readdirSync(out).length > 0) {
     throw new Error(`the --out directory ${out} is not empty; give a new or empty directory`);
@@ -194,6 +203,7 @@ function writeBadges(out, badges, repo) {
   fs.writeFileSync(path.join(out, 'README.md'), branchReadme(repo));
 }
 
+/** Reads every input, writes the files and logs each badge's message; a bad input throws before anything is written. */
 function main(argv, { log = console.log } = {}) {
   const options = parseArgs(argv);
   const badges = buildBadges(options);
