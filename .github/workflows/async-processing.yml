@@ -127,7 +127,7 @@ jobs:
           fi
       
       - name: Upload validation results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: validation-results
           path: validation-results.json
@@ -178,7 +178,7 @@ jobs:
             --output enhancement-report.json
       
       - name: Upload enhancement report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ai-enhancement-report
           path: enhancement-report.json
@@ -232,7 +232,7 @@ jobs:
         run: pnpm run build:search
       
       - name: Upload index artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: codex-search-assets
           path: |
@@ -250,7 +250,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: codex-search-assets
           path: .
