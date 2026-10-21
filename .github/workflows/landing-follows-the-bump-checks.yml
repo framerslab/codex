@@ -1,12 +1,13 @@
-# The weekly bump's pull request and the search index's pull request carry the landing label only on a head whose guards
-# passed.
+# The pull requests the workflows here open carry the landing label only on a head whose guards passed: the weekly bump's,
+# the search index's, the changelog's and the AI-enhanced block tags'.
 #
-# bump-framers-deps.yml opens one pull request into master from chore/bump-framers-deps, and auto-index.yml one from
-# ci/codex-index; neither labels anything. A pull request's guards are its own Test Suite and rename-guard runs, which
-# start because each workflow pushes and opens it with FRAMERS_BUMP_TOKEN. This workflow starts each time one of them is
-# requested, starts or completes on either branch (a re-run sends no requested event, only the other two), takes the
-# branch from the run, and decides from the runs as they stand, whichever event started it: it reads each guard's newest
-# pull request run on that branch's pull request's head.
+# bump-framers-deps.yml opens one pull request into master from chore/bump-framers-deps, auto-index.yml one from
+# ci/codex-index, changelog.yml one from ci/changelog and ai-enhance-blocks.yml one from ci/ai-enhance-blocks; none labels
+# anything. A pull request's guards are its own Test Suite and rename-guard runs, which start because each workflow pushes
+# and opens it with FRAMERS_BUMP_TOKEN. This workflow starts each time one of them is requested, starts or completes on
+# one of those branches (a re-run sends no requested event, only the other two), takes the branch from the run, and
+# decides from the runs as they stand, whichever event started it: it reads each guard's newest pull request run on that
+# branch's pull request's head.
 # - Both passed: it adds the "landing" label (created on first use) and keeps the guards comment (github-actions[bot]'s
 #   comment that starts with the <!-- landing-guards --> marker) naming the two runs. When that comment cannot be
 #   written, the label comes off again.
@@ -22,16 +23,16 @@
 #
 # workflow_run runs this file as it reads on master, the default branch, with a token that can write here, whichever
 # pull request the guards ran for. So its job checks out no code, runs only for a pull request from one of this
-# repository's own two branches (a fork's branch of the same name is skipped), and reads the run and the pull request
+# repository's own four branches (a fork's branch of the same name is skipped), and reads the run and the pull request
 # from the event and the API inside its script, never as text pasted into it. Nothing here merges: the pull request lands
 # after its review comments are read, answered and resolved.
-name: Landing follows the bump and index checks
+name: Landing follows the checks of workflow pull requests
 
 on:
   workflow_run:
     workflows: ['Test Suite', 'rename-guard']
     types: [requested, in_progress, completed]
-    branches: [chore/bump-framers-deps, ci/codex-index]
+    branches: [chore/bump-framers-deps, ci/codex-index, ci/changelog, ci/ai-enhance-blocks]
 
 permissions:
   contents: read
@@ -41,7 +42,9 @@ jobs:
     if: |
       github.event.workflow_run.event == 'pull_request' &&
       (github.event.workflow_run.head_branch == 'chore/bump-framers-deps' ||
-        github.event.workflow_run.head_branch == 'ci/codex-index') &&
+        github.event.workflow_run.head_branch == 'ci/codex-index' ||
+        github.event.workflow_run.head_branch == 'ci/changelog' ||
+        github.event.workflow_run.head_branch == 'ci/ai-enhance-blocks') &&
       github.event.workflow_run.head_repository.full_name == github.repository
     runs-on: ubuntu-latest
     permissions:
@@ -57,9 +60,10 @@ jobs:
           script: |
             const { owner, repo } = context.repo;
             const trigger = context.payload.workflow_run;
-            // The pull requests this workflow follows, by the branch each is opened from: the weekly bump's and the search
-            // index's. The job runs only for these two; the script takes the branch from the run and checks it again.
-            const BRANCHES = ['chore/bump-framers-deps', 'ci/codex-index'];
+            // The pull requests this workflow follows, by the branch each is opened from: the weekly bump's, the search
+            // index's, the changelog's and the AI-enhanced block tags'. The job runs only for these four; the script takes
+            // the branch from the run and checks it again.
+            const BRANCHES = ['chore/bump-framers-deps', 'ci/codex-index', 'ci/changelog', 'ci/ai-enhance-blocks'];
             const BRANCH = trigger.head_branch;
             if (!BRANCHES.includes(BRANCH)) {
               core.info(`${BRANCH} is not a branch this workflow follows.`);

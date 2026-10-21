@@ -1,16 +1,27 @@
 #!/usr/bin/env node
 /**
  * Generate changelog from git commits (append-only JSONL format)
- * Parses conventional commits and appends to monthly JSONL files
- * 
+ * Records the commits that reached master, one line for each day, in monthly JSONL files
+ *
  * Format: One JSON object per line (JSONL)
  * File: codex-history/YYYY-MM.jsonl
- * 
+ *
+ * A commit reaches master with the first-parent commit that brings it: a merge commit brings the commits of the branch it
+ * merges, any other commit brings itself. Each line is the day, in UTC, that first-parent commit was made (its committer
+ * date), so a pull request's commits are recorded on the day it merged, whenever they were written. Only complete days are
+ * recorded, up to the day before --until, and a day already recorded is skipped, so a later run never changes a day.
+ *
  * Usage:
- *   node scripts/generate-changelog.js [--since YYYY-MM-DD] [--output-dir path]
+ *   node scripts/generate-changelog.js [--since YYYY-MM-DD] [--until YYYY-MM-DD] [--output-dir path]
+ *
+ *   --until  the first day not recorded (default: today, in UTC)
+ *   --since  the first day recorded (default: the day after the last day of commits recorded, or seven days before
+ *            --until when none is recorded)
+ *
+ * Run it from the repository's root: it reads the history of the commit checked out.
  */
 
-import { execSync } from 'child_process'
+import { execFileSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -18,18 +29,61 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+const DAY = 24 * 60 * 60 * 1000
+
 // Parse CLI args
 const args = process.argv.slice(2)
-const sinceIndex = args.indexOf('--since')
-const outputDirIndex = args.indexOf('--output-dir')
+const option = (name) => {
+  const at = args.indexOf(name)
+  return at >= 0 ? args[at + 1] : undefined
+}
 
-const sinceDate = sinceIndex >= 0 ? args[sinceIndex + 1] : null
-const outputDir = outputDirIndex >= 0 
-  ? path.resolve(args[outputDirIndex + 1])
+/**
+ * The UTC midnight that starts a day written YYYY-MM-DD; any other text stops the run
+ * @param {string} name - The option the day came from, for the error
+ * @param {string} value - The day
+ * @returns {number} Milliseconds since 1970
+ */
+function startOf(name, value) {
+  const time = /^\d{4}-\d{2}-\d{2}$/.test(value ?? '') ? Date.parse(`${value}T00:00:00Z`) : NaN
+  if (Number.isNaN(time) || new Date(time).toISOString().slice(0, 10) !== value) {
+    console.error(`❌ ${name} takes a day written YYYY-MM-DD, not ${JSON.stringify(value ?? null)}`)
+    process.exit(1)
+  }
+  return time
+}
+
+const dayOf = (time) => new Date(time).toISOString().slice(0, 10)
+
+const outputDir = option('--output-dir') !== undefined
+  ? path.resolve(option('--output-dir'))
   : path.resolve(__dirname, '../codex-history')
 
-// Ensure output directory exists
-fs.mkdirSync(outputDir, { recursive: true })
+/**
+ * Every line of the monthly files, oldest month first; a line that does not parse is reported and left out
+ * @param {string} dir - The history folder
+ * @returns {Array} Entries
+ */
+function readHistory(dir) {
+  if (!fs.existsSync(dir)) return []
+  const entries = []
+  const files = fs.readdirSync(dir).filter((name) => /^\d{4}-\d{2}\.jsonl$/.test(name)).sort()
+  for (const name of files) {
+    const lines = fs.readFileSync(path.join(dir, name), 'utf-8').split('\n')
+    lines.forEach((line, index) => {
+      if (!line.trim()) return
+      try {
+        entries.push(JSON.parse(line))
+      } catch (e) {
+        console.warn(`⚠️  ${name}:${index + 1} is not JSON, so it is left out`)
+      }
+    })
+  }
+  return entries
+}
+
+// A day of commits, as opposed to a line of GitHub activity
+const isCommitDay = (entry) => entry && entry.type === undefined && typeof entry.date === 'string' && Array.isArray(entry.commits)
 
 /**
  * Parse a conventional commit message
@@ -61,156 +115,131 @@ function parseCommit(message) {
   }
 }
 
+// git's output; a git that fails stops the run, so nothing is recorded from a history it could not read
+const git = (...argv) => execFileSync('git', argv, { encoding: 'utf-8', maxBuffer: 256 * 1024 * 1024 })
+
 /**
- * Get git log for a date range
- * @param {string|null} since - ISO date string or null for all
- * @returns {Array} Array of commit objects
+ * Fields of git log -z output: each field ends with a NUL, which no commit message, name or date holds, so a message of
+ * several lines stays whole
+ * @param {string} output - The output
+ * @param {number} width - Fields for each commit
+ * @returns {Array<Array<string>>} One array of fields for each commit
  */
-function getGitLog(since) {
-  const sinceArg = since ? `--since="${since}"` : '--all'
-  const format = '%H%x00%an%x00%ae%x00%aI%x00%s%x00%b%x00'
-  
-  try {
-    const output = execSync(
-      `git log ${sinceArg} --pretty=format:"${format}" --no-merges`,
-      { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024 }
-    )
-    
-    if (!output.trim()) return []
-    
-    const commits = output.trim().split('\n').map(line => {
-      const [sha, author, email, date, subject, body] = line.split('\x00')
-      const parsed = parseCommit(subject + (body ? '\n' + body : ''))
-      
-      return {
-        sha: sha.substring(0, 7),
-        fullSha: sha,
-        author,
-        email,
-        date,
-        url: `https://github.com/framerslab/codex/commit/${sha}`,
-        ...parsed
-      }
-    })
-    
-    return commits
-  } catch (error) {
-    console.error('Error fetching git log:', error.message)
-    return []
+function records(output, width) {
+  const fields = output.split('\0')
+  const rows = []
+  for (let at = 0; at + width <= fields.length - 1; at += width) {
+    rows.push(fields.slice(at, at + width))
   }
+  return rows
 }
 
 /**
- * Group commits by date and month
- * @param {Array} commits - Array of commit objects
- * @returns {Object} Commits grouped by month, then date
+ * The first-parent commits of the commit checked out, newest first
+ * @returns {Array<{sha: string, parents: Array<string>, landed: number}>} Each one's parents and committer date
  */
-function groupByMonth(commits) {
-  const grouped = {}
-  
-  for (const commit of commits) {
-    const date = commit.date.split('T')[0] // YYYY-MM-DD
-    const month = date.substring(0, 7) // YYYY-MM
-    
-    if (!grouped[month]) {
-      grouped[month] = {}
-    }
-    if (!grouped[month][date]) {
-      grouped[month][date] = []
-    }
-    grouped[month][date].push(commit)
-  }
-  
-  return grouped
+function mainline() {
+  return records(git('log', '--first-parent', '-z', '--format=%H%x00%P%x00%cI', 'HEAD'), 3).map(([sha, parents, date]) => ({
+    sha,
+    parents: parents.split(' ').filter(Boolean),
+    landed: Date.parse(date)
+  }))
+}
+
+/**
+ * The commits a first-parent commit brought to master, newest first: a merge commit's branch, without merge commits, or
+ * the commit itself
+ * @param {{sha: string, parents: Array<string>}} first - The first-parent commit
+ * @returns {Array} Commit objects
+ */
+function broughtBy(first) {
+  const range = first.parents.length > 1 ? [`${first.sha}^1..${first.sha}`] : ['-n', '1', first.sha]
+  const output = git('log', '--no-merges', '-z', '--format=%H%x00%an%x00%ae%x00%aI%x00%B', ...range)
+  return records(output, 5).map(([sha, author, email, date, message]) => ({
+    sha: sha.substring(0, 7),
+    fullSha: sha,
+    author,
+    email,
+    date,
+    url: `https://github.com/framerslab/codex/commit/${sha}`,
+    ...parseCommit(message.replace(/\n+$/, ''))
+  }))
 }
 
 /**
  * Append changelog entries to monthly JSONL file
- * @param {string} month - YYYY-MM
- * @param {Object} dateGroups - Commits grouped by date
+ * @param {string} date - YYYY-MM-DD
+ * @param {Array} commits - The commits that reached master that day
  * @param {string} outputDir - Output directory
  */
-function appendToMonthlyLog(month, dateGroups, outputDir) {
-  const filename = `${month}.jsonl`
-  const filepath = path.join(outputDir, filename)
-  
-  // Read existing entries to avoid duplicates
-  const existingDates = new Set()
-  if (fs.existsSync(filepath)) {
-    const lines = fs.readFileSync(filepath, 'utf-8').trim().split('\n').filter(Boolean)
-    for (const line of lines) {
-      try {
-        const entry = JSON.parse(line)
-        existingDates.add(entry.date)
-      } catch (e) {
-        // Skip malformed lines
-      }
+function appendDay(date, commits, outputDir) {
+  // Group by type. A type is any word, so the groups live on an object with no prototype: on a plain one, a type named
+  // constructor, toString or __proto__ would find a property every object has instead of its own group
+  const byType = Object.create(null)
+  for (const commit of commits) {
+    if (!byType[commit.type]) {
+      byType[commit.type] = []
     }
+    byType[commit.type].push(commit)
   }
-  
-  // Append new entries (skip if date already exists)
-  const dates = Object.keys(dateGroups).sort()
-  let newEntries = 0
-  
-  for (const date of dates) {
-    if (existingDates.has(date)) {
-      console.log(`⏭️  Skipping ${date} (already exists)`)
-      continue
-    }
-    
-    const commits = dateGroups[date]
-    
-    // Group by type
-    const byType = {}
-    for (const commit of commits) {
-      if (!byType[commit.type]) {
-        byType[commit.type] = []
-      }
-      byType[commit.type].push(commit)
-    }
-    
-    const entry = {
-      date,
-      totalCommits: commits.length,
-      byType,
-      commits
-    }
-    
-    // Append as single line
-    fs.appendFileSync(filepath, JSON.stringify(entry) + '\n')
-    console.log(`✅ Appended ${commits.length} commits for ${date}`)
-    newEntries++
+
+  const entry = {
+    date,
+    totalCommits: commits.length,
+    byType,
+    commits
   }
-  
-  return newEntries
+
+  // Append as single line
+  fs.appendFileSync(path.join(outputDir, `${date.substring(0, 7)}.jsonl`), JSON.stringify(entry) + '\n')
+  console.log(`✅ Appended ${commits.length} commits for ${date}`)
 }
 
 // Main execution
 console.log('📝 Generating changelog (JSONL format)...\n')
 
-const commits = getGitLog(sinceDate)
+const until = startOf('--until', option('--until') ?? dayOf(Date.now()))
+const history = readHistory(outputDir)
+const recorded = new Set(history.filter(isCommitDay).map((entry) => entry.date))
+const lastDay = [...recorded].sort().pop()
+const since = option('--since') !== undefined
+  ? startOf('--since', option('--since'))
+  : lastDay !== undefined
+    ? startOf('the last day recorded', lastDay) + DAY
+    : until - 7 * DAY
 
-if (commits.length === 0) {
-  console.log('No commits found for the specified period.')
+if (since >= until) {
+  console.log(`Nothing to record: every day before ${dayOf(until)} is recorded.`)
   process.exit(0)
 }
 
-console.log(`Found ${commits.length} commits`)
+console.log(`Recording the commits that reached master from ${dayOf(since)} to ${dayOf(until - DAY)}, in UTC\n`)
 
-const grouped = groupByMonth(commits)
-const months = Object.keys(grouped).sort()
+// The commits each day brought, by the day, in UTC
+const days = new Map()
+for (const first of mainline()) {
+  if (!(first.landed >= since && first.landed < until)) continue
+  const day = dayOf(first.landed)
+  if (!days.has(day)) days.set(day, [])
+  days.get(day).push(...broughtBy(first))
+}
 
-console.log(`Processing ${months.length} month(s)...\n`)
+fs.mkdirSync(outputDir, { recursive: true })
 
 let totalNew = 0
-for (const month of months) {
-  const newEntries = appendToMonthlyLog(month, grouped[month], outputDir)
-  totalNew += newEntries
+for (const day of [...days.keys()].sort()) {
+  if (recorded.has(day)) {
+    console.log(`⏭️  Skipping ${day} (already exists)`)
+    continue
+  }
+  const commits = days.get(day)
+  if (commits.length === 0) continue
+  appendDay(day, commits, outputDir)
+  totalNew++
 }
 
 if (totalNew === 0) {
-  console.log('\n✨ No new entries (all dates already recorded)')
+  console.log('\n✨ No new entries (no commits reached master on a day not yet recorded)')
 } else {
   console.log(`\n✨ Done! Added ${totalNew} new entries to ${outputDir}`)
 }
-

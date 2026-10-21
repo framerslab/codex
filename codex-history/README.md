@@ -6,13 +6,13 @@ Automated changelog and activity tracking for Frame Codex using **append-only JS
 
 ```mermaid
 graph LR
-    A[GitHub Actions<br/>Daily @ 00:00 UTC] --> B[Generate Git Log]
+    A[GitHub Actions<br/>Monday @ 00:00 UTC] --> B[Generate Git Log]
     A --> C[Fetch GitHub Activity]
     B --> D{New Entries?}
     C --> D
     D -->|Yes| E[Append to YYYY-MM.jsonl]
-    D -->|No| F[Skip Commit]
-    E --> G[Commit & Push]
+    D -->|No| F[No Pull Request]
+    E --> G[Pull Request from ci/changelog]
     
     style A fill:#4CAF50,color:#fff
     style E fill:#2196F3,color:#fff
@@ -34,7 +34,7 @@ codex-history/
 
 **Benefits:**
 - ✅ **Append-only**: No overwrites, safe for concurrent writes
-- ✅ **Deduplication**: Automatically skips existing dates
+- ✅ **Each day once**: A run records complete days, in UTC, from the day after the last one recorded; a day already recorded is skipped, and an activity item an earlier line holds is left out
 - ✅ **Compact**: 12 files/year instead of 365
 - ✅ **Streamable**: Parse line-by-line without loading entire file
 - ✅ **Empty days skipped**: Only records days with activity
@@ -48,14 +48,14 @@ sequenceDiagram
     participant API as GitHub GraphQL
     participant File as YYYY-MM.jsonl
     
-    GHA->>Git: Parse last 7 days
+    GHA->>Git: Read the commits that reached master on the days not yet recorded
     Git-->>GHA: Commits with metadata
-    GHA->>API: Query issues/PRs (yesterday)
+    GHA->>API: Query issues/PRs over the days not yet recorded
     API-->>GHA: Activity data
     GHA->>File: Check existing dates
     File-->>GHA: Existing entries
     GHA->>File: Append new entries only
-    GHA->>Git: Commit if changes
+    GHA->>Git: Pull request from ci/changelog if changes
 ```
 
 ## Entry Types
@@ -63,6 +63,8 @@ sequenceDiagram
 Each line in a `.jsonl` file is one of two types:
 
 ### 1. Git Commits
+
+One line for each day, in UTC, on which commits reached `master`. A commit reaches `master` with the first-parent commit that brings it, a pull request's merge commit or a commit made on `master`, so a pull request's commits are recorded on the day it merged; each commit's own `date` is the day it was written.
 
 ```json
 {
@@ -92,10 +94,13 @@ Each line in a `.jsonl` file is one of two types:
 
 ### 2. GitHub Activity
 
+One line for each run, over the days from `date` up to `until`, which is the first day it does not cover:
+
 ```json
 {
   "type": "github_activity",
   "date": "2025-01-15",
+  "until": "2025-01-22",
   "repository": "framerslab/codex",
   "summary": {
     "issuesCreated": 2,
@@ -120,31 +125,31 @@ Each line in a `.jsonl` file is one of two types:
 
 ## Automation
 
-### Daily Generation
+### Weekly Generation
 
-A GitHub Actions workflow runs daily at 00:00 UTC:
+`.github/workflows/changelog.yml` runs every Monday at 00:00 UTC; a scheduled workflow here runs once a week at most. It records the complete days, in UTC, before the day it runs on that are not yet recorded, so a later run never finds a day half recorded. Each script starts after the last day it recorded, so the days a missed or failed run would have recorded are recorded by the next one; with nothing recorded, it starts seven days before the run.
 
-1. **Git Changelog**: Parses last 7 days of commits
-2. **Issue Activity**: Fetches yesterday's GitHub activity via GraphQL
-3. **Append**: Adds new entries to monthly `.jsonl` files (skips duplicates)
-4. **Commit**: Only if new entries were added
+1. **Open Pull Request**: Takes the monthly files of a changelog pull request that has not landed, so its lines are kept and count as recorded
+2. **Git Changelog**: Appends one line for each day on which commits reached `master`, from the day after the last day of commits recorded
+3. **Issue Activity**: Appends one line, dated its first day and naming the day it ends at, of the issues created and closed and the pull requests merged from where the last recorded span ended, read page by page through GitHub's GraphQL API with `GH_PAT`
+4. **Append**: Skips the days already recorded, and leaves out an activity item an earlier line holds
+5. **Pull Request**: Opens or updates one pull request into `master` from `ci/changelog` when a line was added. `master` is protected, so the history reaches it through that pull request, which the workflow opens with `FRAMERS_BUMP_TOKEN` so its Test Suite and rename-guard run; it lands once they pass and its review comments are answered
 
 ### Manual Trigger
 
 Generate history for a specific date range:
 
 ```bash
-# Via GitHub Actions
+# Via GitHub Actions: records the days from that day up to the day the run starts on, skipping the days already
+# recorded, and opens or updates the pull request from ci/changelog
 gh workflow run changelog.yml --repo framerslab/codex -f since=2025-01-01
 
-# Or locally
-cd apps/codex
-
+# Or locally, from the repository's root; --until is the first day not recorded (today, in UTC, when left out)
 # Git changelog
-node scripts/generate-changelog.js --since 2025-01-01
+node scripts/generate-changelog.js --since 2025-01-01 --until 2025-02-01
 
 # Issue activity (requires GH_PAT)
-GH_PAT=ghp_xxx node scripts/fetch-issue-activity.js --since 2025-01-01
+GH_PAT=ghp_xxx node scripts/fetch-issue-activity.js --since 2025-01-01 --until 2025-02-01
 ```
 
 ## Querying History
@@ -248,12 +253,12 @@ The AI can stream-read `2025-01.jsonl` line-by-line and generate a comprehensive
 Add to `framerslab/codex` repository settings:
 
 **Required:**
-- `GH_PAT`: GitHub Personal Access Token with `repo` scope
-  - Used for issue/PR activity tracking
-  - Generate at: https://github.com/settings/tokens/new?scopes=repo
+- `FRAMERS_BUMP_TOKEN`: a framerslab organization secret. The workflow pushes `ci/changelog` and opens its pull request with it, so the pull request's checks run; without it the run stops at its first step
 
-**Optional:**
-- None (git changelog works without any secrets)
+**For the issue and pull request activity:**
+- `GH_PAT`: GitHub Personal Access Token with `repo` scope
+  - Without it the run records the commits alone, with a warning
+  - Generate at: https://github.com/settings/tokens/new?scopes=repo
 
 ### Workflow Customization
 
@@ -262,8 +267,8 @@ Edit `.github/workflows/changelog.yml`:
 ```yaml
 on:
   schedule:
-    # Change frequency (default: daily at 00:00 UTC)
-    - cron: '0 0 * * *'
+    # Monday 00:00 UTC; a scheduled workflow here runs once a week at most
+    - cron: '0 0 * * 1'
 ```
 
 ## Storage & Performance
@@ -272,7 +277,7 @@ on:
 - **Retention**: Indefinite (files are small and valuable)
 - **Performance**: Stream-readable, no need to load entire file
 - **Cleanup**: Not needed; history is the point
-- **Deduplication**: Automatic (re-running for same date is a no-op)
+- **Deduplication**: Automatic: a day of commits is recorded once, and an activity item once, however runs overlap
 
 ## Migration from Old Format
 

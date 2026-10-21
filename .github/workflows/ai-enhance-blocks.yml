@@ -1,5 +1,24 @@
 name: AI Enhance Block Tags
 
+# Runs scripts/ai-enhance-blocks.js, which calls a paid model to refine the block tags and summaries in the threads under
+# weaves/, by hand on master or when a pull request from this repository's own branch is labelled ai-enhance.
+#
+# The enhance job installs and runs the repository's code with the model keys and a read-only GITHUB_TOKEN, keeps no token
+# in its checkout, and archives the threads it changed as a patch. It pushes nothing:
+# - On a manual run, the open-pull-request job opens or updates one pull request into master from ci/ai-enhance-blocks
+#   carrying the patch. master is protected, and a commit reaches it only once its required checks have passed, which a
+#   commit made in a job has not ("About protected branches", Require status checks before merging:
+#   https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging).
+# - On a labelled pull request, the push-to-the-pull-request job commits the patch onto the pull request's own branch.
+# Both push with FRAMERS_BUMP_TOKEN, a personal token held as a framerslab organization secret, as bump-framers-deps.yml
+# and auto-index.yml do, and no commit message carries a skip marker: GitHub starts no workflow for a push made with
+# GITHUB_TOKEN, and none of the pull_request workflows of a head commit whose message says [skip ci], so with either the
+# new head's required checks would never report and the pull request could not merge. FRAMERS_BUMP_TOKEN reaches past this
+# repository, and a step can change what a later step of its job runs, so the two jobs that hold it install and run none of
+# the repository's code. The search index is not committed here: auto-index.yml builds it from master once the threads land
+# and brings it through its own pull request. landing-follows-the-bump-checks.yml labels the manual run's pull request
+# landing once its Test Suite and rename-guard pass on its head. tests/ai-enhance-blocks.test.js reads this file.
+
 on:
   # Manual trigger with options
   workflow_dispatch:
@@ -25,30 +44,45 @@ on:
         required: false
         default: false
         type: boolean
-  
+
   # Trigger on PR with enhancement label
   pull_request:
     types: [labeled]
 
+# Every push and pull request goes through FRAMERS_BUMP_TOKEN, so each job's own GITHUB_TOKEN only reads.
+permissions:
+  contents: read
+
 jobs:
-  ai-enhance:
+  enhance:
     runs-on: ubuntu-latest
-    # Only run on manual trigger or when 'ai-enhance' label is added
+    # A manual run, or the ai-enhance label on a pull request from this repository's own branch: a fork's pull request
+    # gets no secrets, and its branch is not this repository's to push to.
     if: |
-      github.event_name == 'workflow_dispatch' || 
-      (github.event_name == 'pull_request' && github.event.label.name == 'ai-enhance')
-    
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.label.name == 'ai-enhance' &&
+        github.event.pull_request.head.repo.full_name == github.repository)
+    outputs:
+      commit: ${{ steps.commit.outputs.sha }}
+      changed: ${{ steps.changes.outputs.changed }}
+
     steps:
       - uses: actions/checkout@v5
         with:
-          fetch-depth: 0
-          # For PRs, checkout the PR branch
-          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          # On a label, the pull request's head commit; on a manual run, master, whichever branch the run names, since its
+          # changes go into master.
+          ref: ${{ github.event.pull_request.head.sha || 'master' }}
+          # This job runs the repository's code, so its checkout keeps no token.
+          persist-credentials: false
+
+      - name: The commit the enhancement runs on
+        id: commit
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - uses: pnpm/action-setup@v6
         with:
           version: 9
-      
+
       - uses: actions/setup-node@v5
         with:
           node-version: 20
@@ -62,58 +96,165 @@ jobs:
           node scripts/block-processor.js --all
           node lib/block-tagging.js --all
 
+      # The run's inputs reach the script as arguments, never as shell text.
       - name: Run AI Enhancement
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PROVIDER: ${{ github.event.inputs.provider || 'openai' }}
+          MAX_COST: ${{ github.event.inputs.max_cost || '5.00' }}
+          MODEL: ${{ github.event.inputs.model }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
         run: |
-          PROVIDER="${{ github.event.inputs.provider || 'openai' }}"
-          MAX_COST="${{ github.event.inputs.max_cost || '5.00' }}"
-          MODEL="${{ github.event.inputs.model || '' }}"
-          DRY_RUN="${{ github.event.inputs.dry_run || 'false' }}"
-          
-          CMD="node scripts/ai-enhance-blocks.js --all --provider $PROVIDER --max-cost $MAX_COST"
-          
+          set -- --all --provider "$PROVIDER" --max-cost "$MAX_COST"
           if [ -n "$MODEL" ]; then
-            CMD="$CMD --model $MODEL"
+            set -- "$@" --model "$MODEL"
           fi
-          
           if [ "$DRY_RUN" = "true" ]; then
-            CMD="$CMD --dry-run"
+            set -- "$@" --dry-run
           fi
-          
-          echo "Running: $CMD"
-          $CMD
+          echo "Running: node scripts/ai-enhance-blocks.js $*"
+          node scripts/ai-enhance-blocks.js "$@"
 
-      - name: Rebuild indexes
-        run: pnpm run index
-
-      - name: Commit AI enhancements
-        if: ${{ github.event.inputs.dry_run != 'true' }}
+      # The threads the processing and the enhancement changed, as one patch for the job that commits them.
+      - name: Archive the enhanced threads
+        id: changes
+        if: github.event.inputs.dry_run != 'true'
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Add modified strand files and indexes
-          git add weaves/ codex-*.json
-          
-          if ! git diff --cached --quiet; then
-            git commit -m "feat(blocks): AI-enhanced block tags [skip ci]
-            
-            Provider: ${{ github.event.inputs.provider || 'openai' }}
-            Max Cost: \$${{ github.event.inputs.max_cost || '5.00' }}"
-            git push
+          git add --all -- weaves
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No thread changed."
           else
-            echo "No changes to commit."
+            mkdir -p "$RUNNER_TEMP/ai-enhance"
+            git diff --cached --binary > "$RUNNER_TEMP/ai-enhance/blocks.patch"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      # Kept 30 days: when the push to a pull request is refused, the patch is still here.
+      - uses: actions/upload-artifact@v7
+        if: steps.changes.outputs.changed == 'true'
+        with:
+          name: ai-enhanced-blocks
+          path: ${{ runner.temp }}/ai-enhance/blocks.patch
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Create summary
+        env:
+          PROVIDER: ${{ github.event.inputs.provider || 'openai' }}
+          MAX_COST: ${{ github.event.inputs.max_cost || '5.00' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
         run: |
-          echo "## AI Block Enhancement Results" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- Provider: ${{ github.event.inputs.provider || 'openai' }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Max Cost: \$${{ github.event.inputs.max_cost || '5.00' }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Dry Run: ${{ github.event.inputs.dry_run || 'false' }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Check the logs for detailed processing results." >> $GITHUB_STEP_SUMMARY
+          {
+            echo "## AI Block Enhancement Results"
+            echo ""
+            echo "- Provider: $PROVIDER"
+            echo "- Max Cost: \$$MAX_COST"
+            echo "- Dry Run: $DRY_RUN"
+            echo ""
+            echo "Check the logs for detailed processing results."
+          } >> "$GITHUB_STEP_SUMMARY"
 
+  # A manual run: one pull request into master from ci/ai-enhance-blocks.
+  open-pull-request:
+    needs: enhance
+    if: github.event_name == 'workflow_dispatch' && needs.enhance.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    # One run at a time, so two runs never push the branch at once. Every waiting run is kept (queue: max), each publishes
+    # its own enhancement in turn, and the last replaces the branch.
+    concurrency:
+      group: ai-enhance-blocks-pull-request
+      cancel-in-progress: false
+      queue: max
+    # Holds FRAMERS_BUMP_TOKEN, so it installs and runs none of the repository's code, and its third-party action is pinned
+    # to a commit, with the release that commit carries named beside it.
+    steps:
+      # First: without the secret, create-pull-request stops with "Input 'token' not supplied" only at its own step.
+      - name: FRAMERS_BUMP_TOKEN is available
+        env:
+          FRAMERS_BUMP_TOKEN: ${{ secrets.FRAMERS_BUMP_TOKEN }}
+        run: |
+          if [ -z "$FRAMERS_BUMP_TOKEN" ]; then
+            echo "::error::FRAMERS_BUMP_TOKEN is not available here; a pull request opened with GITHUB_TOKEN gets no CI job."
+            exit 1
+          fi
+
+      # The commit the enhancement ran on, so the patch applies; create-pull-request then moves its commit onto master's
+      # head, wherever master is by now.
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ needs.enhance.outputs.commit }}
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: ai-enhanced-blocks
+          path: ${{ runner.temp }}/ai-enhance
+
+      - name: Apply the enhanced threads
+        run: git apply "$RUNNER_TEMP/ai-enhance/blocks.patch"
+
+      - name: Open or update the pull request
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.11
+        with:
+          # the personal token, so the pull request's own events start Test Suite and rename-guard (see the file's top);
+          # branch-token defaults to it, so the branch is pushed with it too
+          token: ${{ secrets.FRAMERS_BUMP_TOKEN }}
+          commit-message: 'feat(blocks): AI-enhanced block tags'
+          title: 'feat(blocks): AI-enhanced block tags'
+          body: |
+            Block tags and summaries refined by `scripts/ai-enhance-blocks.js` on master at ${{ needs.enhance.outputs.commit }}, by run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}: provider ${{ github.event.inputs.provider || 'openai' }}, at most $${{ github.event.inputs.max_cost || '5.00' }}.
+
+            master is protected, so the threads reach it through this pull request. The AI Enhance Block Tags workflow opens and updates it with `FRAMERS_BUMP_TOKEN`, so its Test Suite and rename-guard run; `landing-follows-the-bump-checks.yml` labels it `landing` once both pass on its head, and it lands after its review comments are read, answered and resolved. Read the tags and summaries a model wrote before it lands. The search index follows through the index pull request once the threads are on master. A later manual run replaces this branch with its own enhancement.
+          branch: ci/ai-enhance-blocks
+          base: master
+          delete-branch: true
+          # The threads alone; the action stages them with one git add, and weaves/ is always there.
+          add-paths: |
+            weaves
+
+  # A labelled pull request: one commit onto its own branch.
+  push-to-the-pull-request:
+    needs: enhance
+    if: github.event_name == 'pull_request' && needs.enhance.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    # Holds FRAMERS_BUMP_TOKEN, so it installs and runs none of the repository's code.
+    steps:
+      - name: FRAMERS_BUMP_TOKEN is available
+        env:
+          FRAMERS_BUMP_TOKEN: ${{ secrets.FRAMERS_BUMP_TOKEN }}
+        run: |
+          if [ -z "$FRAMERS_BUMP_TOKEN" ]; then
+            echo "::error::FRAMERS_BUMP_TOKEN is not available here; a push made with GITHUB_TOKEN starts no CI job."
+            exit 1
+          fi
+
+      # The pull request's head commit the enhancement ran on, with the personal token, which the push below uses: a push
+      # made with it starts the pull request's Test Suite and rename-guard on the new head.
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ needs.enhance.outputs.commit }}
+          token: ${{ secrets.FRAMERS_BUMP_TOKEN }}
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: ai-enhanced-blocks
+          path: ${{ runner.temp }}/ai-enhance
+
+      # A fast-forward of the pull request's branch from the commit the enhancement ran on. When the branch moved
+      # meanwhile, git refuses the push and the step fails; the patch stays in the run's artifact.
+      - name: Commit the enhanced threads onto the pull request
+        id: push
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          PROVIDER: ${{ github.event.inputs.provider || 'openai' }}
+          MAX_COST: ${{ github.event.inputs.max_cost || '5.00' }}
+          GIT_AUTHOR_NAME: 'github-actions[bot]'
+          GIT_AUTHOR_EMAIL: 'github-actions[bot]@users.noreply.github.com'
+          GIT_COMMITTER_NAME: 'github-actions[bot]'
+          GIT_COMMITTER_EMAIL: 'github-actions[bot]@users.noreply.github.com'
+        run: |
+          git apply "$RUNNER_TEMP/ai-enhance/blocks.patch"
+          git add --all -- weaves
+          git commit --quiet -m 'feat(blocks): AI-enhanced block tags' -m "Provider: $PROVIDER" -m "Max cost: \$$MAX_COST"
+          git push origin "HEAD:refs/heads/$HEAD_REF"
