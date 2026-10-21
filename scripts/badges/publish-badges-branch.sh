@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Replaces the badges branch with the files of <dir>: one commit with no parent that holds those files alone, pushed
 # with a lease on the head this run read. A writer that moved the branch after that read keeps its head, and this run
-# fails. Only the badges ref is pushed; master is never written. Files equal to the branch's push nothing, and so does
-# a run whose commit is older than the one the branch's files were counted from.
+# fails. Only the badges ref is pushed; master is never written. A run whose commit is older than the one the branch's
+# files were counted from pushes nothing, and so does a run of that same commit with the same files; the same files
+# from a later commit are pushed again, so that the head names that commit.
 #
 #   bash scripts/badges/publish-badges-branch.sh <dir> [<remote>] [<branch>]
 #
@@ -42,14 +43,17 @@ case "$status" in
   0)
     git fetch --quiet --no-tags --depth=1 "$REMOTE" "$REF"
     expected=$(git rev-parse FETCH_HEAD)
-    if [ "$(git rev-parse 'FETCH_HEAD^{tree}')" = "$tree" ]; then
-      echo "$REF at $expected already holds these files; nothing to push."
+    # The head's message names the commit its files were counted from.
+    published=$(git log -1 --format=%s "$expected" | sed -n 's/^badges for \([0-9a-f]\{40\}\)$/\1/p')
+    if [ "$published" = "$SOURCE" ] && [ "$(git rev-parse "$expected^{tree}")" = "$tree" ]; then
+      echo "$REF at $expected already holds these files for $SOURCE; nothing to push."
       exit 0
     fi
     # Update Badges runs one job at a time but in no set order, so a run of an earlier master commit can reach the
-    # branch after a later commit's run has published, and its lease on that head holds. The head's message names the
-    # commit its files were counted from; when that commit descends from this run's, the branch keeps the later badges.
-    published=$(git log -1 --format=%s "$expected" | sed -n 's/^badges for \([0-9a-f]\{40\}\)$/\1/p')
+    # branch after a later commit's run has published, and its lease on that head holds. When the commit the head
+    # names descends from this run's, the branch keeps the later badges. Otherwise this run's files replace them, even
+    # files equal to the branch's, so that the head names the latest commit counted and a delayed run of a commit
+    # between the two finds it.
     if [ -n "$published" ] && [ "$published" != "$SOURCE" ]; then
       git cat-file -e "$published^{commit}" 2> /dev/null \
         || git fetch --quiet --no-tags "$REMOTE" "$published" 2> /dev/null \
