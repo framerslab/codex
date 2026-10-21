@@ -421,13 +421,19 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
       moveMaster(commit);
       return commit;
     };
+    // A merge commit of the two given commits, pushed as master's new head; returns its sha.
+    const merge = (ours, theirs) => {
+      const commit = git(clone, 'commit-tree', git(clone, 'write-tree'), '-p', ours, '-p', theirs, '-m', 'merge');
+      moveMaster(commit);
+      return commit;
+    };
     // A depth-1 clone of master as it stands now, the checkout actions/checkout makes by default.
     const shallowClone = () => {
       const into = path.join(dir, 'shallow');
       git(dir, 'clone', '-q', '--depth', '1', '--branch', 'master', `file://${remote}`, into);
       return into;
     };
-    const helpers = { writeDir, publish, branch, refs, masterHead, advance, moveMaster, rewrite, shallowClone };
+    const helpers = { writeDir, publish, branch, refs, masterHead, advance, moveMaster, rewrite, merge, shallowClone };
     return { dir, remote, master, ...helpers };
   };
 
@@ -619,6 +625,31 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
     expect(repo.masterHead()).toBe(first);
   });
 
+  it('orders runs of two commits neither descends from by run number, after master merged both histories', () => {
+    // A force-push replaces master's history (first) with an unrelated commit, whose run (11) publishes, and master
+    // then moves to a merge of both histories. Both commits are on master and neither descends from the other, so the
+    // run that started later is the later one: run 10 of first pushes nothing, and run 12 of it replaces the badges.
+    const repo = setup();
+    const first = repo.master;
+    const replacement = repo.rewrite('master replaced by a force-push');
+    repo.writeDir({ 'tests.json': '{"message":"5 passed"}\n' });
+    expect(repo.publish({ BADGES_SOURCE_SHA: replacement, BADGES_SOURCE_RUN: '11' }).status).toBe(0);
+    const head = repo.branch().head;
+    repo.merge(replacement, first);
+
+    repo.writeDir({ 'tests.json': '{"message":"4 passed"}\n' });
+    const earlier = repo.publish({ BADGES_SOURCE_SHA: first, BADGES_SOURCE_RUN: '10' });
+    expect(earlier.status, earlier.stderr).toBe(0);
+    expect(earlier.stdout).toContain('nothing to push');
+    expect(repo.branch().head).toBe(head);
+    expect(repo.branch().message).toBe(`badges for ${replacement} from run 11`);
+
+    const later = repo.publish({ BADGES_SOURCE_SHA: first, BADGES_SOURCE_RUN: '12' });
+    expect(later.status, later.stderr).toBe(0);
+    expect(repo.branch().message).toBe(`badges for ${first} from run 12`);
+    expect(repo.branch().read('tests.json')).toBe('{"message":"4 passed"}');
+  });
+
   it("replaces an earlier commit's badges with a later commit's", () => {
     const repo = setup();
     repo.writeDir({ 'tests.json': '{"message":"4 passed"}\n' });
@@ -714,7 +745,12 @@ describe('the Test Suite workflow publishes the badges from master, and never to
     );
     expect(upload, 'the Unit Tests job uploads the badge files').toBeTruthy();
     expect(stepUsing(job.steps, 'actions/download-artifact').with.name).toBe('badges');
-    expect(stepRunning(job.steps, 'scripts/badges/publish-badges-branch.sh')).toBeTruthy();
+    const publish = stepRunning(job.steps, 'scripts/badges/publish-badges-branch.sh');
+    expect(publish).toBeTruthy();
+    expect(publish.env).toMatchObject({
+      BADGES_SOURCE_SHA: '${{ github.sha }}',
+      BADGES_SOURCE_RUN: '${{ github.run_number }}',
+    });
 
     const pushes = Object.values(workflow.jobs)
       .flatMap((each) => each.steps)
