@@ -96,13 +96,21 @@ Approval and the `landing` label for trusted contributors:
 
 **Triggers:**
 - Every pull request into `main` or `master`
-- Push to `main` or `master` that changes `scripts/`, `schema/`, `tests/`, `lib/`, `vocab/`, `package.json` or `vitest.config.js`
+- Push to `main` or `master` that changes `scripts/`, `schema/`, `tests/`, `lib/`, `vocab/`, `package.json`, `vitest.config.js`, `LICENSE` or this workflow
 - Manual dispatch
 
 **Purpose:**
 - Unit tests with coverage
+- Vocabulary and NLP tests
 - SQL cache functionality tests
 - Integration tests (full workflow)
+- The README's tests, coverage, version and licence badges
+
+**Badges:**
+- The Unit Tests job writes one [shields.io endpoint](https://shields.io/badges/endpoint-badge) file per badge from its own run with `scripts/badges/write-badge-json.js`: the tests the coverage run passed, failed and skipped, counted from Vitest's JSON report; line coverage, rounded down, from `coverage/coverage-summary.json`; the version in `package.json`; the licence the `LICENSE` file names. It writes them on every run and archives them as the `badges` artifact
+- On a push to `master`, or a manual dispatch there, after the four test jobs passed, the Update Badges job replaces the `badges` branch with those files: one commit with no parent, pushed with `--force-with-lease` on the head it read (`scripts/badges/publish-badges-branch.sh`). It is the only job with `contents: write`, it runs one at a time, and it never pushes to `master`. One at a time is in no set order, so a run of an earlier commit can come after a later commit's run; the job checks out `master`'s whole history, and the publisher leaves the branch alone when the commit its files were counted from descends from the run's own and `master` still holds it. Two commits on `master` neither of which descends from the other (a force-push, then a merge of both histories) are ordered by their runs' numbers, `github.run_number`, when both are known: the run's own, which the job passes to the publisher, and the one the head's message names; when either is missing, the run's files replace the branch's. Whenever the publisher does not leave the branch alone, it pushes the run's files, even files equal to the branch's, so that the head names the latest commit counted. A run whose commit `master` no longer holds, after a force-push replaced its history, pushes nothing
+- The README reads each file through jsDelivr, `https://cdn.jsdelivr.net/gh/framerslab/codex@badges/<name>.json`, because shields.io refuses any address whose host ends in `github.com`. jsDelivr keeps a branch's files for up to 12 hours ([jsDelivr's caching notes](https://github.com/jsdelivr/jsdelivr#caching)), so the job purges each file after it writes; a purge that fails or is throttled leaves a warning, and the badge catches up when jsDelivr's copy expires
+- Limit: the badges describe the last `master` commit whose Test Suite run published them. A force-push to `master` that changes nothing under the Test Suite's path filter starts no run, so after it the badges can describe a commit `master` no longer holds, until a manual dispatch of the Test Suite on `master` publishes the new head's figures. The publisher reads `master` once, before it pushes; a force-push between that read and the push is the same case
 
 ### 6. `build-index.yml`
 

@@ -10,16 +10,21 @@
 *The OS for humans, the codex of humanity.*
 
 [![GitHub](https://img.shields.io/badge/GitHub-framerslab%2Fcodex-black?logo=github)](https://github.com/framerslab/codex)
-[![License](https://img.shields.io/badge/License-CC--BY--4.0-green.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](docs/contributing/how-to-submit.md)
 [![OpenQuarry](https://img.shields.io/badge/Format-OpenQuarry-purple)](https://quarry.space)
 [![Build](https://img.shields.io/github/actions/workflow/status/framerslab/codex/auto-index.yml?label=Index)](https://github.com/framerslab/codex/actions)
-[![Tests](https://img.shields.io/github/actions/workflow/status/framerslab/codex/test.yml?label=Tests)](https://github.com/framerslab/codex/actions/workflows/test.yml)
+[![Test Suite](https://img.shields.io/github/actions/workflow/status/framerslab/codex/test.yml?label=Tests)](https://github.com/framerslab/codex/actions/workflows/test.yml)
 
-![Coverage](https://raw.githubusercontent.com/framerslab/codex/master/docs/badges/coverage.svg)
-![Lines](https://raw.githubusercontent.com/framerslab/codex/master/docs/badges/coverage-lines.svg)
-![Tests](https://raw.githubusercontent.com/framerslab/codex/master/docs/badges/tests.svg)
-![LOC](https://raw.githubusercontent.com/framerslab/codex/master/docs/badges/loc.svg)
+<!-- CI keeps these four current. On each push to master that runs the Test Suite workflow, its Unit Tests job writes
+one shields.io endpoint file per badge from that run (scripts/badges/write-badge-json.js), and its Update Badges job
+puts the files on the badges branch, never in a commit to master. The images read them through jsDelivr, because
+shields.io refuses github.com addresses. jsDelivr keeps a branch's files for up to 12 hours, so the job purges each
+file after it writes. Coverage is line coverage, rounded down. Nothing here is a typed number. -->
+
+[![Tests](https://img.shields.io/endpoint?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fframerslab%2Fcodex%40badges%2Ftests.json)](https://github.com/framerslab/codex/actions/workflows/test.yml?query=branch%3Amaster)
+[![Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fframerslab%2Fcodex%40badges%2Fcoverage.json)](https://github.com/framerslab/codex/actions/workflows/test.yml?query=branch%3Amaster)
+[![Version](https://img.shields.io/endpoint?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fframerslab%2Fcodex%40badges%2Fversion.json)](package.json)
+[![Licence](https://img.shields.io/endpoint?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fframerslab%2Fcodex%40badges%2Flicence.json)](LICENSE)
 
 [Browse](https://frame.dev/codex) • [Documentation](docs/DEVELOPMENT.md) • [Contributing](docs/contributing/how-to-submit.md) • [Changelog](docs/CHANGELOG_SYSTEM.md) • [Security](SECURITY.md) • [Discord](https://wilds.ai/discord)
 
@@ -468,6 +473,8 @@ Frame Codex content is licensed under [CC-BY-4.0](LICENSE), making it free for:
 - Private use
 
 With attribution requirement.
+
+[LICENSE](LICENSE) holds the CC BY 4.0 legal code as Creative Commons publishes it. It covers the content the [Overview](#overview) lists: weaves, looms, threads, tags and schemas. It does not cover the code, such as `scripts/`, `lib/`, `tests/` and the workflows in `.github/`.
 
 ---
 
