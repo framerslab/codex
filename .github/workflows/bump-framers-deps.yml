@@ -86,8 +86,8 @@ jobs:
             pnpm install --no-frozen-lockfile --ignore-scripts
           fi
 
-      # This repository tracks package-lock.json beside pnpm-lock.yaml, and npm ci (changelog.yml, async-processing.yml)
-      # stops when package-lock.json disagrees with package.json: pull request 9 (20 October 2026) carried
+      # This repository tracks package-lock.json beside pnpm-lock.yaml, and npm ci (async-processing.yml) stops when
+      # package-lock.json disagrees with package.json: pull request 9 (20 October 2026) carried
       # @framers/sql-storage-adapter at ^0.8.1 in package.json and at ^0.6.8 in package-lock.json. --package-lock-only
       # writes the lockfile from package.json and the registry and ignores node_modules, so the tree the pnpm refresh
       # installed plays no part, and it installs nothing.

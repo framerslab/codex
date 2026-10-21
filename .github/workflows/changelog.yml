@@ -1,90 +1,161 @@
-name: Generate Daily Changelog
+name: Generate Weekly Changelog
+
+# Once a week, and by hand, this workflow records in codex-history/YYYY-MM.jsonl the complete days, in UTC, before the day
+# it runs on that are not yet recorded: one line for each day of the commits that reached master that day
+# (scripts/generate-changelog.js) and one line of the GitHub activity over those days, the issues created and closed and
+# the pull requests merged (scripts/fetch-issue-activity.js). Each script starts after the last day it recorded, so a
+# missed or failed run leaves no gap, and a manual run leaves no day half recorded. It then opens or updates one pull
+# request into master from ci/changelog carrying them. It never pushes to master: master is protected, and a commit
+# reaches it only once its required checks have passed, which a commit made in a job has not ("About protected branches",
+# Require status checks before merging:
+# https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging).
+#
+# The branch is pushed and the pull request opened with FRAMERS_BUMP_TOKEN, a personal token held as a framerslab
+# organization secret, as bump-framers-deps.yml and auto-index.yml do: a pull request a workflow opens with GITHUB_TOKEN
+# gets its pull_request runs in an approval-required state, with no job, so its required checks would never report. The
+# commit message carries no skip marker, since GitHub starts none of the pull_request workflows of a head commit whose
+# message says [skip ci]. Nothing here labels or merges the pull request: landing-follows-the-bump-checks.yml adds the
+# landing label once its Test Suite and rename-guard pass on its head, and it lands after its review comments are read,
+# answered and resolved. tests/changelog-pull-request.test.js reads this file.
 
 on:
   schedule:
-    # Run daily at 00:00 UTC
-    - cron: '0 0 * * *'
+    # Monday 00:00 UTC. A scheduled workflow here runs once a week at most.
+    - cron: '0 0 * * 1'
   workflow_dispatch:
     inputs:
       since:
-        description: 'Start date (YYYY-MM-DD, optional)'
+        description: 'First day to record (YYYY-MM-DD; when empty, the day after the last day recorded)'
         required: false
         type: string
 
+# The pull request goes through FRAMERS_BUMP_TOKEN, so the job's own GITHUB_TOKEN only reads.
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   generate-changelog:
     runs-on: ubuntu-latest
-    
+    # One run at a time, so two runs never push ci/changelog at once.
+    concurrency:
+      group: changelog-pull-request
+      cancel-in-progress: false
+    # FRAMERS_BUMP_TOKEN is a personal token that reaches past this repository, and a step can change what a later step of
+    # its job runs, so this job installs nothing and runs only master's two history scripts, which import Node's own
+    # modules alone, and its third-party action is pinned to a commit, with the release that commit carries named beside it.
     steps:
-      - name: Checkout repository
+      # First: without the secret, create-pull-request stops with "Input 'token' not supplied" only at its own step.
+      - name: FRAMERS_BUMP_TOKEN is available
+        env:
+          FRAMERS_BUMP_TOKEN: ${{ secrets.FRAMERS_BUMP_TOKEN }}
+        run: |
+          if [ -z "$FRAMERS_BUMP_TOKEN" ]; then
+            echo "::error::FRAMERS_BUMP_TOKEN is not available here; a pull request opened with GITHUB_TOKEN gets no CI job."
+            exit 1
+          fi
+
+      # master with its whole history, whichever branch a manual run names: git log reads it, and the pull request goes
+      # into master.
+      - name: Checkout master
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0  # Full history for git log
-          token: ${{ secrets.GH_PAT || github.token }}
-      
+          ref: master
+          fetch-depth: 0
+
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: '20'
-      
-      - name: Install dependencies
-        run: npm ci --ignore-scripts
-      
-      - name: Generate git changelog
+          node-version: '22'
+
+      # Both scripts record the complete days before the day the run starts on, in UTC, so a later run never finds a day
+      # half recorded, and each starts after the last day it recorded unless a manual run names a first day. The input
+      # reaches the step as an environment variable and is used only once it reads as a date.
+      - name: The days to record
+        id: window
+        env:
+          SINCE_INPUT: ${{ inputs.since }}
         run: |
-          if [ -n "${{ inputs.since }}" ]; then
-            node scripts/generate-changelog.js --since "${{ inputs.since }}"
-          else
-            # Default: last 7 days
-            SINCE=$(date -d '7 days ago' +%Y-%m-%d)
-            node scripts/generate-changelog.js --since "$SINCE"
+          if [ -n "$SINCE_INPUT" ] && ! [[ "$SINCE_INPUT" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+            echo "::error::since takes a date written YYYY-MM-DD."
+            exit 1
           fi
-      
+          today=$(date -u +%Y-%m-%d)
+          echo "since=$SINCE_INPUT" >> "$GITHUB_OUTPUT"
+          echo "until=$today" >> "$GITHUB_OUTPUT"
+
+      # A run starts from master, and create-pull-request replaces ci/changelog with master and this run's files, so the
+      # entries of an open changelog pull request that has not landed would be dropped. This takes its monthly files first,
+      # and the scripts append to them, skipping the days already recorded. Only this workflow writes them. A look-up that
+      # fails fails the step, and nothing is published.
+      - name: Carry the entries of an open changelog pull request
+        id: carry
+        run: |
+          status=0
+          git ls-remote --exit-code --heads origin ci/changelog > /dev/null || status=$?
+          case "$status" in
+            0)
+              git fetch --quiet origin ci/changelog
+              git ls-tree -r --name-only FETCH_HEAD -- codex-history > "$RUNNER_TEMP/carried"
+              while IFS= read -r file; do
+                case "$file" in
+                  *.jsonl) git show "FETCH_HEAD:$file" > "$file" ;;
+                esac
+              done < "$RUNNER_TEMP/carried"
+              ;;
+            2)
+              echo "No open changelog pull request; the history starts from master's."
+              ;;
+            *)
+              echo "::error::git ls-remote could not read ci/changelog on origin (exit $status)."
+              exit "$status"
+              ;;
+          esac
+
+      - name: Generate git changelog
+        env:
+          SINCE: ${{ steps.window.outputs.since }}
+          UNTIL: ${{ steps.window.outputs.until }}
+        run: |
+          set -- --until "$UNTIL"
+          if [ -n "$SINCE" ]; then
+            set -- "$@" --since "$SINCE"
+          fi
+          node scripts/generate-changelog.js "$@"
+
       - name: Fetch GitHub issue activity
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
+          SINCE: ${{ steps.window.outputs.since }}
+          UNTIL: ${{ steps.window.outputs.until }}
         run: |
-          if [ -n "${{ secrets.GH_PAT }}" ]; then
-            if [ -n "${{ inputs.since }}" ]; then
-              node scripts/fetch-issue-activity.js --since "${{ inputs.since }}"
-            else
-              # Default: yesterday
-              node scripts/fetch-issue-activity.js
-            fi
-          else
-            echo "⚠️  GH_PAT not set, skipping issue activity fetch"
-            echo "   Add GH_PAT secret to enable issue/PR tracking"
+          if [ -z "$GH_PAT" ]; then
+            echo "::warning::GH_PAT is not set, so the issues and pull requests before $UNTIL are not recorded."
+            exit 0
           fi
-      
-      - name: Check for changes
-        id: check
-        run: |
-          # Only check for .jsonl files (new format)
-          if [ -n "$(git status --porcelain codex-history/*.jsonl 2>/dev/null)" ]; then
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_changes=false" >> $GITHUB_OUTPUT
+          set -- --until "$UNTIL"
+          if [ -n "$SINCE" ]; then
+            set -- "$@" --since "$SINCE"
           fi
-      
-      - name: Commit and push
-        if: steps.check.outputs.has_changes == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Only add .jsonl files (ignore old .json files if any)
-          git add codex-history/*.jsonl
-          
-          DATE=$(date +%Y-%m-%d)
-          MONTH=$(date +%Y-%m)
-          git commit -m "chore(changelog): append history for ${DATE} to ${MONTH}.jsonl"
-          
-          git push origin master
-      
-      - name: No changes
-        if: steps.check.outputs.has_changes == 'false'
-        run: echo "✅ No new activity to record (all dates already exist or no commits/activity)"
+          node scripts/fetch-issue-activity.js "$@"
 
+      # Opens the pull request, or replaces its branch with this run's files; with no line added since master's history,
+      # it leaves the branch alone.
+      - name: Open or update the changelog pull request
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.11
+        with:
+          # the personal token, so the pull request's own events start Test Suite and rename-guard (see the file's top);
+          # branch-token defaults to it, so the branch is pushed with it too
+          token: ${{ secrets.FRAMERS_BUMP_TOKEN }}
+          commit-message: 'chore(changelog): append the weekly history'
+          title: 'chore(changelog): append the weekly history'
+          body: |
+            The history before ${{ steps.window.outputs.until }}, in UTC, recorded by run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} in `codex-history/YYYY-MM.jsonl`: one line for each day of the commits that reached master that day, and one line of the issues created and closed and the pull requests merged over the days not yet recorded. Each script starts after the last day it recorded, so only complete days not recorded before are added.
+
+            master is protected, so the history reaches it through this pull request. The Generate Weekly Changelog workflow opens and updates it with `FRAMERS_BUMP_TOKEN`, so its Test Suite and rename-guard run; `landing-follows-the-bump-checks.yml` labels it `landing` once both pass on its head, and it lands after its review comments are read, answered and resolved. A later run keeps these lines and adds its own until this pull request lands.
+          branch: ci/changelog
+          base: master
+          delete-branch: true
+          # The folder the two scripts write their monthly files to, tracked here through its README, so the one git add
+          # the action runs always matches a path; tests/changelog-pull-request.test.js checks it.
+          add-paths: |
+            codex-history
