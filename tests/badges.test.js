@@ -3,9 +3,9 @@
  * (https://shields.io/badges/endpoint-badge), one JSON file per badge. The Test Suite workflow's Unit Tests job writes
  * the files from its own run with scripts/badges/write-badge-json.js. On a push to master, its Update Badges job
  * replaces the badges branch with them through scripts/badges/publish-badges-branch.sh: one commit with no parent,
- * pushed with a lease on the head it read. The README reads the files through jsDelivr, since shields.io refuses any
- * address whose host ends in github.com (blockedDomains in its services/endpoint/endpoint.service.js). No job commits
- * to master.
+ * pushed with a lease on the head it read, unless the branch already holds a later master commit's badges. The README
+ * reads the files through jsDelivr, since shields.io refuses any address whose host ends in github.com (blockedDomains
+ * in its services/endpoint/endpoint.service.js). No job commits to master.
  *
  * The Update Badges job used to run only when github.ref was refs/heads/main, a branch this repository does not have,
  * so it was skipped on every master run and the README kept SVG files committed to master in December 2025.
@@ -384,9 +384,11 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
       fs.mkdirSync(badges, { recursive: true });
       put(badges, files);
     };
-    const publish = (env = {}) =>
+    // Runs the publisher in the clone, or in another checkout (cwd), as the run of master's first commit unless env
+    // names another.
+    const publish = (env = {}, cwd = clone) =>
       spawnSync('bash', [PUBLISHER, badges], {
-        cwd: clone,
+        cwd,
         encoding: 'utf8',
         env: { ...process.env, BADGES_SOURCE_SHA: master, ...env },
       });
@@ -403,7 +405,21 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
     };
     const refs = () => remoteGit(remote, 'for-each-ref', '--format=%(refname)').split('\n').sort();
     const masterHead = () => remoteGit(remote, 'rev-parse', 'refs/heads/master');
-    return { dir, remote, master, writeDir, publish, branch, refs, masterHead };
+    // A later commit on master, pushed the way the next merge lands; returns its sha.
+    const advance = (message) => {
+      put(clone, { 'CHANGELOG.md': `${message}\n` });
+      git(clone, 'add', '-A');
+      git(clone, 'commit', '-q', '-m', message);
+      git(clone, 'push', '-q', 'origin', 'HEAD:refs/heads/master');
+      return git(clone, 'rev-parse', 'HEAD');
+    };
+    // A depth-1 clone of master as it stands now, the checkout actions/checkout makes by default.
+    const shallowClone = () => {
+      const into = path.join(dir, 'shallow');
+      git(dir, 'clone', '-q', '--depth', '1', '--branch', 'master', `file://${remote}`, into);
+      return into;
+    };
+    return { dir, remote, master, writeDir, publish, branch, refs, masterHead, advance, shallowClone };
   };
 
   it('starts the branch with one parentless commit that holds exactly the files', () => {
@@ -502,6 +518,72 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
     expect(repo.masterHead()).toBe(repo.master);
   });
 
+  // Update Badges runs one job at a time, in no set order. Pushes A then B land on master, B's job publishes first,
+  // and A's job reads B's head, so its lease on that head holds. Each head's message names the commit its files were
+  // counted from, which tells the publisher B's badges are the later ones.
+  it.each([
+    ["a clone that holds master's history", false],
+    ['a depth-1 clone made before the later commit landed', true],
+  ])("keeps a later commit's badges when an earlier commit's run comes after it, from %s", (_, shallow) => {
+    const repo = setup();
+    const earlier = repo.master;
+    const checkout = shallow ? repo.shallowClone() : undefined;
+    const later = repo.advance('a later merge');
+    repo.writeDir({ 'tests.json': '{"message":"5 passed"}\n' });
+    expect(repo.publish({ BADGES_SOURCE_SHA: later }).status).toBe(0);
+    const head = repo.branch().head;
+
+    repo.writeDir({ 'tests.json': '{"message":"4 passed"}\n' });
+    const res = repo.publish({ BADGES_SOURCE_SHA: earlier }, checkout);
+    expect(res.status, res.stderr).toBe(0);
+    expect(res.stdout).toContain('nothing to push');
+    const b = repo.branch();
+    expect(b.head).toBe(head);
+    expect(b.message).toBe(`badges for ${later}`);
+    expect(b.read('tests.json')).toBe('{"message":"5 passed"}');
+    expect(repo.masterHead()).toBe(later);
+  });
+
+  it("replaces an earlier commit's badges with a later commit's", () => {
+    const repo = setup();
+    repo.writeDir({ 'tests.json': '{"message":"4 passed"}\n' });
+    expect(repo.publish().status).toBe(0);
+
+    const later = repo.advance('a later merge');
+    repo.writeDir({ 'tests.json': '{"message":"5 passed"}\n' });
+    const res = repo.publish({ BADGES_SOURCE_SHA: later });
+    expect(res.status, res.stderr).toBe(0);
+    expect(res.stderr).not.toContain('::warning::');
+    const b = repo.branch();
+    expect(b.parents).toEqual([]);
+    expect(b.message).toBe(`badges for ${later}`);
+    expect(b.read('tests.json')).toBe('{"message":"5 passed"}');
+    expect(repo.masterHead()).toBe(later);
+  });
+
+  it('replaces badges counted from a commit it cannot find, with a warning that names it', () => {
+    // A head naming a commit this repository does not hold (master rewritten since, or a commit made by hand) gives no
+    // order to keep, so the run's files replace it.
+    const repo = setup();
+    const lost = 'd'.repeat(40);
+    const other = path.join(repo.dir, 'other');
+    fs.mkdirSync(other);
+    git(other, 'init', '-q');
+    put(other, { 'tests.json': '{"message":"from a lost commit"}\n' });
+    git(other, 'add', '-A');
+    git(other, 'commit', '-q', '-m', `badges for ${lost}`);
+    git(other, 'push', '-q', repo.remote, 'HEAD:refs/heads/badges');
+
+    repo.writeDir({ 'tests.json': '{"message":"4 passed"}\n' });
+    const res = repo.publish();
+    expect(res.status, res.stderr).toBe(0);
+    expect(res.stderr).toContain('::warning::');
+    expect(res.stderr).toContain(lost);
+    const b = repo.branch();
+    expect(b.message).toBe(`badges for ${repo.master}`);
+    expect(b.read('tests.json')).toBe('{"message":"4 passed"}');
+  });
+
   it('refuses an empty directory', () => {
     const repo = setup();
     repo.writeDir({});
@@ -531,6 +613,10 @@ describe('the Test Suite workflow publishes the badges from master, and never to
     expect([...job.needs].sort()).toEqual(['cache-tests', 'integration', 'unit-tests', 'vocab-tests']);
     expect(String(job.concurrency?.group)).toMatch(/badges/);
     expect(job.concurrency?.['cancel-in-progress']).toBe(false);
+    expect(
+      stepUsing(job.steps, 'actions/checkout').with?.['fetch-depth'],
+      "the publisher reads master's history to keep a later commit's badges"
+    ).toBe(0);
   });
 
   it('gives contents: write to that job alone', () => {
