@@ -26,13 +26,13 @@ Frame Codex automatically tracks and records all changes, issues, and pull reque
 
 ## Overview
 
-The changelog system runs daily via GitHub Actions and generates:
+The changelog system runs weekly via GitHub Actions and records:
 
-1. **Git Changelog**: Parsed conventional commits with metadata
-2. **Issue Activity**: Created, closed, and merged issues/PRs
-3. **JSON Snapshots**: One file per day for easy querying
+1. **Git Changelog**: Parsed conventional commits with metadata, one line for each day
+2. **Issue Activity**: Created and closed issues and merged PRs, one line for each run
+3. **Monthly JSONL Files**: `codex-history/YYYY-MM.jsonl`, one JSON object per line
 
-All history is stored in `codex-history/` and committed to the repository.
+All history is stored in `codex-history/` and reaches `master` through a pull request from `ci/changelog`. [codex-history/README.md](../codex-history/README.md) describes the files and how to query them.
 
 ## Why This Matters
 
@@ -50,32 +50,33 @@ All history is stored in `codex-history/` and committed to the repository.
 
 ## How It Works
 
-### Daily Automation
+### Weekly Automation
 
-Every day at 00:00 UTC, a GitHub Actions workflow:
+Every Monday at 00:00 UTC, `.github/workflows/changelog.yml` records the days since a first day: seven days ago, or the day a manual run names. A scheduled workflow here runs once a week at most.
 
-1. **Fetches Git History**
-   - Parses last 7 days of commits
+1. **Keeps an Open Pull Request's Lines**
+   - Takes the monthly files of a changelog pull request that has not landed
+
+2. **Fetches Git History**
+   - Parses the commits on `master` since the first day
    - Extracts conventional commit metadata
-   - Writes `codex-history/git/YYYY-MM-DD.json`
+   - Appends one line for each day to `codex-history/YYYY-MM.jsonl`, skipping the days already recorded
 
-2. **Fetches GitHub Activity** (if `GH_PAT` is set)
-   - Queries GraphQL API for yesterday's activity
-   - Collects created/closed issues and merged PRs
-   - Writes `codex-history/issues/YYYY-MM-DD.json`
+3. **Fetches GitHub Activity** (if `GH_PAT` is set)
+   - Queries GitHub's GraphQL API for the activity since the first day
+   - Collects the issues created and closed and the PRs merged since then
+   - Appends one line, dated the first day, to that month's file
 
-3. **Commits Changes**
-   - Adds new JSON files
-   - Pushes to `master` branch
+4. **Opens a Pull Request**
+   - Opens or updates one pull request into `master` from `ci/changelog` with `FRAMERS_BUMP_TOKEN`, so its Test Suite and rename-guard run
+   - `master` is protected, so a commit the workflow makes cannot be pushed to it; the pull request lands once its checks pass and its review comments are answered
 
 ### Manual Generation
 
 You can also generate history manually:
 
 ```bash
-cd apps/codex
-
-# Git changelog for a date range
+# From the repository's root: git changelog for a date range
 node scripts/generate-changelog.js --since 2025-01-01
 
 # Issue activity (requires GH_PAT)
@@ -86,7 +87,7 @@ GH_PAT=ghp_xxx node scripts/fetch-issue-activity.js --since 2025-01-01
 
 ### Git Changelog
 
-`codex-history/git/YYYY-MM-DD.json`:
+One line of `codex-history/YYYY-MM.jsonl` for each day of commits:
 
 ```json
 {
@@ -113,10 +114,11 @@ GH_PAT=ghp_xxx node scripts/fetch-issue-activity.js --since 2025-01-01
 
 ### Issue Activity
 
-`codex-history/issues/YYYY-MM-DD.json`:
+One line of `codex-history/YYYY-MM.jsonl` for each run, dated its first day:
 
 ```json
 {
+  "type": "github_activity",
   "date": "2025-01-15",
   "repository": "framerslab/codex",
   "summary": {
@@ -179,39 +181,37 @@ git commit -m "Update README"
 
 ```bash
 # Find all features added in January
-jq '.commits[] | select(.type == "feat")' codex-history/git/2025-01-*.json
+jq 'select(.commits) | .commits[] | select(.type == "feat")' codex-history/2025-01.jsonl
 
-# Count PRs merged per day
-jq '.summary.prsMerged' codex-history/issues/*.json
+# Count the PRs merged in each run's week
+jq 'select(.type == "github_activity") | {date, prsMerged: .summary.prsMerged}' codex-history/*.jsonl
 
 # Get commits by author
-jq '.commits[] | select(.author == "John Doe")' codex-history/git/*.json
+jq 'select(.commits) | .commits[] | select(.author == "John Doe")' codex-history/*.jsonl
 
 # Find issues with specific label
-jq '.created[] | select(.labels | contains(["bug"]))' codex-history/issues/*.json
+jq 'select(.type == "github_activity") | .created[] | select(.labels | contains(["bug"]))' codex-history/*.jsonl
 ```
 
 ### JavaScript/TypeScript
 
 ```typescript
 import fs from 'fs'
-import path from 'path'
 
-// Load all git changelogs for a month
+// Load every line of a month's history
 function loadMonth(year: number, month: number) {
-  const dir = 'codex-history/git'
-  const files = fs.readdirSync(dir)
-    .filter(f => f.startsWith(`${year}-${month.toString().padStart(2, '0')}`))
-    .map(f => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf-8')))
-  
-  return files
+  const file = `codex-history/${year}-${month.toString().padStart(2, '0')}.jsonl`
+  return fs.readFileSync(file, 'utf-8')
+    .split('\n')
+    .filter(Boolean)
+    .map(line => JSON.parse(line))
 }
 
 // Get all features
 const january = loadMonth(2025, 1)
-const features = january.flatMap(day => 
-  day.commits.filter(c => c.type === 'feat')
-)
+const features = january
+  .filter(entry => entry.commits)
+  .flatMap(day => day.commits.filter(c => c.type === 'feat'))
 
 console.log(`${features.length} features added in January`)
 ```
@@ -220,7 +220,7 @@ console.log(`${features.length} features added in January`)
 
 > "Summarize the changes in Frame Codex for the week of January 15-21, 2025. Focus on new features and bug fixes."
 
-The AI can read the relevant JSON files and generate a comprehensive summary.
+The AI can read the month's JSONL file and generate a comprehensive summary.
 
 ## Configuration
 
@@ -229,12 +229,12 @@ The AI can read the relevant JSON files and generate a comprehensive summary.
 Add to `framerslab/codex` repository settings:
 
 **Required:**
-- `GH_PAT`: GitHub Personal Access Token with `repo` scope
-  - Used for issue/PR activity tracking
-  - Generate at: https://github.com/settings/tokens/new?scopes=repo
+- `FRAMERS_BUMP_TOKEN`: a framerslab organization secret. The workflow pushes `ci/changelog` and opens its pull request with it, so the pull request's checks run; without it the run stops at its first step
 
-**Optional:**
-- None (git changelog works without any secrets)
+**For the issue and PR activity:**
+- `GH_PAT`: GitHub Personal Access Token with `repo` scope
+  - Without it the run records the commits alone, with a warning
+  - Generate at: https://github.com/settings/tokens/new?scopes=repo
 
 ### Workflow Customization
 
@@ -243,13 +243,13 @@ Edit `.github/workflows/changelog.yml`:
 ```yaml
 on:
   schedule:
-    # Change frequency (default: daily at 00:00 UTC)
-    - cron: '0 0 * * *'
+    # Monday 00:00 UTC; a scheduled workflow here runs once a week at most
+    - cron: '0 0 * * 1'
 ```
 
 ## Storage & Performance
 
-- **Size**: ~10-50 KB per day (depends on activity)
+- **Size**: one file per month, with one line for each day of commits and one for each run's activity
 - **Retention**: Indefinite (files are small and valuable)
 - **Performance**: Negligible impact on repo size
 - **Cleanup**: Not needed; history is the point
@@ -286,14 +286,15 @@ Planned features:
 **Check:**
 1. Workflow file exists at `.github/workflows/changelog.yml`
 2. GitHub Actions is enabled for the repository
-3. Scheduled workflows are not disabled
+3. Scheduled workflows are not disabled: in a public repository, GitHub disables them when the repository has had no activity for 60 days ([Disabling and enabling a workflow](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/disable-and-enable-workflows)), and `gh workflow view changelog.yml --repo framerslab/codex` shows the state
 
 **Fix:**
+- Enable it: `gh workflow enable changelog.yml --repo framerslab/codex`
 - Trigger manually: `gh workflow run changelog.yml --repo framerslab/codex`
 
 ### No Issue Activity
 
-**Cause:** `GH_PAT` secret not set
+**Cause:** `GH_PAT` secret not set; the run's log carries a warning that says so
 
 **Fix:**
 1. Generate token: https://github.com/settings/tokens/new?scopes=repo

@@ -6,13 +6,13 @@ Automated changelog and activity tracking for Frame Codex using **append-only JS
 
 ```mermaid
 graph LR
-    A[GitHub Actions<br/>Daily @ 00:00 UTC] --> B[Generate Git Log]
+    A[GitHub Actions<br/>Monday @ 00:00 UTC] --> B[Generate Git Log]
     A --> C[Fetch GitHub Activity]
     B --> D{New Entries?}
     C --> D
     D -->|Yes| E[Append to YYYY-MM.jsonl]
-    D -->|No| F[Skip Commit]
-    E --> G[Commit & Push]
+    D -->|No| F[No Pull Request]
+    E --> G[Pull Request from ci/changelog]
     
     style A fill:#4CAF50,color:#fff
     style E fill:#2196F3,color:#fff
@@ -48,14 +48,14 @@ sequenceDiagram
     participant API as GitHub GraphQL
     participant File as YYYY-MM.jsonl
     
-    GHA->>Git: Parse last 7 days
+    GHA->>Git: Parse the days since the first day
     Git-->>GHA: Commits with metadata
-    GHA->>API: Query issues/PRs (yesterday)
+    GHA->>API: Query issues/PRs since the first day
     API-->>GHA: Activity data
     GHA->>File: Check existing dates
     File-->>GHA: Existing entries
     GHA->>File: Append new entries only
-    GHA->>Git: Commit if changes
+    GHA->>Git: Pull request from ci/changelog if changes
 ```
 
 ## Entry Types
@@ -120,26 +120,25 @@ Each line in a `.jsonl` file is one of two types:
 
 ## Automation
 
-### Daily Generation
+### Weekly Generation
 
-A GitHub Actions workflow runs daily at 00:00 UTC:
+`.github/workflows/changelog.yml` runs every Monday at 00:00 UTC; a scheduled workflow here runs once a week at most. It records the days since a first day: seven days ago, or the day a manual run names.
 
-1. **Git Changelog**: Parses last 7 days of commits
-2. **Issue Activity**: Fetches yesterday's GitHub activity via GraphQL
-3. **Append**: Adds new entries to monthly `.jsonl` files (skips duplicates)
-4. **Commit**: Only if new entries were added
+1. **Open Pull Request**: Takes the monthly files of a changelog pull request that has not landed, so its lines are kept
+2. **Git Changelog**: Appends one line for each day of commits on `master` since the first day
+3. **Issue Activity**: Appends one line, dated the first day, of the issues created and closed and the pull requests merged since it, read through GitHub's GraphQL API with `GH_PAT`
+4. **Append**: Skips the days already recorded
+5. **Pull Request**: Opens or updates one pull request into `master` from `ci/changelog` when a line was added. `master` is protected, so the history reaches it through that pull request, which the workflow opens with `FRAMERS_BUMP_TOKEN` so its Test Suite and rename-guard run; it lands once they pass and its review comments are answered
 
 ### Manual Trigger
 
 Generate history for a specific date range:
 
 ```bash
-# Via GitHub Actions
+# Via GitHub Actions: records master since that day and opens or updates the pull request from ci/changelog
 gh workflow run changelog.yml --repo framerslab/codex -f since=2025-01-01
 
-# Or locally
-cd apps/codex
-
+# Or locally, from the repository's root
 # Git changelog
 node scripts/generate-changelog.js --since 2025-01-01
 
@@ -248,12 +247,12 @@ The AI can stream-read `2025-01.jsonl` line-by-line and generate a comprehensive
 Add to `framerslab/codex` repository settings:
 
 **Required:**
-- `GH_PAT`: GitHub Personal Access Token with `repo` scope
-  - Used for issue/PR activity tracking
-  - Generate at: https://github.com/settings/tokens/new?scopes=repo
+- `FRAMERS_BUMP_TOKEN`: a framerslab organization secret. The workflow pushes `ci/changelog` and opens its pull request with it, so the pull request's checks run; without it the run stops at its first step
 
-**Optional:**
-- None (git changelog works without any secrets)
+**For the issue and pull request activity:**
+- `GH_PAT`: GitHub Personal Access Token with `repo` scope
+  - Without it the run records the commits alone, with a warning
+  - Generate at: https://github.com/settings/tokens/new?scopes=repo
 
 ### Workflow Customization
 
@@ -262,8 +261,8 @@ Edit `.github/workflows/changelog.yml`:
 ```yaml
 on:
   schedule:
-    # Change frequency (default: daily at 00:00 UTC)
-    - cron: '0 0 * * *'
+    # Monday 00:00 UTC; a scheduled workflow here runs once a week at most
+    - cron: '0 0 * * 1'
 ```
 
 ## Storage & Performance

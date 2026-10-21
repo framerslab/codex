@@ -293,14 +293,16 @@ When you push changes to `weaves/`:
 1. Blocks are processed
 2. Tags are suggested
 3. Index is rebuilt
-4. JSON files are committed
+4. On `master`, the index files arrive through a pull request from `ci/codex-index`
 
-### AI Enhancement (manual trigger)
+### AI Enhancement (manual trigger or label)
 
 1. Go to Actions → "AI Enhance Block Tags"
 2. Click "Run workflow"
 3. Set max cost and provider
-4. Review the PR with AI suggestions
+4. Review the PR with AI suggestions: the run opens or updates one pull request from `ci/ai-enhance-blocks`, which lands once its checks pass and its review comments are answered
+
+Or add the `ai-enhance` label to a pull request from a branch of this repository: the run commits the enhanced strands onto that pull request's branch, and its checks run on the new head.
 
 ## Part 8: Viewing in Frame.dev
 
