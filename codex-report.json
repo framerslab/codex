@@ -8676,17 +8676,17 @@
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "ai",
-        "score": 0.07194244604316546
+        "score": 0.07553956834532374
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "design",
-        "score": 0.07734806629834254
+        "score": 0.08287292817679558
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "knowledge",
-        "score": 0.31746031746031744
+        "score": 0.328042328042328
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
@@ -8726,7 +8726,7 @@
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
         "category": "best-practices",
-        "score": 0.08064516129032258
+        "score": 0.08870967741935484
       },
       {
         "file": "docs/BLOCK_TAGGING_TUTORIAL.md",
@@ -8981,32 +8981,32 @@
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "ai",
-        "score": 0.0539568345323741
+        "score": 0.06115107913669065
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "design",
-        "score": 0.08287292817679558
+        "score": 0.08839779005524862
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "knowledge",
-        "score": 0.23809523809523808
+        "score": 0.25925925925925924
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "media",
-        "score": 0.06716417910447761
+        "score": 0.07462686567164178
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "philosophy",
-        "score": 0.04830917874396135
+        "score": 0.05314009661835749
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "science",
-        "score": 0.038314176245210725
+        "score": 0.034482758620689655
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
@@ -9021,7 +9021,7 @@
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "api-reference",
-        "score": 0.17073170731707318
+        "score": 0.1951219512195122
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
@@ -9031,227 +9031,252 @@
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "best-practices",
-        "score": 0.08064516129032258
+        "score": 0.12903225806451613
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "getting-started",
-        "score": 0.10091743119266056
+        "score": 0.11926605504587157
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "troubleshooting",
-        "score": 0.16666666666666666
+        "score": 0.18518518518518517
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:auth",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:token",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:graphql",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:sql",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:schema",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:test",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:function",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
+      },
+      {
+        "file": "docs/CHANGELOG_SYSTEM.md",
+        "category": "skill:object",
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:data",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:http",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:https",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:ci",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:cd",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:factori",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:search",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:structur",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:tl",
-        "score": 0.5769230769230769
+        "score": 0.5817307692307693
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:app",
-        "score": 0.5267857142857143
+        "score": 0.5357142857142857
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:api",
-        "score": 0.5267857142857143
+        "score": 0.5357142857142857
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:on",
-        "score": 0.5267857142857143
+        "score": 0.5357142857142857
+      },
+      {
+        "file": "docs/CHANGELOG_SYSTEM.md",
+        "category": "skill:page",
+        "score": 0.5357142857142857
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:javascript",
-        "score": 0.5740740740740741
+        "score": 0.5802469135802469
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:js",
-        "score": 0.5740740740740741
+        "score": 0.5802469135802469
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:typescript",
-        "score": 0.5740740740740741
+        "score": 0.5802469135802469
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:ts",
-        "score": 0.5740740740740741
+        "score": 0.5802469135802469
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:type",
-        "score": 0.5740740740740741
+        "score": 0.5802469135802469
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:go",
-        "score": 0.5740740740740741
+        "score": 0.5802469135802469
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:java",
-        "score": 0.5740740740740741
+        "score": 0.5802469135802469
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:c",
-        "score": 0.5740740740740741
+        "score": 0.5802469135802469
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:bash",
-        "score": 0.5740740740740741
+        "score": 0.5802469135802469
+      },
+      {
+        "file": "docs/CHANGELOG_SYSTEM.md",
+        "category": "skill:annot",
+        "score": 0.5802469135802469
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:gener",
-        "score": 0.5740740740740741
+        "score": 0.5802469135802469
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:io",
-        "score": 0.5740740740740741
+        "score": 0.5802469135802469
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:documentation",
-        "score": 0.5276497695852534
+        "score": 0.532258064516129
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:troubleshooting",
-        "score": 0.5276497695852534
+        "score": 0.532258064516129
+      },
+      {
+        "file": "docs/CHANGELOG_SYSTEM.md",
+        "category": "skill:organization",
+        "score": 0.532258064516129
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:focus",
-        "score": 0.5276497695852534
+        "score": 0.532258064516129
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:eq",
-        "score": 0.5276497695852534
-      },
-      {
-        "file": "docs/CHANGELOG_SYSTEM.md",
-        "category": "skill:write",
-        "score": 0.5276497695852534
+        "score": 0.532258064516129
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:document",
-        "score": 0.5276497695852534
+        "score": 0.532258064516129
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:edit",
-        "score": 0.5276497695852534
+        "score": 0.532258064516129
+      },
+      {
+        "file": "docs/CHANGELOG_SYSTEM.md",
+        "category": "skill:manag",
+        "score": 0.532258064516129
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:plan",
-        "score": 0.5276497695852534
+        "score": 0.532258064516129
+      },
+      {
+        "file": "docs/CHANGELOG_SYSTEM.md",
+        "category": "skill:organ",
+        "score": 0.532258064516129
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:troubleshoot",
-        "score": 0.5276497695852534
+        "score": 0.532258064516129
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:schedul",
-        "score": 0.5276497695852534
+        "score": 0.532258064516129
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:focu",
-        "score": 0.5276497695852534
+        "score": 0.532258064516129
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:learn",
-        "score": 0.5276497695852534
+        "score": 0.532258064516129
       },
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
@@ -9271,11 +9296,6 @@
       {
         "file": "docs/CHANGELOG_SYSTEM.md",
         "category": "skill:commit",
-        "score": 0.5842105263157895
-      },
-      {
-        "file": "docs/CHANGELOG_SYSTEM.md",
-        "category": "skill:branch",
         "score": 0.5842105263157895
       },
       {
@@ -11947,7 +11967,7 @@
     "fileWarnings": []
   },
   "vocabulary": {
-    "totalUniqueTerms": 386,
+    "totalUniqueTerms": 388,
     "suggestedAdditions": [
       {
         "term": "block",
@@ -12024,7 +12044,7 @@
     ]
   },
   "performance": {
-    "timeElapsed": "92.98s",
+    "timeElapsed": "83.96s",
     "cacheHitRate": "0%",
     "filesProcessed": 40,
     "filesCached": 0,
