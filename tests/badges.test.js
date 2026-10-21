@@ -437,7 +437,7 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
     expect(repo.refs()).toEqual(['refs/heads/badges', 'refs/heads/master']);
   });
 
-  it('pushes nothing when the branch already holds the same files', () => {
+  it('pushes nothing when the branch already holds the same files from the same commit', () => {
     const repo = setup();
     repo.writeDir({ 'tests.json': '{"message":"4 passed"}\n' });
     expect(repo.publish().status).toBe(0);
@@ -542,6 +542,32 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
     expect(b.message).toBe(`badges for ${later}`);
     expect(b.read('tests.json')).toBe('{"message":"5 passed"}');
     expect(repo.masterHead()).toBe(later);
+  });
+
+  it('names a later commit that counted the same files, so a run of a commit between them cannot replace them', () => {
+    // Master holds first, middle and last, in that order. The first and last runs count the same figures, the middle
+    // run's differ, and the jobs reach the branch first, last, middle. The last run must name its commit on the head;
+    // a head still naming the first commit would let the middle run, later than that, replace the last run's figures.
+    const repo = setup();
+    const first = repo.master;
+    const middle = repo.advance('a later merge');
+    const last = repo.advance('the latest merge');
+    repo.writeDir({ 'tests.json': '{"message":"4 passed"}\n' });
+    expect(repo.publish({ BADGES_SOURCE_SHA: first }).status).toBe(0);
+
+    const same = repo.publish({ BADGES_SOURCE_SHA: last });
+    expect(same.status, same.stderr).toBe(0);
+    expect(repo.branch().message).toBe(`badges for ${last}`);
+    expect(repo.branch().read('tests.json')).toBe('{"message":"4 passed"}');
+
+    repo.writeDir({ 'tests.json': '{"message":"3 passed"}\n' });
+    const late = repo.publish({ BADGES_SOURCE_SHA: middle });
+    expect(late.status, late.stderr).toBe(0);
+    expect(late.stdout).toContain('nothing to push');
+    const b = repo.branch();
+    expect(b.message).toBe(`badges for ${last}`);
+    expect(b.read('tests.json')).toBe('{"message":"4 passed"}');
+    expect(b.parents).toEqual([]);
   });
 
   it("replaces an earlier commit's badges with a later commit's", () => {
