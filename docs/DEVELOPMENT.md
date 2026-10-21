@@ -151,10 +151,13 @@ npm run index -- --validate
 # Review changes
 cat codex-report.json | jq '.summary'
 
-# Commit manually
+# Commit on a branch and open a pull request: master is protected, so a change reaches it
+# through a pull request whose Test Suite and rename-guard checks pass
+git switch -c chore/re-index
 git add codex-index.json codex-report.json
 git commit -m "chore: re-index all content"
-git push
+git push -u origin chore/re-index
+gh pr create --base master --fill
 ```
 
 **See full guide:** [RECATALOG_GUIDE.md](./RECATALOG_GUIDE.md)

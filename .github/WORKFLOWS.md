@@ -51,15 +51,23 @@ The Codex repository uses several GitHub Actions workflows for automated content
 - Cache restoration for faster builds
 - Parallel job execution where possible
 
-### 2. `auto-index.yml`
+### 2. `auto-index.yml` (Build and Publish Codex Index)
 
 **Triggers:**
-- Push to `weaves/`, `scripts/`, `schema/`
+- Push to any branch that changes `weaves/`, `scripts/`, `schema/` or this workflow
 - Manual dispatch
 - Repository dispatch (frame-deploy-complete)
 
 **Purpose:**
-Builds and publishes the search index JSON files.
+Builds the search index files, `codex-index.json`, `codex-search.json`, `codex-report.json` and `codex-blocks.json`, and on `master` publishes them through one pull request:
+- The build-index job builds the four files and archives them; on any other branch the run stops there
+- On `master`, the publish-artifacts job opens or updates one pull request into `master` from `ci/codex-index` carrying them. It never pushes to `master`, which is protected (below): a commit made in a job has none of the required checks
+- Pushes the branch and opens the pull request with `FRAMERS_BUMP_TOKEN`, as the weekly bump does, so the pull request gets Test Suite and rename-guard. Its commit message carries no skip marker: GitHub starts none of the `pull_request` workflows of a head commit whose message says `[skip ci]`, and the required checks would never report
+- Stops at its first step, with an error, when `FRAMERS_BUMP_TOKEN` is not available; both jobs' own `GITHUB_TOKEN` only reads, and the publish job installs and runs none of the repository's code
+- Publishes one run at a time. Each run waits for its own build, so a run of an earlier commit can reach the publish job after a later commit's run; when `master`'s head differs from the run's commit under `weaves/`, `scripts/`, `schema/` or this workflow, a later push changed them and its run publishes, so the earlier run leaves the pull request alone
+- A later run replaces the branch with its own build, and closes the pull request when the index no longer differs from `master`'s
+- Labels nothing: `landing-follows-the-bump-checks.yml` adds `landing` once the pull request's Test Suite and rename-guard pass on its head, and the pull request lands after its review comments are read, answered and resolved
+- `tests/index-pull-request.test.js` reads the workflow, runs its first step, and runs its ordering step in scratch repositories, since GitHub runs the publish job only on `master`
 
 ### 3. `ai-enhance-pr.yml`
 
@@ -163,13 +171,13 @@ Moves every `@framers/*` pin in a `package.json` to the newest version on npm, r
 - Labels nothing: `landing-follows-the-bump-checks.yml` adds `landing` once the pull request's Test Suite and rename-guard pass on its head, and the pull request lands after its review comments are read, answered and resolved
 - `tests/bump-framers-deps.test.js` reads the workflow, runs its first step and its npm lockfile refresh, and makes its commit in a scratch repository holding this repository's files, since GitHub reports a broken file only when the schedule or a dispatch starts it
 
-### 10. `landing-follows-the-bump-checks.yml` (Landing follows the bump checks)
+### 10. `landing-follows-the-bump-checks.yml` (Landing follows the bump and index checks)
 
 **Triggers:**
-- A Test Suite or rename-guard run requested, started (`in_progress`) or completed on `chore/bump-framers-deps`; a re-run sends no requested event, only the other two
+- A Test Suite or rename-guard run requested, started (`in_progress`) or completed on `chore/bump-framers-deps` or `ci/codex-index`; a re-run sends no requested event, only the other two
 
 **Purpose:**
-Keeps the `landing` label on the weekly bump's pull request only on a head whose guards passed; its guards are that pull request's own Test Suite and rename-guard runs. Whichever event starts it, it reads each guard's newest pull request run on the pull request's head (listed by the guard's workflow file):
+Keeps the `landing` label on the weekly bump's pull request and on the index's only on a head whose guards passed; a pull request's guards are its own Test Suite and rename-guard runs. It takes the branch from the run, and a run from any other branch changes nothing. Whichever event starts it, it reads each guard's newest pull request run on that branch's pull request's head (listed by the guard's workflow file):
 - Both passed: adds `landing` (created on first use) and keeps the guards comment (github-actions[bot]'s comment that starts with `<!-- landing-guards -->`) naming the two runs; when that comment cannot be written, the label comes off again
 - Either ended without passing: takes the label off and says which in the guards comment
 - Either has no run yet or has not finished, as after a push, a reopen or a re-run: keeps the label off and says so in a guards comment already there
@@ -177,11 +185,15 @@ Keeps the `landing` label on the weekly bump's pull request only on a head whose
 - A run for an older head changes nothing; a change of base is otherwise left to `landing-follows-the-base.yml`
 - No concurrency group: GitHub cancels a group's waiting run when a newer one queues, and a cancelled run would show on `master`'s last commit
 - `workflow_run` runs the file as it reads on `master` with a token that can write, so the job checks out no code, runs only for a pull request from this repository's own branch (a fork's branch of the same name is skipped) and reads the run and the pull request inside its script; it never merges
-- `tests/bump-framers-deps.test.js` runs its script against a stand-in for the GitHub API, since GitHub runs the file only once it is on `master`
+- `tests/bump-framers-deps.test.js` runs its script against a stand-in for the GitHub API, for both branches, since GitHub runs the file only once it is on `master`
 
 ### The `landing` label
 
-No workflow here merges a pull request or turns on GitHub's auto-merge. A pull request is merged only after every review and comment on it has been read, fixed or answered and its threads resolved. Where a workflow's checks and guards pass, it adds the `landing` label (created on first use) and posts one comment saying which guards passed; when that comment cannot be posted, the label comes off again. A change of base takes the label off too, since the guards ran against the old base. On the weekly bump's pull request the guards are its own Test Suite and rename-guard runs: the label goes on once both pass on its head, and comes off when a push, a reopen or a re-run starts either again there or when either fails. A maintainer lands the pull request after that pass.
+No workflow here merges a pull request or turns on GitHub's auto-merge. A pull request is merged only after every review and comment on it has been read, fixed or answered and its threads resolved. Where a workflow's checks and guards pass, it adds the `landing` label (created on first use) and posts one comment saying which guards passed; when that comment cannot be posted, the label comes off again. A change of base takes the label off too, since the guards ran against the old base. On the weekly bump's pull request and on the index's, the guards are its own Test Suite and rename-guard runs: the label goes on once both pass on its head, and comes off when a push, a reopen or a re-run starts either again there or when either fails. A maintainer lands the pull request after that pass.
+
+### `master`'s protection
+
+`master` is protected. A change reaches it only once Unit Tests, Vocabulary & NLP Tests, Cache Tests and Integration Tests (Test Suite) and guard (rename-guard) have passed on it, each accepted from GitHub Actions only; a pull request need not be up to date with `master` first. The rule binds administrators too, and force-pushes and deletion are blocked. Those five run on every pull request into `master`. A commit made in a job has none of them, so `master` refuses a job's push: Update Badges writes the `badges` branch, and the index and the weekly bump arrive as pull requests. Update Badges runs on `master` only and is not required.
 
 ## Caching Strategy
 
@@ -216,7 +228,7 @@ restore-keys:
 | `ANTHROPIC_API_KEY` | AI only | Claude API key for AI enhancement |
 | `OPENAI_API_KEY` | AI only | OpenAI API key (fallback) |
 | `GH_PAT` | Yes | Personal access token for cross-repo triggers |
-| `FRAMERS_BUMP_TOKEN` | Bump only | framerslab organization secret shared with this repository: the personal token the weekly bump pushes its branch and opens its pull request with, so the pull request's checks run |
+| `FRAMERS_BUMP_TOKEN` | Bump and index | framerslab organization secret shared with this repository: the personal token the weekly bump and the index publish push their branches and open their pull requests with, so the pull requests' checks run |
 
 ## Manual Triggers
 
