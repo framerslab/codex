@@ -12,8 +12,9 @@
 # Run it inside a clone that can push to <remote> (default origin; branch default badges) and holds master's history
 # (actions/checkout with fetch-depth: 0); a shallow clone fetches the commit the branch names. The commit message names
 # the commit the files were counted from: BADGES_SOURCE_SHA, or the clone's HEAD, which must be in the history of
-# BADGES_SOURCE_BRANCH (default master) on <remote>. The Test Suite workflow's Update Badges job runs it on pushes to
-# master, with the files its Unit Tests job wrote (scripts/badges/write-badge-json.js).
+# BADGES_SOURCE_BRANCH (default master) on <remote>; and the run, BADGES_SOURCE_RUN, when given. The Test Suite
+# workflow's Update Badges job runs it on pushes to master, with the files its Unit Tests job wrote
+# (scripts/badges/write-badge-json.js).
 set -euo pipefail
 
 DIR="${1:?usage: publish-badges-branch.sh <dir> [<remote>] [<branch>]}"
@@ -21,6 +22,17 @@ REMOTE="${2:-origin}"
 REF="refs/heads/${3:-badges}"
 SOURCE="${BADGES_SOURCE_SHA:-$(git rev-parse HEAD)}"
 MASTER="refs/heads/${BADGES_SOURCE_BRANCH:-master}"
+# The workflow run's number (github.run_number), which only grows and stays the same on a re-run. It orders two runs
+# whose commits neither descends from the other.
+SOURCE_RUN="${BADGES_SOURCE_RUN:-}"
+case "$SOURCE_RUN" in
+  *[!0-9]*)
+    echo "::error::BADGES_SOURCE_RUN is not a run number: $SOURCE_RUN" >&2
+    exit 1
+    ;;
+esac
+# The head's message names the commit its files were counted from, and the run when its number is known.
+MESSAGE="badges for $SOURCE${SOURCE_RUN:+ from run $SOURCE_RUN}"
 
 export GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-github-actions[bot]}"
 export GIT_AUTHOR_EMAIL="${GIT_AUTHOR_EMAIL:-41898282+github-actions[bot]@users.noreply.github.com}"
@@ -69,8 +81,10 @@ case "$status" in
   0)
     git fetch --quiet --no-tags --depth=1 "$REMOTE" "$REF"
     expected=$(git rev-parse FETCH_HEAD)
-    # The head's message names the commit its files were counted from.
-    published=$(git log -1 --format=%s "$expected" | sed -n 's/^badges for \([0-9a-f]\{40\}\)$/\1/p')
+    # The commit the head's files were counted from, and the run that published them when its message names one.
+    subject=$(git log -1 --format=%s "$expected")
+    published=$(printf '%s\n' "$subject" | sed -n 's/^badges for \([0-9a-f]\{40\}\)\( from run [0-9][0-9]*\)\{0,1\}$/\1/p')
+    published_run=$(printf '%s\n' "$subject" | sed -n 's/^badges for [0-9a-f]\{40\} from run \([0-9][0-9]*\)$/\1/p')
     if [ "$published" = "$SOURCE" ] && [ "$(git rev-parse "$expected^{tree}")" = "$tree" ]; then
       echo "$REF at $expected already holds these files for $SOURCE; nothing to push."
       exit 0
@@ -91,12 +105,24 @@ case "$status" in
         0)
           order=0
           git merge-base --is-ancestor "$SOURCE" "$published" 2> /dev/null || order=$?
+          if [ "$order" = 1 ] && ! git merge-base --is-ancestor "$published" "$SOURCE" 2> /dev/null; then
+            # Neither commit descends from the other: master took in a second history (a force-push, then a merge of
+            # both). The run that started later is the later one, when both run numbers are known.
+            order=unrelated
+          fi
           case "$order" in
             0)
               echo "$REF at $expected holds the badges of $published, a later commit on $MASTER than $SOURCE; nothing to push."
               exit 0
               ;;
             1) ;;
+            unrelated)
+              if [ -n "$SOURCE_RUN" ] && [ -n "$published_run" ] && [ "$SOURCE_RUN" -lt "$published_run" ]; then
+                echo "$REF at $expected holds the badges of $published from run $published_run, which started after run $SOURCE_RUN, and neither commit descends from the other; nothing to push."
+                exit 0
+              fi
+              echo "$REF holds the badges of $published${published_run:+ from run $published_run}, and neither it nor $SOURCE${SOURCE_RUN:+ (run $SOURCE_RUN)} descends from the other; this run's files replace them."
+              ;;
             *)
               echo "::warning::$REF holds the badges of $published, which this clone cannot order against $SOURCE (git merge-base exited $order); this run's files replace them." >&2
               ;;
@@ -120,10 +146,10 @@ case "$status" in
     ;;
 esac
 
-commit=$(git commit-tree "$tree" -m "badges for $SOURCE")
+commit=$(git commit-tree "$tree" -m "$MESSAGE")
 # An empty lease means the branch must not exist yet (git push --force-with-lease=<ref>:).
 if ! git push --quiet --force-with-lease="$REF:$expected" "$REMOTE" "$commit:$REF"; then
   echo "::error::The push to $REF failed or its lease (${expected:-no branch}) no longer held; the branch keeps the head it has." >&2
   exit 1
 fi
-echo "$REF: ${expected:-absent} -> $commit (badges for $SOURCE)"
+echo "$REF: ${expected:-absent} -> $commit ($MESSAGE)"

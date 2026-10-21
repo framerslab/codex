@@ -352,6 +352,7 @@ jobs:
       - name: Replace the badges branch
         env:
           BADGES_SOURCE_SHA: ${{ github.sha }}
+          BADGES_SOURCE_RUN: ${{ github.run_number }}
         run: bash scripts/badges/publish-badges-branch.sh "$RUNNER_TEMP/badges"
 
       # jsDelivr keeps a branch's files for up to 12 hours, and a purge makes the badges read the new files now. A purge
