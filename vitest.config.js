@@ -21,6 +21,7 @@ export default defineConfig({
         'scripts/**/*.js',
         'scripts/markdown-blocks.mjs',
         'scripts/block-scoring.mjs',
+        'scripts/search-index.mjs',
         'lib/**/*.js'
       ],
       exclude: [

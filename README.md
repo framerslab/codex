@@ -242,7 +242,7 @@ npm run build:search    # builds codex-search.json (BM25 + MiniLM embeddings)
 
 `codex-search.json` contains:
 
-- **BM25 postings** for every token (term frequency per thread)
+- **BM25 postings** for every token of each thread's whole text, read from its file (term frequency per thread)
 - **Document metadata** (path, title, summary, weave/loom, doc length)
 - **Packed Float32 embeddings** (MiniLM-L6-v2, mean pooled, normalized) stored as base64
 

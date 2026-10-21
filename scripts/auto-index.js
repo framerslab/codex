@@ -859,7 +859,7 @@ class CodexIndexer {
           warnings: validation.warnings,
           suggestions
         },
-        content: content.substring(0, 5000), // First 5KB for search
+        content: content.substring(0, 5000), // First 5,000 characters; the search postings read the whole file (scripts/search-index.mjs)
         searchText: `${metadata.title || ''} ${metadata.summary || ''} ${analysis.keywords.join(' ')} ${analysis.phrases.join(' ')}`.toLowerCase()
       };
       

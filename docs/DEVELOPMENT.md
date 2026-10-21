@@ -168,7 +168,7 @@ gh pr create --base master --fill
 
 Frame.dev’s advanced search UI consumes a separate static artifact, `codex-search.json`, which contains:
 
-- BM25 postings (term → docId, term frequency)
+- BM25 postings (term → docId, term frequency) over each document's whole text, read from the file `codex-index.json` lists, since the index keeps only its first 5,000 characters
 - Document metadata (path, weave, loom, summary, doc length)
 - Packed Float32 embeddings (all-MiniLM-L6-v2, mean pooled, normalized)
 
@@ -182,7 +182,7 @@ npm run build:search
 git add codex-search.json
 ```
 
-This command uses `@xenova/transformers` entirely in Node.js (no Python, no API keys) and produces a fully static JSON blob that can be hosted on GitHub Pages or any CDN.
+This command uses `@huggingface/transformers` entirely in Node.js (no Python, no API keys) and produces a fully static JSON blob that can be hosted on GitHub Pages or any CDN.
 
 ---
 
