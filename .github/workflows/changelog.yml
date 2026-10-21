@@ -1,8 +1,10 @@
 name: Generate Weekly Changelog
 
-# Once a week, and by hand, this workflow records the history since a first day in codex-history/YYYY-MM.jsonl: one line
-# for each day of commits (scripts/generate-changelog.js) and one line of the GitHub activity since that day, the issues
-# created and closed and the pull requests merged (scripts/fetch-issue-activity.js). It then opens or updates one pull
+# Once a week, and by hand, this workflow records in codex-history/YYYY-MM.jsonl the complete days, in UTC, before the day
+# it runs on that are not yet recorded: one line for each day of the commits that reached master that day
+# (scripts/generate-changelog.js) and one line of the GitHub activity over those days, the issues created and closed and
+# the pull requests merged (scripts/fetch-issue-activity.js). Each script starts after the last day it recorded, so a
+# missed or failed run leaves no gap, and a manual run leaves no day half recorded. It then opens or updates one pull
 # request into master from ci/changelog carrying them. It never pushes to master: master is protected, and a commit
 # reaches it only once its required checks have passed, which a commit made in a job has not ("About protected branches",
 # Require status checks before merging:
@@ -23,7 +25,7 @@ on:
   workflow_dispatch:
     inputs:
       since:
-        description: 'First day to record (YYYY-MM-DD; seven days ago when empty)'
+        description: 'First day to record (YYYY-MM-DD; when empty, the day after the last day recorded)'
         required: false
         type: string
 
@@ -65,22 +67,21 @@ jobs:
         with:
           node-version: '22'
 
-      # Both scripts record from the same first day: the day a manual run names, or seven days ago, the week since the last
-      # scheduled run. The input reaches the step as an environment variable and is used only once it reads as a date.
-      - name: The first day to record
+      # Both scripts record the complete days before the day the run starts on, in UTC, so a later run never finds a day
+      # half recorded, and each starts after the last day it recorded unless a manual run names a first day. The input
+      # reaches the step as an environment variable and is used only once it reads as a date.
+      - name: The days to record
         id: window
         env:
           SINCE_INPUT: ${{ inputs.since }}
         run: |
-          since="$SINCE_INPUT"
-          if [ -z "$since" ]; then
-            since=$(node -e 'console.log(new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10))')
-          fi
-          if ! [[ "$since" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+          if [ -n "$SINCE_INPUT" ] && ! [[ "$SINCE_INPUT" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
             echo "::error::since takes a date written YYYY-MM-DD."
             exit 1
           fi
-          echo "since=$since" >> "$GITHUB_OUTPUT"
+          today=$(date -u +%Y-%m-%d)
+          echo "since=$SINCE_INPUT" >> "$GITHUB_OUTPUT"
+          echo "until=$today" >> "$GITHUB_OUTPUT"
 
       # A run starts from master, and create-pull-request replaces ci/changelog with master and this run's files, so the
       # entries of an open changelog pull request that has not landed would be dropped. This takes its monthly files first,
@@ -113,18 +114,29 @@ jobs:
       - name: Generate git changelog
         env:
           SINCE: ${{ steps.window.outputs.since }}
-        run: node scripts/generate-changelog.js --since "$SINCE"
+          UNTIL: ${{ steps.window.outputs.until }}
+        run: |
+          set -- --until "$UNTIL"
+          if [ -n "$SINCE" ]; then
+            set -- "$@" --since "$SINCE"
+          fi
+          node scripts/generate-changelog.js "$@"
 
       - name: Fetch GitHub issue activity
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
           SINCE: ${{ steps.window.outputs.since }}
+          UNTIL: ${{ steps.window.outputs.until }}
         run: |
-          if [ -n "$GH_PAT" ]; then
-            node scripts/fetch-issue-activity.js --since "$SINCE"
-          else
-            echo "::warning::GH_PAT is not set, so the issues and pull requests since $SINCE are not recorded."
+          if [ -z "$GH_PAT" ]; then
+            echo "::warning::GH_PAT is not set, so the issues and pull requests before $UNTIL are not recorded."
+            exit 0
           fi
+          set -- --until "$UNTIL"
+          if [ -n "$SINCE" ]; then
+            set -- "$@" --since "$SINCE"
+          fi
+          node scripts/fetch-issue-activity.js "$@"
 
       # Opens the pull request, or replaces its branch with this run's files; with no line added since master's history,
       # it leaves the branch alone.
@@ -137,7 +149,7 @@ jobs:
           commit-message: 'chore(changelog): append the weekly history'
           title: 'chore(changelog): append the weekly history'
           body: |
-            The history since ${{ steps.window.outputs.since }}, recorded by run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} in `codex-history/YYYY-MM.jsonl`: one line for each day of commits on master, and one line of the issues created and closed and the pull requests merged since that day. Days already recorded are skipped.
+            The history before ${{ steps.window.outputs.until }}, in UTC, recorded by run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} in `codex-history/YYYY-MM.jsonl`: one line for each day of the commits that reached master that day, and one line of the issues created and closed and the pull requests merged over the days not yet recorded. Each script starts after the last day it recorded, so only complete days not recorded before are added.
 
             master is protected, so the history reaches it through this pull request. The Generate Weekly Changelog workflow opens and updates it with `FRAMERS_BUMP_TOKEN`, so its Test Suite and rename-guard run; `landing-follows-the-bump-checks.yml` labels it `landing` once both pass on its head, and it lands after its review comments are read, answered and resolved. A later run keeps these lines and adds its own until this pull request lands.
           branch: ci/changelog
