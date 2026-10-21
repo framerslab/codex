@@ -474,6 +474,8 @@ Frame Codex content is licensed under [CC-BY-4.0](LICENSE), making it free for:
 
 With attribution requirement.
 
+[LICENSE](LICENSE) holds the CC BY 4.0 legal code as Creative Commons publishes it. It covers the content the [Overview](#overview) lists: weaves, looms, threads, tags and schemas. It does not cover the code, such as `scripts/`, `lib/`, `tests/` and the workflows in `.github/`.
+
 ---
 
 <div align="center">
