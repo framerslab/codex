@@ -67,6 +67,7 @@ Builds the search index files, `codex-index.json`, `codex-search.json`, `codex-r
 - Publishes one run at a time, and keeps every waiting run (`queue: max`): GitHub's default keeps one, and a run that begins waiting replaces it whichever commit is newer. Each run waits for its own build, so a run of an earlier commit can reach the publish job after a later commit's run; when `master`'s head differs from the run's commit under `weaves/`, `scripts/`, `schema/` or this workflow, a later push changed them and its run publishes, so the earlier run leaves the pull request alone. A comparison that cannot be made fails the step, and nothing is published
 - A later run replaces the branch with its own build, and closes the pull request when the index no longer differs from `master`'s
 - Labels nothing: `landing-follows-the-bump-checks.yml` adds `landing` once the pull request's Test Suite and rename-guard pass on its head, and the pull request lands after its review comments are read, answered and resolved
+- CodeRabbit skips the pull request by its title and reviews none of the four files in any pull request (`.coderabbit.yaml`, `reviews.auto_review.ignore_title_keywords` and `reviews.path_filters`), so an index pull request spends none of the review allowance CodeRabbit gives the token's owner; `tests/coderabbit-config.test.js` reads the configuration beside this workflow
 - `tests/index-pull-request.test.js` reads the workflow, runs its first step, and runs its ordering step in scratch repositories, since GitHub runs the publish job only on `master`
 
 ### 3. `ai-enhance-pr.yml`
@@ -318,6 +319,7 @@ The `finalize` job updates commit status with:
    - Monitor workflow run times
    - Clear cache if builds are stale
    - Review AI suggestions before landing a pull request
+   - Pin a third-party action, and `actions/github-script`, to the commit of a release whose `action.yml` runs on Node.js 24, with the release named beside it (`uses: owner/action@<commit> # vX.Y.Z`): read the commit from the release's tag (`gh api repos/<owner>/<action>/git/ref/tags/<release>`, then the tag object to its commit when the tag is annotated) and `runs.using` from the `action.yml` at that commit, and read the release notes for breaking changes. `tests/actions-on-node24.test.js` checks `actions/github-script` (v9.0.0), `peter-evans/create-pull-request` (v8.1.1) and `peter-evans/repository-dispatch` (v4.0.1)
 
 3. **For Weavers:**
    - Ensure validation passes locally: `npm run validate`
