@@ -89,8 +89,8 @@ describe('the bump opens its pull request with FRAMERS_BUMP_TOKEN, so the pull r
     for (const line of installs) expect(line).toMatch(/\s--ignore-scripts\b/);
   });
 
-  // This repository tracks package-lock.json beside pnpm-lock.yaml, and npm ci (changelog.yml, async-processing.yml)
-  // stops when package-lock.json disagrees with package.json. Run 39470395461 (20 October 2026) opened pull request 9
+  // This repository tracks package-lock.json beside pnpm-lock.yaml, and npm ci (async-processing.yml) stops when
+  // package-lock.json disagrees with package.json. Run 39470395461 (20 October 2026) opened pull request 9
   // with @framers/sql-storage-adapter at ^0.8.1 in package.json and package-lock.json still at ^0.6.8. The refresh step
   // runs here with a stand-in npm that records its arguments, once beside a package-lock.json and once without one.
   it('refreshes package-lock.json when the file is there, writing the lockfile only and running no install script', () => {

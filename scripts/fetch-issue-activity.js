@@ -84,7 +84,8 @@ async function graphqlQuery(query, variables = {}) {
 }
 
 /**
- * Fetch issues created since a date
+ * Fetch issues created since a date. GitHub's `since` filter lists the issues updated at or after the date
+ * (IssueFilters.since), so the query narrows the list to those and the issues created before the date are dropped here.
  * @param {string} since - ISO date string
  * @returns {Promise<Array>} Issues
  */
@@ -118,14 +119,17 @@ async function fetchCreatedIssues(since) {
     since: `${since}T00:00:00Z`
   })
   
-  return data.repository.issues.nodes.map(issue => ({
-    number: issue.number,
-    title: issue.title,
-    url: issue.url,
-    createdAt: issue.createdAt,
-    author: issue.author?.login || 'ghost',
-    labels: issue.labels.nodes.map(l => l.name)
-  }))
+  // Filter to only issues created on or after the since date
+  return data.repository.issues.nodes
+    .filter(issue => issue.createdAt && issue.createdAt >= `${since}T00:00:00Z`)
+    .map(issue => ({
+      number: issue.number,
+      title: issue.title,
+      url: issue.url,
+      createdAt: issue.createdAt,
+      author: issue.author?.login || 'ghost',
+      labels: issue.labels.nodes.map(l => l.name)
+    }))
 }
 
 /**
@@ -177,13 +181,16 @@ async function fetchClosedIssues(since) {
 }
 
 /**
- * Fetch PRs merged since a date
+ * Fetch PRs merged since a date. The pullRequests connection takes no date argument, so the query asks for the merged
+ * pull requests most recently updated first and the date is applied here. GitHub refuses an operation that declares a
+ * variable it does not use ("Variable $since is declared by anonymous query but not used"), so this query declares no
+ * $since.
  * @param {string} since - ISO date string
  * @returns {Promise<Array>} PRs
  */
 async function fetchMergedPRs(since) {
   const query = `
-    query($owner: String!, $name: String!, $since: DateTime!) {
+    query($owner: String!, $name: String!) {
       repository(owner: $owner, name: $name) {
         pullRequests(first: 100, states: MERGED, orderBy: { field: UPDATED_AT, direction: DESC }) {
           nodes {
@@ -207,8 +214,7 @@ async function fetchMergedPRs(since) {
   
   const data = await graphqlQuery(query, {
     owner: REPO_OWNER,
-    name: REPO_NAME,
-    since: `${since}T00:00:00Z`
+    name: REPO_NAME
   })
   
   // Filter to only PRs merged on or after the since date
