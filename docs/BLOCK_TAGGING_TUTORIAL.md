@@ -274,12 +274,14 @@ blocks:
 ### Submit Changes
 
 ```bash
+git switch -c tutorial/block-tags
 git add weaves/tutorial/my-first-strand.md
 git commit -m "docs(tutorial): add block tags to my-first-strand"
-git push
+git push -u origin tutorial/block-tags
+gh pr create --base master --fill
 ```
 
-Or submit a PR if you forked the repo.
+master is protected, so a change reaches it through a pull request whose Test Suite and rename-guard checks pass. From a fork, push the branch to your fork and open the pull request from there.
 
 ## Part 7: Automation with GitHub Actions
 

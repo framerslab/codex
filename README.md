@@ -104,7 +104,7 @@ graph TD
 ```
 
 **Workflows**:
-- `.github/workflows/auto-index.yml` - Builds index on every commit (static NLP)
+- `.github/workflows/auto-index.yml` - Builds the index (static NLP) when a push changes `weaves/`, `scripts/` or `schema/`, and on master opens or updates one PR from `ci/codex-index` with it, opened with `FRAMERS_BUMP_TOKEN` so its checks run; master is protected, so nothing pushes the index there
 - `.github/workflows/ai-enhance-pr.yml` - Optional AI analysis on PRs
 - `.github/workflows/auto-merge-weavers.yml` - Approves trusted contributors' PRs that pass validation and labels them `landing`
 - `.github/workflows/auto-categorize-inbox.yml` - Moves inbox files to their suggested place in a PR, labelled `landing` at 70 percent confidence or more
@@ -112,7 +112,7 @@ graph TD
 - `.github/workflows/changelog.yml` - Daily changelog generation (git + GitHub API)
 - `.github/workflows/test.yml` - Runs validation suite (no API keys)
 - `.github/workflows/bump-framers-deps.yml` - Weekly pull request that moves the `@framers/*` dependencies to their newest npm versions, opened with `FRAMERS_BUMP_TOKEN` so its checks run
-- `.github/workflows/landing-follows-the-bump-checks.yml` - Labels the weekly bump's PR `landing` once its Test Suite and rename-guard pass on its head, and keeps the label off a head they have not passed
+- `.github/workflows/landing-follows-the-bump-checks.yml` - Labels the weekly bump's PR and the index's PR `landing` once its Test Suite and rename-guard pass on its head, and keeps the label off a head they have not passed
 
 ### Manual Overrides & Controls
 
@@ -397,7 +397,7 @@ AI_PROVIDER=disabled
 ### Secret Usage
 
 - **GH_PAT**: Lets the Trusted Weavers workflow approve validated PRs and other workflows trigger across repositories; no workflow merges a PR
-- **FRAMERS_BUMP_TOKEN**: A framerslab organization secret shared with this repository, not a repository secret. The weekly bump pushes its branch and opens its PR with it, because a PR a workflow opens with `GITHUB_TOKEN` gets no CI job; without it the bump stops at its first step
+- **FRAMERS_BUMP_TOKEN**: A framerslab organization secret shared with this repository, not a repository secret. The weekly bump and the index publish push their branches and open their PRs with it, because a PR a workflow opens with `GITHUB_TOKEN` gets no CI job; without it each stops at its first step
 - **OPENAI_API_KEY**: Optional, enables AI quality analysis (cost varies by content length: ~$0.01-0.20/PR for 100-10K words)
 - **AI_PROVIDER**: Set to `disabled` to skip AI enhancement
 

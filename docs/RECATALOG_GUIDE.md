@@ -112,11 +112,13 @@ npm run index -- --validate
 - `codex-index.json` - Full searchable index
 - `codex-report.json` - Analytics and validation report
 
-**To Deploy:**
+**To Deploy:** master is protected, so the files reach it through a pull request whose Test Suite and rename-guard checks pass:
 ```bash
+git switch -c chore/manual-re-index
 git add codex-index.json codex-report.json
 git commit -m "chore: manual re-index"
-git push
+git push -u origin chore/manual-re-index
+gh pr create --base master --fill
 ```
 
 ---
