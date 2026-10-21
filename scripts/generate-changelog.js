@@ -173,8 +173,9 @@ function broughtBy(first) {
  * @param {string} outputDir - Output directory
  */
 function appendDay(date, commits, outputDir) {
-  // Group by type
-  const byType = {}
+  // Group by type. A type is any word, so the groups live on an object with no prototype: on a plain one, a type named
+  // constructor, toString or __proto__ would find a property every object has instead of its own group
+  const byType = Object.create(null)
   for (const commit of commits) {
     if (!byType[commit.type]) {
       byType[commit.type] = []
