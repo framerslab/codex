@@ -413,10 +413,12 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
       git(clone, 'push', '-q', 'origin', 'HEAD:refs/heads/master');
       return git(clone, 'rev-parse', 'HEAD');
     };
+    // A force-push that moves master to the given commit.
+    const moveMaster = (sha) => git(clone, 'push', '-q', '--force', 'origin', `${sha}:refs/heads/master`);
     // A force-push that replaces master with a commit unrelated to its history; returns that commit's sha.
     const rewrite = (message) => {
       const commit = git(clone, 'commit-tree', git(clone, 'write-tree'), '-m', message);
-      git(clone, 'push', '-q', '--force', 'origin', `${commit}:refs/heads/master`);
+      moveMaster(commit);
       return commit;
     };
     // A depth-1 clone of master as it stands now, the checkout actions/checkout makes by default.
@@ -425,7 +427,8 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
       git(dir, 'clone', '-q', '--depth', '1', '--branch', 'master', `file://${remote}`, into);
       return into;
     };
-    return { dir, remote, master, writeDir, publish, branch, refs, masterHead, advance, rewrite, shallowClone };
+    const helpers = { writeDir, publish, branch, refs, masterHead, advance, moveMaster, rewrite, shallowClone };
+    return { dir, remote, master, ...helpers };
   };
 
   it('starts the branch with one parentless commit that holds exactly the files', () => {
@@ -595,6 +598,25 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
     expect(b.message).toBe(`badges for ${replacement}`);
     expect(b.read('tests.json')).toBe('{"message":"5 passed"}');
     expect(repo.masterHead()).toBe(replacement);
+  });
+
+  it('replaces the badges of a commit master no longer holds, after a force-push moved master back', () => {
+    // master goes from first to later, whose run publishes, and a force-push then moves master back to first. The run
+    // of first must replace the badges of later, a commit master has dropped, though first is an ancestor of it.
+    const repo = setup();
+    const first = repo.master;
+    const later = repo.advance('a later merge');
+    repo.writeDir({ 'tests.json': '{"message":"5 passed"}\n' });
+    expect(repo.publish({ BADGES_SOURCE_SHA: later }).status).toBe(0);
+
+    repo.moveMaster(first);
+    repo.writeDir({ 'tests.json': '{"message":"4 passed"}\n' });
+    const res = repo.publish({ BADGES_SOURCE_SHA: first });
+    expect(res.status, res.stderr).toBe(0);
+    const b = repo.branch();
+    expect(b.message).toBe(`badges for ${first}`);
+    expect(b.read('tests.json')).toBe('{"message":"4 passed"}');
+    expect(repo.masterHead()).toBe(first);
   });
 
   it("replaces an earlier commit's badges with a later commit's", () => {
