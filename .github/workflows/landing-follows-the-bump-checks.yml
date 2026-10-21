@@ -51,7 +51,7 @@ jobs:
 
     steps:
       - name: Label the head both guards passed, and keep the label off a head they have not
-        uses: actions/github-script@v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |

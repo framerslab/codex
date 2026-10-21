@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+#
+# CodeRabbit's settings for this repository (https://docs.coderabbit.ai/reference/configuration); every setting not named
+# here keeps CodeRabbit's default. tests/coderabbit-config.test.js reads this file beside .github/workflows/auto-index.yml.
+reviews:
+  # The search index files the index publish builds and commits (auto-index.yml, its add-paths): generated, so no review
+  # reads them, in the index pull request or in any other. A pattern that starts with ! excludes.
+  path_filters:
+    - '!codex-index.json'
+    - '!codex-search.json'
+    - '!codex-report.json'
+    - '!codex-blocks.json'
+  auto_review:
+    # The title auto-index.yml gives the pull request it opens from ci/codex-index, which carries the index files alone.
+    # CodeRabbit skips a pull request whose title holds one of these, in any case, and a pull request its automatic review
+    # controls exclude draws nothing from the review allowance (https://docs.coderabbit.ai/management/rate-limits).
+    ignore_title_keywords:
+      - 'ci(codex): update search index'

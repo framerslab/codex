@@ -55,7 +55,7 @@ jobs:
       
       - name: Post processing started status
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             await github.rest.repos.createCommitStatus({
@@ -156,7 +156,7 @@ jobs:
         run: npm ci && npm install --no-save @anthropic-ai/sdk openai
       
       - name: Post AI analysis started
-        uses: actions/github-script@v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             await github.rest.issues.createComment({
@@ -273,7 +273,7 @@ jobs:
           fi
       
       - name: Trigger frame.dev deployment
-        uses: peter-evans/repository-dispatch@v3
+        uses: peter-evans/repository-dispatch@28959ce8df70de7be546dd1250a005dd32156697 # v4.0.1
         with:
           token: ${{ secrets.GH_PAT }}
           repository: framersai/frame.dev
@@ -288,7 +288,7 @@ jobs:
     
     steps:
       - name: Update commit status
-        uses: actions/github-script@v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const validateResult = '${{ needs.validate.result }}';

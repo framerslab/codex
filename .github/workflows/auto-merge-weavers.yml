@@ -41,7 +41,7 @@ jobs:
     
     steps:
       - name: Take the landing label off a head the checks have not passed yet
-        uses: actions/github-script@v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -183,7 +183,7 @@ jobs:
     
     steps:
       - name: Approve PR
-        uses: actions/github-script@v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           github-token: ${{ secrets.GH_PAT }}
           script: |
@@ -211,7 +211,7 @@ jobs:
             });
       
       - name: Label for landing and name the guards that passed
-        uses: actions/github-script@v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -318,7 +318,7 @@ jobs:
     
     steps:
       - name: Take the landing label off and say in the guards comment that the checks failed
-        uses: actions/github-script@v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -361,7 +361,7 @@ jobs:
     
     steps:
       - name: Post welcome comment
-        uses: actions/github-script@v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
