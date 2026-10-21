@@ -78,10 +78,16 @@ jobs:
     needs: build-index
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
-    # One run at a time, so two runs never push the pull request branch at once; GitHub keeps the newest waiting run.
+    # One run at a time, so two runs never push the pull request branch at once. GitHub keeps one waiting job by default,
+    # and a job that begins waiting replaces it whichever commit is newer, so an older commit's build that finished later
+    # would cancel the newer commit's publish. queue: max keeps every waiting job, in the order each began to wait, and
+    # each decides when its turn comes (the ordering step below), so the run of the newest change publishes
+    # ("Control the concurrency of workflows and jobs":
+    # https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency).
     concurrency:
       group: codex-index-pull-request
       cancel-in-progress: false
+      queue: max
     # FRAMERS_BUMP_TOKEN is a personal token that reaches past this repository, and a step can change what a later step of
     # its job runs, so this job installs and runs none of the repository's code, and its third-party action is pinned to a
     # commit, with the release that commit carries named beside it.
