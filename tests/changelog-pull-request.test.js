@@ -522,6 +522,20 @@ describe('the git changelog records each commit once, on the day it reached mast
     });
   });
 
+  // A conventional commit's type is any word, so it can be the name of a property every object has.
+  it('groups a day of commits by any type, even one named like a property every object has', () => {
+    withRepository(({ commit, run }) => {
+      const types = ['constructor', 'toString', '__proto__', 'fix'];
+      const shas = types.map((type) => commit(`${type}: a commit of type ${type}`, utc('2026-10-13', '10:00:00')));
+      const { status, stdout, stderr, lines } = run(['--since', '2026-10-13', '--until', '2026-10-14']);
+      expect(status, stdout + stderr).toBe(0);
+      const [day] = lines['2026-10.jsonl'];
+      expect(day.totalCommits).toBe(4);
+      expect(Object.keys(day.byType).sort()).toEqual([...types].sort());
+      types.forEach((type, at) => expect(day.byType[type].map((each) => each.fullSha), type).toEqual([shas[at]]));
+    });
+  });
+
   it('fails, recording nothing, when git cannot read the history', () => {
     withRepository(({ root, run }) => {
       const { status, lines } = run(['--since', '2026-10-13', '--until', '2026-10-16'], { cwd: root });
