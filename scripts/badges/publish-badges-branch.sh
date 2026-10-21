@@ -4,7 +4,8 @@
 # fails. Only the badges ref is pushed; master is never written. A run whose commit is older than the one the branch's
 # files were counted from, while master still holds that one, pushes nothing, and so does a run of that same commit
 # with the same files, and a run of a commit master no longer holds; the same files from a later commit are pushed
-# again, so that the head names that commit.
+# again, so that the head names that commit. It reads master once, before it pushes: a force-push to master after
+# that read, like any force-push that starts no run, leaves the badges to the next Test Suite run on master.
 #
 #   bash scripts/badges/publish-badges-branch.sh <dir> [<remote>] [<branch>]
 #
