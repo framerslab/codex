@@ -140,9 +140,14 @@ describe('the index publish job opens a pull request into master, and pushes not
     expect(tracked).toEqual(archived);
   });
 
-  it('publishes one run at a time and never cancels one that started, so two runs never push the branch at once', () => {
+  // GitHub keeps one waiting job in a concurrency group by default, and a job that begins waiting replaces it, whichever
+  // commit is newer: an older commit's build that finishes later would cancel the newer commit's waiting publish, then
+  // skip, and nothing would publish the newer index. queue: max keeps every waiting job, in the order each began to wait
+  // ("Control the concurrency of workflows and jobs", https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency).
+  it('publishes one run at a time, never cancels one that started and keeps every waiting one', () => {
     expect(publish.concurrency?.group).toBeTruthy();
     expect(publish.concurrency?.['cancel-in-progress']).toBe(false);
+    expect(publish.concurrency?.queue).toBe('max');
   });
 });
 
@@ -161,11 +166,11 @@ describe("a run leaves the index pull request to the run of a later change to th
     expect(at(download)).toBeLessThan(at(create()));
   });
 
-  // origin holds master and serves a commit master reaches by its id, as GitHub does. The run built its commit; then
+  // origin holds master and serves a commit master reaches by its id, as GitHub does. The run built the first commit; then
   // master takes the change (or none), and the publish job's checkout holds master's head at depth 1, as actions/checkout
-  // leaves it with ref: master. The step runs in that checkout with the run's commit as GITHUB_SHA, or with runSha in its
-  // place.
-  const runOrder = (change, { runSha = null } = {}) => {
+  // leaves it with ref: master. decide runs the step in that checkout with a run's commit as GITHUB_SHA. change(land) may
+  // return the commits it landed, by name; land returns the commit it pushed.
+  const withMaster = (change, body) => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'index-order-'));
     const git = (cwd, ...args) => {
       const res = spawnSync(
@@ -185,6 +190,7 @@ describe("a run leaves the index pull request to the run of a later change to th
       git(path.join(root, 'work'), 'add', '--all');
       git(path.join(root, 'work'), 'commit', '--quiet', '-m', message);
       git(path.join(root, 'work'), 'push', '--quiet', 'origin', 'master');
+      return git(path.join(root, 'work'), 'rev-parse', 'HEAD');
     };
     try {
       const origin = path.join(root, 'origin.git');
@@ -194,7 +200,7 @@ describe("a run leaves the index pull request to the run of a later change to th
       git(path.join(root, 'work'), 'init', '--quiet');
       git(path.join(root, 'work'), 'symbolic-ref', 'HEAD', 'refs/heads/master');
       git(path.join(root, 'work'), 'remote', 'add', 'origin', `file://${origin}`);
-      land('the run commit', {
+      const first = land('the run commit', {
         'weaves/frame/strand.md': 'a strand\n',
         'scripts/auto-index.js': 'an indexer\n',
         'schema/strand.schema.yaml': 'a schema\n',
@@ -202,21 +208,27 @@ describe("a run leaves the index pull request to the run of a later change to th
         'README.md': 'a readme\n',
         'codex-index.json': '[]\n',
       });
-      const sha = git(path.join(root, 'work'), 'rev-parse', 'HEAD');
-      change(land);
+      const commits = change(land) ?? {};
       git(root, 'clone', '--quiet', '--depth=1', '--branch', 'master', `file://${origin}`, 'checkout');
-      const output = path.join(root, 'output');
-      fs.writeFileSync(output, '');
-      const res = spawnSync('bash', ['-e', '-c', order().run], {
-        cwd: path.join(root, 'checkout'),
-        env: { PATH: process.env.PATH, HOME: root, GITHUB_SHA: runSha ?? sha, GITHUB_OUTPUT: output },
-        encoding: 'utf8',
-      });
-      return { status: res.status, output: fs.readFileSync(output, 'utf8'), stdout: res.stdout, stderr: res.stderr };
+      let runs = 0;
+      const decide = (sha) => {
+        runs += 1;
+        const output = path.join(root, `output-${runs}`);
+        fs.writeFileSync(output, '');
+        const res = spawnSync('bash', ['-e', '-c', order().run], {
+          cwd: path.join(root, 'checkout'),
+          env: { PATH: process.env.PATH, HOME: root, GITHUB_SHA: sha, GITHUB_OUTPUT: output },
+          encoding: 'utf8',
+        });
+        return { status: res.status, output: fs.readFileSync(output, 'utf8'), stdout: res.stdout, stderr: res.stderr };
+      };
+      return body({ decide, first, commits });
     } finally {
       fs.rmSync(root, { recursive: true, force: true });
     }
   };
+  // The step for the first commit's run, or for runSha in its place.
+  const runOrder = (change, { runSha = null } = {}) => withMaster(change, ({ decide, first }) => decide(runSha ?? first));
 
   it.each([
     ['a strand under weaves/', 'weaves/frame/strand.md'],
@@ -254,5 +266,29 @@ describe("a run leaves the index pull request to the run of a later change to th
     const { status, output } = runOrder(() => {}, { runSha: 'f'.repeat(40) });
     expect(status).not.toBe(0);
     expect(output).not.toMatch(/later=/);
+  });
+
+  // Every waiting run is kept (queue: max) and decides when its turn comes, in whatever order the runs began to wait:
+  // only the run of the commit whose inputs master's head holds publishes.
+  it.each([
+    ['oldest first', ['first', 'older', 'newer']],
+    ['newest first', ['newer', 'older', 'first']],
+    ['newest between the two older ones', ['older', 'newer', 'first']],
+  ])("publishes the newest change's index alone when the waiting runs take their turns %s", (_what, turns) => {
+    withMaster(
+      (land) => ({
+        older: land('an older change', { 'weaves/frame/strand.md': 'older\n' }),
+        newer: land('a newer change', { 'weaves/frame/strand.md': 'newer\n' }),
+      }),
+      ({ decide, first, commits }) => {
+        const shas = { first, ...commits };
+        const publishing = turns.filter((name) => {
+          const { status, output, stdout, stderr } = decide(shas[name]);
+          expect(status, `${name}: ${stdout}${stderr}`).toBe(0);
+          return output.includes('later=false');
+        });
+        expect(publishing).toEqual(['newer']);
+      }
+    );
   });
 });
