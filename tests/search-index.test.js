@@ -98,15 +98,18 @@ describe('codex-search.json: a search finds a document by any term of its text',
     expect(search.docs[0].docLength).toBe(counted)
   })
 
-  it('uses the index excerpt for a listed document it cannot read under the root, and says which', async () => {
+  it('uses the index excerpt for a listed document whose file is missing or outside the root, through a link too, and says which', async () => {
     const parent = scratchDir({ 'outside.md': 'nebula\n' })
     const root = path.join(parent, 'root')
-    fs.mkdirSync(root)
+    fs.mkdirSync(path.join(root, 'docs'), { recursive: true })
+    // A link under the root whose target lies outside it: the indexer lists it by the link's name.
+    fs.symlinkSync(path.join(parent, 'outside.md'), path.join(root, 'docs', 'leak.md'))
     fs.writeFileSync(
       path.join(root, 'codex-index.json'),
       JSON.stringify([
         { path: 'docs/gone.md', name: 'gone.md', metadata: { title: 'Gone' }, content: 'quasar' },
         { path: '../outside.md', name: 'outside.md', metadata: { title: 'Outside' }, content: 'pulsar' },
+        { path: 'docs/leak.md', name: 'leak.md', metadata: { title: 'Leak' }, content: 'comet' },
       ]),
     )
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
@@ -115,11 +118,13 @@ describe('codex-search.json: a search finds a document by any term of its text',
       const search = readSearch(root)
       expect(found(search, 'quasar')).toEqual(['docs/gone.md'])
       expect(found(search, 'pulsar')).toEqual(['../outside.md'])
+      expect(found(search, 'comet')).toEqual(['docs/leak.md'])
       expect(found(search, 'nebula')).toEqual([])
       const lines = warn.mock.calls.map((call) => call.join(' '))
-      expect(lines).toHaveLength(2)
+      expect(lines).toHaveLength(3)
       expect(lines[0]).toContain('docs/gone.md')
       expect(lines[1]).toContain('../outside.md')
+      expect(lines[2]).toContain('docs/leak.md')
     } finally {
       warn.mockRestore()
     }
