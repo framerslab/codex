@@ -413,13 +413,19 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
       git(clone, 'push', '-q', 'origin', 'HEAD:refs/heads/master');
       return git(clone, 'rev-parse', 'HEAD');
     };
+    // A force-push that replaces master with a commit unrelated to its history; returns that commit's sha.
+    const rewrite = (message) => {
+      const commit = git(clone, 'commit-tree', git(clone, 'write-tree'), '-m', message);
+      git(clone, 'push', '-q', '--force', 'origin', `${commit}:refs/heads/master`);
+      return commit;
+    };
     // A depth-1 clone of master as it stands now, the checkout actions/checkout makes by default.
     const shallowClone = () => {
       const into = path.join(dir, 'shallow');
       git(dir, 'clone', '-q', '--depth', '1', '--branch', 'master', `file://${remote}`, into);
       return into;
     };
-    return { dir, remote, master, writeDir, publish, branch, refs, masterHead, advance, shallowClone };
+    return { dir, remote, master, writeDir, publish, branch, refs, masterHead, advance, rewrite, shallowClone };
   };
 
   it('starts the branch with one parentless commit that holds exactly the files', () => {
@@ -568,6 +574,27 @@ describe('publish-badges-branch.sh replaces the badges branch and nothing else',
     expect(b.message).toBe(`badges for ${last}`);
     expect(b.read('tests.json')).toBe('{"message":"4 passed"}');
     expect(b.parents).toEqual([]);
+  });
+
+  it('pushes nothing for a commit master no longer holds, after a force-push replaced its history', () => {
+    // A force-push moves master from first to an unrelated commit, whose run publishes first. The delayed run of first,
+    // a commit master has dropped, must leave those figures in place.
+    const repo = setup();
+    const first = repo.master;
+    const replacement = repo.rewrite('master replaced by a force-push');
+    repo.writeDir({ 'tests.json': '{"message":"5 passed"}\n' });
+    expect(repo.publish({ BADGES_SOURCE_SHA: replacement }).status).toBe(0);
+    const head = repo.branch().head;
+
+    repo.writeDir({ 'tests.json': '{"message":"4 passed"}\n' });
+    const res = repo.publish({ BADGES_SOURCE_SHA: first });
+    expect(res.status, res.stderr).toBe(0);
+    expect(res.stdout).toContain('nothing to push');
+    const b = repo.branch();
+    expect(b.head).toBe(head);
+    expect(b.message).toBe(`badges for ${replacement}`);
+    expect(b.read('tests.json')).toBe('{"message":"5 passed"}');
+    expect(repo.masterHead()).toBe(replacement);
   });
 
   it("replaces an earlier commit's badges with a later commit's", () => {
