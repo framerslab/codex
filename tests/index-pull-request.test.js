@@ -106,6 +106,13 @@ describe('the index publish job opens a pull request into master, and pushes not
     expect(publish.if).toBe("github.ref == 'refs/heads/master'");
   });
 
+  // create-pull-request starts the pull request from the branch checked out. From the run's own commit, the pull request
+  // would carry master's later changes as a base older than master's, and would conflict with an earlier index pull
+  // request master took meanwhile.
+  it("checks out master's head, whichever commit the run built, so the pull request starts from it", () => {
+    expect(stepUsing(publish.steps, 'actions/checkout').with?.ref).toBe('master');
+  });
+
   // GitHub skips the push and pull_request workflows of a commit whose message carries one of these, so a pull request
   // whose head commit carried one would get no Test Suite or rename-guard, and its required checks would never report.
   it('commits with a message that skips no workflow, so the pull request gets its required checks', () => {
@@ -154,9 +161,11 @@ describe("a run leaves the index pull request to the run of a later change to th
     expect(at(download)).toBeLessThan(at(create()));
   });
 
-  // origin holds master. The run's checkout holds the run's commit at depth 1, as actions/checkout leaves it; then master
-  // takes the change (or none), and the step runs in the checkout with the run's commit as GITHUB_SHA.
-  const runOrder = (change) => {
+  // origin holds master and serves a commit master reaches by its id, as GitHub does. The run built its commit; then
+  // master takes the change (or none), and the publish job's checkout holds master's head at depth 1, as actions/checkout
+  // leaves it with ref: master. The step runs in that checkout with the run's commit as GITHUB_SHA, or with runSha in its
+  // place.
+  const runOrder = (change, { runSha = null } = {}) => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'index-order-'));
     const git = (cwd, ...args) => {
       const res = spawnSync(
@@ -180,6 +189,7 @@ describe("a run leaves the index pull request to the run of a later change to th
     try {
       const origin = path.join(root, 'origin.git');
       git(root, 'init', '--quiet', '--bare', origin);
+      git(origin, 'config', 'uploadpack.allowReachableSHA1InWant', 'true');
       fs.mkdirSync(path.join(root, 'work'));
       git(path.join(root, 'work'), 'init', '--quiet');
       git(path.join(root, 'work'), 'symbolic-ref', 'HEAD', 'refs/heads/master');
@@ -193,17 +203,16 @@ describe("a run leaves the index pull request to the run of a later change to th
         'codex-index.json': '[]\n',
       });
       const sha = git(path.join(root, 'work'), 'rev-parse', 'HEAD');
-      git(root, 'clone', '--quiet', '--depth=1', '--branch', 'master', `file://${origin}`, 'checkout');
       change(land);
+      git(root, 'clone', '--quiet', '--depth=1', '--branch', 'master', `file://${origin}`, 'checkout');
       const output = path.join(root, 'output');
       fs.writeFileSync(output, '');
       const res = spawnSync('bash', ['-e', '-c', order().run], {
         cwd: path.join(root, 'checkout'),
-        env: { PATH: process.env.PATH, HOME: root, GITHUB_SHA: sha, GITHUB_OUTPUT: output },
+        env: { PATH: process.env.PATH, HOME: root, GITHUB_SHA: runSha ?? sha, GITHUB_OUTPUT: output },
         encoding: 'utf8',
       });
-      expect(res.status, res.stdout + res.stderr).toBe(0);
-      return { output: fs.readFileSync(output, 'utf8'), stdout: res.stdout };
+      return { status: res.status, output: fs.readFileSync(output, 'utf8'), stdout: res.stdout, stderr: res.stderr };
     } finally {
       fs.rmSync(root, { recursive: true, force: true });
     }
@@ -215,7 +224,8 @@ describe("a run leaves the index pull request to the run of a later change to th
     ['a schema under schema/', 'schema/strand.schema.yaml'],
     ['this workflow', '.github/workflows/auto-index.yml'],
   ])("leaves the pull request when master changed %s after the run's commit", (_what, file) => {
-    const { output, stdout } = runOrder((land) => land('a later change', { [file]: 'changed\n' }));
+    const { status, output, stdout, stderr } = runOrder((land) => land('a later change', { [file]: 'changed\n' }));
+    expect(status, stdout + stderr).toBe(0);
     expect(output).toContain('later=true');
     expect(output).not.toContain('later=false');
     expect(stdout).toMatch(/^::notice::/m);
@@ -233,8 +243,16 @@ describe("a run leaves the index pull request to the run of a later change to th
       },
     ],
   ])('publishes when %s', (_what, change) => {
-    const { output } = runOrder(change);
+    const { status, output, stdout, stderr } = runOrder(change);
+    expect(status, stdout + stderr).toBe(0);
     expect(output).toContain('later=false');
     expect(output).not.toContain('later=true');
+  });
+
+  // A comparison that cannot be made decides nothing: the step fails, and neither the download nor the pull request runs.
+  it('fails, deciding nothing, when it cannot read the run commit', () => {
+    const { status, output } = runOrder(() => {}, { runSha: 'f'.repeat(40) });
+    expect(status).not.toBe(0);
+    expect(output).not.toMatch(/later=/);
   });
 });
