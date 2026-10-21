@@ -321,7 +321,9 @@ jobs:
   # the badges branch with them: one commit with no parent, pushed with a lease on the head it read
   # (scripts/badges/publish-badges-branch.sh). It never pushes to master. The README reads the files through jsDelivr,
   # because shields.io refuses any address whose host ends in github.com. It runs on master only, after the whole suite
-  # passed, and one run at a time, so two runs never race for the lease.
+  # passed, and one run at a time, so two runs never race for the lease. One at a time is in no set order, so a run of
+  # an earlier commit can come after a later commit's run: the publisher reads master's history and leaves the later
+  # commit's badges in place.
   update-badges:
     name: Update Badges
     runs-on: ubuntu-latest
@@ -337,6 +339,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          # The publisher reads master's history to tell whether the branch already holds a later commit's badges.
+          fetch-depth: 0
 
       - name: Download the badge files
         uses: actions/download-artifact@v4

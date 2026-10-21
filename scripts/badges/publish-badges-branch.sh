@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # Replaces the badges branch with the files of <dir>: one commit with no parent that holds those files alone, pushed
 # with a lease on the head this run read. A writer that moved the branch after that read keeps its head, and this run
-# fails. Only the badges ref is pushed; master is never written. Files equal to the branch's push nothing.
+# fails. Only the badges ref is pushed; master is never written. Files equal to the branch's push nothing, and so does
+# a run whose commit is older than the one the branch's files were counted from.
 #
 #   bash scripts/badges/publish-badges-branch.sh <dir> [<remote>] [<branch>]
 #
-# Run it inside a clone that can push to <remote> (default origin; branch default badges). The commit message names
+# Run it inside a clone that can push to <remote> (default origin; branch default badges) and holds master's history
+# (actions/checkout with fetch-depth: 0); a shallow clone fetches the commit the branch names. The commit message names
 # the commit the files were counted from: BADGES_SOURCE_SHA, or the clone's HEAD. The Test Suite workflow's Update
 # Badges job runs it on pushes to master, with the files its Unit Tests job wrote (scripts/badges/write-badge-json.js).
 set -euo pipefail
@@ -43,6 +45,27 @@ case "$status" in
     if [ "$(git rev-parse 'FETCH_HEAD^{tree}')" = "$tree" ]; then
       echo "$REF at $expected already holds these files; nothing to push."
       exit 0
+    fi
+    # Update Badges runs one job at a time but in no set order, so a run of an earlier master commit can reach the
+    # branch after a later commit's run has published, and its lease on that head holds. The head's message names the
+    # commit its files were counted from; when that commit descends from this run's, the branch keeps the later badges.
+    published=$(git log -1 --format=%s "$expected" | sed -n 's/^badges for \([0-9a-f]\{40\}\)$/\1/p')
+    if [ -n "$published" ] && [ "$published" != "$SOURCE" ]; then
+      git cat-file -e "$published^{commit}" 2> /dev/null \
+        || git fetch --quiet --no-tags "$REMOTE" "$published" 2> /dev/null \
+        || true
+      order=0
+      git merge-base --is-ancestor "$SOURCE" "$published" 2> /dev/null || order=$?
+      case "$order" in
+        0)
+          echo "$REF at $expected holds the badges of $published, a later commit than $SOURCE; nothing to push."
+          exit 0
+          ;;
+        1) ;;
+        *)
+          echo "::warning::$REF holds the badges of $published, which this clone cannot order against $SOURCE (git merge-base exited $order); this run's files replace them." >&2
+          ;;
+      esac
     fi
     ;;
   2)
