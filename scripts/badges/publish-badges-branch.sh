@@ -23,7 +23,8 @@ REF="refs/heads/${3:-badges}"
 SOURCE="${BADGES_SOURCE_SHA:-$(git rev-parse HEAD)}"
 MASTER="refs/heads/${BADGES_SOURCE_BRANCH:-master}"
 # The workflow run's number (github.run_number), which only grows and stays the same on a re-run. It orders two runs
-# whose commits neither descends from the other.
+# whose commits neither descends from the other, when the branch's head names its run too; when either number is
+# missing, this run's files replace the head's.
 SOURCE_RUN="${BADGES_SOURCE_RUN:-}"
 case "$SOURCE_RUN" in
   *[!0-9]*)
