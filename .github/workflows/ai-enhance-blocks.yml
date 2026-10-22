@@ -1,7 +1,7 @@
 name: AI Enhance Block Tags
 
 # Runs scripts/ai-enhance-blocks.js, which calls a paid model to refine the block tags and summaries in the threads under
-# weaves/, by hand on master or when a pull request from this repository's own branch is labelled ai-enhance.
+# weaves/, by hand on master or when a pull request into master from this repository's own branch is labelled ai-enhance.
 #
 # The enhance job installs and runs the repository's code with the model keys and a read-only GITHUB_TOKEN, keeps no token
 # in its checkout, and archives the threads it changed as a patch. It pushes nothing:
@@ -45,9 +45,10 @@ on:
         default: false
         type: boolean
 
-  # Trigger on PR with enhancement label
+  # Trigger on a PR into master with the enhancement label
   pull_request:
     types: [labeled]
+    branches: [master]
 
 # Every push and pull request goes through FRAMERS_BUMP_TOKEN, so each job's own GITHUB_TOKEN only reads.
 permissions:

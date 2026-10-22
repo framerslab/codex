@@ -29,10 +29,10 @@ This will:
 
 **Automatic on Every PR Merge:**
 
-1. GitHub Actions triggers `build-index.yml` on push to `main`
-2. Runs `npm run index -- --validate` (static NLP only)
-3. Generates updated index files
-4. Pushes to `index` branch for consumption
+1. GitHub Actions runs `auto-index.yml` on each push to `master` that changes `weaves/`, `scripts/` or `schema/`
+2. Runs the block processing, `pnpm run index` and `pnpm run build:search` (static NLP only)
+3. Opens or updates one pull request into `master` from `ci/codex-index` with the index files that changed
+4. The index reaches `master`, where frame.dev reads it, when that pull request lands
 5. **No AI/LLM calls** - pure TF-IDF, n-grams, vocabulary matching
 
 **Static NLP Tools Used:**
@@ -53,19 +53,16 @@ This will:
 Add to `framerslab/codex` repository settings:
 
 ```bash
-# Required for the Trusted Weavers workflow (approves validated PRs)
+# The changelog's reads of issues and PRs, and the PRs and issues the inbox categorizer opens
 GH_PAT=ghp_xxxxxxxxxxxxxxxxxxxx  # GitHub Personal Access Token (repo scope)
 
-# AI Enhancement (OPTIONAL - only if you want AI-powered PR analysis)
+# OPTIONAL: the AI block enhancement (on a run someone starts) and the inbox categorizer (each note under weaves/inbox/)
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
-
-# Configuration (optional)
-AI_PROVIDER=disabled  # Set to 'disabled' to skip AI entirely
 ```
 
 ### Secret Configuration
 
-**To enable AI enhancement:**
+**To enable the AI block enhancement** (`ai-enhance-blocks.yml`, by hand or with the `ai-enhance` label on a PR):
 ```bash
 OPENAI_API_KEY=sk-...
 ```
@@ -76,7 +73,7 @@ export AUTO_CATALOG_LAND=true
 # Default: false. The label marks the PR as checked; it lands after its review comments are read.
 ```
 
-**To disable AI enhancement:**
+**To call no model from the scripts you run locally:**
 ```bash
 AI_PROVIDER=disabled
 # Or just don't set OPENAI_API_KEY
@@ -94,7 +91,7 @@ ANTHROPIC_API_KEY=sk-ant-...
 AI_PROVIDER=openai
 ```
 
-**Note:** The indexer and validator work WITHOUT any API keys. AI is only for optional PR enhancement.
+**Note:** The indexer and validator work WITHOUT any API keys. No workflow calls a model on a PR unless someone labels it `ai-enhance`; with a key set, the inbox categorizer calls one for each note added under `weaves/inbox/`, and the AI block enhancement on a run someone starts.
 
 ---
 
@@ -130,17 +127,17 @@ chmod +x scripts/retrigger-full-catalog.sh
 
 ```bash
 # Via GitHub CLI
-gh workflow run build-index.yml --repo framerslab/codex
+gh workflow run auto-index.yml --repo framerslab/codex
 
 # Or via web UI
-# Go to: https://github.com/framerslab/codex/actions/workflows/build-index.yml
+# Go to: https://github.com/framerslab/codex/actions/workflows/auto-index.yml
 # Click "Run workflow" → "Run workflow"
 ```
 
 **What it does:**
-- Runs indexer in CI
-- Pushes directly to `index` branch (no PR)
-- Updates live immediately
+- Runs indexer in CI on master's head, without `--validate`, so it does not stop on validation errors (Methods 1 and 3 do)
+- Opens or updates one pull request into `master` from `ci/codex-index` with the index files that changed
+- The index reaches `master` when that pull request lands
 
 ### Method 3: Local Re-Index
 
@@ -355,16 +352,13 @@ function findBestLoom(uploadedContent) {
 ### Re-Categorization on PR
 
 **Automatic (Static NLP):**
-- Runs on every PR
-- Validates placement
-- Suggests better loom if similarity is low
-- Posts comment: "Consider moving to `weaves/<slug>/better-match/`"
+- The Test Suite's Integration Tests run the validator and the indexer on every PR
+- No workflow comments on placement; a note added under `weaves/inbox/` on master is moved by `auto-categorize-inbox.yml` in a PR of its own
 
-**AI-Powered (Optional):**
-- Only if `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` is set
-- Analyzes semantic meaning (not just keywords)
-- Suggests structural improvements
-- **Only runs if PR author is a Weaver** (for auto-apply)
+**AI-Powered (Optional, On Request):**
+- No workflow calls a model on a PR by itself
+- A maintainer can label a PR from this repository's own branch `ai-enhance`: `ai-enhance-blocks.yml` refines its block tags and summaries with `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` and pushes one commit to it
+- `npm run ai-enhance -- --files "<file>"` analyzes a file's meaning and suggests structural improvements on your machine
 
 ---
 
@@ -389,7 +383,7 @@ function findBestLoom(uploadedContent) {
 
 When user clicks "Submit via GitHub":
 ```
-https://github.com/framerslab/codex/compare/main...user:branch?
+https://github.com/framerslab/codex/compare/master...user:branch?
   quick_pull=1&
   title=Add: [Auto-Generated Title]&
   body=[Pre-filled PR template with metadata]
@@ -642,7 +636,7 @@ node dist/auto-index.js
    // Create branch
    await github.git.createRef({
      ref: `refs/heads/submit/${Date.now()}`,
-     sha: mainSha
+     sha: masterSha
    })
    
   // Add file
@@ -656,25 +650,22 @@ node dist/auto-index.js
    await github.pulls.create({
      title: `Add: ${title}`,
      head: branchName,
-     base: 'main'
+     base: 'master'
    })
    ```
 
-5. **Automated Validation (GitHub Actions):**
+5. **Automated Checks (GitHub Actions):**
    ```yaml
-   - Run schema validation
-   - Run static NLP analysis
-   - Check for duplicates
-   - Verify loom placement
-   - [Optional] Run AI enhancement
+   - Test Suite: unit, vocabulary, cache and integration tests, with schema validation and the indexer
+   - rename-guard
+   - The review bots comment on the PR
    ```
 
-6. **Label for Landing (If Weaver):**
+6. **Label for Landing (After the Review Pass):**
    ```javascript
-   if (isWeaver(author) && validationPassed) {
-     await github.rest.issues.addLabels({ owner, repo, issue_number: pull_number, labels: ['landing'] })
-   }
-   // A maintainer merges once the review comments are read, answered and resolved
+   // A maintainer reads, answers and resolves every review comment, then labels the PR
+   await github.rest.issues.addLabels({ owner, repo, issue_number: pull_number, labels: ['landing'] })
+   // and merges it once Test Suite and rename-guard pass
    ```
 
 7. **Index Rebuild (after the merge):**
@@ -686,9 +677,8 @@ node dist/auto-index.js
    ```
 
 8. **Live on Site:**
-   - New index pushed to `index` branch
-   - frame.dev/codex fetches updated index
-   - Content searchable immediately
+   - `auto-index.yml` opens or updates the pull request from `ci/codex-index` with the new index
+   - Once it lands, the index is on `master`, where frame.dev reads it
 
 **Automated steps: 10-30 seconds** (most of it is GitHub API calls); the merge waits for the review pass.
 
@@ -725,7 +715,7 @@ console.log(indexer.extractKeywords(content))
 
 ```bash
 # View workflow runs
-gh run list --workflow=build-index.yml --limit 10
+gh run list --workflow=auto-index.yml --limit 10
 
 # View specific run
 gh run view <run-id> --log
@@ -739,13 +729,7 @@ gh run view <run-id> --log
 A: No. Static NLP works without any API keys. AI enhancement (OpenAI) is optional.
 
 **Q: How much does AI enhancement cost?**  
-A: Varies by content length:
-   - 100-500 words: ~$0.01-0.03/PR
-   - 500-2K words: ~$0.03-0.08/PR
-   - 2K-10K words: ~$0.08-0.20/PR
-   - 10K-100K words: ~$0.20-2.00/PR
-   
-   Can be disabled with `AI_PROVIDER=disabled`.
+A: Nothing unless someone starts it. The AI block enhancement stops when its spend reaches its `max_cost` input (5.00 US dollars when left out); no workflow calls a model on every PR.
 
 **Q: Can I run everything locally?**  
 A: Yes. `npm run index` works offline. AI enhancement needs API keys.
@@ -756,9 +740,6 @@ A: Edit `scripts/auto-index.js` → `VOCABULARY` object → commit.
 **Q: What if the auto-categorization is wrong?**  
 A: The AI/human reviewer can suggest a different loom in PR comments.
 
-**Q: How do I become a Weaver?**  
-A: Submit 5+ high-quality PRs. Maintainers will add you to `WEAVERS.txt`.
-
 ---
 
 ## Next Steps
@@ -767,8 +748,7 @@ A: Submit 5+ high-quality PRs. Maintainers will add you to `WEAVERS.txt`.
 2. ✅ Run initial catalog: `npm run index -- --validate`
 3. ✅ Test submission UI at frame.dev/codex
 4. ✅ Monitor first few PRs for accuracy
-5. ✅ Add trusted contributors to WEAVERS.txt
-6. ✅ Enable caching (Redis) for production scale
+5. ✅ Enable caching (Redis) for production scale
 
 ---
 

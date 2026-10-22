@@ -160,22 +160,25 @@ The hybrid tagging system supports two complementary approaches:
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                         GitHub Actions Workflow                             │
 │  ─────────────────────────────────────────────────────────                 │
-│  .github/workflows/build-index.yml                                          │
+│  .github/workflows/auto-index.yml                                           │
 │                                                                             │
-│  Triggers: push to main, manual dispatch                                    │
+│  Triggers: a push that changes weaves/, scripts/ or schema/; a dispatch     │
 │                                                                             │
 │  Steps:                                                                     │
 │  1. Checkout repository                                                     │
-│  2. Setup Node.js                                                           │
+│  2. Setup pnpm and Node.js                                                  │
 │  3. Install dependencies                                                    │
-│  4. Process blocks (incremental)                                            │
-│     └── node scripts/block-processor.js --all                              │
+│  4. Process blocks                                                          │
+│     └── node scripts/block-processor.js --all                               │
 │  5. Generate tag suggestions                                                │
-│     └── node lib/block-tagging.js --all                                    │
-│  6. Build indexes                                                           │
-│     └── npm run build:index                                                 │
-│  7. Commit to index branch                                                  │
-│  8. Upload artifacts                                                        │
+│     └── node lib/block-tagging.js --all                                     │
+│  6. Build codex-index.json and codex-search.json                            │
+│     └── pnpm run index; pnpm run build:search                               │
+│  7. Upload artifacts                                                        │
+│  8. On master: open or update the pull request from ci/codex-index          │
+│                                                                             │
+│  It does not run npm run build:index, so codex-blocks.json keeps the        │
+│  build last committed to master                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     │
                                     ▼

@@ -1107,12 +1107,12 @@ blocks:
         entityDensity: 0.31
         semanticNovelty: 0.718
         structuralImportance: 0.5
-  - id: landing-trusted-weavers
+  - id: landing
     line: 109
     endLine: 109
     type: heading
     headingLevel: 3
-    headingText: Landing (Trusted Weavers)
+    headingText: Landing
     tags: []
     suggestedTags:
       - tag: architecture
@@ -1731,13 +1731,13 @@ stats       -- Loom/weave aggregate statistics
 1. **Schema validation**: Required fields, types, enums
 2. **Content quality**: Length, forbidden patterns, duplicates
 3. **Static NLP**: Auto-categorization and tagging
-4. **Optional AI**: GPT-4 quality analysis (if `OPENAI_API_KEY` set)
+4. **Required checks**: Test Suite and rename-guard pass before `master` takes the PR
 
-### Landing (Trusted Weavers)
+### Landing
 
-- Pull requests from users in `.github/WEAVERS.txt` get approved and labelled `landing`
-- Requires 5+ high-quality contributions
-- Validation must pass; a maintainer lands the pull request after its review comments are read
+- Every PR's review comments are read, answered and resolved before it lands
+- A maintainer labels the PR `landing` after that pass; the workflows label their own PRs once their checks or guards pass
+- Nothing merges a PR by itself
 
 ### Full Re-Catalog
 

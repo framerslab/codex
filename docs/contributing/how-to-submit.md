@@ -261,7 +261,7 @@ Every recursive function must have a base case—a condition that stops the recu
 Frame Codex includes several automated systems to help ensure quality:
 
 ### 1. Auto-Indexing
-- Runs on every commit to `main`
+- Runs on every push to `master` that changes `weaves/`, and brings the new index to `master` through a pull request from `ci/codex-index`
 - Extracts keywords using TF-IDF
 - Generates search index
 - Suggests vocabulary additions
@@ -277,44 +277,30 @@ Frame Codex includes several automated systems to help ensure quality:
 - Content quality analysis
 - Duplicate detection
 
-### 4. AI Enhancement (Optional)
-- Analyzes content quality (0-100 score)
-- Suggests missing metadata
-- Recommends structural improvements
-- Can auto-apply safe fixes (with `auto-enhance` label)
+### 4. AI Enhancement (On Request)
+- No workflow calls a model on your pull request by itself
+- After your thread lands, a maintainer can refine its block tags and summaries with a model (`ai-enhance-blocks.yml`), which opens a pull request of its own
 
 ---
 
 ## Review Process
 
-### Standard Review (Non-Weavers)
+### How Your Pull Request Lands
 
-1. **Automated Checks** (instant)
-   - Schema validation
-   - Quality checks
-   - Duplicate detection
-   - NLP analysis
+1. **Automated Checks** (minutes)
+   - Test Suite: unit, vocabulary, cache and integration tests, with schema validation and the indexer
+   - rename-guard
+   - `master` takes a pull request only once both pass
 
-2. **AI Review** (1-2 minutes)
-   - Content analysis
-   - Metadata suggestions
-   - Quality scoring
+2. **AI Review** (minutes)
+   - The review bots on this repository read the changes
    - Posted as PR comments
 
 3. **Human Review** (1-7 days)
    - Maintainer review
    - Community feedback
    - Revisions if needed
-   - Approval and merge
-
-### Fast-Track (Trusted Weavers)
-
-After 5+ high-quality contributions, you can become a **Trusted Weaver**:
-- ✅ Approval and the `landing` label once validation passes
-- ✅ Your PR lands as soon as its review comments are read, answered and resolved
-- ✅ Direct commit access (optional)
-
-To become a Weaver, maintain high quality and request nomination from maintainers.
+   - Once every review comment is read, answered and resolved, a maintainer labels the PR `landing` and merges it
 
 ---
 
@@ -393,7 +379,6 @@ To become a Weaver, maintain high quality and request nomination from maintainer
 2. ✅ Browse existing content for examples
 3. ✅ Start with a small, focused contribution
 4. ✅ Join our Discord for questions
-5. ✅ Work towards becoming a Trusted Weaver!
 
 Thank you for contributing to Frame Codex—the codex of humanity! 🌟
 
