@@ -134,7 +134,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-21T22:37:16.866Z"
+        "lastIndexed": "2026-10-22T08:33:41.490Z"
       }
     },
     "validation": {
@@ -281,7 +281,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-21T22:37:16.893Z"
+        "lastIndexed": "2026-10-22T08:33:41.516Z"
       }
     },
     "validation": {
@@ -425,7 +425,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-21T22:37:16.913Z"
+        "lastIndexed": "2026-10-22T08:33:41.540Z"
       }
     },
     "validation": {
@@ -564,7 +564,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-21T22:37:16.928Z"
+        "lastIndexed": "2026-10-22T08:33:41.555Z"
       }
     },
     "validation": {
@@ -1107,7 +1107,7 @@
             "RAG & Search"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:16.971Z"
+        "lastIndexed": "2026-10-22T08:33:41.598Z"
       }
     },
     "validation": {
@@ -1241,7 +1241,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-21T22:37:16.986Z"
+        "lastIndexed": "2026-10-22T08:33:41.615Z"
       }
     },
     "validation": {
@@ -3991,7 +3991,7 @@
             "- Rich"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:17.174Z"
+        "lastIndexed": "2026-10-22T08:33:41.793Z"
       }
     },
     "validation": {
@@ -5491,7 +5491,7 @@
             "Hierarchy & Vocabulary"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:17.334Z"
+        "lastIndexed": "2026-10-22T08:33:41.901Z"
       }
     },
     "validation": {
@@ -5632,7 +5632,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-21T22:37:17.464Z"
+        "lastIndexed": "2026-10-22T08:33:41.929Z"
       }
     },
     "validation": {
@@ -5775,7 +5775,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-21T22:37:17.530Z"
+        "lastIndexed": "2026-10-22T08:33:41.970Z"
       }
     },
     "validation": {
@@ -6350,7 +6350,7 @@
             "\"lesson"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:17.756Z"
+        "lastIndexed": "2026-10-22T08:33:42.166Z"
       }
     },
     "validation": {
@@ -6388,10 +6388,10 @@
           "react",
           "blocks",
           "block",
+          "index",
           "tagging",
           "source",
           "reasoning",
-          "index",
           "hybrid",
           "explicit",
           "suggestions"
@@ -6400,13 +6400,13 @@
           "react hooks",
           "confidence source",
           "block tagging",
+          "blocks json",
           "inline tags",
           "same tag",
           "source inline",
           "reasoning explicit",
           "explicit inline",
-          "inline hashtag",
-          "hashtag content"
+          "inline hashtag"
         ],
         "subjects": [
           "ai",
@@ -6435,7 +6435,7 @@
           "ci",
           "state-manag",
           "databas",
-          "structur",
+          "search",
           "javascript",
           "shell",
           "yaml",
@@ -6446,29 +6446,30 @@
         "confidence": {
           "ai": 0.0539568345323741,
           "design": 0.08287292817679558,
-          "knowledge": 0.21164021164021163,
+          "knowledge": 0.21693121693121692,
           "media": 0.05223880597014925,
-          "philosophy": 0.057971014492753624,
+          "philosophy": 0.06763285024154589,
           "science": 0.038314176245210725,
           "security": 0.05555555555555555,
-          "technology": 0.14864864864864866,
-          "api-reference": 0.10569105691056911,
+          "technology": 0.15202702702702703,
+          "api-reference": 0.11382113821138211,
           "architecture": 0.10218978102189781,
           "best-practices": 0.12903225806451613,
           "getting-started": 0.11009174311926606,
           "troubleshooting": 0.1111111111111111,
-          "skill:state-management": 0.5576923076923077,
-          "skill:database": 0.5576923076923077,
-          "skill:sql": 0.5576923076923077,
-          "skill:schema": 0.5576923076923077,
-          "skill:function": 0.5576923076923077,
-          "skill:data": 0.5576923076923077,
-          "skill:ci": 0.5576923076923077,
-          "skill:state-manag": 0.5576923076923077,
-          "skill:databas": 0.5576923076923077,
-          "skill:structur": 0.5576923076923077,
-          "skill:hash": 0.5576923076923077,
-          "skill:tl": 0.5576923076923077,
+          "skill:state-management": 0.5625,
+          "skill:database": 0.5625,
+          "skill:sql": 0.5625,
+          "skill:schema": 0.5625,
+          "skill:function": 0.5625,
+          "skill:data": 0.5625,
+          "skill:ci": 0.5625,
+          "skill:state-manag": 0.5625,
+          "skill:databas": 0.5625,
+          "skill:search": 0.5625,
+          "skill:structur": 0.5625,
+          "skill:hash": 0.5625,
+          "skill:tl": 0.5625,
           "skill:react": 0.5803571428571429,
           "skill:react-hooks": 0.5803571428571429,
           "skill:usestate": 0.5803571428571429,
@@ -6502,9 +6503,9 @@
           "skill:version": 0.5789473684210527,
           "skill:control": 0.5789473684210527,
           "skill:commit": 0.5789473684210527,
-          "skill:branch": 0.5789473684210527,
           "skill:merge": 0.5789473684210527,
           "skill:npm": 0.5789473684210527,
+          "skill:pnpm": 0.5789473684210527,
           "skill:as": 0.5789473684210527,
           "skill:code": 0.5789473684210527,
           "skill:web": 0.5789473684210527,
@@ -6535,7 +6536,7 @@
             "Emerald |"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:18.487Z"
+        "lastIndexed": "2026-10-22T08:33:42.511Z"
       }
     },
     "validation": {
@@ -6554,7 +6555,7 @@
       ]
     },
     "content": "# Hybrid Tagging Data Flow\n\nThis document describes the complete data flow for the hybrid block tagging system, which combines **inline hashtags** with **automatic NLP/AI suggestions**.\n\n## Overview\n\nThe hybrid tagging system supports two complementary approaches:\n\n| Approach | Source | Confidence | Color | Description |\n|----------|--------|------------|-------|-------------|\n| **Inline Tags** | `inline` | 1.0 (100%) | Blue | Explicit `#hashtag` written in content |\n| **NLP Tags** | `nlp` | 0.3-0.85 | Cyan | Vocabulary matching, TF-IDF extraction |\n| **LLM Tags** | `llm` | 0.5-0.95 | Violet | AI-suggested with reasoning |\n| **Existing Tags** | `existing` | 0.35-0.75 | Emerald | Propagated from document-level tags |\n| **User Tags** | `user` | 1.0 (100%) | Emerald | Manually confirmed by contributors |\n\n## Pipeline Architecture\n\n```\n┌─────────────────────────────────────────────────────────────────────────────┐\n│                           MARKDOWN SOURCE                                   │\n│  weaves/technology/react-hooks.md                                          │\n│  ─────────────────────────────────────────────────                         │\n│  # React Hooks Guide                                                        │\n│                                                                             │\n│  This section covers useState and useEffect. #react #hooks #frontend       │\n│                                                                             │\n│  ## Custom Hooks                                                            │\n│  Building reusable hooks for state management...                           │\n└─────────────────────────────────────────────────────────────────────────────┘\n                                    │\n                                    ▼\n┌─────────────────────────────────────────────────────────────────────────────┐\n│                         block-processor.js                                  │\n│  ─────────────────────────────────────────────────────────                 │\n│  • Parses markdown into semantic blocks (headings, paragraphs, code, etc.) │\n│  • Calculates worthiness scores for each block                              │\n│  • Writes block metadata to frontmatter YAML                                │\n│                                                                             │\n│  Worthiness Signals:                                                        │\n│  ├── topicShift (20%) - Divergence from previous content                   │\n│  ├── entityDensity (25%) - Named entities, technical terms                 │\n│  ├── semanticNovelty (20%) - Distance from document centroid               │\n│  └── structuralImportance (35%) - Heading level, position                  │\n└─────────────────────────────────────────────────────────────────────────────┘\n                                    │\n                                    ▼\n┌─────────────────────────────────────────────────────────────────────────────┐\n│                          block-tagging.js                                   │\n│  ─────────────────────────────────────────────────────────                 │\n│                                                                             │\n│  PHASE 1: Extract Inline Tags (100% confidence)                            │\n│  ├── Pattern: /#([a-zA-Z][a-zA-Z0-9_/-]*)/g                               │\n│  ├── Skips: #h1-#h6 (markdown heading patterns)                            │\n│  └── Deduplicates: Same tag only appears once per block                    │\n│                                                                             │\n│  PHASE 2: NLP Suggestions (vocabulary matching)                             │\n│  ├── Vocabulary lookup from tags/index.yaml                                 │\n│  ├── TF-IDF keyword extraction                                              │\n│  └── Document tag propagation                                               │\n│                                                                             │\n│  PHASE 3: Merge & Deduplicate                                               │\n│  ├── Inline tags take precedence (confidence 1.0)                          │\n│  └── NLP duplicates filtered if same tag exists as inline                  │\n│                                                                             │\n│  Output: suggestedTags[] with source, confidence, reasoning                 │\n└─────────────────────────────────────────────────────────────────────────────┘\n                                    │\n                                    ▼\n┌─────────────────────────────────────────────────────────────────────────────┐\n│                      (Optional) ai-enhance-blocks.js                        │\n│  ─────────────────────────────────────────────────────────                 │\n│  • Uses OpenAI/Anthropic API for deeper analysis                            │\n│  • Adds chain-of-thought reasoning to suggestions                           │\n│  • Confidence: 0.5-0.95 b",
-    "searchText": "hybrid tagging dataflow hybrid tagging data flow\n\nthis document describes the complete data flow for the hybrid block tagging system, which combines **inline hashtags** with **automatic nlp/ai suggestions** inline hooks tag nlp confidence react blocks block tagging source reasoning index hybrid explicit suggestions react hooks confidence source block tagging inline tags same tag source inline reasoning explicit explicit inline inline hashtag hashtag content"
+    "searchText": "hybrid tagging dataflow hybrid tagging data flow\n\nthis document describes the complete data flow for the hybrid block tagging system, which combines **inline hashtags** with **automatic nlp/ai suggestions** inline hooks tag nlp confidence react blocks block index tagging source reasoning hybrid explicit suggestions react hooks confidence source block tagging blocks json inline tags same tag source inline reasoning explicit explicit inline inline hashtag"
   },
   {
     "path": "docs/openquarry-architecture.md",
@@ -6779,7 +6780,7 @@
             "- **Rich"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:19.357Z"
+        "lastIndexed": "2026-10-22T08:33:42.925Z"
       }
     },
     "validation": {
@@ -15797,7 +15798,7 @@
             "RAG systems"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:20.869Z"
+        "lastIndexed": "2026-10-22T08:33:44.164Z"
       }
     },
     "validation": {
@@ -18543,7 +18544,7 @@
             "Producer & Consumer"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:22.315Z"
+        "lastIndexed": "2026-10-22T08:33:45.923Z"
       }
     },
     "validation": {
@@ -23241,7 +23242,7 @@
             "s1 & s2"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:28.470Z"
+        "lastIndexed": "2026-10-22T08:33:52.573Z"
       }
     },
     "validation": {
@@ -29504,7 +29505,7 @@
             "Intersection & Union"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:34.522Z"
+        "lastIndexed": "2026-10-22T08:33:58.718Z"
       }
     },
     "validation": {
@@ -29595,7 +29596,7 @@
             "signals": {
               "topicShift": 0.5,
               "entityDensity": 0.8,
-              "semanticNovelty": 0.693,
+              "semanticNovelty": 0.697,
               "structuralImportance": 1
             }
           }
@@ -29633,11 +29634,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.453,
+            "score": 0.451,
             "signals": {
               "topicShift": 0.757,
               "entityDensity": 0.167,
-              "semanticNovelty": 0.59,
+              "semanticNovelty": 0.58,
               "structuralImportance": 0.405
             }
           }
@@ -29703,11 +29704,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.808,
+            "score": 0.809,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.75,
-              "semanticNovelty": 0.879,
+              "semanticNovelty": 0.881,
               "structuralImportance": 0.7
             }
           }
@@ -29751,11 +29752,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.664,
+            "score": 0.666,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.446,
-              "semanticNovelty": 0.539,
+              "semanticNovelty": 0.546,
               "structuralImportance": 0.7
             }
           }
@@ -29799,11 +29800,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.498,
+            "score": 0.497,
             "signals": {
               "topicShift": 0.826,
               "entityDensity": 0.203,
-              "semanticNovelty": 0.534,
+              "semanticNovelty": 0.529,
               "structuralImportance": 0.5
             }
           }
@@ -29847,11 +29848,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.495,
+            "score": 0.496,
             "signals": {
               "topicShift": 0.672,
               "entityDensity": 0.263,
-              "semanticNovelty": 0.601,
+              "semanticNovelty": 0.602,
               "structuralImportance": 0.5
             }
           }
@@ -29889,11 +29890,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.537,
+            "score": 0.539,
             "signals": {
               "topicShift": 0.889,
               "entityDensity": 0.217,
-              "semanticNovelty": 0.648,
+              "semanticNovelty": 0.658,
               "structuralImportance": 0.5
             }
           }
@@ -29937,11 +29938,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.482,
+            "score": 0.483,
             "signals": {
               "topicShift": 0.567,
               "entityDensity": 0.22,
-              "semanticNovelty": 0.693,
+              "semanticNovelty": 0.697,
               "structuralImportance": 0.5
             }
           }
@@ -29973,7 +29974,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.75,
-              "semanticNovelty": 0.911,
+              "semanticNovelty": 0.913,
               "structuralImportance": 0.7
             }
           }
@@ -30021,7 +30022,7 @@
             "signals": {
               "topicShift": 0.911,
               "entityDensity": 0.304,
-              "semanticNovelty": 0.644,
+              "semanticNovelty": 0.646,
               "structuralImportance": 0.6
             }
           }
@@ -30055,11 +30056,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.767,
+            "score": 0.768,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.6,
-              "semanticNovelty": 0.861,
+              "semanticNovelty": 0.863,
               "structuralImportance": 0.7
             }
           }
@@ -30103,11 +30104,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.419,
+            "score": 0.418,
             "signals": {
               "topicShift": 0.874,
               "entityDensity": 0.083,
-              "semanticNovelty": 0.607,
+              "semanticNovelty": 0.603,
               "structuralImportance": 0.29
             }
           }
@@ -30127,11 +30128,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.501,
+            "score": 0.5,
             "signals": {
               "topicShift": 0.863,
               "entityDensity": 0.167,
-              "semanticNovelty": 0.647,
+              "semanticNovelty": 0.639,
               "structuralImportance": 0.45
             }
           }
@@ -30175,11 +30176,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.48,
+            "score": 0.481,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.214,
-              "semanticNovelty": 0.722,
+              "semanticNovelty": 0.726,
               "structuralImportance": 0.235
             }
           }
@@ -30217,7 +30218,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.75,
-              "semanticNovelty": 0.899,
+              "semanticNovelty": 0.9,
               "structuralImportance": 0.85
             }
           }
@@ -30255,11 +30256,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.483,
+            "score": 0.484,
             "signals": {
               "topicShift": 0.759,
               "entityDensity": 0.429,
-              "semanticNovelty": 0.707,
+              "semanticNovelty": 0.716,
               "structuralImportance": 0.235
             }
           }
@@ -30317,11 +30318,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.541,
+            "score": 0.543,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.146,
-              "semanticNovelty": 0.736,
+              "semanticNovelty": 0.744,
               "structuralImportance": 0.45
             }
           }
@@ -30347,7 +30348,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.75,
-              "semanticNovelty": 0.938,
+              "semanticNovelty": 0.939,
               "structuralImportance": 0.7
             }
           }
@@ -30391,11 +30392,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.607,
+            "score": 0.608,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.371,
-              "semanticNovelty": 0.694,
+              "semanticNovelty": 0.702,
               "structuralImportance": 0.5
             }
           }
@@ -30433,7 +30434,7 @@
             "signals": {
               "topicShift": 0.877,
               "entityDensity": 0.667,
-              "semanticNovelty": 0.938,
+              "semanticNovelty": 0.939,
               "structuralImportance": 0.7
             }
           }
@@ -30477,11 +30478,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.633,
+            "score": 0.634,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.2,
-              "semanticNovelty": 0.688,
+              "semanticNovelty": 0.697,
               "structuralImportance": 0.7
             }
           }
@@ -30515,11 +30516,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.872,
+            "score": 0.873,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.75,
-              "semanticNovelty": 0.937,
+              "semanticNovelty": 0.938,
               "structuralImportance": 0.85
             }
           }
@@ -30567,7 +30568,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.188,
-              "semanticNovelty": 0.934,
+              "semanticNovelty": 0.935,
               "structuralImportance": 0.35
             }
           }
@@ -30615,7 +30616,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.37,
-              "semanticNovelty": 0.763,
+              "semanticNovelty": 0.762,
               "structuralImportance": 0.55
             }
           }
@@ -30679,11 +30680,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.533,
+            "score": 0.534,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.292,
-              "semanticNovelty": 0.599,
+              "semanticNovelty": 0.605,
               "structuralImportance": 0.4
             }
           }
@@ -30711,11 +30712,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.849,
+            "score": 0.846,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.667,
-              "semanticNovelty": 0.922,
+              "semanticNovelty": 0.908,
               "structuralImportance": 0.85
             }
           }
@@ -30737,11 +30738,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.828,
+            "score": 0.824,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.75,
-              "semanticNovelty": 0.978,
+              "semanticNovelty": 0.957,
               "structuralImportance": 0.7
             }
           }
@@ -30754,16 +30755,16 @@
           "tags": [],
           "suggestedTags": [
             {
-              "tag": "quality",
+              "tag": "strand",
+              "confidence": 0.6000000000000001,
+              "source": "existing",
+              "reasoning": "Propagated from document tags"
+            },
+            {
+              "tag": "required",
               "confidence": 0.6,
               "source": "nlp",
               "reasoning": "TF-IDF keyword extraction"
-            },
-            {
-              "tag": "strand",
-              "confidence": 0.5,
-              "source": "existing",
-              "reasoning": "Propagated from document tags"
             },
             {
               "tag": "nlp",
@@ -30785,22 +30786,22 @@
             }
           ],
           "worthiness": {
-            "score": 0.598,
+            "score": 0.581,
             "signals": {
               "topicShift": 1,
-              "entityDensity": 0.31,
-              "semanticNovelty": 0.729,
+              "entityDensity": 0.303,
+              "semanticNovelty": 0.651,
               "structuralImportance": 0.5
             }
           }
         },
         {
-          "id": "landing-trusted-weavers",
+          "id": "landing",
           "line": 109,
           "endLine": 109,
           "type": "heading",
           "headingLevel": 3,
-          "headingText": "Landing (Trusted Weavers)",
+          "headingText": "Landing",
           "tags": [],
           "suggestedTags": [
             {
@@ -30808,32 +30809,14 @@
               "confidence": 0.6,
               "source": "nlp",
               "reasoning": "TF-IDF keyword extraction"
-            },
-            {
-              "tag": "trusted",
-              "confidence": 0.6,
-              "source": "nlp",
-              "reasoning": "TF-IDF keyword extraction"
-            },
-            {
-              "tag": "weavers",
-              "confidence": 0.6,
-              "source": "nlp",
-              "reasoning": "TF-IDF keyword extraction"
-            },
-            {
-              "tag": "weave",
-              "confidence": 0.5,
-              "source": "existing",
-              "reasoning": "Propagated from document tags"
             }
           ],
           "worthiness": {
-            "score": 0.817,
+            "score": 0.757,
             "signals": {
               "topicShift": 1,
-              "entityDensity": 0.75,
-              "semanticNovelty": 0.924,
+              "entityDensity": 0.5,
+              "semanticNovelty": 0.935,
               "structuralImportance": 0.7
             }
           }
@@ -30846,7 +30829,13 @@
           "tags": [],
           "suggestedTags": [
             {
-              "tag": "pull",
+              "tag": "pass",
+              "confidence": 0.6,
+              "source": "nlp",
+              "reasoning": "TF-IDF keyword extraction"
+            },
+            {
+              "tag": "their",
               "confidence": 0.6,
               "source": "nlp",
               "reasoning": "TF-IDF keyword extraction"
@@ -30858,30 +30847,24 @@
               "reasoning": "Consistent with prior block tags"
             },
             {
-              "tag": "weave",
-              "confidence": 0.5,
-              "source": "existing",
-              "reasoning": "Propagated from document tags"
-            },
-            {
-              "tag": "loom",
-              "confidence": 0.5,
-              "source": "existing",
-              "reasoning": "Propagated from document tags"
-            },
-            {
               "tag": "strand",
               "confidence": 0.5,
               "source": "existing",
               "reasoning": "Propagated from document tags"
+            },
+            {
+              "tag": "workflows",
+              "confidence": 0.44999999999999996,
+              "source": "existing",
+              "reasoning": "Consistent with prior block tags"
             }
           ],
           "worthiness": {
-            "score": 0.489,
+            "score": 0.49,
             "signals": {
-              "topicShift": 0.796,
-              "entityDensity": 0.106,
-              "semanticNovelty": 0.728,
+              "topicShift": 0.836,
+              "entityDensity": 0.095,
+              "semanticNovelty": 0.708,
               "structuralImportance": 0.45
             }
           }
@@ -30913,7 +30896,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.667,
-              "semanticNovelty": 0.953,
+              "semanticNovelty": 0.954,
               "structuralImportance": 0.7
             }
           }
@@ -30957,11 +30940,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.608,
+            "score": 0.605,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.327,
-              "semanticNovelty": 0.757,
+              "semanticNovelty": 0.74,
               "structuralImportance": 0.5
             }
           }
@@ -30993,7 +30976,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 1,
-              "semanticNovelty": 0.922,
+              "semanticNovelty": 0.924,
               "structuralImportance": 0.85
             }
           }
@@ -31031,11 +31014,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.568,
+            "score": 0.565,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.556,
-              "semanticNovelty": 0.714,
+              "semanticNovelty": 0.704,
               "structuralImportance": 0.245
             }
           },
@@ -31080,11 +31063,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.653,
+            "score": 0.655,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.342,
-              "semanticNovelty": 0.788,
+              "semanticNovelty": 0.795,
               "structuralImportance": 0.6
             }
           }
@@ -31134,7 +31117,7 @@
             "signals": {
               "topicShift": 0.915,
               "entityDensity": 0.8,
-              "semanticNovelty": 0.517,
+              "semanticNovelty": 0.513,
               "structuralImportance": 0.7
             }
           }
@@ -31178,11 +31161,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.452,
+            "score": 0.448,
             "signals": {
               "topicShift": 0.608,
               "entityDensity": 0.26,
-              "semanticNovelty": 0.625,
+              "semanticNovelty": 0.61,
               "structuralImportance": 0.4
             }
           }
@@ -31214,7 +31197,7 @@
             "signals": {
               "topicShift": 0.861,
               "entityDensity": 0.667,
-              "semanticNovelty": 0.891,
+              "semanticNovelty": 0.893,
               "structuralImportance": 0.85
             }
           }
@@ -31258,11 +31241,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.583,
+            "score": 0.584,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.191,
-              "semanticNovelty": 0.45,
+              "semanticNovelty": 0.456,
               "structuralImportance": 0.7
             }
           }
@@ -31306,11 +31289,11 @@
             }
           ],
           "worthiness": {
-            "score": 0.497,
+            "score": 0.499,
             "signals": {
               "topicShift": 0.942,
               "entityDensity": 0.219,
-              "semanticNovelty": 0.659,
+              "semanticNovelty": 0.664,
               "structuralImportance": 0.35
             }
           }
@@ -31338,7 +31321,7 @@
             }
           ],
           "worthiness": {
-            "score": 0.875,
+            "score": 0.876,
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.667,
@@ -31372,7 +31355,7 @@
             "signals": {
               "topicShift": 1,
               "entityDensity": 0.7,
-              "semanticNovelty": 0.858,
+              "semanticNovelty": 0.86,
               "structuralImportance": 0.5
             }
           }
@@ -31392,9 +31375,9 @@
           "fabric",
           "files",
           "organization",
-          "quality",
           "whole",
-          "auto"
+          "workflows",
+          "detected"
         ],
         "phrases": [
           "frame codex",
@@ -31442,19 +31425,19 @@
         ],
         "difficulty": "intermediate",
         "confidence": {
-          "ai": 0.0683453237410072,
+          "ai": 0.06115107913669065,
           "design": 0.11602209944751381,
           "knowledge": 0.4021164021164021,
           "media": 0.04477611940298507,
           "philosophy": 0.06763285024154589,
           "science": 0.09195402298850575,
           "security": 0.06666666666666667,
-          "technology": 0.19256756756756757,
-          "api-reference": 0.13821138211382114,
+          "technology": 0.18243243243243243,
+          "api-reference": 0.11382113821138211,
           "architecture": 0.15328467153284672,
-          "best-practices": 0.13709677419354838,
+          "best-practices": 0.12096774193548387,
           "getting-started": 0.13761467889908258,
-          "troubleshooting": 0.12037037037037036,
+          "troubleshooting": 0.16666666666666666,
           "skill:sql": 0.5625,
           "skill:schema": 0.5625,
           "skill:test": 0.5625,
@@ -31468,46 +31451,45 @@
           "skill:integr": 0.5625,
           "skill:search": 0.5625,
           "skill:structur": 0.5625,
-          "skill:app": 0.5267857142857143,
-          "skill:api": 0.5267857142857143,
-          "skill:on": 0.5267857142857143,
-          "skill:js": 0.5679012345679012,
-          "skill:ts": 0.5679012345679012,
-          "skill:type": 0.5679012345679012,
-          "skill:pip": 0.5679012345679012,
-          "skill:rust": 0.5679012345679012,
-          "skill:go": 0.5679012345679012,
-          "skill:scala": 0.5679012345679012,
-          "skill:c": 0.5679012345679012,
-          "skill:compos": 0.5679012345679012,
-          "skill:io": 0.5679012345679012,
-          "skill:documentation": 0.5414746543778802,
-          "skill:analysis": 0.5414746543778802,
-          "skill:synthesis": 0.5414746543778802,
-          "skill:organization": 0.5414746543778802,
-          "skill:focus": 0.5414746543778802,
-          "skill:learning": 0.5414746543778802,
-          "skill:eq": 0.5414746543778802,
-          "skill:trust": 0.5414746543778802,
-          "skill:evidence-based": 0.5414746543778802,
-          "skill:write": 0.5414746543778802,
-          "skill:document": 0.5414746543778802,
-          "skill:organ": 0.5414746543778802,
-          "skill:analysi": 0.5414746543778802,
-          "skill:synthesi": 0.5414746543778802,
-          "skill:schedul": 0.5414746543778802,
-          "skill:focu": 0.5414746543778802,
-          "skill:learn": 0.5414746543778802,
-          "skill:adapt": 0.5414746543778802,
-          "skill:git": 0.5631578947368421,
-          "skill:github": 0.5631578947368421,
-          "skill:version": 0.5631578947368421,
-          "skill:control": 0.5631578947368421,
-          "skill:as": 0.5631578947368421,
-          "skill:code": 0.5631578947368421,
-          "skill:cache": 0.5631578947368421,
-          "skill:contain": 0.5631578947368421,
-          "skill:cach": 0.5631578947368421
+          "skill:app": 0.5178571428571429,
+          "skill:on": 0.5178571428571429,
+          "skill:js": 0.5617283950617284,
+          "skill:ts": 0.5617283950617284,
+          "skill:type": 0.5617283950617284,
+          "skill:pip": 0.5617283950617284,
+          "skill:go": 0.5617283950617284,
+          "skill:scala": 0.5617283950617284,
+          "skill:c": 0.5617283950617284,
+          "skill:compos": 0.5617283950617284,
+          "skill:io": 0.5617283950617284,
+          "skill:documentation": 0.5391705069124424,
+          "skill:analysis": 0.5391705069124424,
+          "skill:synthesis": 0.5391705069124424,
+          "skill:organization": 0.5391705069124424,
+          "skill:focus": 0.5391705069124424,
+          "skill:learning": 0.5391705069124424,
+          "skill:eq": 0.5391705069124424,
+          "skill:evidence-based": 0.5391705069124424,
+          "skill:write": 0.5391705069124424,
+          "skill:document": 0.5391705069124424,
+          "skill:organ": 0.5391705069124424,
+          "skill:analysi": 0.5391705069124424,
+          "skill:synthesi": 0.5391705069124424,
+          "skill:schedul": 0.5391705069124424,
+          "skill:focu": 0.5391705069124424,
+          "skill:learn": 0.5391705069124424,
+          "skill:adapt": 0.5391705069124424,
+          "skill:git": 0.5684210526315789,
+          "skill:github": 0.5684210526315789,
+          "skill:version": 0.5684210526315789,
+          "skill:control": 0.5684210526315789,
+          "skill:merge": 0.5684210526315789,
+          "skill:as": 0.5684210526315789,
+          "skill:code": 0.5684210526315789,
+          "skill:cache": 0.5684210526315789,
+          "skill:merg": 0.5684210526315789,
+          "skill:contain": 0.5684210526315789,
+          "skill:cach": 0.5684210526315789
         },
         "readingLevel": 0,
         "readabilityScore": 0,
@@ -31521,6 +31503,8 @@
             "AI systems",
             "**GitHub",
             "PR",
+            "PR",
+            "PR",
             "Tech & CS",
             ".github/"
           ],
@@ -31528,12 +31512,14 @@
             ".github/",
             "Tech & CS",
             "PR",
+            "PR",
+            "PR",
             "**GitHub",
             "AI systems",
             "- Rich"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:36.067Z"
+        "lastIndexed": "2026-10-22T08:34:00.307Z"
       }
     },
     "validation": {
@@ -31544,8 +31530,8 @@
         "Key phrases found: frame codex, loom folder, markdown file"
       ]
     },
-    "content": "\n# Frame Codex Architecture Overview\n\nFrame Codex is a structured, version-controlled knowledge repository designed as the canonical source of truth for AI systems and human learners.\n\n## Core Concepts\n\n### Four-Tier Knowledge Organization\n\n```\nFabric (Whole Codex)\n└── Weave (Universe)\n    ├── Loom (Folder)\n    │   ├── Strand (markdown file)\n    │   ├── Strand (markdown file)\n    │   └── ...\n    └── Loom (Folder)\n        └── ...\n```\n\n**Fabric**: The entire Codex corpus viewed as one living whole\n- Composed of multiple weaves (e.g., `frame`, `wiki`, `technology`)\n- Enables cross-weave traversal when operating at Fabric scope\n- Used by superintelligence/agents for holistic aggregation and synthesis\n\n**Weave**: Complete, isolated knowledge universe\n- No cross-weave relationships\n- Independent scope and taxonomy\n- Examples: `wiki`, `frame`, `technology`\n\n**Loom**: Any folder inside a weave\n- Organized by topic or module\n- No explicit `looms/` prefix needed\n- Metadata in optional `loom.yaml`\n\n**Thread**: Any markdown file inside a weave\n- Self-contained, focused on one concept\n- Rich metadata in YAML frontmatter\n- No explicit `strands/` folder needed\n\n### Why This Structure?\n\n1. **Modularity**: Each thread is independent and reusable\n2. **Discoverability**: Looms (folders) provide natural organization\n3. **Isolation**: Weaves prevent namespace collisions\n4. **Scalability**: Can grow to millions of threads\n5. **AI-Friendly**: Clear structure for LLM ingestion\n6. **Simple**: Folders = looms, markdown files = threads (auto-detected)\n\n### Superintelligence at Fabric Scope\n\nWhile weaves remain isolated for organization and provenance, analysis at the **Fabric** level permits traversal across weaves for:\n\n- Cross-domain retrieval and context assembly\n- Whole-of-corpus synthesis and summarization\n- Global topic maps and knowledge graphs\n\nFabric-level queries always preserve original weave/loom/strand provenance.\n\n## SQL Cache Layer\n\nFrame Codex uses [@framers/sql-storage-adapter](https://github.com/framerslab/sql-storage-adapter) for intelligent caching.\n\n### Performance\n\n- **First run**: ~30s for 100 files (full analysis)\n- **Subsequent**: ~2-5s for 5 changed files (85-95% speedup)\n- **Storage**: ~500KB-2MB for 100 files\n\n### How It Works\n\n1. **SHA-based change detection**: Only re-process modified files\n2. **Loom-scoped caching**: Store aggregate stats per loom (folder)\n3. **Keyword caching**: Pre-computed TF-IDF scores\n4. **GitHub Actions cache**: Persistent across CI runs\n\n### Cache Tables\n\n```sql\nfiles       -- File metadata, SHA, analysis JSON\nkeywords    -- Extracted keywords with TF-IDF scores\nstats       -- Loom/weave aggregate statistics\n```\n\n## Static NLP Pipeline\n\n**No LLM calls, $0 cost, runs in CI:**\n\n1. **TF-IDF**: Keyword extraction and ranking\n2. **N-grams**: Common phrase detection\n3. **Vocabulary matching**: Auto-categorization\n4. **Readability scoring**: Flesch-Kincaid grade level\n5. **Sentiment heuristics**: Simple keyword patterns\n\n### Output\n\n- `codex-index.json`: Searchable index for frame.dev/codex\n- `codex-report.json`: Analytics and validation results\n\n## Automation Workflows\n\n### On Every PR\n\n1. **Schema validation**: Required fields, types, enums\n2. **Content quality**: Length, forbidden patterns, duplicates\n3. **Static NLP**: Auto-categorization and tagging\n4. **Optional AI**: GPT-4 quality analysis (if `OPENAI_API_KEY` set)\n\n### Landing (Trusted Weavers)\n\n- Pull requests from users in `.github/WEAVERS.txt` get approved and labelled `landing`\n- Requires 5+ high-quality contributions\n- Validation must pass; a maintainer lands the pull request after its review comments are read\n\n### Full Re-Catalog\n\n- Triggered manually or on schedule\n- Updates all metadata and statistics\n- Creates PR (manual approval by default)\n- Toggle: `AUTO_CATALOG_LAND=true` labels the PR `landing`\n\n## OpenQuarry Integration\n\nFrame Codex implements the **Educational Content Atom (ECA)** specification:\n\n- **Learning Design**: Objectives, outcomes, Bloom's taxonomy\n- **Time Estimates**: Reading, exercises, projects\n- **Modalities**: Text, visual, audio, video, kinesthetic\n- **Assessments**: Formative and summative\n- **Accessibility**: WCAG compliance, reading levels\n- **Quality Metrics**: Peer review, evidence-based claims\n\n### Frame Codex and OpenQuarry\n\n- **Frame Codex**: Public markdown repository (this repo)\n- **OpenQuarry**: the open format these notes follow; the Quarry app at quarry.space reads and writes it\n\n## Repository Structure\n\n```\ncodex/\n├── weaves/              # Knowledge universes\n│   ├── wiki/           # Meta-documentation\n│   │   ├── weave.yaml\n│   │   ├── architecture/    # Loom (folder)\n│   │   │   └── overview.md  # Strand (markdown file)\n│   │   └── ...\n│   ├── frame/          # Frame ecosystem knowledge\n│   │   ├── weave.yaml\n│   │   ├── openquarry/      # Loom (folder)\n│   │   │   └── architecture.md  # Strand (markdown file)\n│   │   └── ...\n│   └── technology/     # Tech & CS content\n├── schema",
-    "searchText": "frame codex architecture overview high-level architecture of frame codex: three-tier knowledge organization, sql caching, static nlp, and automation codex loom frame folder sql caching automation landing knowledge fabric files organization quality whole auto frame codex loom folder markdown file strand markdown static nlp codex architecture architecture overview tier knowledge knowledge organization cross weave"
+    "content": "\n# Frame Codex Architecture Overview\n\nFrame Codex is a structured, version-controlled knowledge repository designed as the canonical source of truth for AI systems and human learners.\n\n## Core Concepts\n\n### Four-Tier Knowledge Organization\n\n```\nFabric (Whole Codex)\n└── Weave (Universe)\n    ├── Loom (Folder)\n    │   ├── Strand (markdown file)\n    │   ├── Strand (markdown file)\n    │   └── ...\n    └── Loom (Folder)\n        └── ...\n```\n\n**Fabric**: The entire Codex corpus viewed as one living whole\n- Composed of multiple weaves (e.g., `frame`, `wiki`, `technology`)\n- Enables cross-weave traversal when operating at Fabric scope\n- Used by superintelligence/agents for holistic aggregation and synthesis\n\n**Weave**: Complete, isolated knowledge universe\n- No cross-weave relationships\n- Independent scope and taxonomy\n- Examples: `wiki`, `frame`, `technology`\n\n**Loom**: Any folder inside a weave\n- Organized by topic or module\n- No explicit `looms/` prefix needed\n- Metadata in optional `loom.yaml`\n\n**Thread**: Any markdown file inside a weave\n- Self-contained, focused on one concept\n- Rich metadata in YAML frontmatter\n- No explicit `strands/` folder needed\n\n### Why This Structure?\n\n1. **Modularity**: Each thread is independent and reusable\n2. **Discoverability**: Looms (folders) provide natural organization\n3. **Isolation**: Weaves prevent namespace collisions\n4. **Scalability**: Can grow to millions of threads\n5. **AI-Friendly**: Clear structure for LLM ingestion\n6. **Simple**: Folders = looms, markdown files = threads (auto-detected)\n\n### Superintelligence at Fabric Scope\n\nWhile weaves remain isolated for organization and provenance, analysis at the **Fabric** level permits traversal across weaves for:\n\n- Cross-domain retrieval and context assembly\n- Whole-of-corpus synthesis and summarization\n- Global topic maps and knowledge graphs\n\nFabric-level queries always preserve original weave/loom/strand provenance.\n\n## SQL Cache Layer\n\nFrame Codex uses [@framers/sql-storage-adapter](https://github.com/framerslab/sql-storage-adapter) for intelligent caching.\n\n### Performance\n\n- **First run**: ~30s for 100 files (full analysis)\n- **Subsequent**: ~2-5s for 5 changed files (85-95% speedup)\n- **Storage**: ~500KB-2MB for 100 files\n\n### How It Works\n\n1. **SHA-based change detection**: Only re-process modified files\n2. **Loom-scoped caching**: Store aggregate stats per loom (folder)\n3. **Keyword caching**: Pre-computed TF-IDF scores\n4. **GitHub Actions cache**: Persistent across CI runs\n\n### Cache Tables\n\n```sql\nfiles       -- File metadata, SHA, analysis JSON\nkeywords    -- Extracted keywords with TF-IDF scores\nstats       -- Loom/weave aggregate statistics\n```\n\n## Static NLP Pipeline\n\n**No LLM calls, $0 cost, runs in CI:**\n\n1. **TF-IDF**: Keyword extraction and ranking\n2. **N-grams**: Common phrase detection\n3. **Vocabulary matching**: Auto-categorization\n4. **Readability scoring**: Flesch-Kincaid grade level\n5. **Sentiment heuristics**: Simple keyword patterns\n\n### Output\n\n- `codex-index.json`: Searchable index for frame.dev/codex\n- `codex-report.json`: Analytics and validation results\n\n## Automation Workflows\n\n### On Every PR\n\n1. **Schema validation**: Required fields, types, enums\n2. **Content quality**: Length, forbidden patterns, duplicates\n3. **Static NLP**: Auto-categorization and tagging\n4. **Required checks**: Test Suite and rename-guard pass before `master` takes the PR\n\n### Landing\n\n- Every PR's review comments are read, answered and resolved before it lands\n- A maintainer labels the PR `landing` after that pass; the workflows label their own PRs once their checks or guards pass\n- Nothing merges a PR by itself\n\n### Full Re-Catalog\n\n- Triggered manually or on schedule\n- Updates all metadata and statistics\n- Creates PR (manual approval by default)\n- Toggle: `AUTO_CATALOG_LAND=true` labels the PR `landing`\n\n## OpenQuarry Integration\n\nFrame Codex implements the **Educational Content Atom (ECA)** specification:\n\n- **Learning Design**: Objectives, outcomes, Bloom's taxonomy\n- **Time Estimates**: Reading, exercises, projects\n- **Modalities**: Text, visual, audio, video, kinesthetic\n- **Assessments**: Formative and summative\n- **Accessibility**: WCAG compliance, reading levels\n- **Quality Metrics**: Peer review, evidence-based claims\n\n### Frame Codex and OpenQuarry\n\n- **Frame Codex**: Public markdown repository (this repo)\n- **OpenQuarry**: the open format these notes follow; the Quarry app at quarry.space reads and writes it\n\n## Repository Structure\n\n```\ncodex/\n├── weaves/              # Knowledge universes\n│   ├── wiki/           # Meta-documentation\n│   │   ├── weave.yaml\n│   │   ├── architecture/    # Loom (folder)\n│   │   │   └── overview.md  # Strand (markdown file)\n│   │   └── ...\n│   ├── frame/          # Frame ecosystem knowledge\n│   │   ├── weave.yaml\n│   │   ├── openquarry/      # Loom (folder)\n│   │   │   └── architecture.md  # Strand (markdown file)\n│   │   └── ...\n│   └── technology/     # Tech & CS content\n├──",
+    "searchText": "frame codex architecture overview high-level architecture of frame codex: three-tier knowledge organization, sql caching, static nlp, and automation codex loom frame folder sql caching automation landing knowledge fabric files organization whole workflows detected frame codex loom folder markdown file strand markdown static nlp codex architecture architecture overview tier knowledge knowledge organization cross weave"
   },
   {
     "path": "weaves/wiki/architecture/qa-system.md",
@@ -34492,10 +34478,10 @@
           "interface",
           "answer",
           "codex",
-          "search",
           "typescript",
           "security",
           "language",
+          "search",
           "intent",
           "similarity",
           "understanding",
@@ -34655,7 +34641,7 @@
             "PAT             │"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:38.292Z"
+        "lastIndexed": "2026-10-22T08:34:02.560Z"
       }
     },
     "validation": {
@@ -34674,7 +34660,7 @@
       ]
     },
     "content": "# Q&A System Architecture\n\nThe Frame Codex Q&A system represents a paradigm shift in knowledge retrieval—combining the precision of semantic search with the intuition of natural language understanding. This document outlines the architecture, implementation, and philosophy behind our question-answering oracle.\n\n## Philosophy: Questions as Knowledge Traversal\n\nTraditional search treats queries as keyword matching exercises. The Frame Codex Q&A system treats **questions as journeys through the knowledge graph**. When you ask \"How does authentication work?\", you're not looking for documents containing \"authentication\"—you're seeking understanding of a concept's mechanics, relationships, and implications.\n\n## Core Architecture\n\n```\n┌─────────────────────────────────────────────────────────────┐\n│                         User Interface                        │\n│  ┌─────────────┐  ┌──────────────┐  ┌──────────────────┐  │\n│  │   Question   │  │   Suggested  │  │  Answer Cards   │  │\n│  │    Input     │  │  Questions   │  │  (Contextual)   │  │\n│  └──────┬──────┘  └──────────────┘  └─────────▲────────┘  │\n└─────────┼────────────────────────────────────────┼──────────┘\n          │                                         │\n┌─────────▼─────────────────────────────────────────┼──────────┐\n│                    Question Processor              │          │\n│  ┌──────────────┐  ┌──────────────┐  ┌──────────▼────────┐ │\n│  │   Intent     │  │   Entity     │  │  Answer Builder   │ │\n│  │  Analyzer    │  │  Extractor   │  │  (Multi-source)   │ │\n│  └──────┬──────┘  └──────┬──────┘  └─────────▲────────┘ │\n└─────────┼─────────────────┼───────────────────┼──────────┘\n          │                 │                   │\n┌─────────▼─────────────────▼───────────────────┼──────────┐\n│                  Semantic Search Engine         │          │\n│  ┌──────────────┐  ┌──────────────┐  ┌───────▼────────┐ │\n│  │   ONNX       │  │  Embedding   │  │  Similarity    │ │\n│  │  Runtime     │  │   Index      │  │   Scoring      │ │\n│  └──────────────┘  └──────────────┘  └────────────────┘ │\n└───────────────────────────────────────────────────────────┘\n```\n\n## Components\n\n### 1. Question Input Interface\n\nThe entry point for natural language queries with intelligent features:\n\n- **Auto-complete** based on common questions and recent queries\n- **Voice input** with real-time transcription\n- **Question templates** for common patterns\n- **Multi-language** support with automatic translation\n\n### 2. Question Processor\n\nTransforms natural language into structured queries:\n\n#### Intent Analyzer\n- Classifies question types: How, What, Where, Why, When\n- Identifies action verbs: implement, configure, debug, optimize\n- Detects scope: specific file, concept, or system-wide\n\n#### Entity Extractor\n- Identifies key concepts: authentication, React hooks, API endpoints\n- Extracts constraints: \"in TypeScript\", \"for production\", \"with examples\"\n- Recognizes relationships: \"difference between X and Y\"\n\n### 3. Semantic Search Engine\n\nThe heart of intelligent retrieval:\n\n#### ONNX Runtime Web\n- Runs MiniLM-L6-v2 model entirely in the browser\n- No server calls = complete privacy\n- ~22MB model size with 384-dimensional embeddings\n- Sub-100ms inference time\n\n#### Embedding Index\n- Pre-computed embeddings for all threads\n- Stored in `codex-embeddings.json`\n- Hierarchical indexing: thread → section → paragraph\n- Incremental updates on new content\n\n#### Similarity Scoring\n- Cosine similarity for semantic matching\n- BM25 for keyword relevance\n- Hybrid scoring: 0.7 × semantic + 0.3 × keyword\n- Context window expansion for better answers\n\n### 4. Answer Builder\n\nConstructs comprehensive, contextual responses:\n\n- **Multi-source synthesis**: Combines relevant sections from multiple threads\n- **Code extraction**: Highlights relevant code snippets\n- **Visual aids**: Includes diagrams and images when helpful\n- **Related links**: Suggests deeper reading\n- **Confidence scoring**: Shows relevance percentage\n\n## Data Flow\n\n```\n1. User asks: \"How do I implement authentication with JWT?\"\n   ↓\n2. Intent: HOW_TO + IMPLEMENT\n   Entities: [\"authentication\", \"JWT\"]\n   Constraints: [\"implementation\"]\n   ↓\n3. Query embedding: [0.23, -0.45, 0.67, ...] (384 dims)\n   ↓\n4. Search index for nearest neighbors\n   - auth-jwt-guide.md (0.92 similarity)\n   - security-best-practices.md (0.87 similarity)\n   - api-design.md (0.76 similarity)\n   ↓\n5. Extract relevant sections + expand context\n   ↓\n6. Build answer with:\n   - Summary paragraph\n   - Step-by-step implementation\n   - Code examples\n   - Security considerations\n   - Links to full strands\n```\n\n## Embedding Generation\n\n### Pre-processing Pipeline\n\n```typescript\ninterface EmbeddingEntry {\n  id: string              // Unique identifier\n  path: string           // Strand path\n  content: string        // Text content\n  embedding: number[]    // 384-dimensional vector\n  metadata: {\n    type: 'strand' | 'section' | 'code'\n    title: string\n    tags: string[]",
-    "searchText": "qa system q&a system architecture\n\nthe frame codex q&a system represents a paradigm shift in knowledge retrieval—combining the precision of semantic search with the intuition of natural language understanding authentication string onnx embedding interface answer codex search typescript security language intent similarity understanding embeddings frame codex semantic search natural language multi source onnx runtime typescript interface architecture frame codex represents represents paradigm paradigm shift"
+    "searchText": "qa system q&a system architecture\n\nthe frame codex q&a system represents a paradigm shift in knowledge retrieval—combining the precision of semantic search with the intuition of natural language understanding authentication string onnx embedding interface answer codex typescript security language search intent similarity understanding embeddings frame codex semantic search natural language multi source onnx runtime typescript interface architecture frame codex represents represents paradigm paradigm shift"
   },
   {
     "path": "weaves/wiki/examples/gallery-demo.md",
@@ -35561,7 +35547,7 @@
             "- **Art Deco Frames**:"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:38.909Z"
+        "lastIndexed": "2026-10-22T08:34:03.180Z"
       }
     },
     "validation": {
@@ -38411,7 +38397,7 @@
             "Web Workers:"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:40.126Z"
+        "lastIndexed": "2026-10-22T08:34:04.413Z"
       }
     },
     "validation": {
@@ -41548,7 +41534,7 @@
             "Art Deco"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:42.080Z"
+        "lastIndexed": "2026-10-22T08:34:06.398Z"
       }
     },
     "validation": {
@@ -46576,7 +46562,7 @@
             "- Art Deco"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:44.257Z"
+        "lastIndexed": "2026-10-22T08:34:08.575Z"
       }
     },
     "validation": {
@@ -50426,7 +50412,7 @@
             "San Francisco,"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:46.737Z"
+        "lastIndexed": "2026-10-22T08:34:11.043Z"
       }
     },
     "validation": {
@@ -50588,7 +50574,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-21T22:37:47.071Z"
+        "lastIndexed": "2026-10-22T08:34:11.387Z"
       }
     },
     "validation": {
@@ -50957,7 +50943,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-21T22:37:47.719Z"
+        "lastIndexed": "2026-10-22T08:34:12.050Z"
       }
     },
     "validation": {
@@ -51141,7 +51127,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-21T22:37:47.944Z"
+        "lastIndexed": "2026-10-22T08:34:12.286Z"
       }
     },
     "validation": {
@@ -51716,7 +51702,7 @@
             "\"lesson"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:49.337Z"
+        "lastIndexed": "2026-10-22T08:34:13.723Z"
       }
     },
     "validation": {
@@ -51863,7 +51849,7 @@
           "organizations": [],
           "topics": []
         },
-        "lastIndexed": "2026-10-21T22:37:49.496Z"
+        "lastIndexed": "2026-10-22T08:34:13.881Z"
       }
     },
     "validation": {
@@ -52038,7 +52024,7 @@
             "<li"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:51.019Z"
+        "lastIndexed": "2026-10-22T08:34:15.401Z"
       }
     },
     "validation": {
@@ -52056,7 +52042,7 @@
         "Key phrases found: weaves technology, technology basics, typescript const"
       ]
     },
-    "content": "# Block-Level Tagging API Reference\n\nThis document describes the `codex-blocks.json` index format and how to consume block-level tag data.\n\n## Index File: `codex-blocks.json`\n\nThe compiled block index is generated by `scripts/build-index.mjs` and published to the repository root.\n\n### Fetch Location\n\n```javascript\n// Static exports (quarry.space)\nconst url = '/assets/codex-blocks.json'\n\n// CDN/GitHub raw\nconst url = 'https://raw.githubusercontent.com/framerslab/codex/main/codex-blocks.json'\n```\n\n### Index Structure\n\n```json\n{\n  \"generatedAt\": \"2024-01-15T10:30:00.000Z\",\n  \"version\": \"1.0.0\",\n  \"stats\": {\n    \"totalStrands\": 150,\n    \"totalBlocks\": 2340,\n    \"totalTags\": 5670,\n    \"uniqueTags\": 234,\n    \"worthyBlocks\": 1890,\n    \"pendingSuggestions\": 456,\n    \"tagsBySource\": {\n      \"nlp\": 3200,\n      \"llm\": 890,\n      \"existing\": 1200,\n      \"user\": 380\n    },\n    \"blocksByType\": {\n      \"heading\": 890,\n      \"paragraph\": 1200,\n      \"code\": 150,\n      \"list\": 80,\n      \"blockquote\": 20\n    }\n  },\n  \"tagIndex\": {\n    \"javascript\": [\n      { \"strandPath\": \"weaves/technology/js-basics.md\", \"blockId\": \"introduction\", \"confidence\": 1.0 },\n      { \"strandPath\": \"weaves/technology/js-basics.md\", \"blockId\": \"block-45\", \"confidence\": 0.85 }\n    ]\n  },\n  \"strands\": {\n    \"weaves/technology/js-basics.md\": {\n      \"path\": \"weaves/technology/js-basics.md\",\n      \"title\": \"JavaScript Basics\",\n      \"blockCount\": 15,\n      \"tagCount\": 42,\n      \"worthyBlockCount\": 12,\n      \"blocks\": [\n        {\n          \"id\": \"introduction\",\n          \"line\": 5,\n          \"endLine\": 12,\n          \"type\": \"heading\",\n          \"headingLevel\": 2,\n          \"headingText\": \"Introduction\",\n          \"tags\": [\"javascript\", \"getting-started\"],\n          \"suggestedTags\": [],\n          \"worthiness\": { \"score\": 0.72 }\n        }\n      ]\n    }\n  }\n}\n```\n\n## TypeScript Types\n\n```typescript\ninterface CodexBlocksIndex {\n  generatedAt: string        // ISO 8601 timestamp\n  version: string            // Semver version\n  stats: BlockIndexStats\n  tagIndex: Record<string, TagReference[]>\n  strands: Record<string, StrandBlockData>\n}\n\ninterface BlockIndexStats {\n  totalStrands: number\n  totalBlocks: number\n  totalTags: number\n  uniqueTags: number\n  worthyBlocks: number\n  pendingSuggestions: number\n  tagsBySource: Record<'nlp' | 'llm' | 'existing' | 'user', number>\n  blocksByType: Record<string, number>\n}\n\ninterface TagReference {\n  strandPath: string\n  blockId: string\n  confidence: number\n}\n\ninterface StrandBlockData {\n  path: string\n  title: string\n  blockCount: number\n  tagCount: number\n  worthyBlockCount: number\n  blocks: BlockEntry[]\n}\n\ninterface BlockEntry {\n  id: string\n  line: number\n  endLine?: number\n  type: 'heading' | 'paragraph' | 'code' | 'list' | 'blockquote' | 'table' | 'html'\n  headingLevel?: number\n  headingText?: string\n  tags: string[]\n  suggestedTags: SuggestedTag[]\n  worthiness?: { score: number; signals?: Record<string, number> }\n  extractiveSummary?: string\n  warrantsIllustration?: boolean\n}\n\ninterface SuggestedTag {\n  tag: string\n  confidence: number\n  source: 'nlp' | 'llm' | 'existing' | 'user'\n  reasoning?: string\n}\n```\n\n## React Hook Usage\n\nFrame.dev provides a React hook for consuming block data:\n\n```typescript\nimport { useBlockTags, hasBlocksInIndex, getAllBlockTags } from '@/lib/hooks/useBlockTags'\n\nfunction MyComponent({ strandPath }) {\n  const { \n    blocks,           // Block array\n    isLoading,        // Loading state\n    error,            // Error object\n    stats,            // { total, tagged, pending, worthy }\n    getBlockById,     // (blockId) => BlockEntry\n    refetch           // () => Promise<void>\n  } = useBlockTags(strandPath)\n\n  if (isLoading) return <Spinner />\n  if (error) return <Error message={error.message} />\n\n  return (\n    <ul>\n      {blocks.map(block => (\n        <li key={block.blockId}>\n          {block.headingText || block.blockId}\n          {block.tags.map(tag => <Tag key={tag}>{tag}</Tag>)}\n        </li>\n      ))}\n    </ul>\n  )\n}\n```\n\n## Utility Functions\n\n### Check if thread has blocks\n\n```typescript\nconst hasBlocks = await hasBlocksInIndex('weaves/technology/js-basics.md')\n// true | false\n```\n\n### Get all unique block tags\n\n```typescript\nconst allTags = await getAllBlockTags()\n// ['javascript', 'typescript', 'react', ...]\n```\n\n### Search blocks by tag\n\n```typescript\nconst results = await searchBlocksByTag('javascript')\n// [{ strandPath, blockId, confidence }, ...]\n```\n\n### Get index stats\n\n```typescript\nconst stats = await getBlockIndexStats()\n// { totalStrands, totalBlocks, ... }\n```\n\n## Direct API (Server Mode)\n\nWhen running with API routes enabled, these endpoints are available:\n\n### GET /api/blocks\n\nFetch blocks for a thread:\n\n```bash\ncurl \"/api/blocks?strandPath=weaves/technology/js-basics.md\"\n```\n\nResponse:\n```json\n{\n  \"blocks\": [\n    { \"blockId\": \"introduction\", \"tags\": [\"javascript\"], ... }\n  ]\n}\n```\n\n### POST /api/blocks/tags\n\nUpdate block tags (requires authentication):\n\n```bash\ncurl -X P",
+    "content": "# Block-Level Tagging API Reference\n\nThis document describes the `codex-blocks.json` index format and how to consume block-level tag data.\n\n## Index File: `codex-blocks.json`\n\nThe compiled block index is generated by `scripts/build-index.mjs` and published to the repository root.\n\n### Fetch Location\n\n```javascript\n// Static exports (quarry.space)\nconst url = '/assets/codex-blocks.json'\n\n// CDN/GitHub raw\nconst url = 'https://raw.githubusercontent.com/framerslab/codex/master/codex-blocks.json'\n```\n\n### Index Structure\n\n```json\n{\n  \"generatedAt\": \"2024-01-15T10:30:00.000Z\",\n  \"version\": \"1.0.0\",\n  \"stats\": {\n    \"totalStrands\": 150,\n    \"totalBlocks\": 2340,\n    \"totalTags\": 5670,\n    \"uniqueTags\": 234,\n    \"worthyBlocks\": 1890,\n    \"pendingSuggestions\": 456,\n    \"tagsBySource\": {\n      \"nlp\": 3200,\n      \"llm\": 890,\n      \"existing\": 1200,\n      \"user\": 380\n    },\n    \"blocksByType\": {\n      \"heading\": 890,\n      \"paragraph\": 1200,\n      \"code\": 150,\n      \"list\": 80,\n      \"blockquote\": 20\n    }\n  },\n  \"tagIndex\": {\n    \"javascript\": [\n      { \"strandPath\": \"weaves/technology/js-basics.md\", \"blockId\": \"introduction\", \"confidence\": 1.0 },\n      { \"strandPath\": \"weaves/technology/js-basics.md\", \"blockId\": \"block-45\", \"confidence\": 0.85 }\n    ]\n  },\n  \"strands\": {\n    \"weaves/technology/js-basics.md\": {\n      \"path\": \"weaves/technology/js-basics.md\",\n      \"title\": \"JavaScript Basics\",\n      \"blockCount\": 15,\n      \"tagCount\": 42,\n      \"worthyBlockCount\": 12,\n      \"blocks\": [\n        {\n          \"id\": \"introduction\",\n          \"line\": 5,\n          \"endLine\": 12,\n          \"type\": \"heading\",\n          \"headingLevel\": 2,\n          \"headingText\": \"Introduction\",\n          \"tags\": [\"javascript\", \"getting-started\"],\n          \"suggestedTags\": [],\n          \"worthiness\": { \"score\": 0.72 }\n        }\n      ]\n    }\n  }\n}\n```\n\n## TypeScript Types\n\n```typescript\ninterface CodexBlocksIndex {\n  generatedAt: string        // ISO 8601 timestamp\n  version: string            // Semver version\n  stats: BlockIndexStats\n  tagIndex: Record<string, TagReference[]>\n  strands: Record<string, StrandBlockData>\n}\n\ninterface BlockIndexStats {\n  totalStrands: number\n  totalBlocks: number\n  totalTags: number\n  uniqueTags: number\n  worthyBlocks: number\n  pendingSuggestions: number\n  tagsBySource: Record<'nlp' | 'llm' | 'existing' | 'user', number>\n  blocksByType: Record<string, number>\n}\n\ninterface TagReference {\n  strandPath: string\n  blockId: string\n  confidence: number\n}\n\ninterface StrandBlockData {\n  path: string\n  title: string\n  blockCount: number\n  tagCount: number\n  worthyBlockCount: number\n  blocks: BlockEntry[]\n}\n\ninterface BlockEntry {\n  id: string\n  line: number\n  endLine?: number\n  type: 'heading' | 'paragraph' | 'code' | 'list' | 'blockquote' | 'table' | 'html'\n  headingLevel?: number\n  headingText?: string\n  tags: string[]\n  suggestedTags: SuggestedTag[]\n  worthiness?: { score: number; signals?: Record<string, number> }\n  extractiveSummary?: string\n  warrantsIllustration?: boolean\n}\n\ninterface SuggestedTag {\n  tag: string\n  confidence: number\n  source: 'nlp' | 'llm' | 'existing' | 'user'\n  reasoning?: string\n}\n```\n\n## React Hook Usage\n\nFrame.dev provides a React hook for consuming block data:\n\n```typescript\nimport { useBlockTags, hasBlocksInIndex, getAllBlockTags } from '@/lib/hooks/useBlockTags'\n\nfunction MyComponent({ strandPath }) {\n  const { \n    blocks,           // Block array\n    isLoading,        // Loading state\n    error,            // Error object\n    stats,            // { total, tagged, pending, worthy }\n    getBlockById,     // (blockId) => BlockEntry\n    refetch           // () => Promise<void>\n  } = useBlockTags(strandPath)\n\n  if (isLoading) return <Spinner />\n  if (error) return <Error message={error.message} />\n\n  return (\n    <ul>\n      {blocks.map(block => (\n        <li key={block.blockId}>\n          {block.headingText || block.blockId}\n          {block.tags.map(tag => <Tag key={tag}>{tag}</Tag>)}\n        </li>\n      ))}\n    </ul>\n  )\n}\n```\n\n## Utility Functions\n\n### Check if thread has blocks\n\n```typescript\nconst hasBlocks = await hasBlocksInIndex('weaves/technology/js-basics.md')\n// true | false\n```\n\n### Get all unique block tags\n\n```typescript\nconst allTags = await getAllBlockTags()\n// ['javascript', 'typescript', 'react', ...]\n```\n\n### Search blocks by tag\n\n```typescript\nconst results = await searchBlocksByTag('javascript')\n// [{ strandPath, blockId, confidence }, ...]\n```\n\n### Get index stats\n\n```typescript\nconst stats = await getBlockIndexStats()\n// { totalStrands, totalBlocks, ... }\n```\n\n## Direct API (Server Mode)\n\nWhen running with API routes enabled, these endpoints are available:\n\n### GET /api/blocks\n\nFetch blocks for a thread:\n\n```bash\ncurl \"/api/blocks?strandPath=weaves/technology/js-basics.md\"\n```\n\nResponse:\n```json\n{\n  \"blocks\": [\n    { \"blockId\": \"introduction\", \"tags\": [\"javascript\"], ... }\n  ]\n}\n```\n\n### POST /api/blocks/tags\n\nUpdate block tags (requires authentication):\n\n```bash\ncurl -X",
     "searchText": "block tagging api fetch location\n\n\n\nindex structure\n\n\n\ntypescript types\n\n\n\nreact hook usage\n\nframe.dev provides a react hook for consuming block data:\n\n\n\nutility functions\n\ncheck if thread has blocks\n\n\n\nget all unique block tags\n\n\n\nsearch blocks by tag\n\n\n\nget index stats\n\n\n\ndirect api (server mode)\n\nwhen running w... typescript strandpath blockid useblocktags blocks hook block error basics index string const tag technology stats weaves technology technology basics typescript const block tagging react hook block tags codex blocks blocks json strandpath weaves record string"
   },
   {
@@ -52219,7 +52205,7 @@
             "Emerald |"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:52.900Z"
+        "lastIndexed": "2026-10-22T08:34:17.327Z"
       }
     },
     "validation": {
@@ -52383,7 +52369,7 @@
             "Emerald |"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:54.358Z"
+        "lastIndexed": "2026-10-22T08:34:19.035Z"
       }
     },
     "validation": {
@@ -52421,11 +52407,11 @@
           "git",
           "run",
           "suggestions",
-          "pnpm",
           "bash",
           "pull",
           "worthiness",
           "enhancement",
+          "pnpm",
           "wrote",
           "index"
         ],
@@ -52562,7 +52548,7 @@
             "Max Cost:"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:56.811Z"
+        "lastIndexed": "2026-10-22T08:34:21.471Z"
       }
     },
     "validation": {
@@ -52581,7 +52567,7 @@
       ]
     },
     "content": "# Block-Level Tagging Tutorial\n\nThis step-by-step tutorial walks you through the complete block-level tagging workflow.\n\n## Prerequisites\n\n- Node.js 18+\n- pnpm installed\n- Git configured\n- (Optional) OpenAI or Anthropic API key for AI enhancement\n\n## Part 1: Setup\n\n### Clone the Repository\n\n```bash\ngit clone https://github.com/framerslab/codex.git\ncd codex\npnpm install\n```\n\n### Verify Installation\n\n```bash\nnode scripts/block-processor.js --help\n```\n\nYou should see usage information.\n\n## Part 2: Processing Your First Thread\n\n### Create a Sample Thread\n\nCreate `weaves/tutorial/my-first-strand.md`:\n\n```markdown\n---\nid: \"550e8400-e29b-41d4-a716-446655440000\"\nslug: \"my-first-strand\"\ntitle: \"My First Strand\"\nversion: \"1.0.0\"\ncontentType: reference\ntaxonomy:\n  topic:\n    - tutorial\n    - block-tagging\n---\n\n# My First Strand\n\nThis is a tutorial document about block-level tagging.\n\n## Introduction\n\nBlock-level tagging allows granular metadata at the section level.\nThis enables precise search and navigation within documents.\n\n## Key Concepts\n\n### Worthiness Scoring\n\nNot every block needs tags. The system calculates a \"worthiness score\":\n\n- **Topic Shift**: How much does this block change topic?\n- **Entity Density**: How many named entities are present?\n- **Semantic Novelty**: How unique is this content?\n- **Structural Importance**: Is this a heading? A code block?\n\n### Tag Sources\n\nTags can come from multiple sources:\n\n1. **NLP Pipeline** - Vocabulary matching and TF-IDF\n2. **AI Enhancement** - LLM-based suggestions\n3. **Existing Tags** - Propagated from document level\n4. **User Contributions** - Manual tag additions\n\n## Code Example\n\nHere's a simple JavaScript example:\n\n```javascript\nfunction calculateWorthiness(block) {\n  const signals = {\n    topicShift: analyzeTopicShift(block),\n    entityDensity: countEntities(block),\n    semanticNovelty: measureNovelty(block),\n    structuralImportance: scoreStructure(block)\n  };\n  \n  return weightedAverage(signals);\n}\n```\n\n## Conclusion\n\nBlock-level tagging provides granular metadata for better search,\nnavigation, and knowledge organization.\n```\n\n### Process the Strand\n\nRun the block processor:\n\n```bash\nnode scripts/block-processor.js weaves/tutorial/my-first-strand.md\n```\n\nOutput:\n```\n🔧 Block Processor\n   Mode: WRITE\n\n📄 Processing file: weaves/tutorial/my-first-strand.md\n  ✅ Updated my-first-strand.md\n     - 8 blocks\n     - 5 worthy blocks\n```\n\n### View the Results\n\nOpen the file and check the frontmatter:\n\n```yaml\nblocks:\n  - id: \"my-first-strand\"\n    line: 11\n    endLine: 11\n    type: heading\n    headingLevel: 1\n    headingText: \"My First Strand\"\n    tags: []\n    suggestedTags: []\n    worthiness:\n      score: 0.85\n      signals:\n        topicShift: 0.5\n        entityDensity: 0.3\n        semanticNovelty: 0.5\n        structuralImportance: 1\n  # ... more blocks\n```\n\n## Part 3: Generating Tag Suggestions\n\n### Run the Tag Suggester\n\n```bash\nnode lib/block-tagging.js weaves/tutorial/my-first-strand.md\n```\n\nOutput:\n```\n🏷️  Block Tagger\n   Mode: WRITE\n\n[block-tagging] Loaded vocabulary: 234 terms\n\n📄 Processing file: weaves/tutorial/my-first-strand.md\n  ✅ my-first-strand.md: 12 suggestions across 8 blocks\n```\n\n### Review Suggestions\n\nCheck the updated frontmatter:\n\n```yaml\nblocks:\n  - id: \"key-concepts\"\n    line: 17\n    endLine: 28\n    type: heading\n    headingLevel: 2\n    headingText: \"Key Concepts\"\n    tags: []\n    suggestedTags:\n      - tag: \"block-tagging\"\n        confidence: 0.85\n        source: nlp\n        reasoning: \"Vocabulary match (topic)\"\n      - tag: \"worthiness\"\n        confidence: 0.72\n        source: nlp\n        reasoning: \"TF-IDF keyword extraction\"\n    worthiness:\n      score: 0.78\n```\n\n## Part 4: AI Enhancement (Optional)\n\n### Set Up API Key\n\n```bash\nexport OPENAI_API_KEY=sk-your-key-here\n```\n\n### Run AI Enhancement\n\n```bash\nnode scripts/ai-enhance-blocks.js weaves/tutorial/my-first-strand.md --max-cost 1.00\n```\n\nOutput:\n```\n🤖 AI Block Enhancer\n   Provider: openai\n   Model: gpt-4o-mini\n   Max Cost: $1.00\n   Mode: WRITE\n\n📚 Loaded 234 vocabulary terms\n\n📄 Processing file: weaves/tutorial/my-first-strand.md\n  ✅ my-first-strand.md: 5/8 blocks enhanced\n\n📊 Summary:\n   Blocks processed: 5\n   Total cost: $0.0234\n```\n\n### Review AI Suggestions\n\n```yaml\nsuggestedTags:\n  - tag: \"machine-learning\"\n    confidence: 0.82\n    source: llm\n    reasoning: \"The worthiness scoring signals (topic shift, semantic novelty) are concepts commonly used in ML-based content analysis.\"\n```\n\n## Part 5: Building the Index\n\n### Generate codex-blocks.json\n\n```bash\npnpm run index\n```\n\nOutput:\n```\n✅ Wrote index.json with 150 strands.\n✅ Wrote codex-index.json\n✅ Wrote codex-blocks.json\n   📊 Block Stats:\n      - Strands with blocks: 150\n      - Total blocks: 2340\n      - Total block tags: 5670\n      - Unique tags: 234\n      - Worthy blocks (≥0.5): 1890\n      - Pending suggestions: 456\n```\n\n### Inspect the Index\n\n```bash\ncat codex-blocks.json | jq '.stats'\n```\n\n## Part 6: Contributing Tags\n\n### Ac",
-    "searchText": "block tagging tutorial block-level tagging tutorial\n\nthis step-by-step tutorial walks you through the complete block-level tagging workflow block tutorial tagging strand blocks git run suggestions pnpm bash pull worthiness enhancement wrote index block tagging weaves tutorial tutorial strand pull request node scripts block processor block tags tutorial block bash node key concepts"
+    "searchText": "block tagging tutorial block-level tagging tutorial\n\nthis step-by-step tutorial walks you through the complete block-level tagging workflow block tutorial tagging strand blocks git run suggestions bash pull worthiness enhancement pnpm wrote index block tagging weaves tutorial tutorial strand pull request node scripts block processor block tags tutorial block bash node key concepts"
   },
   {
     "path": "docs/CHANGELOG_SYSTEM.md",
@@ -52626,8 +52612,8 @@
           "recorded",
           "activity",
           "jsonl",
-          "2025",
           "commit",
+          "2025",
           "conventional",
           "utc",
           "gh_pat",
@@ -52799,7 +52785,7 @@
             "first-parent"
           ]
         },
-        "lastIndexed": "2026-10-21T22:37:59.233Z"
+        "lastIndexed": "2026-10-22T08:34:23.915Z"
       }
     },
     "validation": {
@@ -52811,7 +52797,7 @@
       ]
     },
     "content": "\n# Frame Codex Changelog System\n\nFrame Codex automatically tracks and records all changes, issues, and pull requests in a structured, machine-readable format.\n\n## Overview\n\nThe changelog system runs weekly via GitHub Actions and records:\n\n1. **Git Changelog**: Parsed conventional commits with metadata, one line for each day on which commits reached `master`\n2. **Issue Activity**: Created and closed issues and merged PRs, one line for each run, over the days it records\n3. **Monthly JSONL Files**: `codex-history/YYYY-MM.jsonl`, one JSON object per line\n\nAll history is stored in `codex-history/` and reaches `master` through a pull request from `ci/changelog`. [codex-history/README.md](../codex-history/README.md) describes the files and how to query them.\n\n## Why This Matters\n\n### For Humans\n\n- **Transparency**: See exactly what changed and when\n- **Accountability**: Track who contributed what\n- **Discovery**: Find related changes quickly\n\n### For AI\n\n- **Structured Data**: Consistent JSON schema for LLM consumption\n- **Contextual**: Links to commits, issues, PRs for deep dives\n- **Queryable**: Filter by date, type, author, or label\n\n## How It Works\n\n### Weekly Automation\n\nEvery Monday at 00:00 UTC, `.github/workflows/changelog.yml` records the complete days, in UTC, before the day it runs on that are not yet recorded. A scheduled workflow here runs once a week at most. Each script starts after the last day it recorded, so a missed or failed run leaves no gap, and no run records a day half; with nothing recorded, it starts seven days before the run, and a manual run can name the first day.\n\n1. **Keeps an Open Pull Request's Lines**\n   - Takes the monthly files of a changelog pull request that has not landed, so they count as recorded\n\n2. **Fetches Git History**\n   - Reads `master`'s first-parent history: a merge commit brings its pull request's commits, any other commit brings itself, and each commit is recorded on the day, in UTC, the commit that brought it was made, so a pull request's commits are recorded on the day it merged\n   - Extracts conventional commit metadata, reading each commit's whole message\n   - Appends one line for each day to `codex-history/YYYY-MM.jsonl`, skipping the days already recorded\n\n3. **Fetches GitHub Activity** (if `GH_PAT` is set)\n   - Queries GitHub's GraphQL API, every page of each list, for the span from where the last recorded span ended\n   - Collects the issues created and closed and the PRs merged in the span, leaving out what an earlier line holds\n   - Appends one line, dated the span's first day and naming the day it ends at (`until`), to that month's file\n\n4. **Opens a Pull Request**\n   - Opens or updates one pull request into `master` from `ci/changelog` with `FRAMERS_BUMP_TOKEN`, so its Test Suite and rename-guard run\n   - `master` is protected, so a commit the workflow makes cannot be pushed to it; the pull request lands once its checks pass and its review comments are answered\n\n### Manual Generation\n\nYou can also generate history manually:\n\n```bash\n# From the repository's root: git changelog for a date range; --until is the first day not recorded\n# (today, in UTC, when left out), and --since the first day (after the last day recorded, when left out)\nnode scripts/generate-changelog.js --since 2025-01-01 --until 2025-02-01\n\n# Issue activity (requires GH_PAT)\nGH_PAT=ghp_xxx node scripts/fetch-issue-activity.js --since 2025-01-01 --until 2025-02-01\n```\n\n## Data Formats\n\n### Git Changelog\n\nOne line of `codex-history/YYYY-MM.jsonl` for each day, in UTC, on which commits reached `master`; each commit's own `date` is the day it was written:\n\n```json\n{\n  \"date\": \"2025-01-15\",\n  \"totalCommits\": 5,\n  \"byType\": {\n    \"feat\": [\n      {\n        \"sha\": \"abc1234\",\n        \"author\": \"John Doe\",\n        \"date\": \"2025-01-15T10:30:00Z\",\n        \"url\": \"https://github.com/framerslab/codex/commit/abc1234\",\n        \"type\": \"feat\",\n        \"scope\": \"indexer\",\n        \"description\": \"add SQL caching\"\n      }\n    ],\n    \"fix\": [...],\n    \"chore\": [...]\n  },\n  \"commits\": [...]\n}\n```\n\n### Issue Activity\n\nOne line of `codex-history/YYYY-MM.jsonl` for each run, dated its first day, with `until` the first day it does not cover:\n\n```json\n{\n  \"type\": \"github_activity\",\n  \"date\": \"2025-01-15\",\n  \"until\": \"2025-01-22\",\n  \"repository\": \"framerslab/codex\",\n  \"summary\": {\n    \"issuesCreated\": 2,\n    \"issuesClosed\": 1,\n    \"prsMerged\": 3,\n    \"total\": 6\n  },\n  \"created\": [\n    {\n      \"number\": 42,\n      \"title\": \"Add new feature\",\n      \"url\": \"https://github.com/framerslab/codex/issues/42\",\n      \"createdAt\": \"2025-01-15T14:20:00Z\",\n      \"author\": \"johndoe\",\n      \"labels\": [\"enhancement\"]\n    }\n  ],\n  \"closed\": [...],\n  \"merged\": [...]\n}\n```\n\n## Conventional Commits\n\nFor best results, use conventional commit format:\n\n```\ntype(scope): description\n\nOptional body with more details\n```\n\n### Commit Types\n\n- `feat`: New feature\n- `fix`: Bug fix\n- `docs`: Documentation only\n- `chore`: Maintenance (deps, confi",
-    "searchText": "frame codex changelog system automated changelog and activity tracking using git commits and github api commits changelog recorded activity jsonl 2025 commit conventional utc gh_pat feat pull workflow author git pull request github com framerslab codex changelog yml frame codex codex yyyy yyyy jsonl conventional commit https github git commit"
+    "searchText": "frame codex changelog system automated changelog and activity tracking using git commits and github api commits changelog recorded activity jsonl commit 2025 conventional utc gh_pat feat pull workflow author git pull request github com framerslab codex changelog yml frame codex codex yyyy yyyy jsonl conventional commit https github git commit"
   },
   {
     "path": "docs/DEVELOPMENT.md",
@@ -52823,32 +52809,32 @@
       "autoGenerated": {
         "keywords": [
           "loom",
-          "const",
           "cache",
-          "null",
+          "const",
           "index",
-          "npm",
           "run",
-          "keywords",
-          "cachekey",
+          "null",
+          "npm",
           "codex",
+          "inbox",
+          "cachekey",
+          "keywords",
           "cached",
+          "scripts",
           "seconds",
-          "catalog",
-          "bash",
-          "sha"
+          "catalog"
         ],
         "phrases": [
           "not null",
+          "auto index",
           "npm run",
           "run index",
-          "index validate",
-          "static nlp",
+          "codex index",
+          "pull request",
           "integer not",
           "apps codex",
-          "auto index",
-          "bash apps",
-          "codex index"
+          "index validate",
+          "static nlp"
         ],
         "subjects": [
           "ai",
@@ -52877,7 +52863,7 @@
           "sql",
           "schema",
           "testing",
-          "test",
+          "unit",
           "shell",
           "javascript",
           "yaml",
@@ -52886,111 +52872,112 @@
         ],
         "difficulty": "intermediate",
         "confidence": {
-          "ai": 0.10431654676258993,
-          "design": 0.12154696132596685,
-          "knowledge": 0.2962962962962963,
-          "media": 0.12686567164179105,
-          "philosophy": 0.07246376811594203,
+          "ai": 0.10071942446043165,
+          "design": 0.1270718232044199,
+          "knowledge": 0.31216931216931215,
+          "media": 0.11940298507462686,
+          "philosophy": 0.06763285024154589,
           "science": 0.09961685823754789,
-          "security": 0.1,
-          "technology": 0.3277027027027027,
-          "api-reference": 0.2682926829268293,
-          "architecture": 0.17518248175182483,
-          "best-practices": 0.25806451612903225,
-          "getting-started": 0.1559633027522936,
-          "troubleshooting": 0.25925925925925924,
-          "skill:authentication": 0.6538461538461539,
-          "skill:auth": 0.6538461538461539,
-          "skill:token": 0.6538461538461539,
-          "skill:session": 0.6538461538461539,
-          "skill:rest": 0.6538461538461539,
-          "skill:database": 0.6538461538461539,
-          "skill:sql": 0.6538461538461539,
-          "skill:schema": 0.6538461538461539,
-          "skill:testing": 0.6538461538461539,
-          "skill:test": 0.6538461538461539,
-          "skill:async": 0.6538461538461539,
-          "skill:await": 0.6538461538461539,
-          "skill:pure": 0.6538461538461539,
-          "skill:function": 0.6538461538461539,
-          "skill:object": 0.6538461538461539,
-          "skill:programming": 0.6538461538461539,
-          "skill:class": 0.6538461538461539,
-          "skill:data": 0.6538461538461539,
-          "skill:http": 0.6538461538461539,
-          "skill:https": 0.6538461538461539,
-          "skill:ssl": 0.6538461538461539,
-          "skill:ci": 0.6538461538461539,
-          "skill:cd": 0.6538461538461539,
-          "skill:authent": 0.6538461538461539,
-          "skill:databas": 0.6538461538461539,
-          "skill:program": 0.6538461538461539,
-          "skill:algorithm": 0.6538461538461539,
-          "skill:search": 0.6538461538461539,
-          "skill:structur": 0.6538461538461539,
-          "skill:dn": 0.6538461538461539,
-          "skill:hash": 0.6538461538461539,
-          "skill:tl": 0.6538461538461539,
+          "security": 0.09444444444444444,
+          "technology": 0.3344594594594595,
+          "api-reference": 0.2926829268292683,
+          "architecture": 0.1678832116788321,
+          "best-practices": 0.24193548387096775,
+          "getting-started": 0.1651376146788991,
+          "troubleshooting": 0.25,
+          "skill:authentication": 0.6682692307692308,
+          "skill:auth": 0.6682692307692308,
+          "skill:token": 0.6682692307692308,
+          "skill:session": 0.6682692307692308,
+          "skill:rest": 0.6682692307692308,
+          "skill:database": 0.6682692307692308,
+          "skill:sql": 0.6682692307692308,
+          "skill:schema": 0.6682692307692308,
+          "skill:testing": 0.6682692307692308,
+          "skill:unit": 0.6682692307692308,
+          "skill:test": 0.6682692307692308,
+          "skill:integration": 0.6682692307692308,
+          "skill:async": 0.6682692307692308,
+          "skill:await": 0.6682692307692308,
+          "skill:pure": 0.6682692307692308,
+          "skill:function": 0.6682692307692308,
+          "skill:object": 0.6682692307692308,
+          "skill:programming": 0.6682692307692308,
+          "skill:class": 0.6682692307692308,
+          "skill:data": 0.6682692307692308,
+          "skill:http": 0.6682692307692308,
+          "skill:https": 0.6682692307692308,
+          "skill:ssl": 0.6682692307692308,
+          "skill:ci": 0.6682692307692308,
+          "skill:cd": 0.6682692307692308,
+          "skill:authent": 0.6682692307692308,
+          "skill:databas": 0.6682692307692308,
+          "skill:integr": 0.6682692307692308,
+          "skill:program": 0.6682692307692308,
+          "skill:algorithm": 0.6682692307692308,
+          "skill:search": 0.6682692307692308,
+          "skill:structur": 0.6682692307692308,
+          "skill:dn": 0.6682692307692308,
+          "skill:hash": 0.6682692307692308,
+          "skill:tl": 0.6682692307692308,
           "skill:app": 0.5446428571428571,
           "skill:pages": 0.5446428571428571,
           "skill:api": 0.5446428571428571,
           "skill:on": 0.5446428571428571,
           "skill:page": 0.5446428571428571,
-          "skill:javascript": 0.6172839506172839,
-          "skill:js": 0.6172839506172839,
-          "skill:typescript": 0.6172839506172839,
-          "skill:ts": 0.6172839506172839,
-          "skill:tsc": 0.6172839506172839,
-          "skill:type": 0.6172839506172839,
-          "skill:python": 0.6172839506172839,
-          "skill:py": 0.6172839506172839,
-          "skill:rust": 0.6172839506172839,
-          "skill:go": 0.6172839506172839,
-          "skill:java": 0.6172839506172839,
-          "skill:c": 0.6172839506172839,
-          "skill:sqlite": 0.6172839506172839,
-          "skill:less": 0.6172839506172839,
-          "skill:shell": 0.6172839506172839,
-          "skill:bash": 0.6172839506172839,
-          "skill:gener": 0.6172839506172839,
-          "skill:io": 0.6172839506172839,
-          "skill:management": 0.543778801843318,
-          "skill:debugging": 0.543778801843318,
-          "skill:analysis": 0.543778801843318,
-          "skill:focus": 0.543778801843318,
-          "skill:iteration": 0.543778801843318,
-          "skill:eq": 0.543778801843318,
-          "skill:trust": 0.543778801843318,
-          "skill:document": 0.543778801843318,
-          "skill:edit": 0.543778801843318,
-          "skill:manag": 0.543778801843318,
-          "skill:mediat": 0.543778801843318,
-          "skill:debug": 0.543778801843318,
-          "skill:analysi": 0.543778801843318,
-          "skill:product": 0.543778801843318,
-          "skill:effici": 0.543778801843318,
-          "skill:schedul": 0.543778801843318,
-          "skill:focu": 0.543778801843318,
-          "skill:adapt": 0.543778801843318,
-          "skill:iter": 0.543778801843318,
-          "skill:git": 0.6263157894736842,
-          "skill:github": 0.6263157894736842,
-          "skill:version": 0.6263157894736842,
-          "skill:control": 0.6263157894736842,
-          "skill:commit": 0.6263157894736842,
-          "skill:branch": 0.6263157894736842,
-          "skill:merge": 0.6263157894736842,
-          "skill:npm": 0.6263157894736842,
-          "skill:as": 0.6263157894736842,
-          "skill:code": 0.6263157894736842,
-          "skill:web": 0.6263157894736842,
-          "skill:redis": 0.6263157894736842,
-          "skill:cache": 0.6263157894736842,
-          "skill:merg": 0.6263157894736842,
-          "skill:contain": 0.6263157894736842,
-          "skill:aw": 0.6263157894736842,
-          "skill:redi": 0.6263157894736842,
-          "skill:cach": 0.6263157894736842
+          "skill:javascript": 0.6111111111111112,
+          "skill:js": 0.6111111111111112,
+          "skill:typescript": 0.6111111111111112,
+          "skill:ts": 0.6111111111111112,
+          "skill:tsc": 0.6111111111111112,
+          "skill:type": 0.6111111111111112,
+          "skill:python": 0.6111111111111112,
+          "skill:py": 0.6111111111111112,
+          "skill:go": 0.6111111111111112,
+          "skill:java": 0.6111111111111112,
+          "skill:c": 0.6111111111111112,
+          "skill:sqlite": 0.6111111111111112,
+          "skill:less": 0.6111111111111112,
+          "skill:shell": 0.6111111111111112,
+          "skill:bash": 0.6111111111111112,
+          "skill:gener": 0.6111111111111112,
+          "skill:io": 0.6111111111111112,
+          "skill:management": 0.5391705069124424,
+          "skill:debugging": 0.5391705069124424,
+          "skill:analysis": 0.5391705069124424,
+          "skill:focus": 0.5391705069124424,
+          "skill:iteration": 0.5391705069124424,
+          "skill:eq": 0.5391705069124424,
+          "skill:document": 0.5391705069124424,
+          "skill:edit": 0.5391705069124424,
+          "skill:manag": 0.5391705069124424,
+          "skill:debug": 0.5391705069124424,
+          "skill:analysi": 0.5391705069124424,
+          "skill:product": 0.5391705069124424,
+          "skill:effici": 0.5391705069124424,
+          "skill:schedul": 0.5391705069124424,
+          "skill:focu": 0.5391705069124424,
+          "skill:adapt": 0.5391705069124424,
+          "skill:iter": 0.5391705069124424,
+          "skill:git": 0.631578947368421,
+          "skill:github": 0.631578947368421,
+          "skill:version": 0.631578947368421,
+          "skill:control": 0.631578947368421,
+          "skill:commit": 0.631578947368421,
+          "skill:branch": 0.631578947368421,
+          "skill:merge": 0.631578947368421,
+          "skill:npm": 0.631578947368421,
+          "skill:pnpm": 0.631578947368421,
+          "skill:as": 0.631578947368421,
+          "skill:code": 0.631578947368421,
+          "skill:web": 0.631578947368421,
+          "skill:redis": 0.631578947368421,
+          "skill:cache": 0.631578947368421,
+          "skill:merg": 0.631578947368421,
+          "skill:contain": 0.631578947368421,
+          "skill:aw": 0.631578947368421,
+          "skill:redi": 0.631578947368421,
+          "skill:cach": 0.631578947368421
         },
         "readingLevel": 0,
         "readabilityScore": 0,
@@ -53003,23 +52990,26 @@
             "state",
             "dist/",
             "dist/auto-",
-            "(If"
+            "(After"
           ],
           "organizations": [
             "GitHub",
             "Variables & Secrets",
             "Required GitHub",
             "GitHub",
+            "AI",
+            "AI",
             "PR",
             "Local Development",
-            "PR",
-            "GitHub",
-            "Via GitHub",
-            "GitHub"
+            "AI",
+            "PR"
           ],
           "topics": [
             "GitHub",
+            "AI",
             "GitHub",
+            "PR",
+            "PR",
             "(GitHub",
             "GitHub",
             "GitHub\":",
@@ -53029,13 +53019,10 @@
             "GitHub",
             "Provides GitHub",
             "Authentication & PR",
-            "**GitHub",
-            "GitHub",
-            "Via GitHub",
-            "GitHub"
+            "**GitHub"
           ]
         },
-        "lastIndexed": "2026-10-21T22:38:04.178Z"
+        "lastIndexed": "2026-10-22T08:34:28.848Z"
       }
     },
     "validation": {
@@ -53045,16 +53032,16 @@
       "suggestions": [
         "Add unique ID (UUID recommended)",
         "Add version number (semver format)",
-        "Consider adding tags: loom, const, cache, null, index",
+        "Consider adding tags: loom, cache, const, index, run",
         "Consider adding relationships (requires, references, seeAlso)",
         "Auto-detected subjects: ai, design, knowledge, media, philosophy, science, security, technology",
         "Auto-detected topics: api-reference, architecture, best-practices, getting-started, troubleshooting",
         "Suggested difficulty: intermediate",
-        "Key phrases found: not null, npm run, run index"
+        "Key phrases found: not null, auto index, npm run"
       ]
     },
-    "content": "# Frame Codex Development Guide\n\n## Initial Setup & Cataloging\n\n### First-Time Setup\n\n1. **Install Dependencies**\n```bash\ncd apps/codex\nnpm install\n```\n\n2. **Run Initial Catalog** (categorizes ALL existing content)\n```bash\nnpm run index -- --validate\n```\n\nThis will:\n- Scan all markdown files in `weaves/`, `docs/`, `wiki/`\n- Extract keywords using TF-IDF\n- Auto-categorize using NLP (no LLM, pure statistical)\n- Generate `codex-index.json` (searchable index)\n- Generate `codex-report.json` (analytics)\n- Output validation errors/warnings/suggestions\n\n**First run takes ~30 seconds for 100 files**\n\n### How It Works Subsequently\n\n**Automatic on Every PR Merge:**\n\n1. GitHub Actions triggers `build-index.yml` on push to `main`\n2. Runs `npm run index -- --validate` (static NLP only)\n3. Generates updated index files\n4. Pushes to `index` branch for consumption\n5. **No AI/LLM calls** - pure TF-IDF, n-grams, vocabulary matching\n\n**Static NLP Tools Used:**\n- **TF-IDF**: Keyword extraction (no external API)\n- **N-gram extraction**: Common phrases (local computation)\n- **Vocabulary matching**: Controlled taxonomy (regex/string matching)\n- **Readability scoring**: Flesch-Kincaid (formula-based)\n- **Sentiment heuristics**: Simple keyword patterns\n\n**Cost: $0** - All processing is local/in-CI\n\n---\n\n## Environment Variables & Secrets\n\n### Required GitHub Secrets\n\nAdd to `framerslab/codex` repository settings:\n\n```bash\n# Required for the Trusted Weavers workflow (approves validated PRs)\nGH_PAT=ghp_xxxxxxxxxxxxxxxxxxxx  # GitHub Personal Access Token (repo scope)\n\n# AI Enhancement (OPTIONAL - only if you want AI-powered PR analysis)\nOPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx\n\n# Configuration (optional)\nAI_PROVIDER=disabled  # Set to 'disabled' to skip AI entirely\n```\n\n### Secret Configuration\n\n**To enable AI enhancement:**\n```bash\nOPENAI_API_KEY=sk-...\n```\n\n**To label re-catalog PRs for landing** (exported in the shell that runs the re-catalog script):\n```bash\nexport AUTO_CATALOG_LAND=true\n# Default: false. The label marks the PR as checked; it lands after its review comments are read.\n```\n\n**To disable AI enhancement:**\n```bash\nAI_PROVIDER=disabled\n# Or just don't set OPENAI_API_KEY\n```\n\n### Local Development\n\nCreate `.env` in `apps/codex/`:\n\n```bash\n# Optional - only for testing AI enhancement locally\nOPENAI_API_KEY=sk-...\n# or\nANTHROPIC_API_KEY=sk-ant-...\nAI_PROVIDER=openai\n```\n\n**Note:** The indexer and validator work WITHOUT any API keys. AI is only for optional PR enhancement.\n\n---\n\n## Triggering a Full Re-Catalog\n\n### Method 1: Automated Script (Recommended)\n\n```bash\ncd apps/codex\nchmod +x scripts/retrigger-full-catalog.sh\n\n# Dry run first (see what would change)\n./scripts/retrigger-full-catalog.sh --dry-run\n\n# Create PR with changes (requires manual approval)\n./scripts/retrigger-full-catalog.sh\n\n# Label the PR for landing (one-time override)\n./scripts/retrigger-full-catalog.sh --land\n```\n\n**What it does:**\n1. Runs full static NLP analysis on ALL files\n2. Creates branch: `catalog/full-reindex-{timestamp}`\n3. Commits updated index files\n4. Creates PR with detailed summary\n5. **Waits for review**: with `AUTO_CATALOG_LAND=true` or `--land`, and when the indexer skipped no file, it adds the `landing` label and one comment; a maintainer lands it after its review comments are read\n\n**Requirements:**\n- `GH_PAT` environment variable\n\n### Method 2: GitHub Actions Trigger\n\n```bash\n# Via GitHub CLI\ngh workflow run build-index.yml --repo framerslab/codex\n\n# Or via web UI\n# Go to: https://github.com/framerslab/codex/actions/workflows/build-index.yml\n# Click \"Run workflow\" → \"Run workflow\"\n```\n\n**What it does:**\n- Runs indexer in CI\n- Pushes directly to `index` branch (no PR)\n- Updates live immediately\n\n### Method 3: Local Re-Index\n\n```bash\ncd apps/codex\nnpm run index -- --validate\n\n# Review changes\ncat codex-report.json | jq '.summary'\n\n# Commit on a branch and open a pull request: master is protected, so a change reaches it\n# through a pull request whose Test Suite and rename-guard checks pass\ngit switch -c chore/re-index\ngit add codex-index.json codex-report.json\ngit commit -m \"chore: re-index all content\"\ngit push -u origin chore/re-index\ngh pr create --base master --fill\n```\n\n**See full guide:** [RECATALOG_GUIDE.md](./RECATALOG_GUIDE.md)\n\n---\n\n## Search Artifacts (BM25 + MiniLM embeddings)\n\nFrame.dev’s advanced search UI consumes a separate static artifact, `codex-search.json`, which contains:\n\n- BM25 postings (term → docId, term frequency) over each document's whole text, read from the file `codex-index.json` lists, since the index keeps only its first 5,000 characters\n- Document metadata (path, weave, loom, summary, doc length)\n- Packed Float32 embeddings (all-MiniLM-L6-v2, mean pooled, normalized)\n\nGenerate it after the main index:\n\n```bash\ncd apps/codex\nnpm run build:search\n\n# Commit alongside codex-index.json to publish updated search data\ngit add codex-search.json\n```\n\nThis command uses `@huggingface/transformers` entirely in Node",
-    "searchText": "development **run initial catalog** (categorizes all existing content)\n\n\nthis will:\n- scan all markdown files in , , \n- extract keywords using tf-idf\n- auto-categorize using nlp (no llm, pure statistical)\n- generate  (searchable index)\n- generate  (analytics)\n- output validation errors/warnings/suggestions\n\n... loom const cache null index npm run keywords cachekey codex cached seconds catalog bash sha not null npm run run index index validate static nlp integer not apps codex auto index bash apps codex index"
+    "content": "# Frame Codex Development Guide\n\n## Initial Setup & Cataloging\n\n### First-Time Setup\n\n1. **Install Dependencies**\n```bash\ncd apps/codex\nnpm install\n```\n\n2. **Run Initial Catalog** (categorizes ALL existing content)\n```bash\nnpm run index -- --validate\n```\n\nThis will:\n- Scan all markdown files in `weaves/`, `docs/`, `wiki/`\n- Extract keywords using TF-IDF\n- Auto-categorize using NLP (no LLM, pure statistical)\n- Generate `codex-index.json` (searchable index)\n- Generate `codex-report.json` (analytics)\n- Output validation errors/warnings/suggestions\n\n**First run takes ~30 seconds for 100 files**\n\n### How It Works Subsequently\n\n**Automatic on Every PR Merge:**\n\n1. GitHub Actions runs `auto-index.yml` on each push to `master` that changes `weaves/`, `scripts/` or `schema/`\n2. Runs the block processing, `pnpm run index` and `pnpm run build:search` (static NLP only)\n3. Opens or updates one pull request into `master` from `ci/codex-index` with the index files that changed\n4. The index reaches `master`, where frame.dev reads it, when that pull request lands\n5. **No AI/LLM calls** - pure TF-IDF, n-grams, vocabulary matching\n\n**Static NLP Tools Used:**\n- **TF-IDF**: Keyword extraction (no external API)\n- **N-gram extraction**: Common phrases (local computation)\n- **Vocabulary matching**: Controlled taxonomy (regex/string matching)\n- **Readability scoring**: Flesch-Kincaid (formula-based)\n- **Sentiment heuristics**: Simple keyword patterns\n\n**Cost: $0** - All processing is local/in-CI\n\n---\n\n## Environment Variables & Secrets\n\n### Required GitHub Secrets\n\nAdd to `framerslab/codex` repository settings:\n\n```bash\n# The changelog's reads of issues and PRs, and the PRs and issues the inbox categorizer opens\nGH_PAT=ghp_xxxxxxxxxxxxxxxxxxxx  # GitHub Personal Access Token (repo scope)\n\n# OPTIONAL: the AI block enhancement (on a run someone starts) and the inbox categorizer (each note under weaves/inbox/)\nOPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx\n```\n\n### Secret Configuration\n\n**To enable the AI block enhancement** (`ai-enhance-blocks.yml`, by hand or with the `ai-enhance` label on a PR):\n```bash\nOPENAI_API_KEY=sk-...\n```\n\n**To label re-catalog PRs for landing** (exported in the shell that runs the re-catalog script):\n```bash\nexport AUTO_CATALOG_LAND=true\n# Default: false. The label marks the PR as checked; it lands after its review comments are read.\n```\n\n**To call no model from the scripts you run locally:**\n```bash\nAI_PROVIDER=disabled\n# Or just don't set OPENAI_API_KEY\n```\n\n### Local Development\n\nCreate `.env` in `apps/codex/`:\n\n```bash\n# Optional - only for testing AI enhancement locally\nOPENAI_API_KEY=sk-...\n# or\nANTHROPIC_API_KEY=sk-ant-...\nAI_PROVIDER=openai\n```\n\n**Note:** The indexer and validator work WITHOUT any API keys. No workflow calls a model on a PR unless someone labels it `ai-enhance`; with a key set, the inbox categorizer calls one for each note added under `weaves/inbox/`, and the AI block enhancement on a run someone starts.\n\n---\n\n## Triggering a Full Re-Catalog\n\n### Method 1: Automated Script (Recommended)\n\n```bash\ncd apps/codex\nchmod +x scripts/retrigger-full-catalog.sh\n\n# Dry run first (see what would change)\n./scripts/retrigger-full-catalog.sh --dry-run\n\n# Create PR with changes (requires manual approval)\n./scripts/retrigger-full-catalog.sh\n\n# Label the PR for landing (one-time override)\n./scripts/retrigger-full-catalog.sh --land\n```\n\n**What it does:**\n1. Runs full static NLP analysis on ALL files\n2. Creates branch: `catalog/full-reindex-{timestamp}`\n3. Commits updated index files\n4. Creates PR with detailed summary\n5. **Waits for review**: with `AUTO_CATALOG_LAND=true` or `--land`, and when the indexer skipped no file, it adds the `landing` label and one comment; a maintainer lands it after its review comments are read\n\n**Requirements:**\n- `GH_PAT` environment variable\n\n### Method 2: GitHub Actions Trigger\n\n```bash\n# Via GitHub CLI\ngh workflow run auto-index.yml --repo framerslab/codex\n\n# Or via web UI\n# Go to: https://github.com/framerslab/codex/actions/workflows/auto-index.yml\n# Click \"Run workflow\" → \"Run workflow\"\n```\n\n**What it does:**\n- Runs indexer in CI on master's head, without `--validate`, so it does not stop on validation errors (Methods 1 and 3 do)\n- Opens or updates one pull request into `master` from `ci/codex-index` with the index files that changed\n- The index reaches `master` when that pull request lands\n\n### Method 3: Local Re-Index\n\n```bash\ncd apps/codex\nnpm run index -- --validate\n\n# Review changes\ncat codex-report.json | jq '.summary'\n\n# Commit on a branch and open a pull request: master is protected, so a change reaches it\n# through a pull request whose Test Suite and rename-guard checks pass\ngit switch -c chore/re-index\ngit add codex-index.json codex-report.json\ngit commit -m \"chore: re-index all content\"\ngit push -u origin chore/re-index\ngh pr create --base master --fill\n```\n\n**See full guide:** [RECATALOG_GUIDE.md](./RECATALOG_GUIDE.md)\n\n---\n\n## Search Artifacts (BM25 + MiniLM emb",
+    "searchText": "development **run initial catalog** (categorizes all existing content)\n\n\nthis will:\n- scan all markdown files in , , \n- extract keywords using tf-idf\n- auto-categorize using nlp (no llm, pure statistical)\n- generate  (searchable index)\n- generate  (analytics)\n- output validation errors/warnings/suggestions\n\n... loom cache const index run null npm codex inbox cachekey keywords cached scripts seconds catalog not null auto index npm run run index codex index pull request integer not apps codex index validate static nlp"
   },
   {
     "path": "docs/NLP_VOCABULARY_SYSTEM.md",
@@ -53069,17 +53056,17 @@
           "terms",
           "categories",
           "weight",
+          "words",
           "classification",
           "neural",
-          "words",
           "term",
           "files",
           "porter",
           "unigram",
           "learning",
           "enhance",
-          "machine",
-          "matching"
+          "matching",
+          "vocabulary"
         ],
         "phrases": [
           "machine learning",
@@ -53231,7 +53218,7 @@
             "clay |"
           ]
         },
-        "lastIndexed": "2026-10-21T22:38:06.524Z"
+        "lastIndexed": "2026-10-22T08:34:31.339Z"
       }
     },
     "validation": {
@@ -53241,7 +53228,7 @@
       "suggestions": [
         "Add unique ID (UUID recommended)",
         "Add version number (semver format)",
-        "Consider adding tags: txt, terms, categories, weight, classification",
+        "Consider adding tags: txt, terms, categories, weight, words",
         "Consider adding relationships (requires, references, seeAlso)",
         "Auto-detected subjects: ai, design, knowledge, media, philosophy, science, security, technology",
         "Auto-detected topics: api-reference, architecture, best-practices, getting-started, troubleshooting",
@@ -53250,7 +53237,7 @@
       ]
     },
     "content": "# NLP & Vocabulary System Documentation\n\n## Overview\n\nThe Codex auto-indexer uses a sophisticated NLP pipeline for content classification, keyword extraction, and auto-tagging. This system combines:\n\n1. **External Vocabulary Files** - Extensible text files with domain-specific terms\n2. **Porter Stemmer** - Word normalization for better matching\n3. **N-gram Analysis** - Trigram → Bigram → Unigram weighted matching\n4. **Context-Aware Scoring** - Reduce false positives through contextual analysis\n5. **LLM Assistance** (optional) - AI-powered enhancement via `ai-enhance.js`\n\n## Architecture\n\n```\nvocab/\n├── subjects/           # Domain categories (8 files)\n│   ├── technology.txt  # Programming, frameworks, tools\n│   ├── ai.txt          # Machine learning, LLMs, neural nets\n│   ├── science.txt     # Research, physics, chemistry, biology\n│   ├── philosophy.txt  # Ethics, metaphysics, epistemology\n│   ├── knowledge.txt   # Documentation, learning, OpenStrand\n│   ├── design.txt      # UX/UI, visual design, accessibility\n│   ├── security.txt    # Encryption, auth, vulnerabilities\n│   └── media.txt       # Images, video, audio, formats\n├── topics/             # Content type categories (5 files)\n│   ├── getting-started.txt\n│   ├── architecture.txt\n│   ├── api-reference.txt\n│   ├── best-practices.txt\n│   └── troubleshooting.txt\n├── difficulty/         # Skill levels (4 files)\n│   ├── beginner.txt\n│   ├── intermediate.txt\n│   ├── advanced.txt\n│   └── expert.txt\n└── stopwords.txt       # 500+ stop words for filtering\n```\n\n## N-gram Weighted Matching\n\nThe system prioritizes longer, more specific matches:\n\n| N-gram Type | Weight | Example |\n|-------------|--------|---------|\n| **Trigram** (3 words) | 3.0x | \"machine learning model\" |\n| **Bigram** (2 words) | 2.0x | \"neural network\" |\n| **Unigram** (1 word) | 1.0x | \"tensorflow\" |\n\n### Matching Logic\n\n```javascript\n// Trigrams checked first (highest specificity)\nif (trigramSet.has(\"domain driven design\")) → weight = 3.0\n\n// Then bigrams\nif (bigramSet.has(\"clean architecture\")) → weight = 2.0\n\n// Finally unigrams with stemming\nif (unigramSet.has(\"microservic\") || unigramSet.has(\"microservice\")) → weight = 1.0\n\n// Hyphenated compound terms get 1.5x unigram weight\nif (allPartsMatch(\"event-driven\")) → weight = 1.5\n```\n\n## Context-Aware Scoring\n\nTo avoid false positives (e.g., \"library\" matching programming when discussing a physical library), the system applies context adjustments:\n\n### Negative Context (Score × 0.3)\n\n| Term | Negative Context Words |\n|------|----------------------|\n| library | physical, book, public, municipal, lending |\n| learning | curve, disability, difficulties, disorder |\n| framework | legal, regulatory, policy, theoretical |\n| model | fashion, role, scale, 3d, clay |\n| platform | train, station, political, diving |\n| cloud | weather, rain, storm, sky |\n\n### Positive Context (Score × 1.5)\n\n| Term | Positive Context Words |\n|------|----------------------|\n| library | code, import, npm, package, install, dependency |\n| learning | machine, deep, model, neural, ai, training |\n| framework | web, software, javascript, python, backend |\n| model | machine, learning, neural, language, ai |\n| platform | cloud, software, development, api, saas |\n\n## Porter Stemmer\n\nAll terms are normalized using the Porter Stemming Algorithm:\n\n| Original | Stemmed |\n|----------|---------|\n| programming | program |\n| development | develop |\n| configuration | configur |\n| authentication | authent |\n| microservices | microservic |\n\nThis allows matching word variants automatically.\n\n## Adding Vocabulary Terms\n\nSimply add terms to the appropriate `.txt` file:\n\n```txt\n# vocab/subjects/technology.txt\n# One term per line. Lines starting with # are comments.\n\nkubernetes\nk8s\nhelm-chart\nistio\nservice-mesh\n```\n\n### Best Practices\n\n1. **Use hyphens** for compound terms: `machine-learning`, `event-driven`\n2. **Include variations**: `k8s`, `kubernetes`, `kube`\n3. **Add acronyms**: Both `API` and `application-programming-interface`\n4. **Use lowercase**: Normalization handles case automatically\n5. **Group related terms**: Keep related concepts together\n\n## LLM Enhancement (Optional)\n\nThe `ai-enhance.js` script uses Claude/GPT-4 to:\n\n1. **Auto-fill metadata** - Title, summary, tags\n2. **Suggest categories** - Subject, topic, difficulty\n3. **Detect quality issues** - Missing sections, unclear content\n4. **Generate summaries** - Extractive and abstractive\n\n### Usage\n\n```bash\n# Analyze specific files\nnode scripts/ai-enhance.js --files \"file1.md,file2.md\"\n\n# Apply safe fixes automatically\nnode scripts/ai-enhance.js --files \"file1.md\" --apply-safe-fixes\n```\n\n### Environment Variables\n\n```env\nOPENAI_API_KEY=sk-...\nANTHROPIC_API_KEY=sk-ant-...\nOPENROUTER_API_KEY=sk-or-...\nAI_PROVIDER=anthropic  # or 'openai', 'openrouter', 'disabled'\n```\n\n## Classification Output\n\nThe classifier returns:\n\n```javascript\n{\n  subjects: ['technology', 'ai'],\n  topics: ['architecture', 'best-practices'],\n  difficulty: 'intermedia",
-    "searchText": "nlp vocabulary system nlp & vocabulary system documentation\n\noverview\n\nthe codex auto-indexer uses a sophisticated nlp pipeline for content classification, keyword extraction, and auto-tagging txt terms categories weight classification neural words term files porter unigram learning enhance machine matching machine learning best practices nlp vocabulary auto indexer vocabulary documentation documentation overview overview codex codex auto indexer uses uses sophisticated"
+    "searchText": "nlp vocabulary system nlp & vocabulary system documentation\n\noverview\n\nthe codex auto-indexer uses a sophisticated nlp pipeline for content classification, keyword extraction, and auto-tagging txt terms categories weight words classification neural term files porter unigram learning enhance matching vocabulary machine learning best practices nlp vocabulary auto indexer vocabulary documentation documentation overview overview codex codex auto indexer uses uses sophisticated"
   },
   {
     "path": "docs/RECATALOG_GUIDE.md",
@@ -53286,18 +53273,18 @@
           "catalog",
           "retrigger",
           "report",
-          "landing",
           "run",
+          "landing",
           "review",
-          "full",
+          "index",
           "label",
           "codex",
-          "index",
-          "auto_catalog_land",
           "validation",
-          "prs",
+          "full",
+          "auto_catalog_land",
           "script",
-          "article"
+          "scripts",
+          "master"
         ],
         "phrases": [
           "full catalog",
@@ -53305,11 +53292,11 @@
           "retrigger full",
           "codex report",
           "report json",
+          "codex index",
+          "json codex",
           "static nlp",
           "frame codex",
-          "codex index",
-          "index json",
-          "auto_catalog_land true"
+          "pull request"
         ],
         "subjects": [
           "ai",
@@ -53348,18 +53335,18 @@
         ],
         "difficulty": "intermediate",
         "confidence": {
-          "ai": 0.07913669064748201,
-          "design": 0.06629834254143646,
-          "knowledge": 0.1746031746031746,
-          "media": 0.05223880597014925,
+          "ai": 0.06474820143884892,
+          "design": 0.0718232044198895,
+          "knowledge": 0.14814814814814814,
+          "media": 0.04477611940298507,
           "philosophy": 0.04830917874396135,
           "science": 0.06896551724137931,
           "security": 0.07777777777777778,
-          "technology": 0.14527027027027026,
-          "api-reference": 0.12195121951219512,
+          "technology": 0.15202702702702703,
+          "api-reference": 0.13008130081300814,
           "architecture": 0.058394160583941604,
           "best-practices": 0.1774193548387097,
-          "getting-started": 0.12844036697247707,
+          "getting-started": 0.13761467889908258,
           "troubleshooting": 0.25,
           "skill:auth": 0.5673076923076923,
           "skill:token": 0.5673076923076923,
@@ -53386,31 +53373,30 @@
           "skill:bash": 0.5493827160493827,
           "skill:gener": 0.5493827160493827,
           "skill:io": 0.5493827160493827,
-          "skill:documentation": 0.5299539170506913,
-          "skill:troubleshooting": 0.5299539170506913,
-          "skill:analysis": 0.5299539170506913,
-          "skill:iteration": 0.5299539170506913,
-          "skill:eq": 0.5299539170506913,
-          "skill:write": 0.5299539170506913,
-          "skill:present": 0.5299539170506913,
-          "skill:document": 0.5299539170506913,
-          "skill:mediat": 0.5299539170506913,
-          "skill:troubleshoot": 0.5299539170506913,
-          "skill:analysi": 0.5299539170506913,
-          "skill:schedul": 0.5299539170506913,
-          "skill:iter": 0.5299539170506913,
-          "skill:git": 0.5894736842105264,
-          "skill:github": 0.5894736842105264,
-          "skill:version": 0.5894736842105264,
-          "skill:control": 0.5894736842105264,
-          "skill:commit": 0.5894736842105264,
-          "skill:branch": 0.5894736842105264,
-          "skill:merge": 0.5894736842105264,
-          "skill:npm": 0.5894736842105264,
-          "skill:as": 0.5894736842105264,
-          "skill:code": 0.5894736842105264,
-          "skill:web": 0.5894736842105264,
-          "skill:merg": 0.5894736842105264
+          "skill:troubleshooting": 0.5253456221198156,
+          "skill:analysis": 0.5253456221198156,
+          "skill:iteration": 0.5253456221198156,
+          "skill:eq": 0.5253456221198156,
+          "skill:write": 0.5253456221198156,
+          "skill:present": 0.5253456221198156,
+          "skill:mediat": 0.5253456221198156,
+          "skill:troubleshoot": 0.5253456221198156,
+          "skill:analysi": 0.5253456221198156,
+          "skill:schedul": 0.5253456221198156,
+          "skill:iter": 0.5253456221198156,
+          "skill:git": 0.5947368421052631,
+          "skill:github": 0.5947368421052631,
+          "skill:version": 0.5947368421052631,
+          "skill:control": 0.5947368421052631,
+          "skill:commit": 0.5947368421052631,
+          "skill:branch": 0.5947368421052631,
+          "skill:merge": 0.5947368421052631,
+          "skill:npm": 0.5947368421052631,
+          "skill:pnpm": 0.5947368421052631,
+          "skill:as": 0.5947368421052631,
+          "skill:code": 0.5947368421052631,
+          "skill:web": 0.5947368421052631,
+          "skill:merg": 0.5947368421052631
         },
         "readingLevel": 0,
         "readabilityScore": 0,
@@ -53435,6 +53421,7 @@
           "topics": [
             "PR",
             "PR\"",
+            "AI",
             "GitHub",
             "PR",
             "PR",
@@ -53449,7 +53436,7 @@
             "Landing Label"
           ]
         },
-        "lastIndexed": "2026-10-21T22:38:09.092Z"
+        "lastIndexed": "2026-10-22T08:34:33.864Z"
       }
     },
     "validation": {
@@ -53461,8 +53448,8 @@
         "Key phrases found: full catalog, scripts retrigger, retrigger full"
       ]
     },
-    "content": "\n# Frame Codex Re-Catalog Guide\n\nThis guide explains how to trigger a complete re-indexing and metadata update for all Frame Codex content.\n\n---\n\n## When to Re-Catalog\n\nRun a full re-catalog when:\n\n✅ **Initial setup** - First time setting up the repository  \n✅ **Schema changes** - After updating validation rules or metadata schema  \n✅ **Vocabulary updates** - After adding new subjects/topics to controlled vocabulary  \n✅ **Bulk imports** - After importing large amounts of content  \n✅ **Quality audit** - Periodic review of all content (monthly/quarterly)  \n\n❌ **NOT needed for:**\n- Individual PR merges (automatic via GitHub Actions)\n- Small metadata fixes (handled by normal PR flow)\n- Content updates without schema changes\n\n---\n\n## Method 1: GitHub Actions (Recommended)\n\n### Via GitHub Web UI\n\n1. Go to https://github.com/framerslab/codex/actions/workflows/build-index.yml\n2. Click **\"Run workflow\"** dropdown (top right)\n3. Select branch: `main`\n4. Click **\"Run workflow\"** button\n5. Wait ~1-2 minutes for completion\n\n### Via GitHub CLI\n\n```bash\ngh workflow run build-index.yml --repo framerslab/codex\n```\n\n**What It Does:**\n- Runs `npm run index -- --validate` on ALL files\n- Generates `codex-index.json` and `codex-report.json`\n- Pushes to `index` branch (no PR needed)\n- Updates live immediately on frame.dev/codex\n\n**Cost:** $0 (static NLP only, no AI calls)\n\n---\n\n## Method 2: Local Script with PR Creation\n\n### Using the Re-Catalog Script\n\n```bash\ncd apps/codex\nchmod +x scripts/retrigger-full-catalog.sh\n./scripts/retrigger-full-catalog.sh\n```\n\n**What It Does:**\n1. Runs full static NLP analysis on ALL files\n2. Updates `codex-index.json` and `codex-report.json`\n3. Creates a new branch: `catalog/full-reindex-{timestamp}`\n4. Commits changes\n5. Pushes to GitHub\n6. **Creates a PR** for review\n7. Optionally labels the PR `landing` if `AUTO_CATALOG_LAND=true` (a maintainer lands it after its review comments are read)\n\n**Options:**\n\n```bash\n# Dry run (see what would change, no PR)\n./scripts/retrigger-full-catalog.sh --dry-run\n\n# Label the PR for landing (overrides AUTO_CATALOG_LAND)\n./scripts/retrigger-full-catalog.sh --land\n```\n\n**Requirements:**\n- `GH_PAT` environment variable (for PR creation)\n- Git configured with user name/email\n\n**Cost:** $0 (static NLP only)\n\n---\n\n## Method 3: Manual Local Re-Index\n\nFor testing or local development:\n\n```bash\ncd apps/codex\nnpm install\nnpm run index -- --validate\n```\n\n**Output Files:**\n- `codex-index.json` - Full searchable index\n- `codex-report.json` - Analytics and validation report\n\n**To Deploy:** master is protected, so the files reach it through a pull request whose Test Suite and rename-guard checks pass:\n```bash\ngit switch -c chore/manual-re-index\ngit add codex-index.json codex-report.json\ngit commit -m \"chore: manual re-index\"\ngit push -u origin chore/manual-re-index\ngh pr create --base master --fill\n```\n\n---\n\n## Landing Label\n\n### Default Behavior: Review Required\n\nFull re-catalog PRs wait for **review**. Nothing merges a PR automatically: a PR lands only after its reviews and comments are read, fixed or answered and its threads resolved.\n\n### Label for Landing\n\nExport this variable in the shell that runs the script:\n\n```bash\nexport AUTO_CATALOG_LAND=true\n```\n\n**When set:**\n- The script adds the `landing` label to its PR and one comment naming the guards that passed (the indexer run and its file counts)\n- A run in which the indexer skipped a file gets no label, since that file is missing from the index\n- A maintainer lands the PR after its review comments are read\n- `AUTO_CATALOG_MERGE` and `--auto-merge` are older names for the same setting\n\n### Toggle via Script\n\n```bash\n# Label the PR for landing\nAUTO_CATALOG_LAND=true ./scripts/retrigger-full-catalog.sh\n\n# Without the label (default)\n./scripts/retrigger-full-catalog.sh\n\n# Label the PR for landing (one-time override)\n./scripts/retrigger-full-catalog.sh --land\n```\n\n---\n\n## What Gets Updated\n\n### Static NLP Analysis (Always Runs)\n\n1. **Keywords Extraction** (TF-IDF)\n   - Identifies most important terms\n   - Filters stop words\n   - Ranks by relevance\n\n2. **Phrase Detection** (N-grams)\n   - Finds common 2-3 word phrases\n   - Identifies repeated patterns\n   - Suggests tags\n\n3. **Category Matching**\n   - Matches against controlled vocabulary\n   - Assigns subjects and topics\n   - Calculates confidence scores\n\n4. **Difficulty Detection**\n   - Heuristic analysis of complexity indicators\n   - Keyword-based classification\n   - Assigns beginner/intermediate/advanced/expert\n\n5. **Summary Generation**\n   - Extractive summarization\n   - Picks most representative sentence\n   - Truncates to 300 characters\n\n6. **Validation**\n   - Schema compliance\n   - Required fields check\n   - Content quality rules\n   - Duplicate detection\n\n### What Does NOT Get Updated\n\n❌ **Manual metadata is preserved:**\n- Explicitly set titles, summaries, tags\n- User-defined relationships\n- Custom categorization\n- Version numbers\n- Author information\n\n✅ **Only auto-gener",
-    "searchText": "frame codex re-catalog guide complete guide to triggering full re-indexing and metadata updates for all frame codex content catalog retrigger report landing run review full label codex index auto_catalog_land validation prs script article full catalog scripts retrigger retrigger full codex report report json static nlp frame codex codex index index json auto_catalog_land true"
+    "content": "\n# Frame Codex Re-Catalog Guide\n\nThis guide explains how to trigger a complete re-indexing and metadata update for all Frame Codex content.\n\n---\n\n## When to Re-Catalog\n\nRun a full re-catalog when:\n\n✅ **Initial setup** - First time setting up the repository  \n✅ **Schema changes** - After updating validation rules or metadata schema  \n✅ **Vocabulary updates** - After adding new subjects/topics to controlled vocabulary  \n✅ **Bulk imports** - After importing large amounts of content  \n✅ **Quality audit** - Periodic review of all content (monthly/quarterly)  \n\n❌ **NOT needed for:**\n- Individual PR merges (automatic via GitHub Actions)\n- Small metadata fixes (handled by normal PR flow)\n- Content updates without schema changes\n\n---\n\n## Method 1: GitHub Actions (Recommended)\n\n### Via GitHub Web UI\n\n1. Go to https://github.com/framerslab/codex/actions/workflows/auto-index.yml\n2. Click **\"Run workflow\"** dropdown (top right)\n3. Select branch: `master`\n4. Click **\"Run workflow\"** button\n5. Wait for the index pull request to open or update\n\n### Via GitHub CLI\n\n```bash\ngh workflow run auto-index.yml --repo framerslab/codex\n```\n\n**What It Does:**\n- Processes the blocks and runs `pnpm run index` and `pnpm run build:search` on ALL files of master's head, without `--validate`, so it does not stop on validation errors; run `npm run index -- --validate` first to see them, or use Method 2, which does\n- Opens or updates one pull request into `master` from `ci/codex-index` with the files that changed among `codex-index.json`, `codex-search.json`, `codex-report.json` and `codex-blocks.json`\n- The index reaches master, where frame.dev reads it, when that pull request lands after its checks and review pass\n\n**Cost:** $0 (static NLP only, no AI calls)\n\n---\n\n## Method 2: Local Script with PR Creation\n\n### Using the Re-Catalog Script\n\n```bash\ncd apps/codex\nchmod +x scripts/retrigger-full-catalog.sh\n./scripts/retrigger-full-catalog.sh\n```\n\n**What It Does:**\n1. Runs full static NLP analysis on ALL files\n2. Updates `codex-index.json` and `codex-report.json`\n3. Creates a new branch: `catalog/full-reindex-{timestamp}`\n4. Commits changes\n5. Pushes to GitHub\n6. **Creates a PR** for review\n7. Optionally labels the PR `landing` if `AUTO_CATALOG_LAND=true` (a maintainer lands it after its review comments are read)\n\n**Options:**\n\n```bash\n# Dry run (see what would change, no PR)\n./scripts/retrigger-full-catalog.sh --dry-run\n\n# Label the PR for landing (overrides AUTO_CATALOG_LAND)\n./scripts/retrigger-full-catalog.sh --land\n```\n\n**Requirements:**\n- `GH_PAT` environment variable (for PR creation)\n- Git configured with user name/email\n\n**Cost:** $0 (static NLP only)\n\n---\n\n## Method 3: Manual Local Re-Index\n\nFor testing or local development:\n\n```bash\ncd apps/codex\nnpm install\nnpm run index -- --validate\n```\n\n**Output Files:**\n- `codex-index.json` - Full searchable index\n- `codex-report.json` - Analytics and validation report\n\n**To Deploy:** master is protected, so the files reach it through a pull request whose Test Suite and rename-guard checks pass:\n```bash\ngit switch -c chore/manual-re-index\ngit add codex-index.json codex-report.json\ngit commit -m \"chore: manual re-index\"\ngit push -u origin chore/manual-re-index\ngh pr create --base master --fill\n```\n\n---\n\n## Landing Label\n\n### Default Behavior: Review Required\n\nFull re-catalog PRs wait for **review**. Nothing merges a PR automatically: a PR lands only after its reviews and comments are read, fixed or answered and its threads resolved.\n\n### Label for Landing\n\nExport this variable in the shell that runs the script:\n\n```bash\nexport AUTO_CATALOG_LAND=true\n```\n\n**When set:**\n- The script adds the `landing` label to its PR and one comment naming the guards that passed (the indexer run and its file counts)\n- A run in which the indexer skipped a file gets no label, since that file is missing from the index\n- A maintainer lands the PR after its review comments are read\n- `AUTO_CATALOG_MERGE` and `--auto-merge` are older names for the same setting\n\n### Toggle via Script\n\n```bash\n# Label the PR for landing\nAUTO_CATALOG_LAND=true ./scripts/retrigger-full-catalog.sh\n\n# Without the label (default)\n./scripts/retrigger-full-catalog.sh\n\n# Label the PR for landing (one-time override)\n./scripts/retrigger-full-catalog.sh --land\n```\n\n---\n\n## What Gets Updated\n\n### Static NLP Analysis (Always Runs)\n\n1. **Keywords Extraction** (TF-IDF)\n   - Identifies most important terms\n   - Filters stop words\n   - Ranks by relevance\n\n2. **Phrase Detection** (N-grams)\n   - Finds common 2-3 word phrases\n   - Identifies repeated patterns\n   - Suggests tags\n\n3. **Category Matching**\n   - Matches against controlled vocabulary\n   - Assigns subjects and topics\n   - Calculates confidence scores\n\n4. **Difficulty Detection**\n   - Heuristic analysis of complexity indicators\n   - Keyword-based classification\n   - Assigns beginner/intermediate/advanced/expert\n\n5. **Summary Generation**\n   - Extractive summarization\n   - Picks most representative ",
+    "searchText": "frame codex re-catalog guide complete guide to triggering full re-indexing and metadata updates for all frame codex content catalog retrigger report run landing review index label codex validation full auto_catalog_land script scripts master full catalog scripts retrigger retrigger full codex report report json codex index json codex static nlp frame codex pull request"
   },
   {
     "path": "docs/contributing/how-to-submit.md",
@@ -53501,30 +53488,30 @@
           "submission",
           "submissions",
           "recursion",
-          "quality",
           "token",
           "contribution",
           "uuidgenerator",
           "net",
           "discord",
-          "github",
           "codex",
+          "pull",
+          "github",
+          "request",
           "modal",
-          "direct",
-          "blank",
-          "submit"
+          "minutes",
+          "blank"
         ],
         "phrases": [
           "frame dev",
+          "pull request",
           "frame codex",
           "dev codex",
           "add content",
           "github com",
           "framerslab codex",
           "content title",
-          "content analysis",
           "create pull",
-          "pull request"
+          "100 characters"
         ],
         "subjects": [
           "ai",
@@ -53550,10 +53537,10 @@
           "schema",
           "unit",
           "test",
+          "integration",
           "function",
           "programming",
           "algorithms",
-          "data",
           "shell",
           "git",
           "collaboration",
@@ -53562,79 +53549,80 @@
         ],
         "difficulty": "beginner",
         "confidence": {
-          "ai": 0.0683453237410072,
+          "ai": 0.07194244604316546,
           "design": 0.12154696132596685,
           "knowledge": 0.37566137566137564,
           "media": 0.11940298507462686,
-          "philosophy": 0.12560386473429952,
+          "philosophy": 0.14009661835748793,
           "science": 0.0842911877394636,
           "security": 0.08333333333333333,
-          "technology": 0.1891891891891892,
-          "api-reference": 0.21951219512195122,
+          "technology": 0.19594594594594594,
+          "api-reference": 0.24390243902439024,
           "architecture": 0.08029197080291971,
-          "best-practices": 0.20967741935483872,
+          "best-practices": 0.20161290322580644,
           "getting-started": 0.30275229357798167,
           "troubleshooting": 0.23148148148148148,
-          "skill:token": 0.5961538461538461,
-          "skill:rest": 0.5961538461538461,
-          "skill:sql": 0.5961538461538461,
-          "skill:schema": 0.5961538461538461,
-          "skill:unit": 0.5961538461538461,
-          "skill:test": 0.5961538461538461,
-          "skill:function": 0.5961538461538461,
-          "skill:programming": 0.5961538461538461,
-          "skill:algorithms": 0.5961538461538461,
-          "skill:data": 0.5961538461538461,
-          "skill:http": 0.5961538461538461,
-          "skill:https": 0.5961538461538461,
-          "skill:ci": 0.5961538461538461,
-          "skill:cd": 0.5961538461538461,
-          "skill:e2": 0.5961538461538461,
-          "skill:program": 0.5961538461538461,
-          "skill:algorithm": 0.5961538461538461,
-          "skill:search": 0.5961538461538461,
-          "skill:structur": 0.5961538461538461,
-          "skill:tl": 0.5961538461538461,
-          "skill:app": 0.5267857142857143,
-          "skill:api": 0.5267857142857143,
-          "skill:on": 0.5267857142857143,
-          "skill:ts": 0.5617283950617284,
-          "skill:type": 0.5617283950617284,
-          "skill:rust": 0.5617283950617284,
-          "skill:go": 0.5617283950617284,
-          "skill:ios": 0.5617283950617284,
-          "skill:c": 0.5617283950617284,
-          "skill:bash": 0.5617283950617284,
-          "skill:gener": 0.5617283950617284,
-          "skill:io": 0.5617283950617284,
-          "skill:feedback": 0.532258064516129,
-          "skill:research": 0.532258064516129,
-          "skill:analysis": 0.532258064516129,
-          "skill:focus": 0.532258064516129,
-          "skill:eq": 0.532258064516129,
-          "skill:trust": 0.532258064516129,
-          "skill:commun": 0.532258064516129,
-          "skill:write": 0.532258064516129,
-          "skill:edit": 0.532258064516129,
-          "skill:proofread": 0.532258064516129,
-          "skill:mediat": 0.532258064516129,
-          "skill:analysi": 0.532258064516129,
-          "skill:focu": 0.532258064516129,
-          "skill:learn": 0.532258064516129,
-          "skill:git": 0.6,
-          "skill:github": 0.6,
-          "skill:version": 0.6,
-          "skill:control": 0.6,
-          "skill:commit": 0.6,
-          "skill:branch": 0.6,
-          "skill:merge": 0.6,
-          "skill:npm": 0.6,
-          "skill:as": 0.6,
-          "skill:code": 0.6,
-          "skill:web": 0.6,
-          "skill:merg": 0.6,
-          "skill:contain": 0.6,
-          "skill:formatt": 0.6
+          "skill:token": 0.6057692307692307,
+          "skill:rest": 0.6057692307692307,
+          "skill:sql": 0.6057692307692307,
+          "skill:schema": 0.6057692307692307,
+          "skill:unit": 0.6057692307692307,
+          "skill:test": 0.6057692307692307,
+          "skill:integration": 0.6057692307692307,
+          "skill:function": 0.6057692307692307,
+          "skill:programming": 0.6057692307692307,
+          "skill:algorithms": 0.6057692307692307,
+          "skill:data": 0.6057692307692307,
+          "skill:http": 0.6057692307692307,
+          "skill:https": 0.6057692307692307,
+          "skill:ci": 0.6057692307692307,
+          "skill:cd": 0.6057692307692307,
+          "skill:integr": 0.6057692307692307,
+          "skill:e2": 0.6057692307692307,
+          "skill:program": 0.6057692307692307,
+          "skill:algorithm": 0.6057692307692307,
+          "skill:search": 0.6057692307692307,
+          "skill:structur": 0.6057692307692307,
+          "skill:tl": 0.6057692307692307,
+          "skill:api": 0.5178571428571429,
+          "skill:on": 0.5178571428571429,
+          "skill:ts": 0.5555555555555556,
+          "skill:type": 0.5555555555555556,
+          "skill:go": 0.5555555555555556,
+          "skill:ios": 0.5555555555555556,
+          "skill:c": 0.5555555555555556,
+          "skill:bash": 0.5555555555555556,
+          "skill:gener": 0.5555555555555556,
+          "skill:io": 0.5555555555555556,
+          "skill:feedback": 0.5299539170506913,
+          "skill:research": 0.5299539170506913,
+          "skill:analysis": 0.5299539170506913,
+          "skill:focus": 0.5299539170506913,
+          "skill:eq": 0.5299539170506913,
+          "skill:commun": 0.5299539170506913,
+          "skill:write": 0.5299539170506913,
+          "skill:edit": 0.5299539170506913,
+          "skill:proofread": 0.5299539170506913,
+          "skill:mediat": 0.5299539170506913,
+          "skill:analysi": 0.5299539170506913,
+          "skill:focu": 0.5299539170506913,
+          "skill:learn": 0.5299539170506913,
+          "skill:git": 0.6105263157894737,
+          "skill:github": 0.6105263157894737,
+          "skill:version": 0.6105263157894737,
+          "skill:control": 0.6105263157894737,
+          "skill:commit": 0.6105263157894737,
+          "skill:branch": 0.6105263157894737,
+          "skill:merge": 0.6105263157894737,
+          "skill:npm": 0.6105263157894737,
+          "skill:as": 0.6105263157894737,
+          "skill:code": 0.6105263157894737,
+          "skill:web": 0.6105263157894737,
+          "skill:cache": 0.6105263157894737,
+          "skill:merg": 0.6105263157894737,
+          "skill:contain": 0.6105263157894737,
+          "skill:formatt": 0.6105263157894737,
+          "skill:cach": 0.6105263157894737
         },
         "readingLevel": 0,
         "readabilityScore": 0,
@@ -53663,6 +53651,7 @@
           "topics": [
             "GitHub",
             "GitHub",
+            "PR",
             "External resources",
             "PR",
             "GitHub",
@@ -53674,11 +53663,10 @@
             "**GitHub",
             "Direct GitHub",
             "GitHub",
-            "**Preview",
-            "PAT** (Optional)"
+            "**Preview"
           ]
         },
-        "lastIndexed": "2026-10-21T22:38:12.756Z"
+        "lastIndexed": "2026-10-22T08:34:37.701Z"
       }
     },
     "validation": {
@@ -53687,11 +53675,11 @@
       "warnings": [],
       "suggestions": [
         "Consider adding relationships (requires, references, seeAlso)",
-        "Key phrases found: frame dev, frame codex, dev codex"
+        "Key phrases found: frame dev, pull request, frame codex"
       ]
     },
     "content": "\n# How to Submit to Frame Codex\n\nWelcome! This guide will walk you through the different ways to contribute knowledge to Frame Codex.\n\n## Quick Start\n\nThe easiest way to submit content is through our **enhanced contribution modal** at [frame.dev/codex](https://frame.dev/codex):\n\n1. Click the green **\"Contribute\"** button in the Codex viewer toolbar\n2. Fill in your content (title, summary, markdown body)\n3. Specify or leave blank weave/loom for AI suggestion\n4. Add tags (or use suggested tags from content analysis)\n5. Choose difficulty level (beginner/intermediate/advanced/expert)\n6. Toggle AI enhancement (optional, explains cost vs free static NLP)\n7. Preview final markdown with frontmatter\n8. Click **\"Create Pull Request\"** (uses GitHub API if you provide PAT, or opens GitHub editor)\n\nThat's it! Our automated validation runs, and maintainers review your submission.\n\n---\n\n## Submission Methods\n\n### Method 1: Web Submission UI (Recommended)\n\n**Best for:** Quick submissions, beginners, anyone without Git expertise\n\nThe enhanced contribution modal provides:\n- ✅ Pre-filled metadata based on current context\n- ✅ Tag suggestions from content analysis\n- ✅ Weave/loom inference (or manual override)\n- ✅ AI enhancement toggle (optional, cost-transparent)\n- ✅ Direct GitHub PR creation via API\n- ✅ Fallback to GitHub web editor (no PAT required)\n- ✅ Preview step showing final markdown\n- ✅ No local setup required\n\n**Steps:**\n\n1. **Open Contribution Modal**\n   - Go to [frame.dev/codex](https://frame.dev/codex)\n   - Click the green \"Contribute\" button in the toolbar\n   - Or use quick actions dropdown (mobile)\n\n2. **Fill in Content**\n   - **Title**: Clear, descriptive title (required)\n   - **Summary**: 20-300 character abstract (required)\n   - **Content**: Write or paste markdown (minimum 100 characters, required)\n\n3. **Specify Location** (Optional - AI can suggest if left blank)\n   - **Weave**: Which knowledge universe (e.g., technology, science, community)\n   - **Loom**: Topic collection (e.g., programming, algorithms)\n   - System auto-detects from current path or suggests based on content\n\n4. **Add Metadata**\n   - **Tags**: Type and press Enter, or click suggested tags from content analysis\n   - **Difficulty**: Select beginner/intermediate/advanced/expert\n   - **Subjects/Topics**: Auto-suggested from controlled vocabulary\n\n5. **AI Enhancement** (Optional)\n   - Toggle ON: AI analyzes content, suggests better categorization (~$0.01-0.20 cost)\n   - Toggle OFF: Static NLP only (free, still provides quality validation)\n\n6. **GitHub PAT** (Optional)\n   - Provide token for direct API PR creation\n   - Token is used only in your browser to call GitHub APIs directly and is never stored in localStorage, IndexedDB, SQL, or on any Frame.dev server\n   - Leave blank to open GitHub web editor instead\n\n7. **Preview & Submit**\n   - Review generated markdown with frontmatter\n   - See final file path: `weaves/{weave}/{loom}/{slug}.md`\n   - Click \"Create Pull Request\"\n     - Summary (extractive summarization)\n     - Tags (TF-IDF keyword extraction)\n     - Difficulty level (heuristic detection)\n     - Subjects and topics (vocabulary matching)\n   - Edit any field as needed\n\n4. **Provide GitHub Token**\n   - Create a [Personal Access Token](https://github.com/settings/tokens/new?scopes=repo&description=Frame%20Codex%20Submission) with `repo` scope\n   - Paste it into the token field in the Frame Codex UI\n   - The token lives only in that browser tab’s memory while the modal is open, is never persisted in local storage / IndexedDB / SQL, and is sent only to GitHub (never to any Frame.dev backend)\n\n5. **Submit**\n   - Click \"Create Pull Request\"\n   - A new PR will be created on GitHub\n   - You'll receive a link to track the review\n\n**Rate Limits:**\n- 5 submissions per hour per user\n- Resets automatically after 60 minutes\n\n---\n\n### Method 2: GitHub Direct (Advanced)\n\n**Best for:** Bulk submissions, complex content, experienced contributors\n\n**Steps:**\n\n1. **Fork the Repository**\n   ```bash\n   gh repo fork framerslab/codex --clone\n   cd codex\n   ```\n\n2. **Create a Branch**\n   ```bash\n   git checkout -b add-my-content\n   ```\n\n3. **Add Your Content**\n   - Place files directly within the target weave. Any folder becomes a loom, and any markdown file becomes a thread:\n     ```\n     weaves/\n       [weave-name]/\n         weave.yaml\n         overview.md                 # Thread at weave root\n         [loom-folder]/              # e.g. guides/, research/, notes/\n           loom.yaml (optional)\n           your-content.md\n           nested/topic/advanced.md  # Nested looms are allowed\n     ```\n   - See [submission-schema.md](./submission-schema.md) for required metadata\n\n4. **Validate Locally**\n   ```bash\n   npm install\n   npm run validate\n   npm run index -- --validate\n   ```\n\n5. **Commit and Push**\n   ```bash\n   git add .\n   git commit -m \"feat: add [your content title]\"\n   git push origin add-my-content\n   ```\n\n6. **Create Pull Request**\n   ```bash\n   gh pr cr",
-    "searchText": "how to submit to frame codex complete guide to contributing knowledge to frame codex using the submission ui, github, or manual pr creation submission submissions recursion quality token contribution uuidgenerator net discord github codex modal direct blank submit frame dev frame codex dev codex add content github com framerslab codex content title content analysis create pull pull request"
+    "searchText": "how to submit to frame codex complete guide to contributing knowledge to frame codex using the submission ui, github, or manual pr creation submission submissions recursion token contribution uuidgenerator net discord codex pull github request modal minutes blank frame dev pull request frame codex dev codex add content github com framerslab codex content title create pull 100 characters"
   },
   {
     "path": "docs/contributing/submission-schema.md",
@@ -53751,7 +53739,7 @@
           "science",
           "algorithms",
           "validation",
-          "python"
+          "minutes"
         ],
         "phrases": [
           "array string",
@@ -53927,7 +53915,7 @@
             "[alice,"
           ]
         },
-        "lastIndexed": "2026-10-21T22:38:17.449Z"
+        "lastIndexed": "2026-10-22T08:34:42.619Z"
       }
     },
     "validation": {
@@ -53939,7 +53927,7 @@
       ]
     },
     "content": "\n# Frame Codex Submission Schema Reference\n\nThis document provides the complete technical specification for Frame Codex content schema, including integration with OpenQuarry's Educational Content Atom (ECA) standard.\n\n---\n\n## Table of Contents\n\n1. [Schema Overview](#schema-overview)\n2. [Thread Schema (Individual Content)](#thread-schema)\n3. [Loom Schema (Collections)](#loom-schema)\n4. [Weave Schema (Universes)](#weave-schema)\n5. [ECA Integration](#eca-integration)\n6. [Validation Rules](#validation-rules)\n7. [Examples](#examples)\n\n---\n\n## Schema Overview\n\nFrame Codex uses a three-tier knowledge organization:\n\n```\nWeave (Universe)\n├── Loom (Collection)\n│   ├── Strand (Content)\n│   ├── Strand (Content)\n│   └── ...\n├── Loom (Collection)\n│   └── ...\n└── ...\n```\n\n### Key Principles\n\n- **Threads** are atomic, self-contained knowledge units\n- **Looms** curate related threads into coherent learning paths\n- **Weaves** represent complete, isolated knowledge universes\n- **No cross-weave relationships** (each weave is independent)\n- **Subfolders are SUBTOPICS** - folder depth determines topic specificity (deeper = more specific)\n- **Topics are hierarchical** - must narrow scope as you go deeper in the folder tree\n- **Tags are independent** - can be shared freely across any folder level\n\n---\n\n## Thread Schema\n\nThreads are individual markdown files with YAML frontmatter.\n\n### Required Fields\n\n```yaml\nid: string (UUID v4)\nslug: string (lowercase, hyphens, alphanumeric)\ntitle: string (3-100 characters)\nsummary: string (20-300 characters)\nversion: string (semver: x.y.z)\ncontentType: enum [markdown, code, data, media]\ndifficulty: enum [beginner, intermediate, advanced, expert]\n```\n\n### Recommended Fields\n\n```yaml\ntaxonomy:\n  subjects: array<string>          # High-level categories\n  topics: array<string>            # ⚠️ MUST match folder depth (see below)\n  subtopics: array<string>         # Even more specific narrowing\n  concepts: array<object>\n    - term: string\n      weight: number (0-1)\n      definition: string (optional)\n  skills: array<object>\n    - name: string\n      level: enum [introduce, develop, master]\n\ntags: array<string>               # ✓ Independent - NO hierarchy\n\n# ─────────────────────────────────────────────────────────────────────\n# ⚠️  CRITICAL: Topics vs Tags\n# ─────────────────────────────────────────────────────────────────────\n# \n# TOPICS are HIERARCHICAL:\n#   - Subfolders = subtopics of parent folder\n#   - Topics MUST become MORE SPECIFIC as folder depth increases\n#   - A file in /programming/python/async/ must have topics about async Python\n#   - NOT broad topics like \"web-development\"\n#\n# TAGS are INDEPENDENT:\n#   - No hierarchy, flat structure\n#   - Can be shared across ANY folder level\n#   - A deeply nested file can share tags with root files\n#   - Example: both /python/async/coroutines.md and /overview.md can use\n#     the tag \"best-practices\"\n#\n# See: openstrand-architecture.md#hierarchical-topic-structure-critical-rule\n# ─────────────────────────────────────────────────────────────────────\n\nrelationships:\n  requires: array<string> (slugs of prerequisite strands)\n  references: array<string> (slugs of related strands)\n  seeAlso: array<string> (external URLs)\n\npublishing:\n  created: string (ISO 8601 datetime)\n  updated: string (ISO 8601 datetime)\n  status: enum [draft, review, published, archived]\n  license: string (default: CC-BY-4.0)\n  authors: array<string>\n```\n\n### OpenQuarry ECA Extended Fields\n\nFrame Codex supports the full OpenQuarry Educational Content Atom (ECA) specification for advanced learning design:\n\n```yaml\n# Learning Design\nlearningDesign:\n  objectives: array<object>\n    - id: string\n      description: string\n      bloomsLevel: enum [remember, understand, apply, analyze, evaluate, create]\n      measurable: boolean\n  \n  outcomes: array<object>\n    - id: string\n      description: string\n      assessment: string (optional)\n  \n  pedagogicalApproach: array<enum>\n    # Options: direct_instruction, discovery_learning, problem_based,\n    #          collaborative, experiential, inquiry_based\n  \n  instructionalStrategies: array<string>\n\n# Time Estimates\ntimeEstimates:\n  reading: number (minutes)\n  exercises: number (minutes)\n  projects: number (minutes)\n  total: number (minutes)\n\n# Modality Support\nmodalities:\n  text: boolean\n  visual:\n    diagrams: number\n    images: number\n    charts: number\n  audio:\n    narration: boolean\n    duration: number (seconds, optional)\n  video:\n    embedded: number\n    duration: number (seconds, optional)\n  kinesthetic:\n    simulations: number\n    exercises: number\n\n# Interactive Elements\ninteractiveElements: array<object>\n  - id: string\n    type: enum [quiz, poll, simulation, code_exercise, discussion_prompt, reflection, peer_review]\n    required: boolean\n    data: object (type-specific)\n\n# Assessment\nassessments:\n  formative: array<object>\n    - id: string\n      type: string\n      weight: number (0-1)\n  summative: array<object>\n    - id: string\n      type: s",
-    "searchText": "frame codex submission schema reference complete technical reference for frame codex content schema, including all fields, validation rules, and openquarry eca integration string array computer fields enum eca iso 15t00 programming recursion 8601 science algorithms validation python array string array object string iso frame codex iso 8601 computer science 2025 15t00 15t00 00z fields yaml object string"
+    "searchText": "frame codex submission schema reference complete technical reference for frame codex content schema, including all fields, validation rules, and openquarry eca integration string array computer fields enum eca iso 15t00 programming recursion 8601 science algorithms validation minutes array string array object string iso frame codex iso 8601 computer science 2025 15t00 15t00 00z fields yaml object string"
   },
   {
     "path": "docs/schema-reference.md",
@@ -54168,7 +54156,7 @@
             "[Skills & Spiral"
           ]
         },
-        "lastIndexed": "2026-10-21T22:38:20.387Z"
+        "lastIndexed": "2026-10-22T08:34:45.716Z"
       }
     },
     "validation": {

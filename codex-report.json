@@ -2011,7 +2011,7 @@
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "knowledge",
-        "score": 0.21164021164021163
+        "score": 0.21693121693121692
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
@@ -2021,7 +2021,7 @@
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "philosophy",
-        "score": 0.057971014492753624
+        "score": 0.06763285024154589
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
@@ -2036,12 +2036,12 @@
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "technology",
-        "score": 0.14864864864864866
+        "score": 0.15202702702702703
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "api-reference",
-        "score": 0.10569105691056911
+        "score": 0.11382113821138211
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
@@ -2066,62 +2066,67 @@
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:state-management",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:database",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:sql",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:schema",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:function",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:data",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:ci",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:state-manag",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:databas",
-        "score": 0.5576923076923077
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:search",
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:structur",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:hash",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:tl",
-        "score": 0.5576923076923077
+        "score": 0.5625
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
@@ -2290,17 +2295,17 @@
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:branch",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:merge",
         "score": 0.5789473684210527
       },
       {
         "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
         "category": "skill:npm",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:pnpm",
         "score": 0.5789473684210527
       },
       {
@@ -4901,7 +4906,7 @@
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "ai",
-        "score": 0.0683453237410072
+        "score": 0.06115107913669065
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
@@ -4936,12 +4941,12 @@
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "technology",
-        "score": 0.19256756756756757
+        "score": 0.18243243243243243
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "api-reference",
-        "score": 0.13821138211382114
+        "score": 0.11382113821138211
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
@@ -4951,7 +4956,7 @@
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "best-practices",
-        "score": 0.13709677419354838
+        "score": 0.12096774193548387
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
@@ -4961,7 +4966,7 @@
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "troubleshooting",
-        "score": 0.12037037037037036
+        "score": 0.16666666666666666
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
@@ -5031,202 +5036,197 @@
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:app",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "weaves/wiki/architecture/overview.md",
-        "category": "skill:api",
-        "score": 0.5267857142857143
+        "score": 0.5178571428571429
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:on",
-        "score": 0.5267857142857143
+        "score": 0.5178571428571429
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:js",
-        "score": 0.5679012345679012
+        "score": 0.5617283950617284
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:ts",
-        "score": 0.5679012345679012
+        "score": 0.5617283950617284
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:type",
-        "score": 0.5679012345679012
+        "score": 0.5617283950617284
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:pip",
-        "score": 0.5679012345679012
-      },
-      {
-        "file": "weaves/wiki/architecture/overview.md",
-        "category": "skill:rust",
-        "score": 0.5679012345679012
+        "score": 0.5617283950617284
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:go",
-        "score": 0.5679012345679012
+        "score": 0.5617283950617284
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:scala",
-        "score": 0.5679012345679012
+        "score": 0.5617283950617284
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:c",
-        "score": 0.5679012345679012
+        "score": 0.5617283950617284
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:compos",
-        "score": 0.5679012345679012
+        "score": 0.5617283950617284
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:io",
-        "score": 0.5679012345679012
+        "score": 0.5617283950617284
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:documentation",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:analysis",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:synthesis",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:organization",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:focus",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:learning",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:eq",
-        "score": 0.5414746543778802
-      },
-      {
-        "file": "weaves/wiki/architecture/overview.md",
-        "category": "skill:trust",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:evidence-based",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:write",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:document",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:organ",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:analysi",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:synthesi",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:schedul",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:focu",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:learn",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:adapt",
-        "score": 0.5414746543778802
+        "score": 0.5391705069124424
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:git",
-        "score": 0.5631578947368421
+        "score": 0.5684210526315789
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:github",
-        "score": 0.5631578947368421
+        "score": 0.5684210526315789
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:version",
-        "score": 0.5631578947368421
+        "score": 0.5684210526315789
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:control",
-        "score": 0.5631578947368421
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/architecture/overview.md",
+        "category": "skill:merge",
+        "score": 0.5684210526315789
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:as",
-        "score": 0.5631578947368421
+        "score": 0.5684210526315789
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:code",
-        "score": 0.5631578947368421
+        "score": 0.5684210526315789
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:cache",
-        "score": 0.5631578947368421
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/architecture/overview.md",
+        "category": "skill:merg",
+        "score": 0.5684210526315789
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:contain",
-        "score": 0.5631578947368421
+        "score": 0.5684210526315789
       },
       {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "skill:cach",
-        "score": 0.5631578947368421
+        "score": 0.5684210526315789
       },
       {
         "file": "weaves/wiki/architecture/qa-system.md",
@@ -9336,27 +9336,27 @@
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "ai",
-        "score": 0.10431654676258993
+        "score": 0.10071942446043165
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "design",
-        "score": 0.12154696132596685
+        "score": 0.1270718232044199
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "knowledge",
-        "score": 0.2962962962962963
+        "score": 0.31216931216931215
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "media",
-        "score": 0.12686567164179105
+        "score": 0.11940298507462686
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "philosophy",
-        "score": 0.07246376811594203
+        "score": 0.06763285024154589
       },
       {
         "file": "docs/DEVELOPMENT.md",
@@ -9366,197 +9366,212 @@
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "security",
-        "score": 0.1
+        "score": 0.09444444444444444
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "technology",
-        "score": 0.3277027027027027
+        "score": 0.3344594594594595
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "api-reference",
-        "score": 0.2682926829268293
+        "score": 0.2926829268292683
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "architecture",
-        "score": 0.17518248175182483
+        "score": 0.1678832116788321
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "best-practices",
-        "score": 0.25806451612903225
+        "score": 0.24193548387096775
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "getting-started",
-        "score": 0.1559633027522936
+        "score": 0.1651376146788991
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "troubleshooting",
-        "score": 0.25925925925925924
+        "score": 0.25
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:authentication",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:auth",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:token",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:session",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:rest",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:database",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:sql",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:schema",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:testing",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
+      },
+      {
+        "file": "docs/DEVELOPMENT.md",
+        "category": "skill:unit",
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:test",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
+      },
+      {
+        "file": "docs/DEVELOPMENT.md",
+        "category": "skill:integration",
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:async",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:await",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:pure",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:function",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:object",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:programming",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:class",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:data",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:http",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:https",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:ssl",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:ci",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:cd",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:authent",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:databas",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
+      },
+      {
+        "file": "docs/DEVELOPMENT.md",
+        "category": "skill:integr",
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:program",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:algorithm",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:search",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:structur",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:dn",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:hash",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:tl",
-        "score": 0.6538461538461539
+        "score": 0.6682692307692308
       },
       {
         "file": "docs/DEVELOPMENT.md",
@@ -9586,277 +9601,267 @@
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:javascript",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:js",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:typescript",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:ts",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:tsc",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:type",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:python",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:py",
-        "score": 0.6172839506172839
-      },
-      {
-        "file": "docs/DEVELOPMENT.md",
-        "category": "skill:rust",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:go",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:java",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:c",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:sqlite",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:less",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:shell",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:bash",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:gener",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:io",
-        "score": 0.6172839506172839
+        "score": 0.6111111111111112
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:management",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:debugging",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:analysis",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:focus",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:iteration",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:eq",
-        "score": 0.543778801843318
-      },
-      {
-        "file": "docs/DEVELOPMENT.md",
-        "category": "skill:trust",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:document",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:edit",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:manag",
-        "score": 0.543778801843318
-      },
-      {
-        "file": "docs/DEVELOPMENT.md",
-        "category": "skill:mediat",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:debug",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:analysi",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:product",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:effici",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:schedul",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:focu",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:adapt",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:iter",
-        "score": 0.543778801843318
+        "score": 0.5391705069124424
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:git",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:github",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:version",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:control",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:commit",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:branch",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:merge",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:npm",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
+      },
+      {
+        "file": "docs/DEVELOPMENT.md",
+        "category": "skill:pnpm",
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:as",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:code",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:web",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:redis",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:cache",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:merg",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:contain",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:aw",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:redi",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/DEVELOPMENT.md",
         "category": "skill:cach",
-        "score": 0.6263157894736842
+        "score": 0.631578947368421
       },
       {
         "file": "docs/NLP_VOCABULARY_SYSTEM.md",
@@ -10281,22 +10286,22 @@
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "ai",
-        "score": 0.07913669064748201
+        "score": 0.06474820143884892
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "design",
-        "score": 0.06629834254143646
+        "score": 0.0718232044198895
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "knowledge",
-        "score": 0.1746031746031746
+        "score": 0.14814814814814814
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "media",
-        "score": 0.05223880597014925
+        "score": 0.04477611940298507
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
@@ -10316,12 +10321,12 @@
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "technology",
-        "score": 0.14527027027027026
+        "score": 0.15202702702702703
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "api-reference",
-        "score": 0.12195121951219512
+        "score": 0.13008130081300814
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
@@ -10336,7 +10341,7 @@
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "getting-started",
-        "score": 0.12844036697247707
+        "score": 0.13761467889908258
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
@@ -10470,133 +10475,128 @@
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
-        "category": "skill:documentation",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:troubleshooting",
-        "score": 0.5299539170506913
+        "score": 0.5253456221198156
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:analysis",
-        "score": 0.5299539170506913
+        "score": 0.5253456221198156
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:iteration",
-        "score": 0.5299539170506913
+        "score": 0.5253456221198156
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:eq",
-        "score": 0.5299539170506913
+        "score": 0.5253456221198156
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:write",
-        "score": 0.5299539170506913
+        "score": 0.5253456221198156
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:present",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "docs/RECATALOG_GUIDE.md",
-        "category": "skill:document",
-        "score": 0.5299539170506913
+        "score": 0.5253456221198156
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:mediat",
-        "score": 0.5299539170506913
+        "score": 0.5253456221198156
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:troubleshoot",
-        "score": 0.5299539170506913
+        "score": 0.5253456221198156
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:analysi",
-        "score": 0.5299539170506913
+        "score": 0.5253456221198156
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:schedul",
-        "score": 0.5299539170506913
+        "score": 0.5253456221198156
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:iter",
-        "score": 0.5299539170506913
+        "score": 0.5253456221198156
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:git",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:github",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:version",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:control",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:commit",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:branch",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:merge",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:npm",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
+      },
+      {
+        "file": "docs/RECATALOG_GUIDE.md",
+        "category": "skill:pnpm",
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:as",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:code",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:web",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/RECATALOG_GUIDE.md",
         "category": "skill:merg",
-        "score": 0.5894736842105264
+        "score": 0.5947368421052631
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "ai",
-        "score": 0.0683453237410072
+        "score": 0.07194244604316546
       },
       {
         "file": "docs/contributing/how-to-submit.md",
@@ -10616,7 +10616,7 @@
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "philosophy",
-        "score": 0.12560386473429952
+        "score": 0.14009661835748793
       },
       {
         "file": "docs/contributing/how-to-submit.md",
@@ -10631,12 +10631,12 @@
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "technology",
-        "score": 0.1891891891891892
+        "score": 0.19594594594594594
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "api-reference",
-        "score": 0.21951219512195122
+        "score": 0.24390243902439024
       },
       {
         "file": "docs/contributing/how-to-submit.md",
@@ -10646,7 +10646,7 @@
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "best-practices",
-        "score": 0.20967741935483872
+        "score": 0.20161290322580644
       },
       {
         "file": "docs/contributing/how-to-submit.md",
@@ -10661,302 +10661,307 @@
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:token",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:rest",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:sql",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:schema",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:unit",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:test",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
+      },
+      {
+        "file": "docs/contributing/how-to-submit.md",
+        "category": "skill:integration",
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:function",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:programming",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:algorithms",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:data",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:http",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:https",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:ci",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:cd",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
+      },
+      {
+        "file": "docs/contributing/how-to-submit.md",
+        "category": "skill:integr",
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:e2",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:program",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:algorithm",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:search",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:structur",
-        "score": 0.5961538461538461
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:tl",
-        "score": 0.5961538461538461
-      },
-      {
-        "file": "docs/contributing/how-to-submit.md",
-        "category": "skill:app",
-        "score": 0.5267857142857143
+        "score": 0.6057692307692307
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:api",
-        "score": 0.5267857142857143
+        "score": 0.5178571428571429
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:on",
-        "score": 0.5267857142857143
+        "score": 0.5178571428571429
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:ts",
-        "score": 0.5617283950617284
+        "score": 0.5555555555555556
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:type",
-        "score": 0.5617283950617284
-      },
-      {
-        "file": "docs/contributing/how-to-submit.md",
-        "category": "skill:rust",
-        "score": 0.5617283950617284
+        "score": 0.5555555555555556
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:go",
-        "score": 0.5617283950617284
+        "score": 0.5555555555555556
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:ios",
-        "score": 0.5617283950617284
+        "score": 0.5555555555555556
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:c",
-        "score": 0.5617283950617284
+        "score": 0.5555555555555556
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:bash",
-        "score": 0.5617283950617284
+        "score": 0.5555555555555556
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:gener",
-        "score": 0.5617283950617284
+        "score": 0.5555555555555556
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:io",
-        "score": 0.5617283950617284
+        "score": 0.5555555555555556
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:feedback",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:research",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:analysis",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:focus",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:eq",
-        "score": 0.532258064516129
-      },
-      {
-        "file": "docs/contributing/how-to-submit.md",
-        "category": "skill:trust",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:commun",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:write",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:edit",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:proofread",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:mediat",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:analysi",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:focu",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:learn",
-        "score": 0.532258064516129
+        "score": 0.5299539170506913
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:git",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:github",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:version",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:control",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:commit",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:branch",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:merge",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:npm",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:as",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:code",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:web",
-        "score": 0.6
+        "score": 0.6105263157894737
+      },
+      {
+        "file": "docs/contributing/how-to-submit.md",
+        "category": "skill:cache",
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:merg",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:contain",
-        "score": 0.6
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/how-to-submit.md",
         "category": "skill:formatt",
-        "score": 0.6
+        "score": 0.6105263157894737
+      },
+      {
+        "file": "docs/contributing/how-to-submit.md",
+        "category": "skill:cach",
+        "score": 0.6105263157894737
       },
       {
         "file": "docs/contributing/submission-schema.md",
@@ -11967,7 +11972,7 @@
     "fileWarnings": []
   },
   "vocabulary": {
-    "totalUniqueTerms": 388,
+    "totalUniqueTerms": 386,
     "suggestedAdditions": [
       {
         "term": "block",
@@ -12038,13 +12043,21 @@
         "frequency": 3
       },
       {
+        "term": "scripts",
+        "frequency": 3
+      },
+      {
         "term": "run",
+        "frequency": 3
+      },
+      {
+        "term": "pull",
         "frequency": 3
       }
     ]
   },
   "performance": {
-    "timeElapsed": "63.74s",
+    "timeElapsed": "64.47s",
     "cacheHitRate": "0%",
     "filesProcessed": 40,
     "filesCached": 0,
