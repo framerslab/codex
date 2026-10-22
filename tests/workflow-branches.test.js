@@ -115,14 +115,29 @@ describe('every workflow names master, or a pull request branch a workflow here 
     expect(strays(read(name))).toEqual([]);
   });
 
+  // landing-follows-the-base.yml starts on every edit of a pull request into any branch: a pull request moved off master
+  // carries its new base in the event, so a master filter would miss the move that workflow exists to see.
+  const FOLLOWS_A_RETARGET = 'landing-follows-the-base.yml';
+  // The events a workflow starts on, whichever way its on: key is written (a name, a list of names or a map).
+  const eventsOf = (on) =>
+    typeof on === 'string'
+      ? { [on]: null }
+      : Array.isArray(on)
+        ? Object.fromEntries(on.map((event) => [event, null]))
+        : (on ?? {});
+
   it('starts a pull_request or pull_request_target workflow only for pull requests into master', () => {
-    for (const name of files) {
-      const on = yaml.load(read(name)).on;
-      for (const event of ['pull_request', 'pull_request_target']) {
-        const filter = on?.[event]?.branches;
-        if (filter !== undefined) expect(filter, `${name}: on.${event}.branches`).toEqual([MASTER]);
-        expect(on?.[event]?.['branches-ignore'], `${name}: on.${event}.branches-ignore`).toBeUndefined();
-      }
+    const starts = files.flatMap((name) => {
+      const events = eventsOf(yaml.load(read(name)).on);
+      return ['pull_request', 'pull_request_target']
+        .filter((event) => event in events)
+        .map((event) => ({ name, event, config: events[event] ?? {} }));
+    });
+    expect(starts.length).toBeGreaterThan(0);
+    for (const { name, event, config } of starts) {
+      expect(config['branches-ignore'], `${name}: on.${event}.branches-ignore`).toBeUndefined();
+      if (name === FOLLOWS_A_RETARGET) expect(config.branches, `${name}: on.${event}.branches`).toBeUndefined();
+      else expect(config.branches, `${name}: on.${event}.branches`).toEqual([MASTER]);
     }
   });
 
