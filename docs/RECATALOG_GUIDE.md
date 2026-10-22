@@ -251,7 +251,7 @@ AUTO_CATALOG_LAND=true ./scripts/retrigger-full-catalog.sh
 
 ### AI Enhancement (Optional)
 
-No re-catalog and no PR calls a model. The AI block enhancement (`ai-enhance-blocks.yml`) calls one only on a run someone starts, by hand or with the `ai-enhance` label on a PR, and stops when its spend reaches its `max_cost` input (5.00 US dollars when left out).
+No re-catalog calls a model. The AI block enhancement (`ai-enhance-blocks.yml`) calls one only on a run someone starts, by hand or with the `ai-enhance` label on a PR, and stops when its spend reaches its `max_cost` input (5.00 US dollars when left out).
 
 ---
 

@@ -91,7 +91,7 @@ ANTHROPIC_API_KEY=sk-ant-...
 AI_PROVIDER=openai
 ```
 
-**Note:** The indexer and validator work WITHOUT any API keys. No workflow calls a model on a PR; with a key set, the inbox categorizer calls one for each note added under `weaves/inbox/`, and the AI block enhancement on a run someone starts.
+**Note:** The indexer and validator work WITHOUT any API keys. No workflow calls a model on a PR unless someone labels it `ai-enhance`; with a key set, the inbox categorizer calls one for each note added under `weaves/inbox/`, and the AI block enhancement on a run someone starts.
 
 ---
 

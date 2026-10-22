@@ -54,7 +54,7 @@ OPENAI_API_KEY=sk-...            # Optional: the AI block enhancement (by hand) 
 | Inbox categorization | One model call a note, with no cost cap, when `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` is set; $0 without either (static NLP) | Each push to master that adds a note under `weaves/inbox/` |
 | Full re-catalog (100 files) | $0 | By hand |
 
-**Default setup: $0/month** with no model key set. With a key, the inbox categorizer calls a model for each note added under `weaves/inbox/`, and the AI block enhancement calls one on a run someone starts; no workflow calls a model on a PR.
+**Default setup: $0/month** with no model key set. With a key, the inbox categorizer calls a model for each note added under `weaves/inbox/`, and the AI block enhancement calls one on a run someone starts; no workflow calls a model on a PR unless someone labels it `ai-enhance`.
 
 ---
 

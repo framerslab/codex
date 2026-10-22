@@ -71,7 +71,7 @@ Frame Codex uses a **hybrid NLP + LLM approach** with smart caching and manual o
 
 ### Optional LLM Enhancement (API Key Required)
 
-No workflow calls a model on a PR. With a model key set, one runs in these places:
+No workflow calls a model on a PR unless someone labels it `ai-enhance`. With a model key set, one runs in these places:
 
 1. **Block Tags and Summaries** - `ai-enhance-blocks.yml` refines the block tags and summaries in `weaves/`, by hand (one PR from `ci/ai-enhance-blocks`) or on a PR from this repository's own branch labelled `ai-enhance`, and stops when its spend reaches its `max_cost` input (5.00 US dollars when left out)
 2. **Inbox Categorization** - `auto-categorize-inbox.yml` asks a model first (`ANTHROPIC_API_KEY`, then `OPENAI_API_KEY`) where to file each note pushed to master under `weaves/inbox/`, with no cost cap, and uses static NLP when neither key is set
@@ -380,7 +380,7 @@ OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
 
 - **GH_PAT**: Lets the changelog read the issues and PRs it records, and the inbox categorizer open its PRs and issues; no workflow merges a PR
 - **FRAMERS_BUMP_TOKEN**: A framerslab organization secret shared with this repository, not a repository secret. The weekly bump, the index publish, the changelog and the AI block enhancement push their branches and open their PRs with it, because a PR a workflow opens or pushes with `GITHUB_TOKEN` gets no CI job; without it each stops at its first step
-- **OPENAI_API_KEY**: Optional. The AI block enhancement calls a model with it on a run someone starts, up to its `max_cost` input; the inbox categorizer calls one with it for each note pushed under `weaves/inbox/` when `ANTHROPIC_API_KEY` is not set, with no cost cap. No workflow calls a model on a PR
+- **OPENAI_API_KEY**: Optional. The AI block enhancement calls a model with it on a run someone starts, up to its `max_cost` input; the inbox categorizer calls one with it for each note pushed under `weaves/inbox/` when `ANTHROPIC_API_KEY` is not set, with no cost cap. No workflow calls a model on a PR unless someone labels it `ai-enhance`
 - **AI_PROVIDER**: Read by the scripts that call a model when they run on your machine; `disabled` skips the model. No workflow reads it
 
 **Note:** The indexer and validator work WITHOUT any API keys. AI enhancement is purely optional for advanced quality analysis.

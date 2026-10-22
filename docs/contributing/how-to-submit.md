@@ -278,7 +278,7 @@ Frame Codex includes several automated systems to help ensure quality:
 - Duplicate detection
 
 ### 4. AI Enhancement (On Request)
-- No workflow calls a model on your pull request
+- No workflow calls a model on your pull request by itself
 - After your thread lands, a maintainer can refine its block tags and summaries with a model (`ai-enhance-blocks.yml`), which opens a pull request of its own
 
 ---
