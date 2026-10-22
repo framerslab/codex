@@ -52,7 +52,7 @@ gh workflow run auto-index.yml --repo framerslab/codex
 ```
 
 **What It Does:**
-- Processes the blocks and runs `pnpm run index` and `pnpm run build:search` on ALL files of master's head
+- Processes the blocks and runs `pnpm run index` and `pnpm run build:search` on ALL files of master's head, without `--validate`, so it does not stop on validation errors; run `npm run index -- --validate` first to see them, or use Method 2, which does
 - Opens or updates one pull request into `master` from `ci/codex-index` with the files that changed among `codex-index.json`, `codex-search.json`, `codex-report.json` and `codex-blocks.json`
 - The index reaches master, where frame.dev reads it, when that pull request lands after its checks and review pass
 

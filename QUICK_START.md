@@ -23,7 +23,7 @@ gh workflow run auto-index.yml --repo framerslab/codex
 Or click "Run workflow" at:  
 https://github.com/framerslab/codex/actions/workflows/auto-index.yml
 
-The run builds the index from master and opens or updates the pull request from `ci/codex-index`; the index reaches master when that pull request lands.
+The run builds the index from master and opens or updates the pull request from `ci/codex-index`; the index reaches master when that pull request lands. It does not stop on validation errors: run `npm run index -- --validate` first to see them, or use Option B, which does.
 
 ### Option B: Local Script with PR
 
@@ -40,7 +40,7 @@ Creates a PR for review. With `AUTO_CATALOG_LAND=true` (or `--land`) the PR gets
 
 ```bash
 GH_PAT=ghp_...                    # The changelog's reads and the inbox categorizer's PRs and issues
-OPENAI_API_KEY=sk-...            # Optional: the AI block enhancement, run by hand
+OPENAI_API_KEY=sk-...            # Optional: the AI block enhancement (by hand) and the inbox categorizer (each inbox note)
 ```
 
 ---
@@ -51,9 +51,10 @@ OPENAI_API_KEY=sk-...            # Optional: the AI block enhancement, run by ha
 |---------|------|------|
 | Static NLP indexing | $0 | Every PR, every re-catalog |
 | AI block enhancement | Up to its `max_cost` input (5.00 US dollars when left out) a run | Only on a run someone starts |
+| Inbox categorization | One model call a note, with no cost cap, when `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` is set; $0 without either (static NLP) | Each push to master that adds a note under `weaves/inbox/` |
 | Full re-catalog (100 files) | $0 | By hand |
 
-**Default setup: $0/month** (no workflow calls a model unless someone starts one)
+**Default setup: $0/month** with no model key set. With a key, the inbox categorizer calls a model for each note added under `weaves/inbox/`, and the AI block enhancement calls one on a run someone starts; no workflow calls a model on a PR.
 
 ---
 

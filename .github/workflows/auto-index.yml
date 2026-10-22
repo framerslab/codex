@@ -1,8 +1,9 @@
 name: Build and Publish Codex Index
 
-# The build-index job builds codex-index.json, codex-search.json, codex-report.json and codex-blocks.json and archives
-# them. On master, publish-artifacts then opens or updates one pull request into master from ci/codex-index carrying
-# them. It never pushes to master: master is protected, and a commit reaches it only once its required checks have
+# The build-index job builds codex-index.json, codex-search.json and codex-report.json and archives them with the tracked
+# codex-blocks.json, which none of its steps rebuilds (npm run build:index does, and it also rewrites codex-index.json in
+# its older shape). On master, publish-artifacts then opens or updates one pull request into master from ci/codex-index
+# carrying them. It never pushes to master: master is protected, and a commit reaches it only once its required checks have
 # passed, which a commit made in a job has not ("About protected branches", Require status checks before merging:
 # https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging).
 #

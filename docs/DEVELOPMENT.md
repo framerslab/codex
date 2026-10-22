@@ -56,7 +56,7 @@ Add to `framerslab/codex` repository settings:
 # The changelog's reads of issues and PRs, and the PRs and issues the inbox categorizer opens
 GH_PAT=ghp_xxxxxxxxxxxxxxxxxxxx  # GitHub Personal Access Token (repo scope)
 
-# AI block enhancement (OPTIONAL - only on a run someone starts)
+# OPTIONAL: the AI block enhancement (on a run someone starts) and the inbox categorizer (each note under weaves/inbox/)
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
 ```
 
@@ -91,7 +91,7 @@ ANTHROPIC_API_KEY=sk-ant-...
 AI_PROVIDER=openai
 ```
 
-**Note:** The indexer and validator work WITHOUT any API keys. A model runs only when someone asks for one.
+**Note:** The indexer and validator work WITHOUT any API keys. No workflow calls a model on a PR; with a key set, the inbox categorizer calls one for each note added under `weaves/inbox/`, and the AI block enhancement on a run someone starts.
 
 ---
 
@@ -135,7 +135,7 @@ gh workflow run auto-index.yml --repo framerslab/codex
 ```
 
 **What it does:**
-- Runs indexer in CI on master's head
+- Runs indexer in CI on master's head, without `--validate`, so it does not stop on validation errors (Methods 1 and 3 do)
 - Opens or updates one pull request into `master` from `ci/codex-index` with the index files that changed
 - The index reaches `master` when that pull request lands
 

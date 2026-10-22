@@ -32,8 +32,9 @@ Weekly changelog, weekly @framers/* bump, AI block tags by hand
 - Repository dispatch (frame-deploy-complete)
 
 **Purpose:**
-Builds the search index files, `codex-index.json`, `codex-search.json`, `codex-report.json` and `codex-blocks.json`, and on `master` publishes them through one pull request:
-- The build-index job builds the four files and archives them; on any other branch the run stops there
+Builds the search index files, `codex-index.json`, `codex-search.json` and `codex-report.json`, and on `master` publishes them through one pull request:
+- The build-index job builds the three files and archives them with the tracked `codex-blocks.json`, which none of its steps rebuilds: `npm run build:index` does, and it also rewrites `codex-index.json` in its older shape, so the block index stays as last committed. On any other branch the run stops there
+- Neither a push nor a manual dispatch stops on validation errors, since the indexer runs without `--validate`; `npm run index -- --validate` exits 1 on them, and the re-catalog script runs it that way
 - On `master`, the publish-artifacts job checks out `master`'s head and opens or updates one pull request into `master` from `ci/codex-index` carrying them, so the pull request carries the index alone and merges without a conflict even after `master` took an earlier index pull request. It never pushes to `master`, which is protected (below): a commit made in a job has none of the required checks
 - Pushes the branch and opens the pull request with `FRAMERS_BUMP_TOKEN`, as the weekly bump does, so the pull request gets Test Suite and rename-guard. Its commit message carries no skip marker: GitHub starts none of the `pull_request` workflows of a head commit whose message says `[skip ci]`, and the required checks would never report
 - Stops at its first step, with an error, when `FRAMERS_BUMP_TOKEN` is not available; both jobs' own `GITHUB_TOKEN` only reads, and the publish job installs and runs none of the repository's code
@@ -142,7 +143,7 @@ Records in `codex-history/YYYY-MM.jsonl` the complete days, in UTC, before the d
 
 **Triggers:**
 - Manual dispatch (provider, maximum cost, model, dry run); a run from any branch enhances `master`
-- The `ai-enhance` label added to a pull request from this repository's own branch; a fork's pull request is skipped, since it gets no secrets and its branch is not this repository's to push to
+- The `ai-enhance` label added to a pull request into `master` from this repository's own branch; a fork's pull request is skipped, since it gets no secrets and its branch is not this repository's to push to
 
 **Purpose:**
 Refines the block tags and summaries in `weaves/` with `scripts/ai-enhance-blocks.js`, which calls a paid model:
