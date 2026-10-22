@@ -2,7 +2,7 @@ name: Test Suite
 
 on:
   push:
-    branches: [main, master]
+    branches: [master]
     paths:
       - 'scripts/**'
       - 'schema/**'
@@ -15,7 +15,7 @@ on:
       - 'LICENSE'
       - '.github/workflows/test.yml'
   pull_request:
-    branches: [main, master]
+    branches: [master]
   workflow_dispatch:
 
 # Every job reads; only Update Badges, which pushes the badges branch, gets contents: write.

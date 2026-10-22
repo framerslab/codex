@@ -5,17 +5,16 @@
 # base, this workflow takes the label off and says so in the guards comment (github-actions[bot]'s
 # comment that starts with the <!-- landing-guards --> marker; it writes one when the pull request
 # has none). A maintainer adds the label again after checking the pull request against the new
-# base; on a trusted Weaver's pull request into main, the Trusted Weavers workflow does on the next
-# push or reopen. Nothing here merges: every pull request is merged only after its reviews and
-# comments are read, fixed or answered and its threads resolved.
+# base. Nothing here merges: every pull request is merged only after its reviews and comments are
+# read, fixed or answered and its threads resolved.
 #
 # It starts on every edit of a pull request into any branch, with no branch filter, so a retarget
-# away from main counts too, and its job runs only when the edit changed the base. A label added
-# after the change is left to whoever added it: the Trusted Weavers workflow reads the pull request
-# again once its label is on. The job checks out no code; its token writes labels and comments
-# only. On a pull request from a fork the token can only read, so a label put there by hand stays
-# and the job fails, which shows on the pull request. There is no concurrency group, so a later
-# edit of the title cannot cancel the run for a change of base.
+# away from master counts too, and its job runs only when the edit changed the base. A label added
+# after the change is left to whoever added it: landing-follows-the-bump-checks.yml reads the pull
+# request again once its label is on. The job checks out no code; its token writes labels and
+# comments only. On a pull request from a fork the token can only read, so a label put there by
+# hand stays and the job fails, which shows on the pull request. There is no concurrency group, so
+# a later edit of the title cannot cancel the run for a change of base.
 name: Landing follows the base
 
 on:

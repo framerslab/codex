@@ -2,56 +2,29 @@
 
 ## Overview
 
-The Codex repository uses several GitHub Actions workflows for automated content validation, AI enhancement, indexing, and deployment. All workflows are designed with async processing, caching, and graceful error handling.
+The Codex repository's workflows test every pull request, build the search index and bring it to `master` through a pull request, file the notes added to the inbox, record the weekly history, move the `@framers/*` dependencies to their newest versions, refine block tags with a model when someone asks, and keep the `landing` label true to each pull request's checks.
+
+`master` is the only long-lived branch: the default branch, protected, and the base of every pull request. Every workflow names `master`, or one of the pull request branches the workflows open (`ci/codex-index`, `ci/changelog`, `chore/bump-framers-deps`, `ci/ai-enhance-blocks`), and no other branch; `tests/workflow-branches.test.js` reads every workflow file and checks it. A branch filter that names a branch the repository does not have matches no event, so its workflow never starts and no failed run shows.
 
 ## Workflow Architecture
 
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   PR Created    │───▶│  Quick Validate │───▶│    AI Enhance   │
-│   or Updated    │    │    (< 30s)      │    │    (async)      │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                              │                        │
-                              ▼                        ▼
-                       ┌─────────────────┐    ┌─────────────────┐
-                       │ Schema Validate │    │  Post Feedback  │
-                       └─────────────────┘    └─────────────────┘
-                              │
-                              ▼
-                       ┌─────────────────┐
-                       │ Incremental     │
-                       │ Index + Cache   │
-                       └─────────────────┘
-                              │
-                              ▼ (on merge)
-                       ┌─────────────────┐
-                       │ Publish Index   │
-                       │ + Notify        │
-                       └─────────────────┘
+Pull request into master
+  ├─ Test Suite: Unit Tests, Vocabulary & NLP Tests, Cache Tests, Integration Tests  (required)
+  ├─ rename-guard: guard                                                            (required)
+  └─ review comments read, answered and resolved ──▶ landing label ──▶ merge
+
+Push to master that changes weaves/, scripts/ or schema/
+  └─ Build and Publish Codex Index ──▶ pull request from ci/codex-index
+       └─ its Test Suite and rename-guard pass ──▶ landing label ──▶ merge after the comment pass
+
+Weekly changelog, weekly @framers/* bump, AI block tags by hand
+  └─ one pull request each, from ci/changelog, chore/bump-framers-deps or ci/ai-enhance-blocks, landed the same way
 ```
 
 ## Workflows
 
-### 1. `async-processing.yml` (Primary)
-
-**Triggers:**
-- Pull requests (opened, synchronized, ready_for_review)
-- Push to main branch
-- Manual dispatch with optional full reindex
-
-**Features:**
-- ⚡ Quick validation stage (< 30s)
-- 🔄 Async AI enhancement (non-blocking)
-- 📦 Incremental indexing with SQLite cache
-- 🔔 Real-time status updates via commit statuses
-- 🚀 Triggers frame.dev deployment on publish
-
-**Optimizations:**
-- Concurrency groups prevent duplicate runs
-- Cache restoration for faster builds
-- Parallel job execution where possible
-
-### 2. `auto-index.yml` (Build and Publish Codex Index)
+### 1. `auto-index.yml` (Build and Publish Codex Index)
 
 **Triggers:**
 - Push to any branch that changes `weaves/`, `scripts/`, `schema/` or this workflow
@@ -70,42 +43,11 @@ Builds the search index files, `codex-index.json`, `codex-search.json`, `codex-r
 - CodeRabbit skips the pull request by its title and reviews none of the four files in any pull request (`.coderabbit.yaml`, `reviews.auto_review.ignore_title_keywords` and `reviews.path_filters`), so an index pull request spends none of the review allowance CodeRabbit gives the token's owner; `tests/coderabbit-config.test.js` reads the configuration beside this workflow
 - `tests/index-pull-request.test.js` reads the workflow, runs its first step, and runs its ordering step in scratch repositories, since GitHub runs the publish job only on `master`
 
-### 3. `ai-enhance-pr.yml`
+### 2. `test.yml`
 
 **Triggers:**
-- Pull requests (opened, synchronized)
-
-**Purpose:**
-AI-powered content analysis and suggestions:
-- Quality scoring
-- Auto-tag detection
-- Readability analysis
-- Safe auto-fixes (with `auto-enhance` label)
-
-**Skipping:**
-- Add `skip-ai` label to skip AI analysis
-- Dependabot PRs are automatically skipped
-
-### 4. `auto-merge-weavers.yml` (Trusted Weavers)
-
-**Triggers:**
-- Pull requests into `main` (opened, synchronized, reopened)
-
-**Purpose:**
-Approval and the `landing` label for trusted contributors:
-- Checks the author against `.github/WEAVERS.txt` as it reads on the base branch, so a pull request cannot add its own author
-- Runs schema validation, the indexer's quality checks and the duplicate check
-- When the checks pass, and the pull request still has the head they ran on and still targets `main`, approves that commit, adds the `landing` label and keeps one comment naming the guards that passed; it reads the pull request again once the label is on and takes the label back off if the head or the base moved meanwhile
-- A push that moves the head, or a reopen, takes the label off until the checks pass on the head; a head whose checks fail keeps it off, and the guards comment says so; a change of base takes it off through `landing-follows-the-base.yml`
-- Runs one at a time per pull request: a newer push cancels the older run
-- Only the jobs that write labels and comments get a token that can write; the job that installs and runs the pull request's code gets a read-only token and keeps none in its checkout
-- Never merges: a maintainer lands the pull request after its review comments are read, answered and resolved
-
-### 5. `test.yml`
-
-**Triggers:**
-- Every pull request into `main` or `master`
-- Push to `main` or `master` that changes `scripts/`, `schema/`, `tests/`, `lib/`, `vocab/`, `package.json`, `vitest.config.js`, `LICENSE` or this workflow
+- Every pull request into `master`
+- Push to `master` that changes `scripts/`, `schema/`, `tests/`, `lib/`, `vocab/`, `package.json`, `vitest.config.js`, `LICENSE` or this workflow
 - Manual dispatch
 
 **Purpose:**
@@ -121,16 +63,7 @@ Approval and the `landing` label for trusted contributors:
 - The README reads each file through jsDelivr, `https://cdn.jsdelivr.net/gh/framerslab/codex@badges/<name>.json`, because shields.io refuses any address whose host ends in `github.com`. jsDelivr keeps a branch's files for up to 12 hours ([jsDelivr's caching notes](https://github.com/jsdelivr/jsdelivr#caching)), so the job purges each file after it writes; a purge that fails or is throttled leaves a warning, and the badge catches up when jsDelivr's copy expires
 - Limit: the badges describe the last `master` commit whose Test Suite run published them. A force-push to `master` that changes nothing under the Test Suite's path filter starts no run, so after it the badges can describe a commit `master` no longer holds, until a manual dispatch of the Test Suite on `master` publishes the new head's figures. The publisher reads `master` once, before it pushes; a force-push between that read and the push is the same case
 
-### 6. `build-index.yml`
-
-**Triggers:**
-- Push to main
-- Manual dispatch
-
-**Purpose:**
-Builds search index with SQL caching and pushes to `index` branch.
-
-### 7. `auto-categorize-inbox.yml`
+### 3. `auto-categorize-inbox.yml`
 
 **Triggers:**
 - Push to `master` that adds Markdown under `weaves/inbox/`
@@ -143,20 +76,20 @@ Files each inbox note where it belongs:
 - A `suggest` result or an error opens an issue instead
 - Never merges: a maintainer lands a labelled pull request after its review comments are read, answered and resolved
 
-### 8. `landing-follows-the-base.yml` (Landing follows the base)
+### 4. `landing-follows-the-base.yml` (Landing follows the base)
 
 **Triggers:**
-- Pull request edits (`edited`) on any base, with no branch filter, so a retarget away from `main` counts; the job runs only when the edit changed the base
+- Pull request edits (`edited`) on any base, with no branch filter, so a retarget away from `master` counts; the job runs only when the edit changed the base
 
 **Purpose:**
 Keeps the `landing` label true to the branch its guards ran against:
 - When the base of a pull request that carried `landing` changes, takes the label off and says in the guards comment (github-actions[bot]'s comment that starts with `<!-- landing-guards -->`, written when the pull request has none) which base the guards ran against
 - A pull request without the label, or whose label is already off, gets no write
 - Checks out no code; its one job gets a token that writes labels and comments
-- A maintainer adds the label again after checking the pull request against the new base; on a trusted Weaver's pull request into `main`, the Trusted Weavers workflow does on the next push or reopen
+- A maintainer adds the label again after checking the pull request against the new base
 - On a pull request from a fork the token can only read, so a label put there by hand stays and the job fails, which shows on the pull request
 
-### 9. `bump-framers-deps.yml` (Bump @framers/* deps)
+### 5. `bump-framers-deps.yml` (Bump @framers/* deps)
 
 **Triggers:**
 - Monday 06:00 UTC
@@ -167,12 +100,12 @@ Moves every `@framers/*` pin in a `package.json` to the newest version on npm, r
 - Pushes the branch and opens the pull request with `FRAMERS_BUMP_TOKEN`, a personal token held as a framerslab organization secret. GitHub starts no ordinary workflow run for an event made with `GITHUB_TOKEN`: a pull request a workflow opens with it gets its `pull_request` runs in an approval-required state, with no job ([Triggering a workflow from a workflow](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow)). Opened with the personal token, the pull request gets Test Suite and rename-guard like any other
 - Stops at its first step, with an error, when `FRAMERS_BUMP_TOKEN` is not available; the job's own `GITHUB_TOKEN` only reads
 - Refreshes both lockfiles with `--ignore-scripts` and pins its third-party actions to a commit, since the job holds a token that reaches past this repository
-- Refreshes `package-lock.json` with `npm install --package-lock-only`, which writes the lockfile and installs nothing, because `npm ci` (in `async-processing.yml`) stops when it disagrees with `package.json`
+- Refreshes `package-lock.json` with `npm install --package-lock-only`, which writes the lockfile and installs nothing, because `npm ci` stops when it disagrees with `package.json`
 - Commits `package.json`, `pnpm-lock.yaml` and `package-lock.json`, the manifests it changes here: create-pull-request stages its `add-paths` with one `git add`, which stages nothing when one of them matches no file, so a manifest tracked later goes on that list
 - Labels nothing: `landing-follows-the-bump-checks.yml` adds `landing` once the pull request's Test Suite and rename-guard pass on its head, and the pull request lands after its review comments are read, answered and resolved
 - `tests/bump-framers-deps.test.js` reads the workflow, runs its first step and its npm lockfile refresh, and makes its commit in a scratch repository holding this repository's files, since GitHub reports a broken file only when the schedule or a dispatch starts it
 
-### 10. `landing-follows-the-bump-checks.yml` (Landing follows the checks of workflow pull requests)
+### 6. `landing-follows-the-bump-checks.yml` (Landing follows the checks of workflow pull requests)
 
 **Triggers:**
 - A Test Suite or rename-guard run requested, started (`in_progress`) or completed on `chore/bump-framers-deps`, `ci/codex-index`, `ci/changelog` or `ci/ai-enhance-blocks`; a re-run sends no requested event, only the other two
@@ -188,7 +121,7 @@ Keeps the `landing` label on the pull requests the weekly bump, the index publis
 - `workflow_run` runs the file as it reads on `master` with a token that can write, so the job checks out no code, runs only for a pull request from this repository's own branch (a fork's branch of the same name is skipped) and reads the run and the pull request inside its script; it never merges
 - `tests/bump-framers-deps.test.js` runs its script against a stand-in for the GitHub API, for each of the four branches, since GitHub runs the file only once it is on `master`
 
-### 11. `changelog.yml` (Generate Weekly Changelog)
+### 7. `changelog.yml` (Generate Weekly Changelog)
 
 **Triggers:**
 - Monday 00:00 UTC; a scheduled workflow here runs once a week at most
@@ -205,7 +138,7 @@ Records in `codex-history/YYYY-MM.jsonl` the complete days, in UTC, before the d
 - Labels nothing: `landing-follows-the-bump-checks.yml` adds `landing` once the pull request's Test Suite and rename-guard pass on its head, and the pull request lands after its review comments are read, answered and resolved
 - `tests/changelog-pull-request.test.js` runs the activity script against a stand-in for GitHub's GraphQL API that applies GitHub's variable rules and serves each list a page at a time, runs the git changelog in scratch repositories, reads the workflow, and runs its first step, the step that picks the days, the two script steps with a stand-in `node`, and the step that carries an open pull request's lines
 
-### 12. `ai-enhance-blocks.yml` (AI Enhance Block Tags)
+### 8. `ai-enhance-blocks.yml` (AI Enhance Block Tags)
 
 **Triggers:**
 - Manual dispatch (provider, maximum cost, model, dry run); a run from any branch enhances `master`
@@ -238,127 +171,71 @@ No workflow here merges a pull request or turns on GitHub's auto-merge. A pull r
 - Stores file hashes and metadata
 - Only re-processes changed files
 - ~80% faster incremental builds
+- No workflow keeps it from one run to the next, so every index build in CI starts from an empty cache; Cache Tests runs the indexer twice in one job to check the second, cached run
 
-### Embedding Cache
-```
-.cache/embeddings/
-```
-- Pre-computed document embeddings
-- Persists across runs
-- ~60% faster search index builds
-
-### Cache Keys
-```yaml
-key: codex-index-v2-${{ hashFiles('weaves/**/*.md') }}
-restore-keys:
-  - codex-index-v2-
-  - codex-index-
-```
+### pnpm Store
+The Unit Tests job caches the pnpm store under `<os>-pnpm-store-<hash of pnpm-lock.yaml>`; after a lockfile change it starts from the newest earlier store and saves the new key.
 
 ## Environment Variables
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `ANTHROPIC_API_KEY` | AI only | Claude API key for AI enhancement |
-| `OPENAI_API_KEY` | AI only | OpenAI API key (fallback) |
-| `GH_PAT` | Yes | Personal access token for cross-repo triggers and the changelog's GraphQL reads |
+| `OPENAI_API_KEY` | AI only | OpenAI API key: the AI block enhancement's default provider and the inbox categorizer's model path |
+| `ANTHROPIC_API_KEY` | AI only | Claude API key: the AI block enhancement's other provider and the inbox categorizer's model path |
+| `GH_PAT` | Changelog and inbox | Personal access token for the changelog's GraphQL reads of issues and pull requests, and for the pull requests and issues the inbox categorizer opens |
 | `FRAMERS_BUMP_TOKEN` | Bump, index, changelog and AI block tags | framerslab organization secret shared with this repository: the personal token the weekly bump, the index publish, the changelog and the AI block enhancement push their branches and open their pull requests with, so the pull requests' checks run |
 
 ## Manual Triggers
 
-### Force Full Reindex
+### Rebuild the Index
 ```bash
-gh workflow run async-processing.yml -f full_reindex=true
+gh workflow run auto-index.yml
 ```
+A run on `master` builds the index from `master`'s head and opens or updates the pull request from `ci/codex-index`.
 
 ### Run Specific Workflow
 ```bash
-gh workflow run auto-index.yml
-gh workflow run ai-enhance-pr.yml
+gh workflow run test.yml
+gh workflow run changelog.yml
+gh workflow run ai-enhance-blocks.yml -f max_cost=5.00
 ```
-
-## Error Handling
-
-1. **Validation Failures:**
-   - Posts detailed error comments on PR
-   - Updates commit status to failed
-   - Does not block other jobs
-
-2. **AI Enhancement Failures:**
-   - Logs error but continues
-   - Never blocks merging
-   - Falls back gracefully
-
-3. **Index Failures:**
-   - Attempts to use cached index
-   - Posts warning but allows manual merge
+The AI block enhancement calls a paid model and stops when its spend reaches `max_cost` (5.00 US dollars when the input is left out).
 
 ## Integration Points
 
-### frame.dev Deployment
-When index is published, triggers `repository_dispatch` to frame.dev:
-```yaml
-event-type: codex-index-updated
-client-payload: '{"sha": "..."}'
-```
-
-### Webhook Notifications
-The `finalize` job updates commit status with:
-- Processing progress
-- Final result (success/failure)
-- Link to workflow run
+### frame.dev
+frame.dev reads this repository's content from `master`. Nothing here starts a frame.dev deploy: frame.dev deploys once per frame.dev release, and a change merged here reaches the site with its next release.
 
 ## Best Practices
 
 1. **For Contributors:**
-   - Let workflows run before requesting review
-   - Address AI suggestions when possible
-   - Use `skip-ai` label sparingly
+   - Ensure validation passes locally: `npm run validate`
+   - Test indexing: `npm run index -- --validate`
+   - Let the checks finish before requesting review, and answer every review comment
+   - Avoid large changes in single PRs (> 50 files)
 
 2. **For Maintainers:**
    - Monitor workflow run times
    - Clear cache if builds are stale
    - Review AI suggestions before landing a pull request
-   - Pin a third-party action, and `actions/github-script`, to the commit of a release whose `action.yml` runs on Node.js 24, with the release named beside it (`uses: owner/action@<commit> # vX.Y.Z`): read the commit from the release's tag (`gh api repos/<owner>/<action>/git/ref/tags/<release>`, then the tag object to its commit when the tag is annotated) and `runs.using` from the `action.yml` at that commit, and read the release notes for breaking changes. `tests/actions-on-node24.test.js` checks `actions/github-script` (v9.0.0), `peter-evans/create-pull-request` (v8.1.1) and `peter-evans/repository-dispatch` (v4.0.1)
-
-3. **For Weavers:**
-   - Ensure validation passes locally: `npm run validate`
-   - Test indexing: `npm run index -- --validate`
-   - Avoid large changes in single PRs (> 50 files)
+   - Pin a third-party action, and `actions/github-script`, to the commit of a release whose `action.yml` runs on Node.js 24, with the release named beside it (`uses: owner/action@<commit> # vX.Y.Z`): read the commit from the release's tag (`gh api repos/<owner>/<action>/git/ref/tags/<release>`, then the tag object to its commit when the tag is annotated) and `runs.using` from the `action.yml` at that commit, and read the release notes for breaking changes. `tests/actions-on-node24.test.js` checks `actions/github-script` (v9.0.0) and `peter-evans/create-pull-request` (v8.1.1)
 
 ## Troubleshooting
 
 ### Cache Issues
 ```bash
-# Clear cache via workflow
-gh workflow run async-processing.yml -f full_reindex=true
-
-# Or manually delete cache
-gh cache delete $(gh cache list | grep codex | awk '{print $1}')
+# List the caches, then delete one by its key
+gh cache list -R framerslab/codex
+gh cache delete <key> -R framerslab/codex
 ```
 
 ### Stuck Workflows
 ```bash
-# Cancel running workflows
-gh run cancel $(gh run list --workflow=async-processing.yml --status=in_progress -q '.[0].databaseId')
+# Cancel the index build that is running
+gh run cancel "$(gh run list -R framerslab/codex --workflow=auto-index.yml --status=in_progress --json databaseId -q '.[0].databaseId')" -R framerslab/codex
 ```
 
 ### View Logs
 ```bash
 gh run view --log
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

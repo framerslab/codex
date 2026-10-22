@@ -39,23 +39,22 @@ Run a full re-catalog when:
 
 ### Via GitHub Web UI
 
-1. Go to https://github.com/framerslab/codex/actions/workflows/build-index.yml
+1. Go to https://github.com/framerslab/codex/actions/workflows/auto-index.yml
 2. Click **"Run workflow"** dropdown (top right)
-3. Select branch: `main`
+3. Select branch: `master`
 4. Click **"Run workflow"** button
-5. Wait ~1-2 minutes for completion
+5. Wait for the index pull request to open or update
 
 ### Via GitHub CLI
 
 ```bash
-gh workflow run build-index.yml --repo framerslab/codex
+gh workflow run auto-index.yml --repo framerslab/codex
 ```
 
 **What It Does:**
-- Runs `npm run index -- --validate` on ALL files
-- Generates `codex-index.json` and `codex-report.json`
-- Pushes to `index` branch (no PR needed)
-- Updates live immediately on frame.dev/codex
+- Processes the blocks and runs `pnpm run index` and `pnpm run build:search` on ALL files of master's head
+- Opens or updates one pull request into `master` from `ci/codex-index` with the files that changed among `codex-index.json`, `codex-search.json`, `codex-report.json` and `codex-blocks.json`
+- The index reaches master, where frame.dev reads it, when that pull request lands after its checks and review pass
 
 **Cost:** $0 (static NLP only, no AI calls)
 
@@ -252,29 +251,7 @@ AUTO_CATALOG_LAND=true ./scripts/retrigger-full-catalog.sh
 
 ### AI Enhancement (Optional)
 
-Only runs if `OPENAI_API_KEY` is set:
-
-| Content Length | Words | Tokens (est.) | Cost/PR |
-|----------------|-------|---------------|---------|
-| Short article  | 100-500 | 150-750 | $0.01-0.03 |
-| Medium article | 500-2K | 750-3K | $0.03-0.08 |
-| Long article   | 2K-10K | 3K-15K | $0.08-0.20 |
-| Documentation  | 10K-50K | 15K-75K | $0.20-1.00 |
-| Large corpus   | 50K-100K | 75K-150K | $1.00-2.00 |
-
-**Calculation:**
-- GPT-4 Turbo: $0.01/1K input tokens, $0.03/1K output tokens
-- Average PR: ~2K input, ~500 output = ~$0.035
-- **Varies significantly based on content length**
-
-**Monthly Budget Estimate:**
-- 10 PRs/month × $0.05 avg = **~$0.50/month**
-- 50 PRs/month × $0.05 avg = **~$2.50/month**
-- 200 PRs/month × $0.05 avg = **~$10/month**
-
-**Full Re-Catalog (100 files):**
-- 100 files × $0.05 avg = **~$5.00 per full run**
-- Recommended: Run monthly or quarterly
+No re-catalog and no PR calls a model. The AI block enhancement (`ai-enhance-blocks.yml`) calls one only on a run someone starts, by hand or with the `ai-enhance` label on a PR, and stops when its spend reaches its `max_cost` input (5.00 US dollars when left out).
 
 ---
 
@@ -302,7 +279,7 @@ Ensure `GH_PAT` can write issues and pull requests on the repository. The PR sta
 
 ### Weekly (Recommended)
 
-Add to `.github/workflows/build-index.yml`:
+Add to `.github/workflows/auto-index.yml`:
 
 ```yaml
 on:

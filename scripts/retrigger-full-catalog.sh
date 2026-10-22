@@ -113,7 +113,7 @@ npm run index -- --validate
 # Check if there are changes to commit
 if git diff --quiet && git diff --cached --quiet; then
   echo -e "${YELLOW}ℹ️  No changes detected. Index is up to date.${NC}"
-  git checkout main
+  git checkout master
   git branch -D "$BRANCH_NAME"
   exit 0
 fi
@@ -204,7 +204,7 @@ PR_RESPONSE=$(curl -s -X POST \
   -d "{
     \"title\": \"chore: full catalog re-index ($(date +%Y-%m-%d))\",
     \"head\": \"$BRANCH_NAME\",
-    \"base\": \"main\",
+    \"base\": \"master\",
     \"body\": $(echo "$PR_BODY" | jq -Rs .)
   }")
 
@@ -267,8 +267,8 @@ else
   echo -e "   To label re-catalog PRs for landing, set: ${BLUE}AUTO_CATALOG_LAND=true${NC}"
 fi
 
-# Return to main branch
-git checkout main
+# Return to master, the branch the pull request goes into
+git checkout master
 
 echo ""
 echo -e "${GREEN}╔════════════════════════════════════════════════════════════╗${NC}"

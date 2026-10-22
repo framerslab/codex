@@ -69,44 +69,29 @@ Frame Codex uses a **hybrid NLP + LLM approach** with smart caching and manual o
 5. **Duplicate Detection** - Catches near-duplicate content using fuzzy matching
 6. **Content Quality** - Minimum length, forbidden patterns (lorem ipsum, TODO)
 
-### Optional LLM Enhancement (API Key Required)
+### Optional LLM Enhancement (API Key Required, On Request)
 
-Enabled via `OPENAI_API_KEY` secret (set `AI_PROVIDER=disabled` to skip):
+A model runs only when someone asks for one, never on every PR:
 
-1. **Semantic Analysis** - Deep understanding of context and meaning (GPT-4)
-2. **Quality Scoring** - 0-100 score based on clarity, accuracy, completeness
-3. **Tag Suggestions** - AI-powered tag recommendations beyond vocabulary
-4. **Relationship Detection** - Finds connections between threads
-5. **Summary Generation** - Creates concise summaries for missing frontmatter
-
-**Cost**: ~$0.01-0.20 per PR (depending on content length: 100-10K words)
+1. **Block Tags and Summaries** - `ai-enhance-blocks.yml` refines the block tags and summaries in `weaves/`, by hand (one PR from `ci/ai-enhance-blocks`) or on a PR from this repository's own branch labelled `ai-enhance`, and stops when its spend reaches its `max_cost` input (5.00 US dollars when left out)
+2. **Quality Analysis** - `npm run ai-enhance -- --files "<file>"` (`scripts/ai-enhance.js`) runs on your machine with `OPENAI_API_KEY` or `ANTHROPIC_API_KEY`: a quality score and completeness, and suggested metadata, tags, difficulty and structure; `AI_PROVIDER=disabled` skips the model
 
 ### GitHub Actions Workflows
 
 ```mermaid
 graph TD
-    A[Push/PR] --> B{Changed Files?}
-    B -->|Yes| C[SQL Cache Check]
-    C -->|Cache Hit| D[Skip Analysis]
-    C -->|Cache Miss| E[Static NLP Analysis]
-    E --> F{AI Enabled?}
-    F -->|Yes| G[LLM Enhancement]
-    F -->|No| H[Build Index]
-    G --> H
-    D --> H
-    H --> I[Validate Schemas]
-    I -->|Pass| J{Trusted Weaver?}
-    I -->|Fail| K[Block PR]
-    J -->|Yes| L[Approve and label landing]
-    J -->|No| M[Review Required]
-    L --> N[Merge after the review comments are read]
-    M --> N
+    A[PR into master] --> B[Test Suite and rename-guard]
+    B -->|Fail| C[Cannot merge]
+    B -->|Pass| D[Review comments read, answered and resolved]
+    D --> E[Labelled landing]
+    E --> F[Merged into master]
+    F -->|weaves/, scripts/ or schema/ changed| G[Build and Publish Codex Index]
+    G --> H[PR from ci/codex-index]
+    H -->|Its checks pass| E
 ```
 
 **Workflows**:
 - `.github/workflows/auto-index.yml` - Builds the index (static NLP) when a push changes `weaves/`, `scripts/` or `schema/`, and on master opens or updates one PR from `ci/codex-index` with it, opened with `FRAMERS_BUMP_TOKEN` so its checks run; master is protected, so nothing pushes the index there
-- `.github/workflows/ai-enhance-pr.yml` - Optional AI analysis on PRs
-- `.github/workflows/auto-merge-weavers.yml` - Approves trusted contributors' PRs that pass validation and labels them `landing`
 - `.github/workflows/auto-categorize-inbox.yml` - Moves inbox files to their suggested place in a PR, labelled `landing` at 70 percent confidence or more
 - `.github/workflows/landing-follows-the-base.yml` - Takes the `landing` label off a PR whose base changes, since its guards ran against the old base
 - `.github/workflows/changelog.yml` - Weekly history of the commits and of the issues and PRs (git + GitHub API) in `codex-history/`, through one PR from `ci/changelog` opened with `FRAMERS_BUMP_TOKEN` so its checks run
@@ -120,9 +105,9 @@ graph TD
 You have full control over automation:
 
 ```yaml
-# In .github/secrets (repository settings)
+# In the environment of the scripts you run; no workflow reads these
 SQL_CACHE_DISABLED=true          # Force full re-index (bypass cache)
-AI_PROVIDER=disabled             # Disable LLM enhancement entirely
+AI_PROVIDER=disabled             # Call no model
 ```
 
 No workflow merges a pull request or turns on GitHub's auto-merge: a PR is merged after its reviews and comments are read, fixed or answered and its threads resolved. A workflow whose checks and guards pass adds the `landing` label and one comment instead. The re-catalog script does the same for its PR when `AUTO_CATALOG_LAND=true` is in its environment (see [docs/RECATALOG_GUIDE.md](docs/RECATALOG_GUIDE.md)).
@@ -289,7 +274,7 @@ Frame.dev and OpenQuarry consume this content via:
 ```javascript
 // Example: Fetch a strand (file at any depth inside a weave)
 const response = await fetch(
-  'https://raw.githubusercontent.com/framerslab/codex/main/weaves/frame/overview.md'
+  'https://raw.githubusercontent.com/framerslab/codex/master/weaves/wiki/architecture/overview.md'
 );
 const content = await response.text();
 ```
@@ -359,8 +344,8 @@ We welcome contributions! Our automated systems help ensure quality:
 - **Auto-Indexing**: NLP-powered categorization (TF-IDF, n-grams) - **No API keys needed**
 - **Auto-Tagging**: Smart tag suggestions via vocabulary matching
 - **Validation**: Quality assurance checks (schema, content, duplicates)
-- **AI Enhancement** (Optional): GPT-4/Claude analysis with quality scoring
-- **Fast Track**: Trusted Weavers (5+ contributions) get an approval and the `landing` label once validation passes; the PR lands after its review comments are read
+- **Checks**: Test Suite and rename-guard run on every PR, and master's protection requires them
+- **Review**: The review bots comment on every PR; a maintainer labels it `landing` once its review comments are read, answered and resolved, and it lands then
 
 ### Quality Standards
 - Minimum 100 characters of meaningful content  
@@ -380,27 +365,22 @@ See [Contributing Guide](docs/contributing/how-to-submit.md) for details.
 Add these to repository settings → Secrets and variables → Actions:
 
 ```bash
-# Required for the Trusted Weavers workflow (approves validated PRs)
+# The changelog's reads of issues and PRs, and the PRs and issues the inbox categorizer opens
 GH_PAT=ghp_xxxxxxxxxxxxxxxxxxxx
 # GitHub Personal Access Token with 'repo' scope
 # Create at: https://github.com/settings/tokens/new?scopes=repo
 
-# Optional: AI-powered PR enhancement
+# Optional: the AI block enhancement and the inbox categorizer's model path
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
 # Get at: https://platform.openai.com/api-keys
-
-# Configuration (optional)
-AI_PROVIDER=disabled
-# Set to 'disabled' to skip AI enhancement entirely
-# Leave unset or set to 'openai' to enable
 ```
 
 ### Secret Usage
 
-- **GH_PAT**: Lets the Trusted Weavers workflow approve validated PRs, the changelog read the issues and PRs it records, and other workflows trigger across repositories; no workflow merges a PR
+- **GH_PAT**: Lets the changelog read the issues and PRs it records, and the inbox categorizer open its PRs and issues; no workflow merges a PR
 - **FRAMERS_BUMP_TOKEN**: A framerslab organization secret shared with this repository, not a repository secret. The weekly bump, the index publish, the changelog and the AI block enhancement push their branches and open their PRs with it, because a PR a workflow opens or pushes with `GITHUB_TOKEN` gets no CI job; without it each stops at its first step
-- **OPENAI_API_KEY**: Optional, enables AI quality analysis (cost varies by content length: ~$0.01-0.20/PR for 100-10K words)
-- **AI_PROVIDER**: Set to `disabled` to skip AI enhancement
+- **OPENAI_API_KEY**: Optional. The AI block enhancement calls a model with it only on a run someone starts, up to its `max_cost` input, and the inbox categorizer's model path uses it; no workflow calls a model on every PR
+- **AI_PROVIDER**: Read by the scripts that call a model when they run on your machine; `disabled` skips the model. No workflow reads it
 
 **Note:** The indexer and validator work WITHOUT any API keys. AI enhancement is purely optional for advanced quality analysis.
 
