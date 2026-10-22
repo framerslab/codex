@@ -599,7 +599,7 @@ describe('the re-catalog script labels its pull request landing only when the in
   const LANDED = [`POST ${API}/pulls`, `POST ${API}/labels`, `POST ${API}/issues/7/labels`, `POST ${API}/issues/7/comments`];
 
   const recatalog = ({ skipped = 0, land = 'true', commentFails = false } = {}) => {
-    const box = scratch('main');
+    const box = scratch('master');
     box.stub('curl', CURL_STUB);
     box.stub('npm', NPM_STUB);
     box.write('package.json', '{ "private": true }\n');
@@ -610,7 +610,7 @@ describe('the re-catalog script labels its pull request landing only when the in
     fs.mkdirSync(path.join(box.repo, 'node_modules'));
     box.git('add', '-A');
     box.git('commit', '--quiet', '-m', 'start');
-    box.git('push', '--quiet', 'origin', 'main');
+    box.git('push', '--quiet', 'origin', 'master');
     const summary = { totalFiles: 3, indexedFiles: 3 - skipped, skippedFiles: skipped, validFiles: 3 - skipped, filesWithErrors: 0 };
     const result = spawnSync('bash', [path.join(root, 'scripts/retrigger-full-catalog.sh')], {
       cwd: box.repo,
@@ -626,8 +626,22 @@ describe('the re-catalog script labels its pull request landing only when the in
     });
     expect(result.status, result.stdout + result.stderr).toBe(0);
     const calls = box.calls();
-    return { output: result.stdout, calls, requests: calls.map(({ method, url }) => `${method} ${url}`) };
+    return {
+      output: result.stdout,
+      calls,
+      requests: calls.map(({ method, url }) => `${method} ${url}`),
+      // The branch the script leaves checked out.
+      branch: box.git('rev-parse', '--abbrev-ref', 'HEAD').trim(),
+    };
   };
+
+  // master is the only branch: the pull request goes into it, and the script checks it out again at the end.
+  it('opens its pull request into master and checks master out again', () => {
+    const { calls, branch } = recatalog({ land: 'false' });
+    expect(calls[0].method).toBe('POST');
+    expect(JSON.parse(calls[0].data).base).toBe('master');
+    expect(branch).toBe('master');
+  });
 
   it('labels the pull request and names the guards in one comment', () => {
     const { calls, requests } = recatalog();
