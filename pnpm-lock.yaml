@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@framers/sql-storage-adapter':
-        specifier: ^0.8.1
-        version: 0.8.1(better-sqlite3@12.11.1)
+        specifier: ^0.8.3
+        version: 0.8.3(better-sqlite3@12.11.1)
       '@huggingface/transformers':
         specifier: ^3.8.0
         version: 3.8.0
@@ -216,8 +216,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@framers/sql-storage-adapter@0.8.1':
-    resolution: {integrity: sha512-Zcw3ChiT19XH+JWJI+9SBm0YbqhKoeLOT1KbNp1BVB6NQ9qexDhRj1FIka2nlkIZ9rlMKVqlQVbXD2MoY2nT6Q==}
+  '@framers/sql-storage-adapter@0.8.3':
+    resolution: {integrity: sha512-dtAnmU9Fqz9QGK7/1NM1yYizGpxU9ue5XV6Ib1ccET+J/QEsCj08MAux/X/J+oxmGpn+Kx8pAaMiwZeHjStO+g==}
     peerDependencies:
       '@aws-sdk/client-s3': ^3.0.0
       '@capacitor-community/sqlite': ^6.0.0 || ^7.0.0 || ^8.0.0
@@ -1486,7 +1486,7 @@ snapshots:
   '@esbuild/win32-x64@0.21.5':
     optional: true
 
-  '@framers/sql-storage-adapter@0.8.1(better-sqlite3@12.11.1)':
+  '@framers/sql-storage-adapter@0.8.3(better-sqlite3@12.11.1)':
     dependencies:
       pg: 8.23.1
       sql.js: 1.13.0
