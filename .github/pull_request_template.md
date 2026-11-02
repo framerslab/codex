@@ -3,6 +3,18 @@
 ## Summary
 <!-- Provide a brief description of what knowledge you're adding -->
 
+## Issue
+
+<!-- One line, outside this comment:
+Closes #n      the pull request that finishes a tracked plan or fixes a reported problem
+Part of #n     every earlier pull request of a tracked plan
+No issue       a change that fits in one pull request (a fix, a review follow-up, a dependency bump, a docs edit)
+-->
+
+## Spec, plan and design
+
+<!-- Links to the spec, plan and design round this implements. In a public repository, public links only. Write "None" when there are none. -->
+
 ## Type of Content
 - [ ] 📚 New Weave (complete knowledge universe)
 - [ ] 🧵 New Loom (curated collection)
