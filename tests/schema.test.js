@@ -4,6 +4,10 @@
  * the optional manifest at a fabric's root. The schemas must accept the frontmatter the corpus stores today: the fixture
  * under rename/fixtures/ is a copy of that shape, and its keys (relationships: among them) keep their names.
  *
+ * The course layer: a weave and a loom take an optional `kind` (a course is a weave of kind course, a unit a loom of kind
+ * unit), and catalogue.schema.yaml describes the catalogue record at a fabric's root. Both are additions: a weave or a
+ * loom without `kind` reads as before.
+ *
  * Run: npx vitest run tests/schema.test.js
  */
 
@@ -31,6 +35,7 @@ describe('the format schema files', () => {
   it('are all present and parse as YAML objects', () => {
     expect(files).toEqual([
       'blocks-index.schema.yaml',
+      'catalogue.schema.yaml',
       'fabric.schema.yaml',
       'loom.schema.yaml',
       'strand.schema.yaml',
@@ -117,5 +122,60 @@ describe('the format schema files', () => {
     const skills = { teaches: ['qs/library/skill/slope'], requires: ['qs/library/skill/linear-equation'] };
     expect(valid({ ...base, ...skills }), JSON.stringify(valid.errors)).toBe(true);
     expect(valid({ ...base, teaches: 'qs/library/skill/slope' })).toBe(false);
+  });
+
+  it('a weave and a loom take an optional kind, a lowercase word', () => {
+    const weave = compile('weave.schema.yaml');
+    const loom = compile('loom.schema.yaml');
+    expect(weave({ slug: 'reading-a-map', title: 'Reading a map', kind: 'course' }), JSON.stringify(weave.errors)).toBe(true);
+    expect(loom({ slug: 'the-map', title: 'The map', kind: 'unit', ordering: 'manual' }), JSON.stringify(loom.errors)).toBe(true);
+    // a publisher's own noun passes; the weaves and looms the corpus stores today carry no kind and still pass
+    expect(weave({ slug: 'field-guide', title: 'Field guide', kind: 'field-guide' })).toBe(true);
+    expect(weave({ slug: 'wiki', title: 'Frame Wiki', description: 'The wiki weave.', license: 'MIT' })).toBe(true);
+    expect(loom({ slug: 'frame', title: 'Frame', summary: 'The Frame loom.', ordering: 'manual' })).toBe(true);
+    for (const kind of ['Course', 'two words', '2nd-year', '', 7, ['course']]) {
+      expect(weave({ slug: 'reading-a-map', title: 'Reading a map', kind }), JSON.stringify(kind)).toBe(false);
+      expect(loom({ slug: 'the-map', title: 'The map', kind }), JSON.stringify(kind)).toBe(false);
+    }
+    for (const file of ['weave.schema.yaml', 'loom.schema.yaml']) {
+      const schema = load(file);
+      expect(schema.properties.kind.pattern, file).toBe('^[a-z][a-z0-9-]*$');
+      expect(schema.required, file).toEqual(['slug', 'title']);
+    }
+  });
+
+  it('the catalogue record lists subjects and one entry a weave, and refuses a key it does not name', () => {
+    const valid = compile('catalogue.schema.yaml');
+    const catalogue = {
+      id: 'outdoor-skills',
+      title: 'Outdoor skills',
+      subjects: [
+        { id: 'outdoors', title: 'Outdoors', broader: [] },
+        { id: 'navigation', title: 'Navigation', broader: ['outdoors'] },
+      ],
+      entries: [
+        { slug: 'reading-a-map', home: 'navigation', subjects: ['navigation'], requires: [] },
+        { slug: 'night-navigation', home: 'navigation', subjects: ['navigation', 'outdoors'], requires: ['reading-a-map'] },
+      ],
+    };
+    expect(valid(catalogue), JSON.stringify(valid.errors)).toBe(true);
+    expect(valid({ ...catalogue, subjects: [], entries: [] }), JSON.stringify(valid.errors)).toBe(true);
+    expect(load('catalogue.schema.yaml').title).toBe('Catalogue');
+
+    const { entries: _entries, ...withoutEntries } = catalogue;
+    expect(valid(withoutEntries)).toBe(false);
+    const [first] = catalogue.entries;
+    const withEntry = (entry) => ({ ...catalogue, entries: [entry] });
+    const { home: _home, ...withoutHome } = first;
+    expect(valid(withEntry(withoutHome))).toBe(false);
+    expect(valid(withEntry({ ...first, subjects: [] }))).toBe(false);
+    expect(valid(withEntry({ ...first, slug: 'Reading a map' }))).toBe(false);
+    expect(valid(withEntry({ ...first, requires: 'night-navigation' }))).toBe(false);
+    // closed at every level: the record, a subject and an entry
+    expect(valid({ ...catalogue, url: 'https://example.org/' })).toBe(false);
+    expect(valid({ ...catalogue, subjects: [{ id: 'outdoors', title: 'Outdoors', broader: [], colour: 'green' }] })).toBe(false);
+    expect(valid(withEntry({ ...first, lessons: 12 }))).toBe(false);
+    expect(valid({ ...catalogue, subjects: [{ id: 'outdoors', title: '', broader: [] }] })).toBe(false);
+    expect(valid({ ...catalogue, subjects: [{ id: 'outdoors', title: 'Outdoors' }] })).toBe(false);
   });
 });
