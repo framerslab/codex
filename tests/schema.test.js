@@ -178,4 +178,17 @@ describe('the format schema files', () => {
     expect(valid({ ...catalogue, subjects: [{ id: 'outdoors', title: '', broader: [] }] })).toBe(false);
     expect(valid({ ...catalogue, subjects: [{ id: 'outdoors', title: 'Outdoors' }] })).toBe(false);
   });
+
+  it('the catalogue record refuses an entry that lists one subject twice', () => {
+    const valid = compile('catalogue.schema.yaml');
+    const entry = { slug: 'reading-a-map', home: 'navigation', subjects: ['navigation'], requires: [] };
+    const catalogue = {
+      id: 'outdoor-skills',
+      title: 'Outdoor skills',
+      subjects: [{ id: 'navigation', title: 'Navigation', broader: [] }],
+      entries: [entry],
+    };
+    expect(valid(catalogue), JSON.stringify(valid.errors)).toBe(true);
+    expect(valid({ ...catalogue, entries: [{ ...entry, subjects: ['navigation', 'navigation'] }] })).toBe(false);
+  });
 });
