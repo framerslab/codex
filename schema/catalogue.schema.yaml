@@ -1,0 +1,65 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Catalogue
+description: >-
+  The catalogue of a fabric (catalogue.yaml at its root): the subjects its weaves sit under, each weave's home subject
+  and memberships, and which weave builds on which. It holds no address and no count. Four rules are stated in words
+  here, since a JSON Schema cannot hold them, and a reader of the record checks them: a subject id and an entry slug
+  are each listed once, a link names a subject or an entry the record lists, an entry's home is one of its subjects,
+  and no chain of links makes a circle.
+type: object
+additionalProperties: false
+required: [id, title, subjects, entries]
+properties:
+  id:
+    type: string
+    pattern: "^[a-z0-9-]+$"
+    description: "The catalogue's own id."
+  title:
+    type: string
+    minLength: 1
+    description: "The publisher's name for the whole catalogue."
+  subjects:
+    type: array
+    description: "The subject tree, in the order the publisher lists it. A subject may sit under several broader subjects, and the links make no circle."
+    items:
+      type: object
+      additionalProperties: false
+      required: [id, title, broader]
+      properties:
+        id:
+          type: string
+          pattern: "^[a-z0-9-]+$"
+        title:
+          type: string
+          minLength: 1
+          description: "The subject's name in the publisher's own words."
+        broader:
+          type: array
+          description: "The ids of the subjects this one sits under. Empty at the top of the tree."
+          items: { type: string, pattern: "^[a-z0-9-]+$" }
+  entries:
+    type: array
+    description: "One entry for each weave of the fabric, in the order the publisher lists them."
+    items:
+      type: object
+      additionalProperties: false
+      required: [slug, home, subjects, requires]
+      properties:
+        slug:
+          type: string
+          pattern: "^[a-z0-9-]+$"
+          description: "The weave's slug. Another product links to the weave by it."
+        home:
+          type: string
+          pattern: "^[a-z0-9-]+$"
+          description: "The id of the entry's home subject. It is one of the entry's subjects, a rule the reader checks. It names where the weave is listed first, never its address."
+        subjects:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          description: "The ids of every subject the weave sits under, each once."
+          items: { type: string, pattern: "^[a-z0-9-]+$" }
+        requires:
+          type: array
+          description: "The slugs of the entries this one builds on. The links make no circle."
+          items: { type: string, pattern: "^[a-z0-9-]+$" }

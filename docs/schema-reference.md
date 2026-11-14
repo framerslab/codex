@@ -43,6 +43,7 @@ A Weave represents a complete, self-contained universe of knowledge.
   - `url` (string): Contact or website URL
 - `license` (string): Content license (default: MIT)
 - `tags` (array): Categorization tags from controlled vocabulary
+- `kind` (string): What the weave is, as one lowercase word. A weave of kind `course` is a course
 
 ### Example
 
@@ -73,6 +74,7 @@ A Loom is a curated collection of related threads within a weave.
 ### Optional Fields
 
 - `tags` (array): Subject tags for categorization
+- `kind` (string): What the loom is, as one lowercase word. A loom of kind `unit` is a unit of a course
 - `ordering` (object): How threads are organized
   - `type` (enum): `sequential`, `hierarchical`, or `network`
   - `items` (array): Ordered list of thread slugs
@@ -93,6 +95,69 @@ ordering:
     - hello-world
     - core-concepts
     - first-project
+```
+
+## Courses and the Catalogue Schema
+
+A course is a weave of kind `course`. Each of its units is a loom of kind `unit`. A lesson, an exercise and an
+assessment are threads whose `contentType` is `lesson`, `exercise` or `assessment`. `kind` is optional: a weave or a
+loom without it reads as before.
+
+```yaml
+# weaves/reading-a-map/weave.yaml
+slug: reading-a-map
+title: Reading a map
+kind: course
+description: Read a paper map and plan a short walk with it.
+license: MIT
+```
+
+```yaml
+# weaves/reading-a-map/the-map/loom.yaml
+slug: the-map
+title: The map
+kind: unit
+summary: What a map shows and how its scale works.
+```
+
+The catalogue is one optional file at the fabric's root, `catalogue.yaml`, described by `schema/catalogue.schema.yaml`.
+It groups weaves by subject and records which weave builds on which. It refuses any key it does not name.
+
+The schema states four rules in words, since a JSON Schema cannot hold them. A reader of the record checks them: a
+subject id and an entry slug are each listed once, a link names a subject or an entry the record lists, an entry's
+`home` is one of its `subjects`, and no chain of `broader` or `requires` links makes a circle.
+
+### Required Fields
+
+- `id` (string): The catalogue's own id, lowercase with hyphens
+- `title` (string): The publisher's name for the whole catalogue
+- `subjects` (array): The subject tree, in the publisher's order
+  - `id` (string): The subject's id
+  - `title` (string): The subject's name
+  - `broader` (array): The ids of the subjects this one sits under, empty at the top
+- `entries` (array): One entry for each weave
+  - `slug` (string): The weave's slug
+  - `home` (string): The id of the entry's home subject, one of its `subjects`
+  - `subjects` (array): The ids of every subject the weave sits under, at least one, each once
+  - `requires` (array): The slugs of the entries this one builds on
+
+### Example
+
+```yaml
+id: outdoor-skills
+title: Outdoor skills
+subjects:
+  - id: outdoors
+    title: Outdoors
+    broader: []
+  - id: navigation
+    title: Navigation
+    broader: [outdoors]
+entries:
+  - slug: reading-a-map
+    home: navigation
+    subjects: [navigation]
+    requires: []
 ```
 
 ## Thread Schema

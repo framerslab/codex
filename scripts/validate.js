@@ -4,6 +4,16 @@ const yaml = require('js-yaml');
 const matter = require('gray-matter');
 const { v4: uuidv4, validate: validateUUID } = require('uuid');
 
+// The content types and the kind pattern come from the schema files, so this check and the schemas agree.
+const readSchema = (name) =>
+  yaml.load(fs.readFileSync(path.join(__dirname, '..', 'schema', `${name}.schema.yaml`), 'utf8'));
+const CONTENT_TYPES = readSchema('thread').properties.contentType.enum;
+const KIND = {
+  weave: new RegExp(readSchema('weave').properties.kind.pattern),
+  loom: new RegExp(readSchema('loom').properties.kind.pattern),
+};
+const KIND_ERROR = 'kind must be one lowercase word (letters, digits and hyphens, starting with a letter)';
+
 class CodexValidator {
   constructor() {
     this.errors = [];
@@ -28,6 +38,10 @@ class CodexValidator {
       this.errors.push(`${filePath}: Tags must be an array`);
     }
 
+    if (data.kind !== undefined && !(typeof data.kind === 'string' && KIND.weave.test(data.kind))) {
+      this.errors.push(`${filePath}: ${KIND_ERROR}`);
+    }
+
     if (!data.license) {
       this.warnings.push(`${filePath}: No license specified (defaults to MIT)`);
     }
@@ -41,6 +55,10 @@ class CodexValidator {
         this.errors.push(`${filePath}: Missing required field '${field}'`);
       }
     });
+
+    if (data.kind !== undefined && !(typeof data.kind === 'string' && KIND.loom.test(data.kind))) {
+      this.errors.push(`${filePath}: ${KIND_ERROR}`);
+    }
 
     if (data.ordering) {
       if (!['sequential', 'hierarchical', 'network'].includes(data.ordering.type)) {
@@ -65,7 +83,7 @@ class CodexValidator {
       this.errors.push(`${filePath}: ID must be a valid UUID`);
     }
 
-    if (data.contentType && !['markdown', 'code', 'data', 'media'].includes(data.contentType)) {
+    if (data.contentType && !CONTENT_TYPES.includes(data.contentType)) {
       this.errors.push(`${filePath}: Invalid content type`);
     }
 
