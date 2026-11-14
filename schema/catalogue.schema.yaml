@@ -2,7 +2,10 @@ $schema: "https://json-schema.org/draft/2020-12/schema"
 title: Catalogue
 description: >-
   The catalogue of a fabric (catalogue.yaml at its root): the subjects its weaves sit under, each weave's home subject
-  and memberships, and which weave builds on which. It holds no address and no count.
+  and memberships, and which weave builds on which. It holds no address and no count. Four rules are stated in words
+  here, since a JSON Schema cannot hold them, and a reader of the record checks them: a subject id and an entry slug
+  are each listed once, a link names a subject or an entry the record lists, an entry's home is one of its subjects,
+  and no chain of links makes a circle.
 type: object
 additionalProperties: false
 required: [id, title, subjects, entries]
@@ -49,10 +52,11 @@ properties:
         home:
           type: string
           pattern: "^[a-z0-9-]+$"
-          description: "The id of the entry's home subject: one of its subjects. It names where the weave is listed first, never its address."
+          description: "The id of the entry's home subject. It is one of the entry's subjects, a rule the reader checks. It names where the weave is listed first, never its address."
         subjects:
           type: array
           minItems: 1
+          uniqueItems: true
           description: "The ids of every subject the weave sits under, each once."
           items: { type: string, pattern: "^[a-z0-9-]+$" }
         requires:

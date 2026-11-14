@@ -123,6 +123,10 @@ summary: What a map shows and how its scale works.
 The catalogue is one optional file at the fabric's root, `catalogue.yaml`, described by `schema/catalogue.schema.yaml`.
 It groups weaves by subject and records which weave builds on which. It refuses any key it does not name.
 
+The schema states four rules in words, since a JSON Schema cannot hold them. A reader of the record checks them: a
+subject id and an entry slug are each listed once, a link names a subject or an entry the record lists, an entry's
+`home` is one of its `subjects`, and no chain of `broader` or `requires` links makes a circle.
+
 ### Required Fields
 
 - `id` (string): The catalogue's own id, lowercase with hyphens
@@ -134,7 +138,7 @@ It groups weaves by subject and records which weave builds on which. It refuses 
 - `entries` (array): One entry for each weave
   - `slug` (string): The weave's slug
   - `home` (string): The id of the entry's home subject, one of its `subjects`
-  - `subjects` (array): The ids of every subject the weave sits under, at least one
+  - `subjects` (array): The ids of every subject the weave sits under, at least one, each once
   - `requires` (array): The slugs of the entries this one builds on
 
 ### Example
