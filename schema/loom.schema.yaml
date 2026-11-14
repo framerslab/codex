@@ -8,6 +8,10 @@ properties:
     pattern: "^[a-z0-9-]+$"
   title:
     type: string
+  kind:
+    type: string
+    pattern: "^[a-z][a-z0-9-]*$"
+    description: "What this loom is, in the publisher's own noun. A loom of kind unit is a unit of a course."
   summary:
     type: string
   tags:

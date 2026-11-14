@@ -9,6 +9,10 @@ properties:
   title:
     type: string
     minLength: 3
+  kind:
+    type: string
+    pattern: "^[a-z][a-z0-9-]*$"
+    description: "What this weave is, in the publisher's own noun. A weave of kind course is a course."
   description:
     type: string
   maintainedBy:
