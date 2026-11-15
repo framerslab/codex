@@ -1,34 +1,34 @@
 {
   "summary": {
-    "totalFiles": 40,
-    "indexedFiles": 40,
+    "totalFiles": 41,
+    "indexedFiles": 41,
     "skippedFiles": 0,
-    "validFiles": 40,
+    "validFiles": 41,
     "filesWithErrors": 0,
     "filesWithWarnings": 0,
-    "filesWithSuggestions": 40
+    "filesWithSuggestions": 41
   },
   "categorization": {
     "bySubject": {
-      "ai": 40,
-      "design": 40,
-      "knowledge": 40,
-      "media": 31,
-      "philosophy": 39,
+      "ai": 41,
+      "design": 41,
+      "knowledge": 41,
+      "media": 32,
+      "philosophy": 40,
       "science": 38,
-      "security": 40,
-      "technology": 40,
+      "security": 41,
+      "technology": 41,
       "knowledge-management": 2,
       "ai-infrastructure": 2,
       "artificial-intelligence": 4,
       "programming": 1
     },
     "byTopic": {
-      "api-reference": 40,
-      "architecture": 40,
-      "best-practices": 40,
-      "getting-started": 35,
-      "troubleshooting": 37,
+      "api-reference": 41,
+      "architecture": 41,
+      "best-practices": 41,
+      "getting-started": 36,
+      "troubleshooting": 38,
       "openstrand": 2,
       "fabric-codex": 1,
       "semantic-web": 1,
@@ -43,7 +43,7 @@
     "byDifficulty": {
       "expert": 5,
       "advanced": 2,
-      "intermediate": 18,
+      "intermediate": 19,
       "[object Object]": 1,
       "beginner": 14
     },
@@ -1622,6 +1622,141 @@
         "file": "weaves/writings/weave.yaml",
         "category": "skill:contain",
         "score": 0.5052631578947369
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "ai",
+        "score": 0.017985611510791366
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "design",
+        "score": 0.016574585635359115
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "knowledge",
+        "score": 0.0582010582010582
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "media",
+        "score": 0.014925373134328358
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "philosophy",
+        "score": 0.004830917874396135
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "security",
+        "score": 0.03888888888888889
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "technology",
+        "score": 0.05405405405405406
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "api-reference",
+        "score": 0.07317073170731707
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "architecture",
+        "score": 0.014598540145985401
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "best-practices",
+        "score": 0.03225806451612903
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "getting-started",
+        "score": 0.027522935779816515
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "troubleshooting",
+        "score": 0.018518518518518517
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:schema",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:object",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:http",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:https",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:ci",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:tl",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:on",
+        "score": 0.5089285714285714
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:js",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:ts",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:type",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:c",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:annot",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:io",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:eq",
+        "score": 0.5046082949308756
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:product",
+        "score": 0.5046082949308756
       },
       {
         "file": "schema/fabric.schema.yaml",
@@ -7381,7 +7516,7 @@
       {
         "file": "schema/loom.schema.yaml",
         "category": "knowledge",
-        "score": 0.037037037037037035
+        "score": 0.05291005291005291
       },
       {
         "file": "schema/loom.schema.yaml",
@@ -7401,12 +7536,12 @@
       {
         "file": "schema/loom.schema.yaml",
         "category": "technology",
-        "score": 0.037162162162162164
+        "score": 0.04391891891891892
       },
       {
         "file": "schema/loom.schema.yaml",
         "category": "api-reference",
-        "score": 0.08130081300813008
+        "score": 0.0975609756097561
       },
       {
         "file": "schema/loom.schema.yaml",
@@ -7431,27 +7566,32 @@
       {
         "file": "schema/loom.schema.yaml",
         "category": "skill:schema",
-        "score": 0.5240384615384616
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/loom.schema.yaml",
+        "category": "skill:unit",
+        "score": 0.5288461538461539
       },
       {
         "file": "schema/loom.schema.yaml",
         "category": "skill:object",
-        "score": 0.5240384615384616
+        "score": 0.5288461538461539
       },
       {
         "file": "schema/loom.schema.yaml",
         "category": "skill:http",
-        "score": 0.5240384615384616
+        "score": 0.5288461538461539
       },
       {
         "file": "schema/loom.schema.yaml",
         "category": "skill:https",
-        "score": 0.5240384615384616
+        "score": 0.5288461538461539
       },
       {
         "file": "schema/loom.schema.yaml",
         "category": "skill:tl",
-        "score": 0.5240384615384616
+        "score": 0.5288461538461539
       },
       {
         "file": "schema/loom.schema.yaml",
@@ -7766,7 +7906,7 @@
       {
         "file": "schema/weave.schema.yaml",
         "category": "knowledge",
-        "score": 0.026455026455026454
+        "score": 0.037037037037037035
       },
       {
         "file": "schema/weave.schema.yaml",
@@ -11426,22 +11566,22 @@
       {
         "file": "docs/schema-reference.md",
         "category": "ai",
-        "score": 0.06115107913669065
+        "score": 0.06474820143884892
       },
       {
         "file": "docs/schema-reference.md",
         "category": "design",
-        "score": 0.09944751381215469
+        "score": 0.11602209944751381
       },
       {
         "file": "docs/schema-reference.md",
         "category": "knowledge",
-        "score": 0.4126984126984127
+        "score": 0.4656084656084656
       },
       {
         "file": "docs/schema-reference.md",
         "category": "media",
-        "score": 0.06716417910447761
+        "score": 0.08955223880597014
       },
       {
         "file": "docs/schema-reference.md",
@@ -11456,12 +11596,12 @@
       {
         "file": "docs/schema-reference.md",
         "category": "security",
-        "score": 0.07777777777777778
+        "score": 0.08888888888888889
       },
       {
         "file": "docs/schema-reference.md",
         "category": "technology",
-        "score": 0.2533783783783784
+        "score": 0.25675675675675674
       },
       {
         "file": "docs/schema-reference.md",
@@ -11471,17 +11611,17 @@
       {
         "file": "docs/schema-reference.md",
         "category": "architecture",
-        "score": 0.16058394160583941
+        "score": 0.1678832116788321
       },
       {
         "file": "docs/schema-reference.md",
         "category": "best-practices",
-        "score": 0.27419354838709675
+        "score": 0.28225806451612906
       },
       {
         "file": "docs/schema-reference.md",
         "category": "getting-started",
-        "score": 0.25688073394495414
+        "score": 0.27522935779816515
       },
       {
         "file": "docs/schema-reference.md",
@@ -11691,92 +11831,102 @@
       {
         "file": "docs/schema-reference.md",
         "category": "skill:javascript",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:js",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:nodejs",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:typescript",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:ts",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:type",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:generics",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:python",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:py",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:rust",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:go",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:java",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:asp",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:c",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
+      },
+      {
+        "file": "docs/schema-reference.md",
+        "category": "skill:less",
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:bash",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:nodej",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
+      },
+      {
+        "file": "docs/schema-reference.md",
+        "category": "skill:annot",
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:gener",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
         "category": "skill:io",
-        "score": 0.6111111111111112
+        "score": 0.6234567901234568
       },
       {
         "file": "docs/schema-reference.md",
@@ -11972,22 +12122,18 @@
     "fileWarnings": []
   },
   "vocabulary": {
-    "totalUniqueTerms": 386,
+    "totalUniqueTerms": 392,
     "suggestedAdditions": [
       {
         "term": "block",
         "frequency": 9
       },
       {
-        "term": "properties",
-        "frequency": 5
-      },
-      {
-        "term": "items",
+        "term": "frame",
         "frequency": 4
       },
       {
-        "term": "frame",
+        "term": "properties",
         "frequency": 4
       },
       {
@@ -12011,19 +12157,15 @@
         "frequency": 3
       },
       {
+        "term": "items",
+        "frequency": 3
+      },
+      {
         "term": "assets",
         "frequency": 3
       },
       {
         "term": "technology",
-        "frequency": 3
-      },
-      {
-        "term": "org",
-        "frequency": 3
-      },
-      {
-        "term": "draft",
         "frequency": 3
       },
       {
@@ -12057,9 +12199,9 @@
     ]
   },
   "performance": {
-    "timeElapsed": "64.47s",
+    "timeElapsed": "57.84s",
     "cacheHitRate": "0%",
-    "filesProcessed": 40,
+    "filesProcessed": 41,
     "filesCached": 0,
     "speedup": "N/A (first run)"
   }
