@@ -28,6 +28,12 @@ on:
       - frame-deploy-complete
 
 # The pull request goes through FRAMERS_BUMP_TOKEN, so each job's own GITHUB_TOKEN only reads.
+# onnxruntime-node's postinstall downloads its CUDA binaries on linux x64, and the 1.21.0 asset
+# (onnxruntime-linux-x64-gpu-1.21.0.tgz) answers 404, which stops every install. The CPU runtime ships
+# inside the package, so skipping the CUDA download loses nothing these jobs use.
+env:
+  ONNXRUNTIME_NODE_INSTALL_CUDA: skip
+
 permissions:
   contents: read
 

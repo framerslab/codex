@@ -4,6 +4,7 @@
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -512,3 +513,41 @@ describe('CodexCacheDB', () => {
   });
 });
 
+describe('CodexCacheDB on disk', () => {
+  let dir;
+  let first;
+  let second;
+
+  beforeEach(() => {
+    dir = fs.mkdtempSync(path.join(os.tmpdir(), 'codex-cache-'));
+    vi.spyOn(process, 'cwd').mockReturnValue(dir);
+  });
+
+  afterEach(async () => {
+    if (first) await first.close();
+    if (second) await second.close();
+    first = undefined;
+    second = undefined;
+    vi.restoreAllMocks();
+    fs.rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('opens its database at .cache/codex.db and reads back what an earlier instance saved', async () => {
+    const { default: Cache } = await import('../scripts/cache-db.js');
+    const strand = path.join(dir, 'strand.md');
+    fs.writeFileSync(strand, '# Strand\n\nBody.');
+    const analysis = { keywords: ['strand'], categories: { subjects: ['technology'], topics: ['testing'], difficulty: 'beginner' } };
+
+    first = await Cache.create();
+    expect(first.isInitialized).toBe(true);
+    await first.saveFileAnalysis(strand, '# Strand\n\nBody.', analysis);
+    await first.close();
+    first = undefined;
+
+    expect(fs.existsSync(path.join(dir, '.cache', 'codex.db'))).toBe(true);
+
+    second = await Cache.create();
+    expect(second.isInitialized).toBe(true);
+    expect(await second.getCachedAnalysis(strand)).toEqual(analysis);
+  });
+});
