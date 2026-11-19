@@ -101,14 +101,10 @@ class CodexCacheDB {
       }
 
       // Initialize database (better-sqlite3 in Node, IndexedDB in browser)
+      // createDatabase reads the SQLite path from `file`; it has no `betterSqlite3` option.
       this.db = await createDatabase({
         priority: ['better-sqlite3', 'sqljs'],
-        betterSqlite3: {
-          filename: path.join(cacheDir, 'codex.db'),
-          options: {
-            verbose: process.env.DEBUG === 'true' ? console.log : undefined
-          }
-        }
+        file: path.join(cacheDir, 'codex.db'),
       });
 
       // Create schema
