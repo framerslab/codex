@@ -18,9 +18,9 @@
       "science": 38,
       "security": 41,
       "technology": 41,
+      "artificial-intelligence": 4,
       "knowledge-management": 2,
       "ai-infrastructure": 2,
-      "artificial-intelligence": 4,
       "programming": 1
     },
     "byTopic": {
@@ -29,12 +29,12 @@
       "best-practices": 41,
       "getting-started": 36,
       "troubleshooting": 38,
+      "tutorial": 4,
       "openstrand": 2,
       "fabric-codex": 1,
       "semantic-web": 1,
       "schema": 1,
       "hierarchy": 1,
-      "tutorial": 4,
       "how-to": 1,
       "automation": 1,
       "ci-cd": 1,
@@ -44,2895 +44,10 @@
       "expert": 5,
       "advanced": 2,
       "intermediate": 19,
-      "[object Object]": 1,
-      "beginner": 14
+      "beginner": 14,
+      "[object Object]": 1
     },
     "confidenceScores": [
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "ai",
-        "score": 0.014388489208633094
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "design",
-        "score": 0.011049723756906077
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "knowledge",
-        "score": 0.14814814814814814
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "media",
-        "score": 0.014925373134328358
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "philosophy",
-        "score": 0.024154589371980676
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "science",
-        "score": 0.019157088122605363
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "security",
-        "score": 0.016666666666666666
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "technology",
-        "score": 0.02364864864864865
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "api-reference",
-        "score": 0.016260162601626018
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "architecture",
-        "score": 0.0072992700729927005
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "best-practices",
-        "score": 0.024193548387096774
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "getting-started",
-        "score": 0.01834862385321101
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:programming",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:data",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:program",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:search",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:tl",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:on",
-        "score": 0.5089285714285714
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:c",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:gener",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:io",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:documentation",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:research",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:learning",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:reflection",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:document",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:learn",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:reflect",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:as",
-        "score": 0.5105263157894737
-      },
-      {
-        "file": "weaves/knowledge/weave.yaml",
-        "category": "skill:contain",
-        "score": 0.5105263157894737
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "ai",
-        "score": 0.01079136690647482
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "design",
-        "score": 0.027624309392265192
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "knowledge",
-        "score": 0.08465608465608465
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "philosophy",
-        "score": 0.024154589371980676
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "science",
-        "score": 0.0038314176245210726
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "security",
-        "score": 0.027777777777777776
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "technology",
-        "score": 0.030405405405405407
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "api-reference",
-        "score": 0.024390243902439025
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "architecture",
-        "score": 0.0072992700729927005
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "best-practices",
-        "score": 0.03225806451612903
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:data",
-        "score": 0.5096153846153846
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:tl",
-        "score": 0.5096153846153846
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:on",
-        "score": 0.5089285714285714
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:ts",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:c",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:io",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:writing",
-        "score": 0.511520737327189
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:documentation",
-        "score": 0.511520737327189
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:reflection",
-        "score": 0.511520737327189
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:document",
-        "score": 0.511520737327189
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:reflect",
-        "score": 0.511520737327189
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:as",
-        "score": 0.5157894736842106
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:code",
-        "score": 0.5157894736842106
-      },
-      {
-        "file": "weaves/notes/weave.yaml",
-        "category": "skill:contain",
-        "score": 0.5157894736842106
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "ai",
-        "score": 0.01079136690647482
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "design",
-        "score": 0.016574585635359115
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "knowledge",
-        "score": 0.05291005291005291
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "philosophy",
-        "score": 0.028985507246376812
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "science",
-        "score": 0.011494252873563218
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "security",
-        "score": 0.016666666666666666
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "technology",
-        "score": 0.02364864864864865
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "api-reference",
-        "score": 0.016260162601626018
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "architecture",
-        "score": 0.0072992700729927005
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "best-practices",
-        "score": 0.016129032258064516
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "getting-started",
-        "score": 0.01834862385321101
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "troubleshooting",
-        "score": 0.009259259259259259
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "skill:data",
-        "score": 0.5096153846153846
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "skill:tl",
-        "score": 0.5096153846153846
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "skill:on",
-        "score": 0.5089285714285714
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "skill:ts",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "skill:c",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "skill:io",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "skill:writing",
-        "score": 0.5069124423963134
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "skill:reflection",
-        "score": 0.5069124423963134
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "skill:reflect",
-        "score": 0.5069124423963134
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "skill:as",
-        "score": 0.5105263157894737
-      },
-      {
-        "file": "weaves/reflections/weave.yaml",
-        "category": "skill:contain",
-        "score": 0.5105263157894737
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "ai",
-        "score": 0.0035971223021582736
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "design",
-        "score": 0.0055248618784530384
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "knowledge",
-        "score": 0.07936507936507936
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "philosophy",
-        "score": 0.00966183574879227
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "science",
-        "score": 0.007662835249042145
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "security",
-        "score": 0.027777777777777776
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "technology",
-        "score": 0.04391891891891892
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "api-reference",
-        "score": 0.024390243902439025
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "architecture",
-        "score": 0.0364963503649635
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "best-practices",
-        "score": 0.016129032258064516
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "getting-started",
-        "score": 0.01834862385321101
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "troubleshooting",
-        "score": 0.018518518518518517
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "skill:tl",
-        "score": 0.5048076923076923
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "skill:app",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "skill:api",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "skill:on",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "skill:ts",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "skill:type",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "skill:c",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "skill:io",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "skill:documentation",
-        "score": 0.5046082949308756
-      },
-      {
-        "file": "weaves/wiki/frame/loom.yaml",
-        "category": "skill:document",
-        "score": 0.5046082949308756
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "ai",
-        "score": 0.050359712230215826
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "design",
-        "score": 0.03867403314917127
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "knowledge",
-        "score": 0.20105820105820105
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "media",
-        "score": 0.029850746268656716
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "philosophy",
-        "score": 0.024154589371980676
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "science",
-        "score": 0.034482758620689655
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "security",
-        "score": 0.03888888888888889
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "technology",
-        "score": 0.07432432432432433
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "api-reference",
-        "score": 0.032520325203252036
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "architecture",
-        "score": 0.043795620437956206
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "best-practices",
-        "score": 0.06451612903225806
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "getting-started",
-        "score": 0.027522935779816515
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "troubleshooting",
-        "score": 0.05555555555555555
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:data",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:ci",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:search",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:structur",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:tl",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:app",
-        "score": 0.5357142857142857
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:pages",
-        "score": 0.5357142857142857
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:on",
-        "score": 0.5357142857142857
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:page",
-        "score": 0.5357142857142857
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:ts",
-        "score": 0.5308641975308642
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:pip",
-        "score": 0.5308641975308642
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:go",
-        "score": 0.5308641975308642
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:c",
-        "score": 0.5308641975308642
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:io",
-        "score": 0.5308641975308642
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:focus",
-        "score": 0.5069124423963134
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:document",
-        "score": 0.5069124423963134
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:focu",
-        "score": 0.5069124423963134
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:git",
-        "score": 0.5210526315789473
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:github",
-        "score": 0.5210526315789473
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:control",
-        "score": 0.5210526315789473
-      },
-      {
-        "file": "weaves/wiki/openquarry/architecture.md",
-        "category": "skill:as",
-        "score": 0.5210526315789473
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "ai",
-        "score": 0.0035971223021582736
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "design",
-        "score": 0.022099447513812154
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "knowledge",
-        "score": 0.12169312169312169
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "philosophy",
-        "score": 0.00966183574879227
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "science",
-        "score": 0.007662835249042145
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "security",
-        "score": 0.022222222222222223
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "technology",
-        "score": 0.033783783783783786
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "api-reference",
-        "score": 0.024390243902439025
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "architecture",
-        "score": 0.0364963503649635
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "best-practices",
-        "score": 0.016129032258064516
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "skill:schema",
-        "score": 0.5144230769230769
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "skill:ci",
-        "score": 0.5144230769230769
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "skill:tl",
-        "score": 0.5144230769230769
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "skill:app",
-        "score": 0.5178571428571429
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "skill:on",
-        "score": 0.5178571428571429
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "skill:ts",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "skill:type",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "skill:c",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "skill:io",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "skill:documentation",
-        "score": 0.5046082949308756
-      },
-      {
-        "file": "weaves/wiki/openquarry/loom.yaml",
-        "category": "skill:document",
-        "score": 0.5046082949308756
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "ai",
-        "score": 0.08992805755395683
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "design",
-        "score": 0.15469613259668508
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "knowledge",
-        "score": 0.4656084656084656
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "media",
-        "score": 0.09701492537313433
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "philosophy",
-        "score": 0.12077294685990338
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "science",
-        "score": 0.09195402298850575
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "security",
-        "score": 0.11666666666666667
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "technology",
-        "score": 0.22297297297297297
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "api-reference",
-        "score": 0.17073170731707318
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "architecture",
-        "score": 0.15328467153284672
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "best-practices",
-        "score": 0.13709677419354838
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "getting-started",
-        "score": 0.28440366972477066
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "troubleshooting",
-        "score": 0.12962962962962962
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:authentication",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:auth",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:oauth",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:jwt",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:database",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:schema",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:unit",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:data",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:http",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:https",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:security",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:ci",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:authent",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:databas",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:inherit",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:search",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:structur",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:secur",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:tl",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:react",
-        "score": 0.5357142857142857
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:app",
-        "score": 0.5357142857142857
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:api",
-        "score": 0.5357142857142857
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:on",
-        "score": 0.5357142857142857
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:javascript",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:ts",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:type",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:rust",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:go",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:java",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:c",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:gener",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:io",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:documentation",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:management",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:collaboration",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:learning",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:onboarding",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:eq",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:trust",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:write",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:present",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:document",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:manag",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:organ",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:collabor",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:learn",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:train",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:onboard",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:understand",
-        "score": 0.5391705069124424
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:git",
-        "score": 0.5684210526315789
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:github",
-        "score": 0.5684210526315789
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:version",
-        "score": 0.5684210526315789
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:control",
-        "score": 0.5684210526315789
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:container",
-        "score": 0.5684210526315789
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:as",
-        "score": 0.5684210526315789
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:code",
-        "score": 0.5684210526315789
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:web",
-        "score": 0.5684210526315789
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:contain",
-        "score": 0.5684210526315789
-      },
-      {
-        "file": "weaves/wiki/openquarry/overview.md",
-        "category": "skill:redi",
-        "score": 0.5684210526315789
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "ai",
-        "score": 0.05755395683453238
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "design",
-        "score": 0.06629834254143646
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "knowledge",
-        "score": 0.3862433862433862
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "media",
-        "score": 0.08208955223880597
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "philosophy",
-        "score": 0.06763285024154589
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "science",
-        "score": 0.05747126436781609
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "security",
-        "score": 0.05555555555555555
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "technology",
-        "score": 0.13851351351351351
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "api-reference",
-        "score": 0.07317073170731707
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "architecture",
-        "score": 0.10218978102189781
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "best-practices",
-        "score": 0.08870967741935484
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "getting-started",
-        "score": 0.12844036697247707
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "troubleshooting",
-        "score": 0.046296296296296294
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:database",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:schema",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:unit",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:async",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:programming",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:inheritance",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:data",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:structures",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:networking",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:http",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:https",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:ci",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:databas",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:program",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:inherit",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:search",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:structur",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:network",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:tl",
-        "score": 0.5913461538461539
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:app",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:api",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:on",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:ts",
-        "score": 0.5617283950617284
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:python",
-        "score": 0.5617283950617284
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:py",
-        "score": 0.5617283950617284
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:rust",
-        "score": 0.5617283950617284
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:go",
-        "score": 0.5617283950617284
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:asp",
-        "score": 0.5617283950617284
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:c",
-        "score": 0.5617283950617284
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:annot",
-        "score": 0.5617283950617284
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:gener",
-        "score": 0.5617283950617284
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:io",
-        "score": 0.5617283950617284
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:documentation",
-        "score": 0.5230414746543779
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:organization",
-        "score": 0.5230414746543779
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:learning",
-        "score": 0.5230414746543779
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:eq",
-        "score": 0.5230414746543779
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:document",
-        "score": 0.5230414746543779
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:narr",
-        "score": 0.5230414746543779
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:organ",
-        "score": 0.5230414746543779
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:learn",
-        "score": 0.5230414746543779
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:git",
-        "score": 0.5631578947368421
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:github",
-        "score": 0.5631578947368421
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:branch",
-        "score": 0.5631578947368421
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:kubernetes",
-        "score": 0.5631578947368421
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:infrastructure",
-        "score": 0.5631578947368421
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:as",
-        "score": 0.5631578947368421
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:code",
-        "score": 0.5631578947368421
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:contain",
-        "score": 0.5631578947368421
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:kubernet",
-        "score": 0.5631578947368421
-      },
-      {
-        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
-        "category": "skill:infrastructur",
-        "score": 0.5631578947368421
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "ai",
-        "score": 0.01079136690647482
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "design",
-        "score": 0.027624309392265192
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "knowledge",
-        "score": 0.08465608465608465
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "philosophy",
-        "score": 0.024154589371980676
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "science",
-        "score": 0.0038314176245210726
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "security",
-        "score": 0.022222222222222223
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "technology",
-        "score": 0.02702702702702703
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "api-reference",
-        "score": 0.032520325203252036
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "architecture",
-        "score": 0.014598540145985401
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "best-practices",
-        "score": 0.024193548387096774
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "troubleshooting",
-        "score": 0.009259259259259259
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:auth",
-        "score": 0.5144230769230769
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:data",
-        "score": 0.5144230769230769
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:tl",
-        "score": 0.5144230769230769
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:on",
-        "score": 0.5089285714285714
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:ts",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:c",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:io",
-        "score": 0.5185185185185185
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:writing",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:documentation",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:reflection",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:write",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:document",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:iter",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:reflect",
-        "score": 0.5161290322580645
-      },
-      {
-        "file": "weaves/writings/weave.yaml",
-        "category": "skill:contain",
-        "score": 0.5052631578947369
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "ai",
-        "score": 0.017985611510791366
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "design",
-        "score": 0.016574585635359115
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "knowledge",
-        "score": 0.0582010582010582
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "media",
-        "score": 0.014925373134328358
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "philosophy",
-        "score": 0.004830917874396135
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "security",
-        "score": 0.03888888888888889
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "technology",
-        "score": 0.05405405405405406
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "api-reference",
-        "score": 0.07317073170731707
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "architecture",
-        "score": 0.014598540145985401
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "best-practices",
-        "score": 0.03225806451612903
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "getting-started",
-        "score": 0.027522935779816515
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "troubleshooting",
-        "score": 0.018518518518518517
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:schema",
-        "score": 0.5288461538461539
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:object",
-        "score": 0.5288461538461539
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:http",
-        "score": 0.5288461538461539
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:https",
-        "score": 0.5288461538461539
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:ci",
-        "score": 0.5288461538461539
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:tl",
-        "score": 0.5288461538461539
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:on",
-        "score": 0.5089285714285714
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:js",
-        "score": 0.537037037037037
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:ts",
-        "score": 0.537037037037037
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:type",
-        "score": 0.537037037037037
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:c",
-        "score": 0.537037037037037
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:annot",
-        "score": 0.537037037037037
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:io",
-        "score": 0.537037037037037
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:eq",
-        "score": 0.5046082949308756
-      },
-      {
-        "file": "schema/catalogue.schema.yaml",
-        "category": "skill:product",
-        "score": 0.5046082949308756
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "ai",
-        "score": 0.007194244604316547
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "design",
-        "score": 0.011049723756906077
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "knowledge",
-        "score": 0.08465608465608465
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "philosophy",
-        "score": 0.00966183574879227
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "security",
-        "score": 0.027777777777777776
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "technology",
-        "score": 0.060810810810810814
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "api-reference",
-        "score": 0.08130081300813008
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "architecture",
-        "score": 0.021897810218978103
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "best-practices",
-        "score": 0.016129032258064516
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "troubleshooting",
-        "score": 0.018518518518518517
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:schema",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:object",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:http",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:https",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:tl",
-        "score": 0.5240384615384616
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:app",
-        "score": 0.5178571428571429
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:on",
-        "score": 0.5178571428571429
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:js",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:type",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:c",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:io",
-        "score": 0.5246913580246914
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:eq",
-        "score": 0.5023041474654378
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:version",
-        "score": 0.5157894736842106
-      },
-      {
-        "file": "schema/fabric.schema.yaml",
-        "category": "skill:as",
-        "score": 0.5157894736842106
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "ai",
-        "score": 0.06115107913669065
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "design",
-        "score": 0.07734806629834254
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "knowledge",
-        "score": 0.2328042328042328
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "media",
-        "score": 0.05223880597014925
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "philosophy",
-        "score": 0.06763285024154589
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "science",
-        "score": 0.02681992337164751
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "security",
-        "score": 0.07222222222222222
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "technology",
-        "score": 0.09121621621621621
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "api-reference",
-        "score": 0.1951219512195122
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "architecture",
-        "score": 0.043795620437956206
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "best-practices",
-        "score": 0.04838709677419355
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "getting-started",
-        "score": 0.11926605504587157
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "troubleshooting",
-        "score": 0.05555555555555555
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:schema",
-        "score": 0.5480769230769231
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:await",
-        "score": 0.5480769230769231
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:object",
-        "score": 0.5480769230769231
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:data",
-        "score": 0.5480769230769231
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:http",
-        "score": 0.5480769230769231
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:https",
-        "score": 0.5480769230769231
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:ci",
-        "score": 0.5480769230769231
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:structur",
-        "score": 0.5480769230769231
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:hash",
-        "score": 0.5480769230769231
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:tl",
-        "score": 0.5480769230769231
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:app",
-        "score": 0.5178571428571429
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:on",
-        "score": 0.5178571428571429
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:js",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:ts",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:type",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:pip",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:c",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:html",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:less",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:gener",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:io",
-        "score": 0.5555555555555556
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:prioritization",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:organization",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:teaching",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:eq",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:write",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:document",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:plan",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:organ",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:mediat",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:synthesi",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:priorit",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:teach",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:inclus",
-        "score": 0.5299539170506913
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:version",
-        "score": 0.5263157894736842
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:as",
-        "score": 0.5263157894736842
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:code",
-        "score": 0.5263157894736842
-      },
-      {
-        "file": "schema/thread.schema.yaml",
-        "category": "skill:aw",
-        "score": 0.5263157894736842
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "ai",
-        "score": 0.0539568345323741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "design",
-        "score": 0.08287292817679558
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "knowledge",
-        "score": 0.21693121693121692
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "media",
-        "score": 0.05223880597014925
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "philosophy",
-        "score": 0.06763285024154589
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "science",
-        "score": 0.038314176245210725
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "security",
-        "score": 0.05555555555555555
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "technology",
-        "score": 0.15202702702702703
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "api-reference",
-        "score": 0.11382113821138211
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "architecture",
-        "score": 0.10218978102189781
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "best-practices",
-        "score": 0.12903225806451613
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "getting-started",
-        "score": 0.11009174311926606
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "troubleshooting",
-        "score": 0.1111111111111111
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:state-management",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:database",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:sql",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:schema",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:function",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:data",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:ci",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:state-manag",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:databas",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:search",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:structur",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:hash",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:tl",
-        "score": 0.5625
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:react",
-        "score": 0.5803571428571429
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:react-hooks",
-        "score": 0.5803571428571429
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:usestate",
-        "score": 0.5803571428571429
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:useeffect",
-        "score": 0.5803571428571429
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:app",
-        "score": 0.5803571428571429
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:api",
-        "score": 0.5803571428571429
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:on",
-        "score": 0.5803571428571429
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:react-hook",
-        "score": 0.5803571428571429
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:usest",
-        "score": 0.5803571428571429
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:javascript",
-        "score": 0.5740740740740741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:js",
-        "score": 0.5740740740740741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:ts",
-        "score": 0.5740740740740741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:type",
-        "score": 0.5740740740740741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:pip",
-        "score": 0.5740740740740741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:java",
-        "score": 0.5740740740740741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:c",
-        "score": 0.5740740740740741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:sqlite",
-        "score": 0.5740740740740741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:bash",
-        "score": 0.5740740740740741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:gener",
-        "score": 0.5740740740740741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:io",
-        "score": 0.5740740740740741
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:management",
-        "score": 0.5184331797235023
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:analysis",
-        "score": 0.5184331797235023
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:eq",
-        "score": 0.5184331797235023
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:write",
-        "score": 0.5184331797235023
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:document",
-        "score": 0.5184331797235023
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:manag",
-        "score": 0.5184331797235023
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:analysi",
-        "score": 0.5184331797235023
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:priorit",
-        "score": 0.5184331797235023
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:git",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:github",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:version",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:control",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:commit",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:merge",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:npm",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:pnpm",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:as",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:code",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:web",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:merg",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
-        "category": "skill:aw",
-        "score": 0.5789473684210527
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "ai",
-        "score": 0.12949640287769784
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "design",
-        "score": 0.11049723756906077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "knowledge",
-        "score": 0.4656084656084656
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "media",
-        "score": 0.11940298507462686
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "philosophy",
-        "score": 0.1111111111111111
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "science",
-        "score": 0.10344827586206896
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "security",
-        "score": 0.08888888888888889
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "technology",
-        "score": 0.22297297297297297
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "api-reference",
-        "score": 0.17886178861788618
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "architecture",
-        "score": 0.1897810218978102
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "best-practices",
-        "score": 0.22580645161290322
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "getting-started",
-        "score": 0.1926605504587156
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "troubleshooting",
-        "score": 0.16666666666666666
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:schema",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:unit",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:integration",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:async-programming",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:async",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:immutable",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:programming",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:inheritance",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:data",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:networking",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:http",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:https",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:ssl",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:ci",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:deployment",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:integr",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:async-program",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:immut",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:program",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:inherit",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:search",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:structur",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:network",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:tl",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:deploy",
-        "score": 0.6201923076923077
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:app",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:api",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:on",
-        "score": 0.5267857142857143
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:js",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:ts",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:type",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:python",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:py",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:rust",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:go",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:asp",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:scala",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:c",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:less",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:annot",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:gener",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:io",
-        "score": 0.5864197530864197
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:documentation",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:analysis",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:synthesis",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:organization",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:learning",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:eq",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:understanding",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:respect",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:present",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:document",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:narr",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:plan",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:organ",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:analysi",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:synthesi",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:product",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:learn",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:understand",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:belong",
-        "score": 0.5483870967741935
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:git",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:github",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:version",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:control",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:commit",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:branch",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:image",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:kubernetes",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:infrastructure",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:as",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:code",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:web",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:merg",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:contain",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:imag",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:kubernet",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:infrastructur",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:aw",
-        "score": 0.6210526315789474
-      },
-      {
-        "file": "docs/openquarry-architecture.md",
-        "category": "skill:servic",
-        "score": 0.6210526315789474
-      },
       {
         "file": "weaves/knowledge/ai-ml/llm_rag_evaluation.md",
         "category": "ai",
@@ -5039,6 +2154,391 @@
         "score": 0.5947368421052631
       },
       {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "ai",
+        "score": 0.014388489208633094
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "design",
+        "score": 0.011049723756906077
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "knowledge",
+        "score": 0.14814814814814814
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "media",
+        "score": 0.014925373134328358
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "philosophy",
+        "score": 0.024154589371980676
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "science",
+        "score": 0.019157088122605363
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "security",
+        "score": 0.016666666666666666
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "technology",
+        "score": 0.02364864864864865
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "api-reference",
+        "score": 0.016260162601626018
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "architecture",
+        "score": 0.0072992700729927005
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "best-practices",
+        "score": 0.024193548387096774
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "getting-started",
+        "score": 0.01834862385321101
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:programming",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:data",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:program",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:search",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:tl",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:on",
+        "score": 0.5089285714285714
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:c",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:gener",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:io",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:documentation",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:research",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:learning",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:reflection",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:document",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:learn",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:reflect",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:as",
+        "score": 0.5105263157894737
+      },
+      {
+        "file": "weaves/knowledge/weave.yaml",
+        "category": "skill:contain",
+        "score": 0.5105263157894737
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "ai",
+        "score": 0.01079136690647482
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "design",
+        "score": 0.027624309392265192
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "knowledge",
+        "score": 0.08465608465608465
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "philosophy",
+        "score": 0.024154589371980676
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "science",
+        "score": 0.0038314176245210726
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "security",
+        "score": 0.027777777777777776
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "technology",
+        "score": 0.030405405405405407
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "api-reference",
+        "score": 0.024390243902439025
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "architecture",
+        "score": 0.0072992700729927005
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "best-practices",
+        "score": 0.03225806451612903
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:data",
+        "score": 0.5096153846153846
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:tl",
+        "score": 0.5096153846153846
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:on",
+        "score": 0.5089285714285714
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:ts",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:c",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:io",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:writing",
+        "score": 0.511520737327189
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:documentation",
+        "score": 0.511520737327189
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:reflection",
+        "score": 0.511520737327189
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:document",
+        "score": 0.511520737327189
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:reflect",
+        "score": 0.511520737327189
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:as",
+        "score": 0.5157894736842106
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:code",
+        "score": 0.5157894736842106
+      },
+      {
+        "file": "weaves/notes/weave.yaml",
+        "category": "skill:contain",
+        "score": 0.5157894736842106
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "ai",
+        "score": 0.01079136690647482
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "design",
+        "score": 0.016574585635359115
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "knowledge",
+        "score": 0.05291005291005291
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "philosophy",
+        "score": 0.028985507246376812
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "science",
+        "score": 0.011494252873563218
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "security",
+        "score": 0.016666666666666666
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "technology",
+        "score": 0.02364864864864865
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "api-reference",
+        "score": 0.016260162601626018
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "architecture",
+        "score": 0.0072992700729927005
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "best-practices",
+        "score": 0.016129032258064516
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "getting-started",
+        "score": 0.01834862385321101
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "troubleshooting",
+        "score": 0.009259259259259259
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "skill:data",
+        "score": 0.5096153846153846
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "skill:tl",
+        "score": 0.5096153846153846
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "skill:on",
+        "score": 0.5089285714285714
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "skill:ts",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "skill:c",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "skill:io",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "skill:writing",
+        "score": 0.5069124423963134
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "skill:reflection",
+        "score": 0.5069124423963134
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "skill:reflect",
+        "score": 0.5069124423963134
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "skill:as",
+        "score": 0.5105263157894737
+      },
+      {
+        "file": "weaves/reflections/weave.yaml",
+        "category": "skill:contain",
+        "score": 0.5105263157894737
+      },
+      {
         "file": "weaves/wiki/architecture/overview.md",
         "category": "ai",
         "score": 0.06115107913669065
@@ -5917,6 +3417,1066 @@
         "file": "weaves/wiki/examples/gallery-demo.md",
         "category": "skill:aw",
         "score": 0.531578947368421
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "ai",
+        "score": 0.0035971223021582736
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "design",
+        "score": 0.0055248618784530384
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "knowledge",
+        "score": 0.07936507936507936
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "philosophy",
+        "score": 0.00966183574879227
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "science",
+        "score": 0.007662835249042145
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "security",
+        "score": 0.027777777777777776
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "technology",
+        "score": 0.04391891891891892
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "api-reference",
+        "score": 0.024390243902439025
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "architecture",
+        "score": 0.0364963503649635
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "best-practices",
+        "score": 0.016129032258064516
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "getting-started",
+        "score": 0.01834862385321101
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "troubleshooting",
+        "score": 0.018518518518518517
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "skill:tl",
+        "score": 0.5048076923076923
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "skill:app",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "skill:api",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "skill:on",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "skill:ts",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "skill:type",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "skill:c",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "skill:io",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "skill:documentation",
+        "score": 0.5046082949308756
+      },
+      {
+        "file": "weaves/wiki/frame/loom.yaml",
+        "category": "skill:document",
+        "score": 0.5046082949308756
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "ai",
+        "score": 0.050359712230215826
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "design",
+        "score": 0.03867403314917127
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "knowledge",
+        "score": 0.20105820105820105
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "media",
+        "score": 0.029850746268656716
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "philosophy",
+        "score": 0.024154589371980676
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "science",
+        "score": 0.034482758620689655
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "security",
+        "score": 0.03888888888888889
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "technology",
+        "score": 0.07432432432432433
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "api-reference",
+        "score": 0.032520325203252036
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "architecture",
+        "score": 0.043795620437956206
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "best-practices",
+        "score": 0.06451612903225806
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "getting-started",
+        "score": 0.027522935779816515
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "troubleshooting",
+        "score": 0.05555555555555555
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:data",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:ci",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:search",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:structur",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:tl",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:app",
+        "score": 0.5357142857142857
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:pages",
+        "score": 0.5357142857142857
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:on",
+        "score": 0.5357142857142857
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:page",
+        "score": 0.5357142857142857
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:ts",
+        "score": 0.5308641975308642
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:pip",
+        "score": 0.5308641975308642
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:go",
+        "score": 0.5308641975308642
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:c",
+        "score": 0.5308641975308642
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:io",
+        "score": 0.5308641975308642
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:focus",
+        "score": 0.5069124423963134
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:document",
+        "score": 0.5069124423963134
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:focu",
+        "score": 0.5069124423963134
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:git",
+        "score": 0.5210526315789473
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:github",
+        "score": 0.5210526315789473
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:control",
+        "score": 0.5210526315789473
+      },
+      {
+        "file": "weaves/wiki/openquarry/architecture.md",
+        "category": "skill:as",
+        "score": 0.5210526315789473
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "ai",
+        "score": 0.0035971223021582736
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "design",
+        "score": 0.022099447513812154
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "knowledge",
+        "score": 0.12169312169312169
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "philosophy",
+        "score": 0.00966183574879227
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "science",
+        "score": 0.007662835249042145
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "security",
+        "score": 0.022222222222222223
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "technology",
+        "score": 0.033783783783783786
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "api-reference",
+        "score": 0.024390243902439025
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "architecture",
+        "score": 0.0364963503649635
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "best-practices",
+        "score": 0.016129032258064516
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "skill:schema",
+        "score": 0.5144230769230769
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "skill:ci",
+        "score": 0.5144230769230769
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "skill:tl",
+        "score": 0.5144230769230769
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "skill:app",
+        "score": 0.5178571428571429
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "skill:on",
+        "score": 0.5178571428571429
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "skill:ts",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "skill:type",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "skill:c",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "skill:io",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "skill:documentation",
+        "score": 0.5046082949308756
+      },
+      {
+        "file": "weaves/wiki/openquarry/loom.yaml",
+        "category": "skill:document",
+        "score": 0.5046082949308756
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "ai",
+        "score": 0.08992805755395683
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "design",
+        "score": 0.15469613259668508
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "knowledge",
+        "score": 0.4656084656084656
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "media",
+        "score": 0.09701492537313433
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "philosophy",
+        "score": 0.12077294685990338
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "science",
+        "score": 0.09195402298850575
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "security",
+        "score": 0.11666666666666667
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "technology",
+        "score": 0.22297297297297297
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "api-reference",
+        "score": 0.17073170731707318
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "architecture",
+        "score": 0.15328467153284672
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "best-practices",
+        "score": 0.13709677419354838
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "getting-started",
+        "score": 0.28440366972477066
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "troubleshooting",
+        "score": 0.12962962962962962
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:authentication",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:auth",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:oauth",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:jwt",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:database",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:schema",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:unit",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:data",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:http",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:https",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:security",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:ci",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:authent",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:databas",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:inherit",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:search",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:structur",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:secur",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:tl",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:react",
+        "score": 0.5357142857142857
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:app",
+        "score": 0.5357142857142857
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:api",
+        "score": 0.5357142857142857
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:on",
+        "score": 0.5357142857142857
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:javascript",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:ts",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:type",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:rust",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:go",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:java",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:c",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:gener",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:io",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:documentation",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:management",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:collaboration",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:learning",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:onboarding",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:eq",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:trust",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:write",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:present",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:document",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:manag",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:organ",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:collabor",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:learn",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:train",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:onboard",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:understand",
+        "score": 0.5391705069124424
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:git",
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:github",
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:version",
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:control",
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:container",
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:as",
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:code",
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:web",
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:contain",
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/openquarry/overview.md",
+        "category": "skill:redi",
+        "score": 0.5684210526315789
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "ai",
+        "score": 0.05755395683453238
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "design",
+        "score": 0.06629834254143646
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "knowledge",
+        "score": 0.3862433862433862
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "media",
+        "score": 0.08208955223880597
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "philosophy",
+        "score": 0.06763285024154589
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "science",
+        "score": 0.05747126436781609
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "security",
+        "score": 0.05555555555555555
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "technology",
+        "score": 0.13851351351351351
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "api-reference",
+        "score": 0.07317073170731707
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "architecture",
+        "score": 0.10218978102189781
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "best-practices",
+        "score": 0.08870967741935484
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "getting-started",
+        "score": 0.12844036697247707
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "troubleshooting",
+        "score": 0.046296296296296294
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:database",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:schema",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:unit",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:async",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:programming",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:inheritance",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:data",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:structures",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:networking",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:http",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:https",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:ci",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:databas",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:program",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:inherit",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:search",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:structur",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:network",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:tl",
+        "score": 0.5913461538461539
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:app",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:api",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:on",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:ts",
+        "score": 0.5617283950617284
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:python",
+        "score": 0.5617283950617284
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:py",
+        "score": 0.5617283950617284
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:rust",
+        "score": 0.5617283950617284
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:go",
+        "score": 0.5617283950617284
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:asp",
+        "score": 0.5617283950617284
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:c",
+        "score": 0.5617283950617284
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:annot",
+        "score": 0.5617283950617284
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:gener",
+        "score": 0.5617283950617284
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:io",
+        "score": 0.5617283950617284
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:documentation",
+        "score": 0.5230414746543779
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:organization",
+        "score": 0.5230414746543779
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:learning",
+        "score": 0.5230414746543779
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:eq",
+        "score": 0.5230414746543779
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:document",
+        "score": 0.5230414746543779
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:narr",
+        "score": 0.5230414746543779
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:organ",
+        "score": 0.5230414746543779
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:learn",
+        "score": 0.5230414746543779
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:git",
+        "score": 0.5631578947368421
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:github",
+        "score": 0.5631578947368421
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:branch",
+        "score": 0.5631578947368421
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:kubernetes",
+        "score": 0.5631578947368421
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:infrastructure",
+        "score": 0.5631578947368421
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:as",
+        "score": 0.5631578947368421
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:code",
+        "score": 0.5631578947368421
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:contain",
+        "score": 0.5631578947368421
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:kubernet",
+        "score": 0.5631578947368421
+      },
+      {
+        "file": "weaves/wiki/openquarry/schema/hierarchy.md",
+        "category": "skill:infrastructur",
+        "score": 0.5631578947368421
       },
       {
         "file": "weaves/wiki/tutorials/executable-code.md",
@@ -7339,6 +5899,136 @@
         "score": 0.5105263157894737
       },
       {
+        "file": "weaves/writings/weave.yaml",
+        "category": "ai",
+        "score": 0.01079136690647482
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "design",
+        "score": 0.027624309392265192
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "knowledge",
+        "score": 0.08465608465608465
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "philosophy",
+        "score": 0.024154589371980676
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "science",
+        "score": 0.0038314176245210726
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "security",
+        "score": 0.022222222222222223
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "technology",
+        "score": 0.02702702702702703
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "api-reference",
+        "score": 0.032520325203252036
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "architecture",
+        "score": 0.014598540145985401
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "best-practices",
+        "score": 0.024193548387096774
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "troubleshooting",
+        "score": 0.009259259259259259
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:auth",
+        "score": 0.5144230769230769
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:data",
+        "score": 0.5144230769230769
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:tl",
+        "score": 0.5144230769230769
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:on",
+        "score": 0.5089285714285714
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:ts",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:c",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:io",
+        "score": 0.5185185185185185
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:writing",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:documentation",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:reflection",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:write",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:document",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:iter",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:reflect",
+        "score": 0.5161290322580645
+      },
+      {
+        "file": "weaves/writings/weave.yaml",
+        "category": "skill:contain",
+        "score": 0.5052631578947369
+      },
+      {
         "file": "schema/blocks-index.schema.yaml",
         "category": "ai",
         "score": 0.025179856115107913
@@ -7502,6 +6192,261 @@
         "file": "schema/blocks-index.schema.yaml",
         "category": "skill:code",
         "score": 0.5210526315789473
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "ai",
+        "score": 0.017985611510791366
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "design",
+        "score": 0.016574585635359115
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "knowledge",
+        "score": 0.0582010582010582
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "media",
+        "score": 0.014925373134328358
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "philosophy",
+        "score": 0.004830917874396135
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "security",
+        "score": 0.03888888888888889
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "technology",
+        "score": 0.05405405405405406
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "api-reference",
+        "score": 0.07317073170731707
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "architecture",
+        "score": 0.014598540145985401
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "best-practices",
+        "score": 0.03225806451612903
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "getting-started",
+        "score": 0.027522935779816515
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "troubleshooting",
+        "score": 0.018518518518518517
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:schema",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:object",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:http",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:https",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:ci",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:tl",
+        "score": 0.5288461538461539
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:on",
+        "score": 0.5089285714285714
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:js",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:ts",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:type",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:c",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:annot",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:io",
+        "score": 0.537037037037037
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:eq",
+        "score": 0.5046082949308756
+      },
+      {
+        "file": "schema/catalogue.schema.yaml",
+        "category": "skill:product",
+        "score": 0.5046082949308756
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "ai",
+        "score": 0.007194244604316547
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "design",
+        "score": 0.011049723756906077
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "knowledge",
+        "score": 0.08465608465608465
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "philosophy",
+        "score": 0.00966183574879227
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "security",
+        "score": 0.027777777777777776
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "technology",
+        "score": 0.060810810810810814
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "api-reference",
+        "score": 0.08130081300813008
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "architecture",
+        "score": 0.021897810218978103
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "best-practices",
+        "score": 0.016129032258064516
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "troubleshooting",
+        "score": 0.018518518518518517
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:schema",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:object",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:http",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:https",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:tl",
+        "score": 0.5240384615384616
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:app",
+        "score": 0.5178571428571429
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:on",
+        "score": 0.5178571428571429
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:js",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:type",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:c",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:io",
+        "score": 0.5246913580246914
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:eq",
+        "score": 0.5023041474654378
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:version",
+        "score": 0.5157894736842106
+      },
+      {
+        "file": "schema/fabric.schema.yaml",
+        "category": "skill:as",
+        "score": 0.5157894736842106
       },
       {
         "file": "schema/loom.schema.yaml",
@@ -7890,6 +6835,261 @@
       },
       {
         "file": "schema/strand.schema.yaml",
+        "category": "skill:aw",
+        "score": 0.5263157894736842
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "ai",
+        "score": 0.06115107913669065
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "design",
+        "score": 0.07734806629834254
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "knowledge",
+        "score": 0.2328042328042328
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "media",
+        "score": 0.05223880597014925
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "philosophy",
+        "score": 0.06763285024154589
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "science",
+        "score": 0.02681992337164751
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "security",
+        "score": 0.07222222222222222
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "technology",
+        "score": 0.09121621621621621
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "api-reference",
+        "score": 0.1951219512195122
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "architecture",
+        "score": 0.043795620437956206
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "best-practices",
+        "score": 0.04838709677419355
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "getting-started",
+        "score": 0.11926605504587157
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "troubleshooting",
+        "score": 0.05555555555555555
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:schema",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:await",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:object",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:data",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:http",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:https",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:ci",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:structur",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:hash",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:tl",
+        "score": 0.5480769230769231
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:app",
+        "score": 0.5178571428571429
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:on",
+        "score": 0.5178571428571429
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:js",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:ts",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:type",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:pip",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:c",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:html",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:less",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:gener",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:io",
+        "score": 0.5555555555555556
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:prioritization",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:organization",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:teaching",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:eq",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:write",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:document",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:plan",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:organ",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:mediat",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:synthesi",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:priorit",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:teach",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:inclus",
+        "score": 0.5299539170506913
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:version",
+        "score": 0.5263157894736842
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:as",
+        "score": 0.5263157894736842
+      },
+      {
+        "file": "schema/thread.schema.yaml",
+        "category": "skill:code",
+        "score": 0.5263157894736842
+      },
+      {
+        "file": "schema/thread.schema.yaml",
         "category": "skill:aw",
         "score": 0.5263157894736842
       },
@@ -10004,6 +9204,341 @@
         "score": 0.631578947368421
       },
       {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "ai",
+        "score": 0.0539568345323741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "design",
+        "score": 0.08287292817679558
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "knowledge",
+        "score": 0.21693121693121692
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "media",
+        "score": 0.05223880597014925
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "philosophy",
+        "score": 0.06763285024154589
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "science",
+        "score": 0.038314176245210725
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "security",
+        "score": 0.05555555555555555
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "technology",
+        "score": 0.15202702702702703
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "api-reference",
+        "score": 0.11382113821138211
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "architecture",
+        "score": 0.10218978102189781
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "best-practices",
+        "score": 0.12903225806451613
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "getting-started",
+        "score": 0.11009174311926606
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "troubleshooting",
+        "score": 0.1111111111111111
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:state-management",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:database",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:sql",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:schema",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:function",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:data",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:ci",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:state-manag",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:databas",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:search",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:structur",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:hash",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:tl",
+        "score": 0.5625
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:react",
+        "score": 0.5803571428571429
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:react-hooks",
+        "score": 0.5803571428571429
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:usestate",
+        "score": 0.5803571428571429
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:useeffect",
+        "score": 0.5803571428571429
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:app",
+        "score": 0.5803571428571429
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:api",
+        "score": 0.5803571428571429
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:on",
+        "score": 0.5803571428571429
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:react-hook",
+        "score": 0.5803571428571429
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:usest",
+        "score": 0.5803571428571429
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:javascript",
+        "score": 0.5740740740740741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:js",
+        "score": 0.5740740740740741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:ts",
+        "score": 0.5740740740740741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:type",
+        "score": 0.5740740740740741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:pip",
+        "score": 0.5740740740740741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:java",
+        "score": 0.5740740740740741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:c",
+        "score": 0.5740740740740741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:sqlite",
+        "score": 0.5740740740740741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:bash",
+        "score": 0.5740740740740741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:gener",
+        "score": 0.5740740740740741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:io",
+        "score": 0.5740740740740741
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:management",
+        "score": 0.5184331797235023
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:analysis",
+        "score": 0.5184331797235023
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:eq",
+        "score": 0.5184331797235023
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:write",
+        "score": 0.5184331797235023
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:document",
+        "score": 0.5184331797235023
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:manag",
+        "score": 0.5184331797235023
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:analysi",
+        "score": 0.5184331797235023
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:priorit",
+        "score": 0.5184331797235023
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:git",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:github",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:version",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:control",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:commit",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:merge",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:npm",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:pnpm",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:as",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:code",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:web",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:merg",
+        "score": 0.5789473684210527
+      },
+      {
+        "file": "docs/HYBRID_TAGGING_DATAFLOW.md",
+        "category": "skill:aw",
+        "score": 0.5789473684210527
+      },
+      {
         "file": "docs/NLP_VOCABULARY_SYSTEM.md",
         "category": "ai",
         "score": 0.11510791366906475
@@ -11564,6 +11099,471 @@
         "score": 0.5842105263157895
       },
       {
+        "file": "docs/openquarry-architecture.md",
+        "category": "ai",
+        "score": 0.12949640287769784
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "design",
+        "score": 0.11049723756906077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "knowledge",
+        "score": 0.4656084656084656
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "media",
+        "score": 0.11940298507462686
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "philosophy",
+        "score": 0.1111111111111111
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "science",
+        "score": 0.10344827586206896
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "security",
+        "score": 0.08888888888888889
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "technology",
+        "score": 0.22297297297297297
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "api-reference",
+        "score": 0.17886178861788618
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "architecture",
+        "score": 0.1897810218978102
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "best-practices",
+        "score": 0.22580645161290322
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "getting-started",
+        "score": 0.1926605504587156
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "troubleshooting",
+        "score": 0.16666666666666666
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:schema",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:unit",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:integration",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:async-programming",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:async",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:immutable",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:programming",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:inheritance",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:data",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:networking",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:http",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:https",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:ssl",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:ci",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:deployment",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:integr",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:async-program",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:immut",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:program",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:inherit",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:search",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:structur",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:network",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:tl",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:deploy",
+        "score": 0.6201923076923077
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:app",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:api",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:on",
+        "score": 0.5267857142857143
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:js",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:ts",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:type",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:python",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:py",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:rust",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:go",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:asp",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:scala",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:c",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:less",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:annot",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:gener",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:io",
+        "score": 0.5864197530864197
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:documentation",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:analysis",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:synthesis",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:organization",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:learning",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:eq",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:understanding",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:respect",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:present",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:document",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:narr",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:plan",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:organ",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:analysi",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:synthesi",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:product",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:learn",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:understand",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:belong",
+        "score": 0.5483870967741935
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:git",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:github",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:version",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:control",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:commit",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:branch",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:image",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:kubernetes",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:infrastructure",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:as",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:code",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:web",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:merg",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:contain",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:imag",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:kubernet",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:infrastructur",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:aw",
+        "score": 0.6210526315789474
+      },
+      {
+        "file": "docs/openquarry-architecture.md",
+        "category": "skill:servic",
+        "score": 0.6210526315789474
+      },
+      {
         "file": "docs/schema-reference.md",
         "category": "ai",
         "score": 0.06474820143884892
@@ -12122,7 +12122,7 @@
     "fileWarnings": []
   },
   "vocabulary": {
-    "totalUniqueTerms": 392,
+    "totalUniqueTerms": 394,
     "suggestedAdditions": [
       {
         "term": "block",
@@ -12130,18 +12130,26 @@
       },
       {
         "term": "frame",
+        "frequency": 5
+      },
+      {
+        "term": "blocks",
+        "frequency": 5
+      },
+      {
+        "term": "worthiness",
+        "frequency": 5
+      },
+      {
+        "term": "const",
+        "frequency": 4
+      },
+      {
+        "term": "slug",
         "frequency": 4
       },
       {
         "term": "properties",
-        "frequency": 4
-      },
-      {
-        "term": "worthiness",
-        "frequency": 4
-      },
-      {
-        "term": "blocks",
         "frequency": 4
       },
       {
@@ -12153,11 +12161,11 @@
         "frequency": 3
       },
       {
-        "term": "slug",
+        "term": "notes",
         "frequency": 3
       },
       {
-        "term": "items",
+        "term": "reflections",
         "frequency": 3
       },
       {
@@ -12169,19 +12177,7 @@
         "frequency": 3
       },
       {
-        "term": "suggestions",
-        "frequency": 3
-      },
-      {
-        "term": "golden",
-        "frequency": 3
-      },
-      {
-        "term": "const",
-        "frequency": 3
-      },
-      {
-        "term": "fibonacci",
+        "term": "enhance",
         "frequency": 3
       },
       {
@@ -12199,7 +12195,7 @@
     ]
   },
   "performance": {
-    "timeElapsed": "57.84s",
+    "timeElapsed": "81.91s",
     "cacheHitRate": "0%",
     "filesProcessed": 41,
     "filesCached": 0,
